@@ -1,0 +1,97 @@
+baseURL: "https://YOUR_USERNAME.github.io/aerosentinel/"
+languageCode: "en-us"
+title: "AeroSentinel"
+theme: "PaperMod"
+
+# Build settings
+paginate: 10
+enableRobotsTXT: true
+buildDrafts: false
+buildFuture: false
+
+# No tracking, no analytics — privacy first
+privacy:
+  disqus:
+    disable: true
+  googleAnalytics:
+    disable: true
+  twitter:
+    disable: true
+  youtube:
+    disable: true
+
+params:
+  env: production
+  title: "AeroSentinel"
+  description: "Automated Research Intelligence for Aerospace & Hypersonic Aerothermodynamics"
+  author: "AeroSentinel"
+
+  # PaperMod specific
+  defaultTheme: "auto"
+  ShowReadingTime: true
+  ShowShareButtons: false
+  ShowPostNavLinks: true
+  ShowBreadCrumbs: true
+  ShowCodeCopyButtons: true
+  ShowToc: false
+
+  homeInfoParams:
+    Title: "🛰️ AeroSentinel"
+    Content: >
+      Curated research intelligence on hypersonic aerodynamics,
+      aerothermodynamics, reentry vehicles, and AI applications in CFD.
+      Updated every 2 days. Quality-filtered from AIAA, JFM, Physics of Fluids,
+      NASA NTRS, and other top-tier sources.
+
+  socialIcons:
+    - name: github
+      url: "https://github.com/YOUR_USERNAME/aerosentinel"
+
+  # SEO
+  keywords:
+    - aerodynamic heating
+    - hypersonic aerodynamics
+    - missile aerodynamics
+    - reentry vehicle
+    - CFD
+    - aerothermodynamics
+    - machine learning aerodynamics
+
+# Taxonomy
+taxonomies:
+  tag: tags
+
+# Menu
+menu:
+  main:
+    - identifier: home
+      name: Home
+      url: /
+      weight: 1
+    - identifier: tags
+      name: Topics
+      url: /tags/
+      weight: 2
+    - identifier: archive
+      name: Archive
+      url: /archives/
+      weight: 3
+    - identifier: about
+      name: About
+      url: /about/
+      weight: 4
+
+# Output formats
+outputs:
+  home:
+    - HTML
+    - RSS
+    - JSON
+
+# Markup
+markup:
+  goldmark:
+    renderer:
+      unsafe: true  # Allow raw HTML in markdown if needed
+  highlight:
+    noClasses: false

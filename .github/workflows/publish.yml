@@ -1,0 +1,89 @@
+# AeroSentinel Publisher — Triggered by Telegram approval via Google Apps Script
+# Moves draft to posts → Rebuilds Hugo site → Sends confirmation
+
+name: "🚀 AeroSentinel Publish"
+
+on:
+  repository_dispatch:
+    types: [telegram_command]
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    if: github.event.client_payload.command == 'publish'
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Publish draft
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          FILENAME="${{ github.event.client_payload.filename }}"
+          python -m src.pipeline --publish "$FILENAME"
+
+      - name: Commit published post
+        run: |
+          git config user.name "AeroSentinel Bot"
+          git config user.email "aerosentinel@proton.me"
+          git add content/posts/ content/drafts/ || true
+          git diff --cached --quiet || git commit -m "🚀 Published: ${{ github.event.client_payload.filename }}"
+          git push
+
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v3
+        with:
+          hugo-version: "latest"
+          extended: true
+
+      - name: Build site
+        run: hugo --minify
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./public
+
+  discard:
+    runs-on: ubuntu-latest
+    if: github.event.client_payload.command == 'discard'
+    timeout-minutes: 5
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Discard draft
+        run: |
+          FILENAME="${{ github.event.client_payload.filename }}"
+          python -m src.pipeline --discard "$FILENAME"
+
+      - name: Commit removal
+        run: |
+          git config user.name "AeroSentinel Bot"
+          git config user.email "aerosentinel@proton.me"
+          git add content/drafts/ || true
+          git diff --cached --quiet || git commit -m "🗑️ Discarded: ${{ github.event.client_payload.filename }}"
+          git push

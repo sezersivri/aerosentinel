@@ -1,0 +1,47 @@
+# AeroSentinel Scout — Runs every 2 days
+# Hunts for papers → Summarizes → Sends Telegram preview
+
+name: "🛰️ AeroSentinel Scout"
+
+on:
+  schedule:
+    # Every 2 days at 08:00 UTC (11:00 Turkey time)
+    - cron: "0 8 */2 * *"
+
+  # Manual trigger for testing
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  scout:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Run Scout Pipeline
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: python -m src.pipeline
+
+      - name: Commit draft and history
+        run: |
+          git config user.name "AeroSentinel Bot"
+          git config user.email "aerosentinel@proton.me"
+          git add seen_papers.json content/drafts/ || true
+          git diff --cached --quiet || git commit -m "🛰️ Scout: new draft $(date +%Y-%m-%d)"
+          git push
