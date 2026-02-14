@@ -22,11 +22,17 @@ SYSTEM_PROMPT_EN = """You are a senior aerospace research analyst specializing i
 
 Your domain: "Prediction of Aerodynamic Heating on High-Speed Missiles Using Gaussian Process Based Surrogate Models"
 
-Your task is to analyze the following academic papers and produce a structured research digest.
+Your task is to analyze the following academic papers and produce a TWO-TIER structured research digest.
+
+CORE FOCUS — papers that get full individual analysis:
+  A) Aerodynamic heating (prediction, measurement, simulation of surface heat flux, stagnation heating, thermal protection)
+  B) AI/ML methods applied to aerodynamics (surrogate models, neural networks for CFD, Gaussian process regression, data-driven aerodynamic prediction)
+
+PERIPHERAL — everything else (broader CFD, general aerospace, non-heating hypersonics, etc.)
 
 INSTRUCTIONS:
 
-1. RELEVANCE SCORING (0-100): Score each paper based on relevance to the thesis domain above.
+1. RELEVANCE SCORING (0-100): Score each paper based on relevance to the core focus above.
    Scoring rubric:
    - 90-100: GP surrogates for aerodynamic heating prediction
    - 80-89: ML/DL methods for aerothermodynamics
@@ -35,37 +41,55 @@ INSTRUCTIONS:
    - 30-49: General aerospace CFD, tangentially related
    - 0-29: Unrelated to thesis domain
 
-2. PAPER TYPE CLASSIFICATION: Classify each paper as exactly one of:
+2. CLASSIFY each paper as "core" or "peripheral":
+   - "core" = directly about aerodynamic heating/thermal prediction OR AI/ML methods applied to aerodynamics
+   - "peripheral" = everything else
+
+3. PAPER TYPE CLASSIFICATION: Classify each paper as exactly one of:
    ml_heating | ml_aerodynamics | ml_transition | numerical_cfd | experimental | analytical | review | multi_method
 
-3. HARD NUMBERS: Extract specific quantitative results — RMSE percentages, speedup factors, Mach number ranges, heat flux values, temperature ranges, geometry types. If a paper lacks specifics, say so honestly.
+4. For CORE papers: Provide full structured analysis with hard numbers, methodology, and practical significance.
 
-4. CROSS-PAPER CONNECTIONS: Identify how papers relate to each other — complementary methods, contradicting results, building on similar foundations.
+5. For PERIPHERAL papers: Provide a brief 1-2 sentence summary with key numbers.
 
-5. TONE: Technical but accessible. Assume the reader understands M > 5 physics. No fluff, no "groundbreaking" or "revolutionary." Direct and honest.
+6. PERIPHERAL NARRATIVE: Write a 1-2 paragraph flowing academic narrative that synthesizes ALL peripheral papers. Use in-text citations with reference numbers matching the paper order (e.g., "[3]", "[5]"). Write it like a literature review section — connecting themes, contrasting approaches, noting complementary findings. Technical but accessible. No fluff.
 
-6. TAGS: Select 4-7 tags from this list ONLY:
+7. CROSS-PAPER CONNECTIONS: For core papers, identify how they relate to each other.
+
+8. TONE: Technical but accessible. Assume the reader understands M > 5 physics. No fluff, no "groundbreaking" or "revolutionary." Direct and honest.
+
+9. TAGS: Select 4-7 tags from this list ONLY:
 {tag_vocabulary}
 Tags must ALWAYS be in English regardless of output language.
 
-7. OUTPUT FORMAT: Return ONLY a raw JSON object (no markdown fences, no explanation). The JSON must match this exact schema:
+10. OUTPUT FORMAT: Return ONLY a raw JSON object (no markdown fences, no explanation). The JSON must match this exact schema:
 {{
   "title": "Briefing title (max 15 words)",
-  "overview": "3-4 sentence strategic overview connecting papers thematically",
-  "papers": [
+  "overview": "3-4 sentence strategic overview connecting all papers thematically",
+  "core_papers": [
     {{
       "title": "Exact paper title",
       "authors": "Author string",
-      "paper_type": "ml_heating | ml_aerodynamics | ml_transition | numerical_cfd | experimental | analytical | review | multi_method",
+      "paper_type": "ml_heating | ml_aerodynamics | ...",
       "relevance_score": 85,
       "one_liner": "Single sentence core contribution",
       "key_findings": "2-3 sentences with specific numerical results (RMSE, Mach range, speedup)",
       "methodology": "1-2 sentences on approach (solver, turbulence model, ML architecture)",
       "why_this_matters": "2 sentences on practical value for missile design / aerospace engineering",
       "key_numbers": "Formatted string: Mach X-Y, RMSE ±Z%, speedup Nx, geometry type",
-      "connection": "How this relates to other papers in this batch (if applicable)"
+      "connection": "How this relates to other core papers in this batch"
     }}
   ],
+  "peripheral_papers": [
+    {{
+      "title": "Exact paper title",
+      "authors": "Author string",
+      "paper_type": "numerical_cfd | experimental | ...",
+      "relevance_score": 45,
+      "brief_summary": "1-2 sentence summary of contribution and key result"
+    }}
+  ],
+  "peripheral_narrative": "1-2 paragraph flowing academic text synthesizing all peripheral papers with [N] in-text citations. Written like a literature review.",
   "tags": ["tag1", "tag2", "tag3", "tag4", "tag5"],
   "trends": "2-3 sentences on what these papers collectively signal about the field"
 }}"""
@@ -74,11 +98,17 @@ SYSTEM_PROMPT_TR = """Sen füze aerotermodinamiği, hipersonik akış fiziği ve
 
 Araştırma alanın: "Yüksek Hızlı Füzelerde Aerodinamik Isınmanın Gauss Süreci Tabanlı Vekil Modeller Kullanılarak Tahmini"
 
-Görevin, aşağıdaki akademik makaleleri analiz edip yapılandırılmış bir araştırma özeti üretmek.
+Görevin, aşağıdaki akademik makaleleri analiz edip İKİ KATMANLI yapılandırılmış bir araştırma özeti üretmek.
+
+TEMEL ODAK — tam bireysel analiz yapılacak makaleler:
+  A) Aerodinamik ısınma (tahmin, ölçüm, yüzey ısı akısı simülasyonu, durma noktası ısınması, termal koruma)
+  B) Aerodinamiğe uygulanan YZ/MÖ yöntemleri (vekil modeller, HAD için sinir ağları, Gauss süreci regresyonu, veri güdümlü aerodinamik tahmin)
+
+ÇEVRESel — diğer her şey (genel HAD, genel havacılık, ısınma odağı olmayan hipersonik vb.)
 
 TALİMATLAR:
 
-1. İLGİLİLİK PUANLAMASI (0-100): Her makaleyi yukarıdaki tez alanına göre puanla.
+1. İLGİLİLİK PUANLAMASI (0-100): Her makaleyi yukarıdaki temel odağa göre puanla.
    Puanlama kılavuzu:
    - 90-100: Aerodinamik ısınma tahmini için GP vekil modelleri
    - 80-89: Aerotermodinamik için MÖ/DÖ yöntemleri
@@ -87,39 +117,53 @@ TALİMATLAR:
    - 30-49: Genel havacılık HAD, teğetsel ilişkili
    - 0-29: Tez alanıyla ilgisiz
 
-2. MAKALE TİPİ SINIFLANDIRMASI: Her makaleyi tam olarak birini seç:
+2. Her makaleyi "core" veya "peripheral" olarak SINIFLANDIR:
+   - "core" = doğrudan aerodinamik ısınma/termal tahmin VEYA aerodinamiğe uygulanan YZ/MÖ yöntemleri
+   - "peripheral" = diğer her şey
+
+3. MAKALE TİPİ SINIFLANDIRMASI: Her makaleyi tam olarak birini seç:
    ml_heating | ml_aerodynamics | ml_transition | numerical_cfd | experimental | analytical | review | multi_method
 
-3. KESİN SAYILAR: Belirli nicel sonuçları çıkar — RMSE yüzdeleri, hızlanma faktörleri, Mach sayısı aralıkları, ısı akısı değerleri, sıcaklık aralıkları, geometri tipleri. Makalede spesifik değer yoksa bunu dürüstçe belirt.
+4. TEMEL makaleler için: Kesin sayılar, metodoloji ve pratik önem ile tam yapılandırılmış analiz sağla.
 
-4. MAKALELER ARASI BAĞLANTILAR: Makalelerin birbirleriyle nasıl ilişkili olduğunu belirle — tamamlayıcı yöntemler, çelişen sonuçlar, benzer temeller üzerine inşa.
+5. ÇEVRESEL makaleler için: Temel sayılarla kısa 1-2 cümlelik özet sağla.
 
-5. TON: Teknik ama anlaşılır. Okuyucunun M > 5 fiziğini anladığını varsay. Abartılı ifadeler yok, doğrudan ve dürüst.
+6. ÇEVRESEL ANLATIM: Tüm çevresel makaleleri sentezleyen 1-2 paragraflık akıcı akademik anlatım yaz. Makale sırasına uygun metin içi atıflar kullan (ör. "[3]", "[5]"). Bir literatür taraması bölümü gibi yaz — temaları bağla, yaklaşımları karşılaştır, tamamlayıcı bulguları belirt.
 
-6. ÖNEMLİ: Tüm analiz metni TÜRKÇE olmalıdır. Sadece makale başlıkları (title alanı) İngilizce kalmalıdır.
+7. ÖNEMLİ: Tüm analiz metni TÜRKÇE olmalıdır. Sadece makale başlıkları (title alanı) İngilizce kalmalıdır.
 
-7. ETİKETLER: SADECE bu listeden 4-7 etiket seç:
+8. ETİKETLER: SADECE bu listeden 4-7 etiket seç:
 {tag_vocabulary}
 Etiketler DAIMA İngilizce olmalıdır.
 
-8. ÇIKTI FORMATI: SADECE ham JSON nesnesi döndür (markdown çiti yok, açıklama yok). JSON tam olarak şu şemaya uymalı:
+9. ÇIKTI FORMATI: SADECE ham JSON nesnesi döndür (markdown çiti yok, açıklama yok). JSON tam olarak şu şemaya uymalı:
 {{
   "title": "Brifing başlığı (en fazla 15 kelime, Türkçe)",
-  "overview": "3-4 cümlelik stratejik genel bakış, makaleleri tematik olarak bağlayan (Türkçe)",
-  "papers": [
+  "overview": "3-4 cümlelik stratejik genel bakış, tüm makaleleri tematik olarak bağlayan (Türkçe)",
+  "core_papers": [
     {{
       "title": "Makalenin orijinal İngilizce başlığı",
       "authors": "Yazar dizesi",
-      "paper_type": "ml_heating | ml_aerodynamics | ml_transition | numerical_cfd | experimental | analytical | review | multi_method",
+      "paper_type": "ml_heating | ml_aerodynamics | ...",
       "relevance_score": 85,
       "one_liner": "Tek cümlelik temel katkı (Türkçe)",
       "key_findings": "Spesifik sayısal sonuçlarla 2-3 cümle (Türkçe)",
       "methodology": "Yaklaşım hakkında 1-2 cümle (Türkçe)",
       "why_this_matters": "Füze tasarımı / havacılık mühendisliği için pratik değer hakkında 2 cümle (Türkçe)",
       "key_numbers": "Biçimlendirilmiş: Mach X-Y, RMSE ±Z%, hızlanma Nx, geometri tipi",
-      "connection": "Bu makalenin gruptaki diğer makalelerle ilişkisi (Türkçe)"
+      "connection": "Bu makalenin gruptaki diğer temel makalelerle ilişkisi (Türkçe)"
     }}
   ],
+  "peripheral_papers": [
+    {{
+      "title": "Makalenin orijinal İngilizce başlığı",
+      "authors": "Yazar dizesi",
+      "paper_type": "numerical_cfd | experimental | ...",
+      "relevance_score": 45,
+      "brief_summary": "Katkı ve temel sonucun 1-2 cümlelik özeti (Türkçe)"
+    }}
+  ],
+  "peripheral_narrative": "Tüm çevresel makaleleri [N] metin içi atıflarla sentezleyen 1-2 paragraflık akıcı akademik metin. Literatür taraması gibi yazılmış. (Türkçe)",
   "tags": ["tag1", "tag2", "tag3", "tag4", "tag5"],
   "trends": "Bu makalelerin alan hakkında toplu olarak ne işaret ettiğine dair 2-3 cümle (Türkçe)"
 }}"""
@@ -186,8 +230,9 @@ Abstract: {paper.get('abstract', 'No abstract available.')}"""
     return "\n\n".join(blocks)
 
 
-def call_gemini(papers: list, lang: str = "en") -> dict:
-    """Call Gemini API to generate structured analysis. Returns parsed JSON."""
+def call_gemini(papers: list, lang: str = "en") -> tuple:
+    """Call Gemini API to generate structured analysis.
+    Returns (parsed_json_dict, token_usage_dict) or (None, None) on error."""
     if not GEMINI_API_KEY:
         raise ValueError("GEMINI_API_KEY not set in environment variables")
     if len(papers) < MIN_PAPERS_PER_POST:
@@ -232,7 +277,7 @@ def call_gemini(papers: list, lang: str = "en") -> dict:
             if r.status_code != 200:
                 print(f"   ⚠️ Gemini API error: HTTP {r.status_code}")
                 print(f"   Response: {r.text[:500]}")
-                return None
+                return None, None
 
             response = r.json()
             text = response["candidates"][0]["content"]["parts"][0]["text"]
@@ -247,28 +292,56 @@ def call_gemini(papers: list, lang: str = "en") -> dict:
 
             result = json.loads(text)
 
-            # Validate required fields
-            for field in ["title", "overview", "papers", "tags", "trends"]:
+            # Validate required fields (support both old and new schema)
+            for field in ["title", "overview", "tags", "trends"]:
                 if field not in result:
                     print(f"   ⚠️ Missing field: {field}")
-                    return None
+                    return None, None
 
+            # Accept either new two-tier or old flat schema
+            has_new_schema = "core_papers" in result
+            if not has_new_schema and "papers" not in result:
+                print(f"   ⚠️ Missing field: papers (or core_papers)")
+                return None, None
+
+            # Extract token usage from response metadata
+            usage_meta = response.get("usageMetadata", {})
+            token_usage = {
+                "prompt_tokens": usage_meta.get("promptTokenCount", 0),
+                "candidates_tokens": usage_meta.get("candidatesTokenCount", 0),
+                "total_tokens": usage_meta.get("totalTokenCount", 0),
+            }
+
+            core_count = len(result.get("core_papers", []))
+            periph_count = len(result.get("peripheral_papers", []))
+            old_count = len(result.get("papers", []))
+            total = core_count + periph_count if core_count else old_count
             print(f"   ✅ Title: {result['title']}")
-            print(f"   ✅ Papers analyzed: {len(result['papers'])}")
+            if core_count:
+                print(f"   ✅ Papers: {core_count} core + {periph_count} peripheral = {total} total")
+            else:
+                print(f"   ✅ Papers analyzed: {total}")
             print(f"   ✅ Tags: {', '.join(result['tags'])}")
-            return result
+            print(f"   ✅ Tokens: {token_usage['total_tokens']} (prompt: {token_usage['prompt_tokens']}, output: {token_usage['candidates_tokens']})")
+            return result, token_usage
 
         except json.JSONDecodeError as e:
             print(f"   ⚠️ JSON parse error: {e}")
-            return None
+            return None, None
         except Exception as e:
             print(f"   ⚠️ Gemini error: {e}")
-            return None
-    return None
+            return None, None
+    return None, None
 
 
 def generate_hugo_post(gemini_output: dict, papers: list, lang: str = "en") -> str:
-    """Generate a professional research digest Hugo markdown post."""
+    """Generate a professional two-tier research digest Hugo markdown post.
+
+    Tier A (Core): Papers on aerodynamic heating or AI/ML in aerodynamics
+                   get full individual analysis sections.
+    Tier B (Peripheral): All other papers are synthesized into a flowing
+                         academic narrative with in-text citations [N].
+    """
     today = datetime.now().strftime("%Y-%m-%d")
     tags_yaml = "\n".join([f'  - "{tag}"' for tag in gemini_output["tags"]])
     badges = PAPER_TYPE_BADGES_TR if lang == "tr" else PAPER_TYPE_BADGES
@@ -277,7 +350,8 @@ def generate_hugo_post(gemini_output: dict, papers: list, lang: str = "en") -> s
     if lang == "tr":
         lbl_overview = "Araştırma Özeti"
         lbl_trends = "Araştırma Trendleri"
-        lbl_analysis = "Makale Analizi"
+        lbl_core = "Temel Odak Analizi"
+        lbl_context = "Geniş Bağlam"
         lbl_type = "Tip"
         lbl_relevance = "İlgililik"
         lbl_findings = "Temel Bulgular"
@@ -289,7 +363,8 @@ def generate_hugo_post(gemini_output: dict, papers: list, lang: str = "en") -> s
     else:
         lbl_overview = "Research Overview"
         lbl_trends = "Research Trends"
-        lbl_analysis = "Paper Analysis"
+        lbl_core = "Core Analysis"
+        lbl_context = "Broader Context"
         lbl_type = "Type"
         lbl_relevance = "Relevance"
         lbl_findings = "Key Findings"
@@ -299,13 +374,21 @@ def generate_hugo_post(gemini_output: dict, papers: list, lang: str = "en") -> s
         lbl_references = "References"
         lbl_connection = "Connection"
 
-    # Build overview section
     overview = gemini_output.get("overview", "")
     trends = gemini_output.get("trends", "")
 
-    # Build paper analysis sections
-    paper_sections = []
-    for i, p in enumerate(gemini_output.get("papers", []), 1):
+    # Detect schema: new two-tier or old flat
+    core_papers = gemini_output.get("core_papers", [])
+    peripheral_papers = gemini_output.get("peripheral_papers", [])
+    peripheral_narrative = gemini_output.get("peripheral_narrative", "")
+
+    # Fallback: old flat schema → treat all as core
+    if not core_papers and "papers" in gemini_output:
+        core_papers = gemini_output["papers"]
+
+    # ── Build Core Analysis sections ──
+    core_sections = []
+    for i, p in enumerate(core_papers, 1):
         ptype = p.get("paper_type", "numerical_cfd")
         badge = badges.get(ptype, f"📄 {ptype}")
         score = p.get("relevance_score", 0)
@@ -333,31 +416,69 @@ def generate_hugo_post(gemini_output: dict, papers: list, lang: str = "en") -> s
         if connection:
             section += f"\n\n*{lbl_connection}: {connection}*"
 
-        paper_sections.append(section)
+        core_sections.append(section)
 
-    papers_content = "\n\n---\n\n".join(paper_sections)
+    core_content = "\n\n---\n\n".join(core_sections) if core_sections else ""
 
-    # Build references
+    # ── Build References (core first, then peripheral) ──
     references = []
-    for i, paper in enumerate(papers, 1):
-        author_str = ", ".join(paper.get("authors", [])[:3])
-        if len(paper.get("authors", [])) > 3:
-            author_str += " et al."
-        ref = f'{i}. {author_str}, "{paper["title"]}," *{paper["journal"]}*, {paper.get("date", "2026")}.'
-        if paper.get("url"):
-            ref += f' [Link]({paper["url"]})'
-        references.append(ref)
+    ref_num = 1
+
+    for paper in papers:
+        # Match paper to core or peripheral by title
+        is_core = any(
+            cp.get("title", "").lower() == paper.get("title", "").lower()
+            for cp in core_papers
+        )
+        is_peripheral = any(
+            pp.get("title", "").lower() == paper.get("title", "").lower()
+            for pp in peripheral_papers
+        )
+        if is_core or is_peripheral or not (core_papers and peripheral_papers):
+            author_str = ", ".join(paper.get("authors", [])[:3])
+            if len(paper.get("authors", [])) > 3:
+                author_str += " et al."
+            ref = f'{ref_num}. {author_str}, "{paper["title"]}," *{paper["journal"]}*, {paper.get("date", "2026")}.'
+            if paper.get("url"):
+                ref += f' [Link]({paper["url"]})'
+            references.append(ref)
+            ref_num += 1
+
+    # ── Build Broader Context section ──
+    context_content = ""
+    if peripheral_narrative:
+        context_content = peripheral_narrative
+    elif peripheral_papers:
+        # Fallback: build a simple list if Gemini didn't produce narrative
+        items = []
+        for pp in peripheral_papers:
+            items.append(f"- **{pp.get('title', 'Untitled')}** ({pp.get('authors', 'Unknown')}): {pp.get('brief_summary', 'N/A')}")
+        context_content = "\n".join(items)
 
     summary_text = overview[:150].rsplit(' ', 1)[0] if len(overview) > 150 else overview
 
-    return f"""---
+    # Attribution footer
+    if lang == "tr":
+        attribution = "*Bu arastirma ozeti [Gemini 2.5 Flash](https://deepmind.google/technologies/gemini/) tarafindan olusturulmus ve AeroSentinel v2.3.0 tarafindan duzenlenmistir.*"
+    else:
+        attribution = "*This research digest was generated by [Gemini 2.5 Flash](https://deepmind.google/technologies/gemini/) and curated by AeroSentinel v2.3.0.*"
+
+    # ── Frontmatter ──
+    core_count = len(core_papers)
+    periph_count = len(peripheral_papers)
+    total_count = core_count + periph_count if peripheral_papers else len(papers)
+
+    post = f"""---
 title: "{gemini_output['title']}"
 date: {today}
 tags:
 {tags_yaml}
 summary: "{summary_text}..."
 draft: false
-papers_count: {len(papers)}
+papers_count: {total_count}
+core_papers: {core_count}
+peripheral_papers: {periph_count}
+ai_model: "Gemini 2.5 Flash"
 ShowToc: true
 TocOpen: false
 ---
@@ -370,9 +491,25 @@ TocOpen: false
 
 ---
 
-## {lbl_analysis}
+## {lbl_core}
 
-{papers_content}
+{core_content}"""
+
+    # Add Broader Context only if there are peripheral papers
+    if context_content:
+        post += f"""
+
+---
+
+## {lbl_context}
+
+{context_content}"""
+
+    post += f"""
+
+---
+
+{attribution}
 
 ---
 
@@ -380,6 +517,7 @@ TocOpen: false
 
 {chr(10).join(references)}
 """
+    return post
 
 
 def generate_filename(title: str, lang: str = "en") -> str:
@@ -395,16 +533,20 @@ def generate_filename(title: str, lang: str = "en") -> str:
 def run_brain(papers: list) -> dict:
     """
     Full brain pipeline: generate bilingual analysis.
-    Returns dict with keys: filename_base, en, tr
+    Returns dict with keys: filename_base, en, tr, token_usage
     Each language entry has: filename, content, gemini_output
     """
     results = {}
+    token_usage = {}
 
     for lang in LANGUAGES:
-        gemini_output = call_gemini(papers, lang=lang)
+        gemini_output, lang_tokens = call_gemini(papers, lang=lang)
         if not gemini_output:
             print(f"   ⚠️ Failed to generate {lang.upper()} analysis")
             continue
+
+        if lang_tokens:
+            token_usage[lang] = lang_tokens
 
         post_content = generate_hugo_post(gemini_output, papers, lang=lang)
         # Use EN title for filename consistency
@@ -430,6 +572,8 @@ def run_brain(papers: list) -> dict:
         base = first["filename"].rsplit(".", 2)[0]
 
     results["filename_base"] = base
+    if token_usage:
+        results["token_usage"] = token_usage
     return results
 
 

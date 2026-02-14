@@ -5,10 +5,12 @@ Orchestrates: Hunt -> Summarize (bilingual) -> Notify -> (wait for approval) -> 
 This is the main entry point called by GitHub Actions.
 
 Usage:
-    python -m src.pipeline              # Full pipeline (hunt + summarize + notify)
-    python -m src.pipeline --hunt-only  # Only run the hunter (test mode)
+    python -m src.pipeline                        # Full pipeline (hunt + summarize + notify)
+    python -m src.pipeline --hunt-only            # Only run the hunter (test mode)
     python -m src.pipeline --publish FILENAME_BASE  # Publish both language drafts
     python -m src.pipeline --discard FILENAME_BASE  # Discard both language drafts
+    python -m src.pipeline --search '{"tags":["Hypersonic Flow"],"date_from":"2025-12-01","date_to":"2026-02-01"}'
+    python -m src.pipeline --weekly-stats         # Send weekly usage summary to Telegram
 """
 
 import json
@@ -16,12 +18,17 @@ import os
 import re
 import sys
 import shutil
-from datetime import datetime
+import time
+from collections import Counter
+from datetime import datetime, timedelta
 
 from src.hunter import run_hunt
 from src.brain import run_brain, generate_hugo_post
 from src.notifier import send_draft_preview, send_simple_message
-from src.config import DRAFTS_DIR, POSTS_DIR, MIN_PAPERS_PER_POST, LANGUAGES
+from src.config import (
+    DRAFTS_DIR, POSTS_DIR, MIN_PAPERS_PER_POST, LANGUAGES,
+    TAG_TO_KEYWORDS, USAGE_STATS_FILE,
+)
 
 
 def ensure_dirs():
@@ -57,29 +64,54 @@ def validate_filename(filename: str) -> bool:
 
 
 def normalize_and_validate(gemini_output):
-    """Normalize tags, validate paper types, filter low-relevance papers."""
-    from src.config import VALID_TAGS, VALID_TAGS_LOWER, VALID_PAPER_TYPES, MIN_RELEVANCE_SCORE
+    """Normalize tags, validate paper types, filter truly irrelevant papers.
 
-    # --- Filter low-relevance papers ---
-    gemini_output["papers"] = [
-        p for p in gemini_output.get("papers", [])
-        if p.get("relevance_score", 0) >= MIN_RELEVANCE_SCORE
-    ]
+    Supports two schemas:
+    - New two-tier: core_papers[] + peripheral_papers[] + peripheral_narrative
+    - Old flat: papers[] (treated as all-core for backward compat)
+    """
+    from src.config import (
+        VALID_TAGS, VALID_TAGS_LOWER, VALID_PAPER_TYPES,
+        MIN_PERIPHERAL_SCORE,
+    )
+
+    # --- Determine schema ---
+    has_new_schema = "core_papers" in gemini_output
+
+    if has_new_schema:
+        # Drop truly irrelevant papers (below hard floor)
+        gemini_output["core_papers"] = [
+            p for p in gemini_output.get("core_papers", [])
+            if p.get("relevance_score", 0) >= MIN_PERIPHERAL_SCORE
+        ]
+        gemini_output["peripheral_papers"] = [
+            p for p in gemini_output.get("peripheral_papers", [])
+            if p.get("relevance_score", 0) >= MIN_PERIPHERAL_SCORE
+        ]
+        all_paper_lists = [
+            gemini_output.get("core_papers", []),
+            gemini_output.get("peripheral_papers", []),
+        ]
+    else:
+        # Old schema: filter low-relevance papers
+        from src.config import MIN_RELEVANCE_SCORE
+        gemini_output["papers"] = [
+            p for p in gemini_output.get("papers", [])
+            if p.get("relevance_score", 0) >= MIN_RELEVANCE_SCORE
+        ]
+        all_paper_lists = [gemini_output.get("papers", [])]
 
     # --- Normalize tags ---
     raw_tags = gemini_output.get("tags", [])
     normalized = []
     for tag in raw_tags:
-        # Exact match
         if tag in VALID_TAGS:
             normalized.append(tag)
             continue
-        # Case-insensitive match
         lower = tag.lower()
         if lower in VALID_TAGS_LOWER:
             normalized.append(VALID_TAGS_LOWER[lower])
             continue
-        # Substring match (for tags > 10 chars, check if any valid tag contains it or vice versa)
         if len(tag) > 10:
             matched = False
             for valid_lower, canonical in VALID_TAGS_LOWER.items():
@@ -89,33 +121,265 @@ def normalize_and_validate(gemini_output):
                     break
             if matched:
                 continue
-        # Drop unrecognized tag
         print(f"   ⚠️ Dropping invalid tag: '{tag}'")
 
-    # Deduplicate while preserving order
     seen = set()
     deduped = []
     for t in normalized:
         if t not in seen:
             seen.add(t)
             deduped.append(t)
-
-    # Enforce 4-7 count
     if len(deduped) > 7:
         deduped = deduped[:7]
-
     gemini_output["tags"] = deduped
 
-    # --- Validate paper types ---
+    # --- Validate paper types in all lists ---
     OLD_TO_NEW = {"ml_surrogate": "ml_heating"}
-    for paper in gemini_output.get("papers", []):
-        ptype = paper.get("paper_type", "")
-        if ptype in OLD_TO_NEW:
-            paper["paper_type"] = OLD_TO_NEW[ptype]
-        elif ptype not in VALID_PAPER_TYPES:
-            paper["paper_type"] = "numerical_cfd"  # safe default
+    for paper_list in all_paper_lists:
+        for paper in paper_list:
+            ptype = paper.get("paper_type", "")
+            if ptype in OLD_TO_NEW:
+                paper["paper_type"] = OLD_TO_NEW[ptype]
+            elif ptype not in VALID_PAPER_TYPES:
+                paper["paper_type"] = "numerical_cfd"
 
     return gemini_output
+
+
+def _count_gemini_papers(gemini_output: dict) -> int:
+    """Count total papers in Gemini output (supports both schemas)."""
+    if "core_papers" in gemini_output:
+        return len(gemini_output.get("core_papers", [])) + len(gemini_output.get("peripheral_papers", []))
+    return len(gemini_output.get("papers", []))
+
+
+# ──────────────────────────────────────────────
+#  USAGE STATS TRACKING
+# ──────────────────────────────────────────────
+
+def load_usage_stats() -> dict:
+    """Load usage stats from JSON file."""
+    if os.path.exists(USAGE_STATS_FILE):
+        try:
+            with open(USAGE_STATS_FILE, "r") as f:
+                return json.load(f)
+        except (json.JSONDecodeError, IOError):
+            return {"runs": []}
+    return {"runs": []}
+
+
+def save_usage_stats(stats: dict):
+    """Save usage stats to JSON file."""
+    with open(USAGE_STATS_FILE, "w") as f:
+        json.dump(stats, f, indent=2)
+
+
+def record_run_stats(run_type: str, papers_found: int, papers_selected: int,
+                     sources: dict, duration: float, gemini_calls: int = 0):
+    """Record stats for a single pipeline run."""
+    stats = load_usage_stats()
+    stats["runs"].append({
+        "type": run_type,
+        "timestamp": datetime.now().isoformat(),
+        "papers_found": papers_found,
+        "papers_selected": papers_selected,
+        "sources": sources,
+        "gemini_calls": gemini_calls,
+        "duration_seconds": round(duration, 1),
+    })
+    save_usage_stats(stats)
+
+
+def format_usage_message(stats: dict) -> str:
+    """Format usage stats as a Telegram-friendly message."""
+    runs = stats.get("runs", [])
+    if not runs:
+        return "📊 No pipeline runs recorded yet."
+
+    total_found = sum(r.get("papers_found", 0) for r in runs)
+    total_selected = sum(r.get("papers_selected", 0) for r in runs)
+    total_gemini = sum(r.get("gemini_calls", 0) for r in runs)
+    total_duration = sum(r.get("duration_seconds", 0) for r in runs)
+
+    # Aggregate source counts
+    agg_sources = Counter()
+    for r in runs:
+        for src, cnt in r.get("sources", {}).items():
+            agg_sources[src] += cnt
+
+    source_str = ", ".join(f"{src}({cnt})" for src, cnt in sorted(agg_sources.items()))
+    mins = int(total_duration // 60)
+    secs = int(total_duration % 60)
+
+    return (
+        f"📊 Pipeline Stats ({len(runs)} runs)\n"
+        f"├ Papers: {total_found} found → {total_selected} selected\n"
+        f"├ Gemini calls: {total_gemini}\n"
+        f"├ Sources: {source_str}\n"
+        f"└ Duration: {mins}m {secs}s"
+    )
+
+
+def run_weekly_stats():
+    """Send weekly usage summary to Telegram (last 4 weeks)."""
+    stats = load_usage_stats()
+    cutoff = (datetime.now() - timedelta(weeks=4)).isoformat()
+
+    # Filter to last 4 weeks
+    recent = {"runs": [
+        r for r in stats.get("runs", [])
+        if r.get("timestamp", "") >= cutoff
+    ]}
+
+    msg = format_usage_message(recent)
+    print(msg)
+    send_simple_message(msg)
+
+
+# ──────────────────────────────────────────────
+#  CUSTOM SEARCH (Telegram /search command)
+# ──────────────────────────────────────────────
+
+def run_custom_search(search_json: str):
+    """
+    Run a custom tag-based search from Telegram /search command.
+    search_json: '{"tags": ["Hypersonic Flow", ...], "date_from": "2025-12-01", "date_to": "2026-02-01"}'
+    """
+    ensure_dirs()
+    t_start = time.time()
+
+    try:
+        params = json.loads(search_json)
+    except json.JSONDecodeError as e:
+        msg = f"⚠️ Invalid search JSON: {e}"
+        print(msg)
+        send_simple_message(msg)
+        return
+
+    tags = params.get("tags", [])
+    date_from = params.get("date_from")
+    date_to = params.get("date_to")
+
+    if not tags:
+        msg = "⚠️ No tags provided in search request."
+        print(msg)
+        send_simple_message(msg)
+        return
+
+    # Convert tags to search keywords via TAG_TO_KEYWORDS
+    custom_keywords = []
+    for tag in tags:
+        kws = TAG_TO_KEYWORDS.get(tag, [])
+        if kws:
+            custom_keywords.extend(kws)
+        else:
+            # Use the tag itself as a keyword if not in mapping
+            custom_keywords.append(tag.lower())
+
+    # Deduplicate keywords while preserving order
+    seen_kw = set()
+    deduped_kw = []
+    for kw in custom_keywords:
+        if kw not in seen_kw:
+            seen_kw.add(kw)
+            deduped_kw.append(kw)
+    custom_keywords = deduped_kw
+
+    print(f"\n🔎 Custom search: tags={tags}, keywords={len(custom_keywords)}, "
+          f"date_from={date_from}, date_to={date_to}")
+
+    # --- STAGE 1: HUNT (custom) ---
+    papers = run_hunt(dry_run=False, custom_keywords=custom_keywords,
+                      date_from=date_from, date_to=date_to)
+
+    if len(papers) < MIN_PAPERS_PER_POST:
+        duration = time.time() - t_start
+        source_counts = dict(Counter(p.get("source", "Unknown") for p in papers))
+        record_run_stats("custom_search", len(papers), 0, source_counts, duration)
+        msg = f"🔇 Custom search: Only {len(papers)} papers found (need {MIN_PAPERS_PER_POST}). No briefing generated."
+        print(f"\n{msg}")
+        send_simple_message(msg)
+        return
+
+    # --- STAGE 2: BRAIN (bilingual) ---
+    result = run_brain(papers)
+
+    if result is None:
+        duration = time.time() - t_start
+        source_counts = dict(Counter(p.get("source", "Unknown") for p in papers))
+        record_run_stats("custom_search", len(papers), len(papers), source_counts, duration, gemini_calls=1)
+        msg = "⚠️ Custom search: Gemini summarization failed. Check logs."
+        print(f"\n{msg}")
+        send_simple_message(msg)
+        return
+
+    # --- STAGE 2.5: VALIDATE & NORMALIZE ---
+    for lang in LANGUAGES:
+        if lang not in result:
+            continue
+        result[lang]["gemini_output"] = normalize_and_validate(result[lang]["gemini_output"])
+
+    if "en" in result and "tr" in result:
+        result["tr"]["gemini_output"]["tags"] = result["en"]["gemini_output"]["tags"]
+
+    for lang in LANGUAGES:
+        if lang not in result:
+            continue
+        result[lang]["content"] = generate_hugo_post(result[lang]["gemini_output"], papers, lang=lang)
+
+    # Check paper count still sufficient after filtering
+    max_papers = max(
+        _count_gemini_papers(result[lang]["gemini_output"])
+        for lang in LANGUAGES if lang in result
+    )
+    if max_papers < MIN_PAPERS_PER_POST:
+        duration = time.time() - t_start
+        source_counts = dict(Counter(p.get("source", "Unknown") for p in papers))
+        record_run_stats("custom_search", len(papers), max_papers, source_counts, duration, gemini_calls=len(LANGUAGES))
+        msg = f"⚠️ Custom search: Only {max_papers} papers passed relevance filter (need {MIN_PAPERS_PER_POST}). Skipping."
+        print(f"\n{msg}")
+        send_simple_message(msg)
+        return
+
+    filename_base = result["filename_base"]
+
+    for lang in LANGUAGES:
+        if lang not in result:
+            continue
+        lang_data = result[lang]
+        draft_path = os.path.join(DRAFTS_DIR, lang_data["filename"])
+        with open(draft_path, "w", encoding="utf-8") as f:
+            f.write(lang_data["content"])
+        print(f"💾 Draft saved: {draft_path}")
+
+    meta = {
+        "filename_base": filename_base,
+        "filename_en": result.get("en", {}).get("filename", ""),
+        "filename_tr": result.get("tr", {}).get("filename", ""),
+        "gemini_output_en": result.get("en", {}).get("gemini_output", {}),
+        "gemini_output_tr": result.get("tr", {}).get("gemini_output", {}),
+        "papers_count": len(papers),
+        "search_params": params,
+        "created_at": datetime.now().isoformat(),
+    }
+    meta_path = os.path.join(DRAFTS_DIR, f"{filename_base}.meta.json")
+    with open(meta_path, "w", encoding="utf-8") as f:
+        json.dump(meta, f, indent=2, ensure_ascii=False)
+
+    en_data = result.get("en", result.get("tr", {}))
+    send_draft_preview(
+        filename_base,
+        en_data.get("gemini_output", {}),
+        papers,
+        en_data.get("content", ""),
+    )
+
+    # Record usage stats
+    duration = time.time() - t_start
+    source_counts = dict(Counter(p.get("source", "Unknown") for p in papers))
+    record_run_stats("custom_search", len(papers), max_papers, source_counts, duration, gemini_calls=len(LANGUAGES))
+
+    print("\n✅ Custom search pipeline complete. Awaiting your approval on Telegram.")
 
 
 def run_scout():
@@ -124,6 +388,7 @@ def run_scout():
     Called by the scheduled GitHub Action.
     """
     ensure_dirs()
+    t_start = time.time()
 
     print("\n" + "=" * 60)
     print("🛰️  AEROSENTINEL SCOUT PIPELINE v2")
@@ -134,6 +399,9 @@ def run_scout():
     papers = run_hunt(dry_run=False)
 
     if len(papers) < MIN_PAPERS_PER_POST:
+        duration = time.time() - t_start
+        source_counts = dict(Counter(p.get("source", "Unknown") for p in papers))
+        record_run_stats("scout", len(papers), 0, source_counts, duration)
         msg = f"🔇 AeroSentinel: Only {len(papers)} papers found (need {MIN_PAPERS_PER_POST}). Skipping this cycle."
         print(f"\n{msg}")
         send_simple_message(msg)
@@ -143,6 +411,9 @@ def run_scout():
     result = run_brain(papers)
 
     if result is None:
+        duration = time.time() - t_start
+        source_counts = dict(Counter(p.get("source", "Unknown") for p in papers))
+        record_run_stats("scout", len(papers), len(papers), source_counts, duration, gemini_calls=1)
         msg = "⚠️ AeroSentinel: Gemini summarization failed. Check logs."
         print(f"\n{msg}")
         send_simple_message(msg)
@@ -166,10 +437,13 @@ def run_scout():
 
     # Check paper count still sufficient after filtering
     max_papers = max(
-        len(result[lang]["gemini_output"].get("papers", []))
+        _count_gemini_papers(result[lang]["gemini_output"])
         for lang in LANGUAGES if lang in result
     )
     if max_papers < MIN_PAPERS_PER_POST:
+        duration = time.time() - t_start
+        source_counts = dict(Counter(p.get("source", "Unknown") for p in papers))
+        record_run_stats("scout", len(papers), max_papers, source_counts, duration, gemini_calls=len(LANGUAGES))
         msg = f"⚠️ AeroSentinel: Only {max_papers} papers passed relevance filter (need {MIN_PAPERS_PER_POST}). Skipping."
         print(f"\n{msg}")
         send_simple_message(msg)
@@ -209,6 +483,11 @@ def run_scout():
         papers,
         en_data.get("content", ""),
     )
+
+    # Record usage stats
+    duration = time.time() - t_start
+    source_counts = dict(Counter(p.get("source", "Unknown") for p in papers))
+    record_run_stats("scout", len(papers), max_papers, source_counts, duration, gemini_calls=len(LANGUAGES))
 
     print("\n✅ Scout pipeline complete. Awaiting your approval on Telegram.")
 
@@ -280,6 +559,18 @@ if __name__ == "__main__":
         idx = sys.argv.index("--discard")
         if idx + 1 < len(sys.argv):
             run_discard(sys.argv[idx + 1])
+
+    elif "--search" in sys.argv:
+        # Custom tag-based search from Telegram
+        idx = sys.argv.index("--search")
+        if idx + 1 < len(sys.argv):
+            run_custom_search(sys.argv[idx + 1])
+        else:
+            print("Usage: python -m src.pipeline --search '{\"tags\":[...],\"date_from\":\"...\",\"date_to\":\"...\"}'")
+
+    elif "--weekly-stats" in sys.argv:
+        # Send weekly usage stats to Telegram
+        run_weekly_stats()
 
     else:
         # Default: full scout pipeline

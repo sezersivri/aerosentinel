@@ -31,20 +31,33 @@ def send_draft_preview(
     # Use overview instead of summary for the new rich format
     overview = gemini_output.get("overview", gemini_output.get("summary", ""))
 
-    # Paper type summary
+    # Paper type summary (support both schemas)
     paper_types = {}
-    for p in gemini_output.get("papers", []):
+    all_analyzed = (
+        gemini_output.get("core_papers", [])
+        + gemini_output.get("peripheral_papers", [])
+        + gemini_output.get("papers", [])
+    )
+    for p in all_analyzed:
         ptype = p.get("paper_type", "unknown")
         paper_types[ptype] = paper_types.get(ptype, 0) + 1
     type_str = ", ".join(f"{v}x {k}" for k, v in paper_types.items())
 
-    message = f"""🛰️ <b>AeroSentinel v2 — New Research Digest</b>
+    # Core / peripheral counts
+    core_count = len(gemini_output.get("core_papers", []))
+    periph_count = len(gemini_output.get("peripheral_papers", []))
+    if core_count:
+        structure_str = f"🎯 Core: {core_count} (full analysis) | 📄 Context: {periph_count} (narrative)"
+    else:
+        structure_str = f"📚 Papers: {len(papers)} | Types: {type_str}"
+
+    message = f"""🛰️ <b>AeroSentinel v2.3 — New Research Digest</b>
 
 📋 <b>{gemini_output.get('title', 'Untitled')}</b>
 
 📝 {overview[:500]}{'...' if len(overview) > 500 else ''}
 
-📚 Papers: {len(papers)} | Types: {type_str}
+{structure_str}
 📰 Sources: {journal_str}
 🏷️ Tags: {tags_str}
 🌐 Languages: EN + TR
@@ -59,6 +72,9 @@ def send_draft_preview(
                 {"text": "✅ Publish", "callback_data": f"PUB_{short_name}"},
                 {"text": "✏️ Edit", "callback_data": f"EDT_{short_name}"},
                 {"text": "🗑️ Discard", "callback_data": f"DEL_{short_name}"},
+            ],
+            [
+                {"text": "⭐ Bookmark", "callback_data": f"BKM_{short_name}"},
             ]
         ]
     }

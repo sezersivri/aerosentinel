@@ -41,8 +41,8 @@ GitHub Actions (cron: weekly Saturday 08:00 UTC)
                       +------------------------+
                       | Cloudflare Worker      |
                       | (webhook bridge)       |
-                      | /scout /status /help   |
-                      | + callback buttons     |
+                      | /scout /search /bibtex |
+                      | /bookmarks /status     |
                       +------------------------+
                                    |
                      repository_dispatch event
@@ -67,15 +67,17 @@ GitHub Actions (cron: weekly Saturday 08:00 UTC)
 ## Features
 
 - **7 Academic Sources** -- OpenAlex, Crossref, CORE, Semantic Scholar, arXiv, NASA NTRS, IEEE Xplore
-- **AI Summaries** -- Gemini 2.5 Flash generates structured, narrative research digests
+- **Two-Tier Digests** -- Core papers (aerodynamic heating & AI/ML) get full solo reviews; peripheral papers are synthesized into a flowing academic narrative with in-text citations
+- **AI Summaries** -- Gemini 2.5 Flash generates structured, bilingual research digests with model attribution
+- **Interactive Search** -- `/search` command: pick tags, set date range, trigger a custom paper hunt from Telegram
+- **BibTeX Export** -- `/bibtex` command returns citation entries for the latest digest
+- **Bookmarks** -- Star button on Telegram previews to save papers for later; `/bookmarks` to list them
+- **Usage Tracking** -- Pipeline stats (papers found/selected, API calls, duration) after each run
+- **Weekly Stats** -- Automated digest of pipeline activity over the past 4 weeks
 - **Bilingual** -- Every post published in both English and Turkish
-- **Telegram Approval** -- Preview drafts with one-tap Approve / Edit / Discard buttons
-- **Cloudflare Worker** -- Zero-redirect webhook bridge; handles `/scout`, `/status`, `/help` commands
+- **Telegram Approval** -- Preview drafts with one-tap Approve / Edit / Discard / Bookmark buttons
+- **Cloudflare Worker** -- Webhook bridge with KV-backed search sessions; handles 6 commands
 - **Full-Text Search** -- Client-side Fuse.js search via PaperMod JSON index
-- **Share Buttons** -- Telegram, LinkedIn, Reddit, X
-- **Edit on GitHub** -- "Suggest Edit" link on every post
-- **Table of Contents** -- Auto-generated ToC on long posts
-- **Collapsible Sections** -- `<details>` support for technical deep-dives
 - **RSS Feed** -- Full-text RSS for feed readers
 - **Privacy First** -- No analytics, no tracking, no cookies
 
@@ -85,34 +87,29 @@ GitHub Actions (cron: weekly Saturday 08:00 UTC)
 aerosentinel/
 ├── .github/workflows/
 │   ├── scout.yml                 # Weekly paper hunt + summarize + notify
-│   └── publish.yml               # Telegram approval -> Hugo build -> deploy
+│   ├── publish.yml               # Telegram approval -> Hugo build -> deploy
+│   └── search.yml                # Custom /search from Telegram -> parameterized hunt
 ├── content/
 │   ├── drafts/                   # AI-generated drafts awaiting approval
 │   ├── posts/                    # Published posts
-│   ├── about.en.md               # About page (English)
-│   ├── about.tr.md               # About page (Turkish)
-│   ├── archives.en.md            # Archive page (English)
-│   ├── archives.tr.md            # Archive page (Turkish)
-│   ├── search.en.md              # Search page (English)
-│   └── search.tr.md              # Search page (Turkish)
+│   └── ...                       # About, archives, search pages (EN + TR)
 ├── src/
 │   ├── __init__.py               # Package init with version
-│   ├── config.py                 # All configuration & keyword tiers
-│   ├── hunter.py                 # Paper discovery engine (7 sources)
-│   ├── brain.py                  # Gemini 2.5 Flash summarization
-│   ├── notifier.py               # Telegram notifications
-│   └── pipeline.py               # Main orchestrator
-├── static/
-│   └── favicon.svg               # Site favicon
+│   ├── config.py                 # Settings, keyword tiers, curated tags, core focus
+│   ├── hunter.py                 # Paper discovery (7 sources, parameterized search)
+│   ├── brain.py                  # Gemini analysis (two-tier: core + peripheral)
+│   ├── notifier.py               # Telegram notifications + bookmark button
+│   └── pipeline.py               # Orchestrator + custom search + usage tracking
 ├── worker/
-│   ├── index.js                  # Cloudflare Worker webhook bridge
-│   └── wrangler.toml             # Wrangler deployment config
+│   ├── index.js                  # Cloudflare Worker (/search, /bibtex, /bookmarks, KV)
+│   └── wrangler.toml             # Wrangler config + KV namespace binding
 ├── themes/
 │   └── PaperMod/                 # Hugo theme (git submodule)
 ├── hugo.yaml                     # Hugo site config (bilingual, PaperMod)
 ├── seen_papers.json              # Deduplication history
+├── usage_stats.json              # Pipeline usage/quota tracking
 ├── requirements.txt              # Python dependencies
-├── VERSION                       # Semantic version
+├── VERSION                       # Semantic version (2.3.0)
 └── README.md
 ```
 
@@ -145,9 +142,15 @@ Set these in **Settings > Secrets and variables > Actions**:
 ```bash
 cd worker
 npx wrangler login
+
+# Create KV namespace for search sessions & bookmarks
+npx wrangler kv:namespace create SEARCH_SESSIONS
+# Copy the ID into wrangler.toml
+
 npx wrangler secret put TELEGRAM_BOT_TOKEN
 npx wrangler secret put GITHUB_TOKEN
 npx wrangler secret put GITHUB_REPO     # e.g. sezersivri/aerosentinel
+npx wrangler secret put AUTHORIZED_CHAT_ID  # your Telegram chat ID
 npx wrangler deploy
 ```
 
@@ -171,6 +174,17 @@ git submodule add https://github.com/adityatelange/hugo-PaperMod.git themes/Pape
 - **Telegram:** Send `/scout` to your bot
 - **Automatic:** Runs every Saturday at 08:00 UTC
 
+### Telegram Commands
+
+| Command | Description |
+|---------|-------------|
+| `/scout` | Trigger a paper hunt now |
+| `/search` | Interactive search: pick tags, set date range |
+| `/bibtex` | Export latest digest as BibTeX |
+| `/bookmarks` | View your bookmarked digests |
+| `/status` | Check latest workflow status |
+| `/help` | Show available commands |
+
 ## Hosting & Branches
 
 AeroSentinel is hosted for free on **GitHub Pages** — GitHub's built-in static site hosting service.
@@ -192,7 +206,7 @@ AeroSentinel is hosted for free on **GitHub Pages** — GitHub's built-in static
 |---------------------|---------------|------------------------|
 | GitHub Actions      | Free          | 2,000 min/month        |
 | GitHub Pages        | Free          | 100 GB bandwidth       |
-| Cloudflare Worker   | Free          | 100,000 requests/day   |
+| Cloudflare Worker   | Free          | 100K req/day, 1K KV writes/day |
 | Gemini 2.5 Flash    | Free          | Generous rate limits    |
 | Telegram Bot API    | Free          | Unlimited              |
 | Academic APIs       | Free/Open     | Rate-limited           |

@@ -103,16 +103,19 @@ def classify_journal(journal_name: str) -> int:
 #  SOURCE 1: OPENALEX
 # ──────────────────────────────────────────────
 
-def search_openalex(days: int = LOOKBACK_DAYS) -> dict:
+def search_openalex(days: int = LOOKBACK_DAYS, keywords=None) -> dict:
     """
     Query OpenAlex API for papers matching our keywords.
     Returns dict of {doi: paper_dict} for deduplication.
+    If keywords provided, uses those instead of KEYWORDS and relaxes the Sezer Filter.
     """
+    search_keywords = keywords if keywords is not None else KEYWORDS
+    is_custom = keywords is not None
     print(f"\n📡 [OpenAlex] Searching last {days} days...")
     start_date = (datetime.now() - timedelta(days=days)).strftime("%Y-%m-%d")
     candidates = {}
 
-    for keyword in KEYWORDS:
+    for keyword in search_keywords:
         print(f"   🔍 '{keyword}'", end="")
         url = "https://api.openalex.org/works"
         params = {
@@ -152,23 +155,24 @@ def search_openalex(days: int = LOOKBACK_DAYS) -> dict:
             keep = False
             reason = ""
 
-            # Rule 1: Tier 1 journal -> always keep
-            if tier == 1:
+            if is_custom:
+                # Custom/targeted search: keep all results (relaxed filter)
+                keep = True
+                reason = f"Custom search: {journal}"
+            elif tier == 1:
+                # Rule 1: Tier 1 journal -> always keep
                 keep = True
                 reason = f"Tier 1: {journal}"
-
-            # Rule 2: Tier 2 + elite institution -> keep
             elif tier == 2 and is_elite:
+                # Rule 2: Tier 2 + elite institution -> keep
                 keep = True
                 reason = f"Tier 2 + Elite ({inst_name})"
-
-            # Rule 3: Tier 2 + high citations -> keep (velocity checked later)
             elif tier == 2 and cited_by >= 3:
+                # Rule 3: Tier 2 + high citations -> keep (velocity checked later)
                 keep = True
                 reason = f"Tier 2 + Citations ({cited_by})"
-
-            # Rule 4: arXiv/preprint + elite institution -> keep
             elif "arxiv" in journal.lower() and is_elite:
+                # Rule 4: arXiv/preprint + elite institution -> keep
                 keep = True
                 reason = f"Preprint + Elite ({inst_name})"
 
@@ -206,15 +210,17 @@ def search_openalex(days: int = LOOKBACK_DAYS) -> dict:
 #  SOURCE 2: ARXIV (for latest preprints)
 # ──────────────────────────────────────────────
 
-def search_arxiv(existing_dois: set) -> dict:
+def search_arxiv(existing_dois: set, keywords=None) -> dict:
     """
     Query arXiv for recent preprints in physics.flu-dyn and physics.ao-ph.
     Only keeps papers from elite institutions (checked via author affiliations in text).
+    If keywords provided, uses those instead of KEYWORDS.
     """
+    search_keywords = keywords if keywords is not None else KEYWORDS[:8]
     print(f"\n📡 [arXiv] Searching recent preprints...")
     candidates = {}
 
-    for keyword in KEYWORDS[:8]:  # Use top keywords (Priority 1 + some P2)
+    for keyword in search_keywords:
         query = f"all:{keyword}"
         url = "https://export.arxiv.org/api/query"  # HTTPS (security fix)
         params = {
@@ -291,15 +297,17 @@ def search_arxiv(existing_dois: set) -> dict:
 #  SOURCE 3: NASA NTRS (Technical Reports)
 # ──────────────────────────────────────────────
 
-def search_nasa_ntrs() -> dict:
+def search_nasa_ntrs(keywords=None) -> dict:
     """
     Query NASA Technical Reports Server for recent publications.
     These are gold-tier sources for reentry aerothermodynamics.
+    If keywords provided, uses those instead of KEYWORDS.
     """
+    search_keywords = keywords if keywords is not None else KEYWORDS[:8]
     print(f"\n📡 [NASA NTRS] Searching technical reports...")
     candidates = {}
 
-    for keyword in KEYWORDS[:8]:
+    for keyword in search_keywords:
         url = "https://ntrs.nasa.gov/api/citations/search"
 
         try:
@@ -386,16 +394,18 @@ def search_nasa_ntrs() -> dict:
 #  SOURCE 4: CROSSREF (70M+ articles, no auth)
 # ──────────────────────────────────────────────
 
-def search_crossref(existing_dois: set) -> dict:
+def search_crossref(existing_dois: set, keywords=None) -> dict:
     """
     Query Crossref API for papers matching keywords.
     No authentication required. Polite header for faster responses.
+    If keywords provided, uses those instead of KEYWORDS.
     """
+    search_keywords = keywords if keywords is not None else KEYWORDS[:10]
     print(f"\n📡 [Crossref] Searching 70M+ articles...")
     candidates = {}
     start_date = (datetime.now() - timedelta(days=LOOKBACK_DAYS)).strftime("%Y-%m-%d")
 
-    for keyword in KEYWORDS[:10]:  # Top keywords
+    for keyword in search_keywords:
         print(f"   🔍 '{keyword}'", end="")
         url = "https://api.crossref.org/works"
         params = {
@@ -494,15 +504,17 @@ def search_crossref(existing_dois: set) -> dict:
 #  SOURCE 5: CORE (200M+ open access, no auth)
 # ──────────────────────────────────────────────
 
-def search_core(existing_dois: set) -> dict:
+def search_core(existing_dois: set, keywords=None) -> dict:
     """
     Query CORE API v3 for open access research papers.
     No authentication required. 200M+ open access articles.
+    If keywords provided, uses those instead of KEYWORDS.
     """
+    search_keywords = keywords if keywords is not None else KEYWORDS[:8]
     print(f"\n📡 [CORE] Searching 200M+ open access articles...")
     candidates = {}
 
-    for keyword in KEYWORDS[:8]:
+    for keyword in search_keywords:
         print(f"   🔍 '{keyword}'", end="")
         url = "https://api.core.ac.uk/v3/search/works"
         params = {
@@ -595,19 +607,21 @@ def search_core(existing_dois: set) -> dict:
 #  SOURCE 6: IEEE XPLORE (needs API key)
 # ──────────────────────────────────────────────
 
-def search_ieee(existing_dois: set) -> dict:
+def search_ieee(existing_dois: set, keywords=None) -> dict:
     """
     Query IEEE Xplore API for papers matching keywords.
     Requires IEEE_API_KEY. Returns empty dict if no key set.
+    If keywords provided, uses those instead of KEYWORDS.
     """
     if not IEEE_API_KEY:
         print("\n📡 [IEEE] Skipped (no IEEE_API_KEY set)")
         return {}
 
+    search_keywords = keywords if keywords is not None else KEYWORDS[:6]
     print(f"\n📡 [IEEE Xplore] Searching with API key...")
     candidates = {}
 
-    for keyword in KEYWORDS[:6]:
+    for keyword in search_keywords:
         print(f"   🔍 '{keyword}'", end="")
         url = "https://ieeexploreapi.ieee.org/api/v1/search/articles"
         params = {
@@ -771,14 +785,16 @@ def _is_recent(paper, cutoff):
             return False  # Unparseable = reject
 
 
-def rank_and_select(papers: list) -> list:
+def rank_and_select(papers: list, skip_age_filter: bool = False) -> list:
     """
     Rank papers by quality score and select top N for summarization.
     Score = tier_bonus + source_bonus + keyword_priority + citation_metrics + recency + abstract
+    If skip_age_filter is True, the MAX_PAPER_AGE_DAYS cutoff is not applied (for custom searches).
     """
     # Hard recency cutoff — reject papers older than MAX_PAPER_AGE_DAYS
-    cutoff = datetime.now() - timedelta(days=MAX_PAPER_AGE_DAYS)
-    papers = [p for p in papers if _is_recent(p, cutoff)]
+    if not skip_age_filter:
+        cutoff = datetime.now() - timedelta(days=MAX_PAPER_AGE_DAYS)
+        papers = [p for p in papers if _is_recent(p, cutoff)]
 
     for paper in papers:
         score = 0
@@ -837,29 +853,48 @@ def rank_and_select(papers: list) -> list:
 #  MAIN ENTRY POINT
 # ──────────────────────────────────────────────
 
-def run_hunt(dry_run: bool = False) -> list:
+def run_hunt(dry_run: bool = False, custom_keywords=None, date_from=None, date_to=None) -> list:
     """
     Execute the full hunting pipeline.
     Returns list of selected papers ready for summarization.
+
+    If custom_keywords provided, uses those instead of KEYWORDS for all sources.
+    If date_from/date_to provided (YYYY-MM-DD strings), adjusts the lookback window.
     """
+    is_custom = custom_keywords is not None
     print("=" * 60)
-    print(f"🚀 AEROSENTINEL HUNTER — {datetime.now().strftime('%Y-%m-%d %H:%M')}")
+    if is_custom:
+        print(f"🔎 AEROSENTINEL CUSTOM SEARCH — {datetime.now().strftime('%Y-%m-%d %H:%M')}")
+    else:
+        print(f"🚀 AEROSENTINEL HUNTER — {datetime.now().strftime('%Y-%m-%d %H:%M')}")
     print("=" * 60)
+
+    # Calculate custom lookback days from date_from if provided
+    if date_from:
+        try:
+            from_date = datetime.strptime(date_from, "%Y-%m-%d")
+            days = (datetime.now() - from_date).days + 1
+        except ValueError:
+            days = LOOKBACK_DAYS
+    else:
+        days = LOOKBACK_DAYS
 
     # 1. Load history
     seen_dois = load_history()
     print(f"📚 History: {len(seen_dois)} previously seen papers")
 
     # 2. Search all sources
-    openalex_papers = search_openalex()
-    arxiv_papers = search_arxiv(set(openalex_papers.keys()) | seen_dois)
-    ntrs_papers = search_nasa_ntrs()
-    crossref_papers = search_crossref(set(openalex_papers.keys()) | seen_dois)
+    openalex_papers = search_openalex(days=days, keywords=custom_keywords)
+    arxiv_papers = search_arxiv(set(openalex_papers.keys()) | seen_dois, keywords=custom_keywords)
+    ntrs_papers = search_nasa_ntrs(keywords=custom_keywords)
+    crossref_papers = search_crossref(set(openalex_papers.keys()) | seen_dois, keywords=custom_keywords)
     core_papers = search_core(
-        set(openalex_papers.keys()) | set(crossref_papers.keys()) | seen_dois
+        set(openalex_papers.keys()) | set(crossref_papers.keys()) | seen_dois,
+        keywords=custom_keywords
     )
     ieee_papers = search_ieee(
-        set(openalex_papers.keys()) | set(crossref_papers.keys()) | seen_dois
+        set(openalex_papers.keys()) | set(crossref_papers.keys()) | seen_dois,
+        keywords=custom_keywords
     )
 
     # 3. Merge all sources (DOI-based dedup)
@@ -890,22 +925,26 @@ def run_hunt(dry_run: bool = False) -> list:
 
     # 6. Apply Tier 2 citation velocity filter
     # Papers that are Tier 2 without elite institution need velocity >= threshold
-    filtered = []
-    for paper in enriched:
-        if paper["tier"] == 1 or "Elite" in paper.get("reason", ""):
-            filtered.append(paper)
-        elif paper["tier"] == 2 and paper.get("velocity", 0) >= CITATION_VELOCITY_THRESHOLD:
-            paper["reason"] += f" + High Velocity ({paper['velocity']})"
-            filtered.append(paper)
-        elif paper["source"] in ("arXiv", "NASA NTRS"):
-            filtered.append(paper)
-        elif "Tier 1" in paper.get("reason", ""):
-            filtered.append(paper)
+    # Custom searches skip this filter (targeted search, keep all results)
+    if is_custom:
+        filtered = enriched
+    else:
+        filtered = []
+        for paper in enriched:
+            if paper["tier"] == 1 or "Elite" in paper.get("reason", ""):
+                filtered.append(paper)
+            elif paper["tier"] == 2 and paper.get("velocity", 0) >= CITATION_VELOCITY_THRESHOLD:
+                paper["reason"] += f" + High Velocity ({paper['velocity']})"
+                filtered.append(paper)
+            elif paper["source"] in ("arXiv", "NASA NTRS"):
+                filtered.append(paper)
+            elif "Tier 1" in paper.get("reason", ""):
+                filtered.append(paper)
 
     print(f"   ✅ After velocity filter: {len(filtered)} papers")
 
     # 7. Rank and select
-    selected = rank_and_select(filtered)
+    selected = rank_and_select(filtered, skip_age_filter=is_custom)
 
     # 8. Display results
     print("\n" + "=" * 60)

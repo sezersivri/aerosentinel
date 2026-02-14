@@ -1,0 +1,46 @@
+# AeroSentinel Search — Triggered by /search command via Telegram
+# Runs custom paper hunt with user-specified tags and date range
+
+name: "AeroSentinel Search"
+
+on:
+  repository_dispatch:
+    types: [telegram_search]
+
+permissions:
+  contents: write
+
+jobs:
+  search:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5  # v4
+        with:
+          submodules: true
+
+      - name: Set up Python
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065  # v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Run Custom Search
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          IEEE_API_KEY: ${{ secrets.IEEE_API_KEY }}
+        run: python -m src.pipeline --search '${{ github.event.client_payload.search_json }}'
+
+      - name: Commit results
+        run: |
+          git config user.name "AeroSentinel Bot"
+          git config user.email "aerosentinel@proton.me"
+          git add seen_papers.json content/drafts/ usage_stats.json || true
+          git diff --cached --quiet || git commit -m "Search: custom query $(date +%Y-%m-%d)"
+          git push
