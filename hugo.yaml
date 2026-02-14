@@ -61,23 +61,23 @@ languages:
       main:
         - identifier: home
           name: Ana Sayfa
-          url: /tr/
+          url: /
           weight: 1
         - identifier: tags
           name: Konular
-          url: /tr/tags/
+          url: /tags/
           weight: 2
         - identifier: archive
           name: Arsiv
-          url: /tr/archives/
+          url: /archives/
           weight: 3
         - identifier: search
           name: Ara
-          url: /tr/search/
+          url: /search/
           weight: 4
         - identifier: about
           name: Hakkinda
-          url: /tr/about/
+          url: /about/
           weight: 5
 
 # Build settings
