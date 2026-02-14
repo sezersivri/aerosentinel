@@ -1,6 +1,7 @@
 """
 AeroSentinel Notifier
 Sends draft previews to Telegram with inline Publish/Edit/Discard buttons.
+Uses filename_base (without lang suffix) for callback data.
 """
 
 import json
@@ -10,13 +11,14 @@ from src.config import TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID
 
 
 def send_draft_preview(
-    filename: str,
+    filename_base: str,
     gemini_output: dict,
     papers: list,
     post_content: str
 ):
     """
     Send a formatted preview to Telegram with inline keyboard buttons.
+    Uses filename_base (no lang suffix) in callback_data.
     """
     if not TELEGRAM_BOT_TOKEN or not TELEGRAM_CHAT_ID:
         raise ValueError("TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID must be set")
@@ -24,21 +26,33 @@ def send_draft_preview(
     # Build the preview message
     journal_list = list(set(p["journal"] for p in papers))
     journal_str = ", ".join(journal_list[:4])
-    tags_str = ", ".join(gemini_output["tags"][:5])
+    tags_str = ", ".join(gemini_output.get("tags", [])[:5])
 
-    message = f"""🛰️ <b>AeroSentinel — New Draft Ready</b>
+    # Use overview instead of summary for the new rich format
+    overview = gemini_output.get("overview", gemini_output.get("summary", ""))
 
-📋 <b>{gemini_output['title']}</b>
+    # Paper type summary
+    paper_types = {}
+    for p in gemini_output.get("papers", []):
+        ptype = p.get("paper_type", "unknown")
+        paper_types[ptype] = paper_types.get(ptype, 0) + 1
+    type_str = ", ".join(f"{v}x {k}" for k, v in paper_types.items())
 
-📝 {gemini_output['summary'][:500]}{'...' if len(gemini_output['summary']) > 500 else ''}
+    message = f"""🛰️ <b>AeroSentinel v2 — New Intelligence Briefing</b>
 
-📚 Papers: {len(papers)} | Sources: {journal_str}
+📋 <b>{gemini_output.get('title', 'Untitled')}</b>
+
+📝 {overview[:500]}{'...' if len(overview) > 500 else ''}
+
+📚 Papers: {len(papers)} | Types: {type_str}
+📰 Sources: {journal_str}
 🏷️ Tags: {tags_str}
+🌐 Languages: EN + TR
 """
 
     # Inline keyboard with 3 buttons
-    # Telegram limits callback_data to 64 bytes, so truncate filename
-    short_name = filename[:50]
+    # Telegram limits callback_data to 64 bytes, so truncate filename_base
+    short_name = filename_base[:50]
     keyboard = {
         "inline_keyboard": [
             [
@@ -88,11 +102,12 @@ def send_simple_message(text: str):
         pass
 
 
-def send_published_confirmation(filename: str, site_url: str):
-    """Send confirmation after publishing."""
+def send_published_confirmation(filename_base: str, site_url: str):
+    """Send confirmation after publishing with links to both languages."""
     message = f"""✅ <b>Published!</b>
 
-🔗 <a href="{site_url}">{filename}</a>"""
+🔗 EN: <a href="{site_url}">{filename_base}</a>
+🔗 TR: <a href="{site_url}tr/">{filename_base} (Turkish)</a>"""
 
     url = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendMessage"
     payload = {
@@ -108,5 +123,5 @@ def send_published_confirmation(filename: str, site_url: str):
 
 if __name__ == "__main__":
     # Quick test — send a test message
-    send_simple_message("🧪 AeroSentinel Telegram bot is connected!")
+    send_simple_message("🧪 AeroSentinel v2 Telegram bot is connected!")
     print("Test message sent. Check your Telegram.")

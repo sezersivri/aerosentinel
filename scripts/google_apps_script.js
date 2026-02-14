@@ -1,18 +1,19 @@
 /**
- * AeroSentinel — Google Apps Script Webhook Bridge
- * 
+ * AeroSentinel v2 — Google Apps Script Webhook Bridge
+ *
  * This script runs FREE on Google's servers 24/7.
- * It listens for Telegram button clicks and triggers GitHub Actions.
- * 
+ * It listens for Telegram button clicks AND text commands,
+ * then triggers GitHub Actions accordingly.
+ *
  * SETUP:
- * 1. Go to https://script.google.com → New Project
+ * 1. Go to https://script.google.com -> New Project
  * 2. Paste this code
- * 3. Go to Project Settings → Script Properties → Add:
+ * 3. Go to Project Settings -> Script Properties -> Add:
  *    - TELEGRAM_TOKEN: your bot token from @BotFather
  *    - GITHUB_TOKEN: your GitHub PAT (repo scope)
  *    - GITHUB_REPO: "username/aerosentinel"
  *    - AUTHORIZED_CHAT_ID: your Telegram chat ID (number)
- * 4. Deploy → Web App → Execute as: Me → Access: Anyone
+ * 4. Deploy -> Web App -> Execute as: Me -> Access: Anyone
  * 5. Copy the Web App URL
  * 6. Set Telegram webhook:
  *    https://api.telegram.org/bot<TOKEN>/setWebhook?url=<WEB_APP_URL>
@@ -29,49 +30,71 @@ function getConfig() {
   };
 }
 
+// ─── FILENAME SANITIZATION (security fix) ───
+function sanitizeFilename(filename) {
+  // Remove any characters that aren't alphanumeric, hyphens, dots, or underscores
+  return filename.replace(/[^a-zA-Z0-9\-_.]/g, '');
+}
+
 // ─── MAIN WEBHOOK HANDLER ───
 function doPost(e) {
   var config = getConfig();
   var data = JSON.parse(e.postData.contents);
-  
+
+  // Handle text messages (commands)
+  if (data.message && data.message.text) {
+    var chatId = data.message.chat.id;
+    var text = data.message.text.trim();
+
+    // Security: Only respond to authorized user
+    if (chatId !== config.AUTHORIZED_CHAT_ID) {
+      Logger.log("Unauthorized text message from chat ID: " + chatId);
+      return ContentService.createTextOutput("UNAUTHORIZED");
+    }
+
+    handleTextCommand(config, chatId, text);
+    return ContentService.createTextOutput("OK");
+  }
+
   // Handle callback queries (button clicks)
   if (data.callback_query) {
     var payload = data.callback_query.data;
     var chatId = data.callback_query.message.chat.id;
     var messageId = data.callback_query.message.message_id;
-    
+
     // ── SECURITY: Only respond to authorized user ──
     if (chatId !== config.AUTHORIZED_CHAT_ID) {
       Logger.log("Unauthorized access attempt from chat ID: " + chatId);
       return ContentService.createTextOutput("UNAUTHORIZED");
     }
-    
+
     // ── PUBLISH ──
     if (payload.startsWith("PUB_")) {
-      var filename = payload.substring(4); // Remove "PUB_" prefix
-      
-      triggerGitHubAction(config, "publish", filename);
-      editMessage(config, chatId, messageId, 
-        "✅ Publishing initiated! Site will update in ~2 minutes.");
-      
+      var filenameBase = sanitizeFilename(payload.substring(4));
+
+      triggerGitHubAction(config, "publish", filenameBase);
+      editMessage(config, chatId, messageId,
+        "✅ Publishing both EN + TR versions! Site will update in ~2 minutes.");
+
       // Send follow-up with site link after a delay
       Utilities.sleep(3000);
-      sendMessage(config, chatId, 
-        "🔗 Check: https://" + config.GITHUB_REPO.split("/")[0] + ".github.io/aerosentinel/");
+      sendMessage(config, chatId,
+        "🔗 EN: https://" + config.GITHUB_REPO.split("/")[0] + ".github.io/aerosentinel/\n" +
+        "🔗 TR: https://" + config.GITHUB_REPO.split("/")[0] + ".github.io/aerosentinel/tr/");
     }
-    
+
     // ── EDIT ──
     else if (payload.startsWith("EDT_")) {
-      var filename = payload.substring(4); // Remove "EDT_" prefix
-      var editUrl = "https://github.com/" + config.GITHUB_REPO + 
-                    "/edit/main/content/drafts/" + filename;
-      
-      sendMessage(config, chatId, 
-        "✏️ Edit the draft directly on GitHub:\n" + editUrl + 
-        "\n\nAfter editing, commit the changes. Then come back here and click Publish.");
-      
+      var filenameBase = sanitizeFilename(payload.substring(4));
+      var editUrl = "https://github.com/" + config.GITHUB_REPO +
+                    "/tree/main/content/drafts/";
+
+      sendMessage(config, chatId,
+        "✏️ Edit the drafts on GitHub:\n" + editUrl +
+        "\n\nBoth EN and TR versions are available. After editing, commit the changes and click Publish.");
+
       // Re-send publish button
-      var shortName = filename.substring(0, 50);
+      var shortName = filenameBase.substring(0, 50);
       var keyboard = {
         "inline_keyboard": [
           [
@@ -82,26 +105,99 @@ function doPost(e) {
       };
       sendMessageWithKeyboard(config, chatId, "Ready to publish the edited version?", keyboard);
     }
-    
+
     // ── DISCARD ──
     else if (payload.startsWith("DEL_")) {
-      var filename = payload.substring(4);
-      
-      triggerGitHubAction(config, "discard", filename);
-      editMessage(config, chatId, messageId, "🗑️ Draft discarded.");
+      var filenameBase = sanitizeFilename(payload.substring(4));
+
+      triggerGitHubAction(config, "discard", filenameBase);
+      editMessage(config, chatId, messageId, "🗑️ Both EN + TR drafts discarded.");
     }
-    
+
     // Acknowledge callback to remove loading spinner
     answerCallbackQuery(config, data.callback_query.id);
   }
-  
+
   return ContentService.createTextOutput("OK");
+}
+
+// ─── TEXT COMMAND HANDLER ───
+function handleTextCommand(config, chatId, text) {
+  var command = text.toLowerCase().split(' ')[0];
+
+  switch (command) {
+    case '/scout':
+      sendMessage(config, chatId, "🛰️ Triggering AeroSentinel scout pipeline...");
+      triggerGitHubAction(config, "scout", "manual");
+      Utilities.sleep(2000);
+      sendMessage(config, chatId, "✅ Scout workflow triggered! Papers will be hunted and analyzed. You'll receive a preview when ready.");
+      break;
+
+    case '/status':
+      var statusText = getLatestWorkflowStatus(config);
+      sendMessage(config, chatId, statusText);
+      break;
+
+    case '/help':
+      sendMessage(config, chatId,
+        "🛰️ <b>AeroSentinel v2 Commands</b>\n\n" +
+        "/scout — Trigger a paper hunt now\n" +
+        "/status — Check latest workflow status\n" +
+        "/help — Show this help message\n\n" +
+        "You can also use the inline buttons on draft previews to Publish, Edit, or Discard.");
+      break;
+
+    default:
+      // Ignore unrecognized commands
+      break;
+  }
+}
+
+// ─── GITHUB WORKFLOW STATUS ───
+function getLatestWorkflowStatus(config) {
+  var url = "https://api.github.com/repos/" + config.GITHUB_REPO + "/actions/runs?per_page=3";
+
+  var options = {
+    "method": "get",
+    "headers": {
+      "Authorization": "token " + config.GITHUB_TOKEN,
+      "Accept": "application/vnd.github.v3+json"
+    },
+    "muteHttpExceptions": true
+  };
+
+  try {
+    var response = UrlFetchApp.fetch(url, options);
+    var data = JSON.parse(response.getContentText());
+    var runs = data.workflow_runs || [];
+
+    if (runs.length === 0) {
+      return "📊 No recent workflow runs found.";
+    }
+
+    var statusText = "📊 <b>Latest Workflow Runs</b>\n\n";
+    for (var i = 0; i < Math.min(runs.length, 3); i++) {
+      var run = runs[i];
+      var icon = run.conclusion === "success" ? "✅" :
+                 run.conclusion === "failure" ? "❌" :
+                 run.status === "in_progress" ? "🔄" : "⏳";
+      statusText += icon + " " + run.name + "\n";
+      statusText += "   Status: " + (run.conclusion || run.status) + "\n";
+      statusText += "   " + run.created_at.substring(0, 16).replace("T", " ") + "\n\n";
+    }
+
+    return statusText;
+  } catch (e) {
+    return "⚠️ Could not fetch workflow status: " + e.message;
+  }
 }
 
 // ─── GITHUB ACTIONS TRIGGER ───
 function triggerGitHubAction(config, command, filename) {
   var url = "https://api.github.com/repos/" + config.GITHUB_REPO + "/dispatches";
-  
+
+  var eventType = (command === "scout") ? "telegram_scout" : "telegram_command";
+
   var options = {
     "method": "post",
     "headers": {
@@ -110,7 +206,7 @@ function triggerGitHubAction(config, command, filename) {
       "Content-Type": "application/json"
     },
     "payload": JSON.stringify({
-      "event_type": "telegram_command",
+      "event_type": eventType,
       "client_payload": {
         "command": command,
         "filename": filename
@@ -118,9 +214,9 @@ function triggerGitHubAction(config, command, filename) {
     }),
     "muteHttpExceptions": true
   };
-  
+
   var response = UrlFetchApp.fetch(url, options);
-  Logger.log("GitHub dispatch: " + response.getResponseCode());
+  Logger.log("GitHub dispatch (" + eventType + "): " + response.getResponseCode());
 }
 
 // ─── TELEGRAM HELPERS ───
@@ -182,7 +278,7 @@ function answerCallbackQuery(config, callbackQueryId) {
 function setWebhook() {
   var config = getConfig();
   var webAppUrl = ScriptApp.getService().getUrl();
-  var url = "https://api.telegram.org/bot" + config.TELEGRAM_TOKEN + 
+  var url = "https://api.telegram.org/bot" + config.TELEGRAM_TOKEN +
             "/setWebhook?url=" + webAppUrl;
   var response = UrlFetchApp.fetch(url);
   Logger.log("Webhook set: " + response.getContentText());

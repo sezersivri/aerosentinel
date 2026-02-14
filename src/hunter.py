@@ -1,7 +1,8 @@
 """
 AeroSentinel Hunter
 Searches academic APIs for high-quality aerospace research papers.
-Sources: OpenAlex (primary) + Semantic Scholar (enrichment) + arXiv + NASA NTRS
+Sources: OpenAlex + arXiv + NASA NTRS + Crossref + CORE + IEEE Xplore
+Enrichment: Semantic Scholar (citation metrics)
 
 Usage:
     python -m src.hunter          # Run the hunt
@@ -20,7 +21,8 @@ from typing import Optional
 from src.config import (
     KEYWORDS, TIER_1_JOURNALS, TIER_2_JOURNALS, ELITE_INSTITUTIONS,
     LOOKBACK_DAYS, CITATION_VELOCITY_THRESHOLD, HISTORY_FILE,
-    S2_REQUESTS_PER_SECOND, S2_MAX_RETRIES, MAX_PAPERS_PER_POST
+    S2_REQUESTS_PER_SECOND, S2_MAX_RETRIES, MAX_PAPERS_PER_POST,
+    KEYWORD_PRIORITY, IEEE_API_KEY
 )
 
 
@@ -150,22 +152,22 @@ def search_openalex(days: int = LOOKBACK_DAYS) -> dict:
             keep = False
             reason = ""
 
-            # Rule 1: Tier 1 journal → always keep
+            # Rule 1: Tier 1 journal -> always keep
             if tier == 1:
                 keep = True
                 reason = f"Tier 1: {journal}"
 
-            # Rule 2: Tier 2 + elite institution → keep
+            # Rule 2: Tier 2 + elite institution -> keep
             elif tier == 2 and is_elite:
                 keep = True
                 reason = f"Tier 2 + Elite ({inst_name})"
 
-            # Rule 3: Tier 2 + high citations → keep (velocity checked later)
+            # Rule 3: Tier 2 + high citations -> keep (velocity checked later)
             elif tier == 2 and cited_by >= 3:
                 keep = True
                 reason = f"Tier 2 + Citations ({cited_by})"
 
-            # Rule 4: arXiv/preprint + elite institution → keep
+            # Rule 4: arXiv/preprint + elite institution -> keep
             elif "arxiv" in journal.lower() and is_elite:
                 keep = True
                 reason = f"Preprint + Elite ({inst_name})"
@@ -212,12 +214,9 @@ def search_arxiv(existing_dois: set) -> dict:
     print(f"\n📡 [arXiv] Searching recent preprints...")
     candidates = {}
 
-    # arXiv categories relevant to us
-    categories = ["physics.flu-dyn", "physics.ao-ph", "cs.CE"]
-
-    for keyword in KEYWORDS[:6]:  # Use top keywords only
+    for keyword in KEYWORDS[:8]:  # Use top keywords (Priority 1 + some P2)
         query = f"all:{keyword}"
-        url = "http://export.arxiv.org/api/query"
+        url = "https://export.arxiv.org/api/query"  # HTTPS (security fix)
         params = {
             "search_query": query,
             "sortBy": "submittedDate",
@@ -248,8 +247,6 @@ def search_arxiv(existing_dois: set) -> dict:
                     authors.append(name)
 
             # Check if any author affiliation hints at elite institution
-            # arXiv doesn't always have structured affiliations, so we check
-            # the summary text and author names as proxies
             affiliation_text = summary + " ".join(authors)
             is_elite = any(
                 inst.lower() in affiliation_text.lower()
@@ -302,13 +299,8 @@ def search_nasa_ntrs() -> dict:
     print(f"\n📡 [NASA NTRS] Searching technical reports...")
     candidates = {}
 
-    for keyword in KEYWORDS[:6]:
+    for keyword in KEYWORDS[:8]:
         url = "https://ntrs.nasa.gov/api/citations/search"
-        params = {
-            "q": keyword,
-            "sort": "dateSort desc",
-            "page": {"size": 10, "from": 0},
-        }
 
         try:
             r = requests.get(
@@ -332,11 +324,13 @@ def search_nasa_ntrs() -> dict:
             if not title or not ntrs_id:
                 continue
 
-            # Check publication date (NTRS format varies)
+            # Check publication date — skip papers before 2020 (bug fix)
             pub_date = item.get("publicationDate", "")
             if pub_date:
                 try:
                     pd = datetime.strptime(pub_date[:10], "%Y-%m-%d")
+                    if pd.year < 2020:
+                        continue  # Skip old papers
                     if pd < datetime.now() - timedelta(days=LOOKBACK_DAYS * 2):
                         continue  # Too old
                 except ValueError:
@@ -346,12 +340,27 @@ def search_nasa_ntrs() -> dict:
             if dedup_key in candidates:
                 continue
 
-            # Extract authors
+            # Extract authors with fallback (bug fix)
             authors = []
-            for author in item.get("authorList", []):
-                name = author.get("name", "")
-                if name:
-                    authors.append(name)
+            author_list = item.get("authorList", [])
+            if isinstance(author_list, list):
+                for author in author_list:
+                    if isinstance(author, dict):
+                        name = author.get("name", "")
+                    elif isinstance(author, str):
+                        name = author
+                    else:
+                        continue
+                    if name:
+                        authors.append(name)
+            if not authors:
+                # Fallback: check alternative author fields
+                alt_authors = item.get("authors", item.get("creator", []))
+                if isinstance(alt_authors, list):
+                    for a in alt_authors:
+                        name = a if isinstance(a, str) else a.get("name", "")
+                        if name:
+                            authors.append(name)
 
             candidates[dedup_key] = {
                 "doi": dedup_key,
@@ -370,6 +379,308 @@ def search_nasa_ntrs() -> dict:
         time.sleep(0.5)
 
     print(f"   ✅ NTRS total: {len(candidates)} technical reports")
+    return candidates
+
+
+# ──────────────────────────────────────────────
+#  SOURCE 4: CROSSREF (70M+ articles, no auth)
+# ──────────────────────────────────────────────
+
+def search_crossref(existing_dois: set) -> dict:
+    """
+    Query Crossref API for papers matching keywords.
+    No authentication required. Polite header for faster responses.
+    """
+    print(f"\n📡 [Crossref] Searching 70M+ articles...")
+    candidates = {}
+    start_date = (datetime.now() - timedelta(days=LOOKBACK_DAYS)).strftime("%Y-%m-%d")
+
+    for keyword in KEYWORDS[:10]:  # Top keywords
+        print(f"   🔍 '{keyword}'", end="")
+        url = "https://api.crossref.org/works"
+        params = {
+            "query": keyword,
+            "filter": f"from-pub-date:{start_date}",
+            "rows": 20,
+            "sort": "published",
+            "order": "desc",
+        }
+        headers = {
+            "User-Agent": "AeroSentinel/2.0 (mailto:aerosentinel@proton.me)",
+        }
+
+        try:
+            r = requests.get(url, params=params, headers=headers, timeout=30)
+            if r.status_code != 200:
+                print(f" ⚠️ HTTP {r.status_code}")
+                continue
+            data = r.json()
+        except Exception as e:
+            print(f" ⚠️ Error: {e}")
+            continue
+
+        count = 0
+        for item in data.get("message", {}).get("items", []):
+            doi = normalize_doi(item.get("DOI", ""))
+            if not doi or doi in existing_dois or doi in candidates:
+                continue
+
+            title_parts = item.get("title", [])
+            title = title_parts[0] if title_parts else ""
+            if not title:
+                continue
+
+            # Journal name
+            container = item.get("container-title", [])
+            journal = container[0] if container else "Unknown"
+            tier = classify_journal(journal)
+
+            # Only keep Tier 1 or Tier 2 journals from Crossref
+            if tier == 0:
+                continue
+
+            # Abstract
+            abstract = item.get("abstract", "")
+            # Crossref abstracts sometimes have JATS XML tags
+            if abstract:
+                import re
+                abstract = re.sub(r"<[^>]+>", "", abstract).strip()
+
+            # Authors
+            authors = []
+            for a in item.get("author", [])[:5]:
+                given = a.get("given", "")
+                family = a.get("family", "")
+                if family:
+                    authors.append(f"{given} {family}".strip())
+
+            # Publication date
+            date_parts = item.get("published", {}).get("date-parts", [[]])
+            if date_parts and date_parts[0]:
+                parts = date_parts[0]
+                pub_date = f"{parts[0]}"
+                if len(parts) > 1:
+                    pub_date += f"-{parts[1]:02d}"
+                if len(parts) > 2:
+                    pub_date += f"-{parts[2]:02d}"
+            else:
+                pub_date = "Unknown"
+
+            cited_by = item.get("is-referenced-by-count", 0)
+
+            candidates[doi] = {
+                "doi": doi,
+                "title": title,
+                "journal": journal,
+                "tier": tier,
+                "reason": f"Crossref Tier {tier}: {journal}",
+                "abstract": abstract,
+                "authors": authors,
+                "date": pub_date,
+                "cited_by": cited_by,
+                "source": "Crossref",
+                "url": f"https://doi.org/{doi}",
+            }
+            count += 1
+
+        print(f" → {count} found")
+        time.sleep(0.5)  # Polite rate limiting
+
+    print(f"   ✅ Crossref total: {len(candidates)} unique candidates")
+    return candidates
+
+
+# ──────────────────────────────────────────────
+#  SOURCE 5: CORE (200M+ open access, no auth)
+# ──────────────────────────────────────────────
+
+def search_core(existing_dois: set) -> dict:
+    """
+    Query CORE API v3 for open access research papers.
+    No authentication required. 200M+ open access articles.
+    """
+    print(f"\n📡 [CORE] Searching 200M+ open access articles...")
+    candidates = {}
+
+    for keyword in KEYWORDS[:8]:
+        print(f"   🔍 '{keyword}'", end="")
+        url = "https://api.core.ac.uk/v3/search/works"
+        params = {
+            "q": keyword,
+            "limit": 15,
+        }
+
+        try:
+            r = requests.get(url, params=params, timeout=30)
+            if r.status_code != 200:
+                print(f" ⚠️ HTTP {r.status_code}")
+                continue
+            data = r.json()
+        except Exception as e:
+            print(f" ⚠️ Error: {e}")
+            continue
+
+        count = 0
+        for item in data.get("results", []):
+            doi = normalize_doi(item.get("doi", ""))
+            if not doi or doi in existing_dois or doi in candidates:
+                continue
+
+            title = item.get("title", "")
+            if not title:
+                continue
+
+            # CORE doesn't always have structured journal info
+            journal = "Unknown"
+            journal_obj = item.get("journals", [])
+            if journal_obj and isinstance(journal_obj, list) and len(journal_obj) > 0:
+                journal = journal_obj[0].get("title", "Unknown")
+            elif item.get("publisher", ""):
+                journal = item.get("publisher", "Unknown")
+
+            tier = classify_journal(journal)
+            # Only keep if we can classify the journal
+            if tier == 0:
+                continue
+
+            abstract = item.get("abstract", "")
+
+            # Authors
+            authors = []
+            for a in item.get("authors", [])[:5]:
+                if isinstance(a, dict):
+                    authors.append(a.get("name", ""))
+                elif isinstance(a, str):
+                    authors.append(a)
+
+            pub_date = (item.get("publishedDate") or item.get("yearPublished") or "Unknown")
+            if isinstance(pub_date, int):
+                pub_date = str(pub_date)
+            pub_date = str(pub_date)[:10]
+
+            # Skip old papers
+            if pub_date != "Unknown":
+                try:
+                    pd = datetime.strptime(pub_date[:4], "%Y")
+                    if pd.year < 2020:
+                        continue
+                except ValueError:
+                    pass
+
+            cited_by = item.get("citationCount", 0) or 0
+
+            candidates[doi] = {
+                "doi": doi,
+                "title": title,
+                "journal": journal,
+                "tier": tier,
+                "reason": f"CORE Tier {tier}: {journal}",
+                "abstract": abstract,
+                "authors": authors,
+                "date": pub_date,
+                "cited_by": cited_by,
+                "source": "CORE",
+                "url": f"https://doi.org/{doi}",
+            }
+            count += 1
+
+        print(f" → {count} found")
+        time.sleep(0.5)
+
+    print(f"   ✅ CORE total: {len(candidates)} unique candidates")
+    return candidates
+
+
+# ──────────────────────────────────────────────
+#  SOURCE 6: IEEE XPLORE (needs API key)
+# ──────────────────────────────────────────────
+
+def search_ieee(existing_dois: set) -> dict:
+    """
+    Query IEEE Xplore API for papers matching keywords.
+    Requires IEEE_API_KEY. Returns empty dict if no key set.
+    """
+    if not IEEE_API_KEY:
+        print("\n📡 [IEEE] Skipped (no IEEE_API_KEY set)")
+        return {}
+
+    print(f"\n📡 [IEEE Xplore] Searching with API key...")
+    candidates = {}
+
+    for keyword in KEYWORDS[:6]:
+        print(f"   🔍 '{keyword}'", end="")
+        url = "https://ieeexploreapi.ieee.org/api/v1/search/articles"
+        params = {
+            "apikey": IEEE_API_KEY,
+            "querytext": keyword,
+            "max_records": 15,
+            "sort_order": "desc",
+            "sort_field": "publication_date",
+        }
+
+        try:
+            r = requests.get(url, params=params, timeout=30)
+            if r.status_code != 200:
+                print(f" ⚠️ HTTP {r.status_code}")
+                continue
+            data = r.json()
+        except Exception as e:
+            print(f" ⚠️ Error: {e}")
+            continue
+
+        count = 0
+        for item in data.get("articles", []):
+            doi = normalize_doi(item.get("doi", ""))
+            if not doi or doi in existing_dois or doi in candidates:
+                continue
+
+            title = item.get("title", "")
+            if not title:
+                continue
+
+            journal = item.get("publication_title", "IEEE")
+            tier = classify_journal(journal)
+            abstract = item.get("abstract", "")
+
+            # Authors
+            authors = []
+            author_obj = item.get("authors", {})
+            if isinstance(author_obj, dict):
+                for a in author_obj.get("authors", [])[:5]:
+                    authors.append(a.get("full_name", ""))
+            elif isinstance(author_obj, list):
+                for a in author_obj[:5]:
+                    if isinstance(a, dict):
+                        authors.append(a.get("full_name", a.get("name", "")))
+
+            pub_date = item.get("publication_date", "Unknown")
+
+            # Skip old papers
+            pub_year = item.get("publication_year", "")
+            if pub_year and int(pub_year) < 2020:
+                continue
+
+            cited_by = item.get("citing_paper_count", 0) or 0
+
+            candidates[doi] = {
+                "doi": doi,
+                "title": title,
+                "journal": journal,
+                "tier": tier,
+                "reason": f"IEEE: {journal}",
+                "abstract": abstract,
+                "authors": authors,
+                "date": pub_date,
+                "cited_by": cited_by,
+                "source": "IEEE Xplore",
+                "url": f"https://doi.org/{doi}",
+            }
+            count += 1
+
+        print(f" → {count} found")
+        time.sleep(1)
+
+    print(f"   ✅ IEEE total: {len(candidates)} unique candidates")
     return candidates
 
 
@@ -415,14 +726,14 @@ def enrich_with_semantic_scholar(papers: list) -> list:
                     break
 
                 elif r.status_code == 429:
-                    # Rate limited — wait and retry
+                    # Rate limited - wait and retry
                     wait = (attempt + 1) * 5
                     print(f"   ⏳ Rate limited, waiting {wait}s...")
                     time.sleep(wait)
                     continue
 
                 else:
-                    # Paper not found in S2 — keep if Tier 1
+                    # Paper not found in S2 - keep if Tier 1
                     paper["velocity"] = 0
                     paper["influential_citations"] = 0
                     enriched.append(paper)
@@ -446,7 +757,7 @@ def enrich_with_semantic_scholar(papers: list) -> list:
 def rank_and_select(papers: list) -> list:
     """
     Rank papers by quality score and select top N for summarization.
-    Score = tier_bonus + citation_velocity + influential_citations + recency_bonus
+    Score = tier_bonus + source_bonus + keyword_priority + citation_metrics + recency + abstract
     """
     for paper in papers:
         score = 0
@@ -460,6 +771,14 @@ def rank_and_select(papers: list) -> list:
         # Source bonus
         if paper["source"] == "NASA NTRS":
             score += 30
+
+        # Keyword priority scoring: match title+abstract against tiers
+        text = (paper.get("title", "") + " " + (paper.get("abstract", "") or "")).lower()
+        best_kw_bonus = 0
+        for kw, bonus in KEYWORD_PRIORITY.items():
+            if kw in text:
+                best_kw_bonus = max(best_kw_bonus, bonus)
+        score += best_kw_bonus
 
         # Citation metrics
         score += min(paper.get("velocity", 0) * 3, 30)
@@ -513,12 +832,22 @@ def run_hunt(dry_run: bool = False) -> list:
     openalex_papers = search_openalex()
     arxiv_papers = search_arxiv(set(openalex_papers.keys()) | seen_dois)
     ntrs_papers = search_nasa_ntrs()
+    crossref_papers = search_crossref(set(openalex_papers.keys()) | seen_dois)
+    core_papers = search_core(
+        set(openalex_papers.keys()) | set(crossref_papers.keys()) | seen_dois
+    )
+    ieee_papers = search_ieee(
+        set(openalex_papers.keys()) | set(crossref_papers.keys()) | seen_dois
+    )
 
     # 3. Merge all sources (DOI-based dedup)
     all_papers = {}
     all_papers.update(openalex_papers)
     all_papers.update(arxiv_papers)
     all_papers.update(ntrs_papers)
+    all_papers.update(crossref_papers)
+    all_papers.update(core_papers)
+    all_papers.update(ieee_papers)
 
     # 4. Remove previously seen
     new_papers = {
@@ -526,6 +855,9 @@ def run_hunt(dry_run: bool = False) -> list:
         if doi not in seen_dois
     }
     print(f"\n📊 Total: {len(all_papers)} found, {len(new_papers)} are new")
+    print(f"   Sources: OpenAlex={len(openalex_papers)}, arXiv={len(arxiv_papers)}, "
+          f"NTRS={len(ntrs_papers)}, Crossref={len(crossref_papers)}, "
+          f"CORE={len(core_papers)}, IEEE={len(ieee_papers)}")
 
     if not new_papers:
         print("\n✅ No new papers found. The field is quiet today.")

@@ -1,6 +1,24 @@
 """
 AeroSentinel Configuration
 All settings in one place. Secrets come from environment variables.
+
+# ============================================================
+#  HOW TO EDIT KEYWORDS
+# ============================================================
+#  Keywords are organized into 3 priority tiers derived from:
+#  "Prediction of Aerodynamic Heating on High-Speed Missiles
+#   Using Gaussian Process Based Surrogate Models"
+#
+#  Priority 1 (+25 pts) — AI/ML in aerothermodynamics (core research)
+#  Priority 2 (+15 pts) — General aerothermodynamics & heating
+#  Priority 3 (baseline)  — Broader aerospace & CFD
+#
+#  To adjust: move keywords between tiers or add new ones.
+#  Each keyword is searched across all academic sources.
+#  The KEYWORD_PRIORITY dict is built automatically from the lists.
+#
+#  Future: /keywords Telegram command or external YAML config.
+# ============================================================
 """
 import os
 
@@ -10,10 +28,62 @@ TELEGRAM_BOT_TOKEN = os.environ.get("TELEGRAM_BOT_TOKEN", "")
 TELEGRAM_CHAT_ID = os.environ.get("TELEGRAM_CHAT_ID", "")
 GITHUB_TOKEN = os.environ.get("GITHUB_TOKEN", "")
 GITHUB_REPO = os.environ.get("GITHUB_REPO", "")
+IEEE_API_KEY = os.environ.get("IEEE_API_KEY", "")
 
 # --- LLM MODEL ---
-GEMINI_MODEL = "gemini-2.0-flash"  # Best free-tier model with generous quota
-GEMINI_MAX_TOKENS = 1024
+GEMINI_MODEL = "gemini-2.5-flash"  # Smartest free-tier model
+GEMINI_MAX_TOKENS = 8192  # Increased for rich structured output
+
+# --- LANGUAGES ---
+LANGUAGES = ["en", "tr"]
+
+# --- KEYWORD TIERS ---
+
+# Priority 1 — AI/ML in Aerothermodynamics (core thesis research)
+PRIORITY_1_KEYWORDS = [
+    "machine learning aerodynamic heating",
+    "surrogate model aerodynamic heating",
+    "Gaussian process regression aerodynamics",
+    "deep learning heat flux prediction",
+    "neural network CFD prediction",
+    "physics-informed neural network aerodynamics",
+    "multi-fidelity model aerodynamics",
+    "deep kernel learning aerothermodynamics",
+]
+
+# Priority 2 — General Aerothermodynamics & Aerodynamic Heating
+PRIORITY_2_KEYWORDS = [
+    "aerodynamic heating prediction",
+    "aerodynamic heating missile",
+    "stagnation point heat transfer",
+    "hypersonic boundary layer transition",
+    "shock wave boundary layer interaction",
+    "conjugate heat transfer hypersonic",
+    "ablation thermal protection system",
+    "reentry vehicle heating",
+    "high enthalpy flow",
+]
+
+# Priority 3 — Broader Aerospace & CFD
+PRIORITY_3_KEYWORDS = [
+    "missile aerodynamics",
+    "computational fluid dynamics hypersonic",
+    "scramjet aerothermodynamics",
+    "rarefied gas dynamics reentry",
+    "turbulence modeling hypersonic",
+]
+
+# Combined flat list (used by hunter search loops)
+KEYWORDS = PRIORITY_1_KEYWORDS + PRIORITY_2_KEYWORDS + PRIORITY_3_KEYWORDS
+
+# Priority lookup dict: keyword -> bonus points (used in rank_and_select)
+KEYWORD_PRIORITY = {}
+for _kw in PRIORITY_1_KEYWORDS:
+    KEYWORD_PRIORITY[_kw.lower()] = 25
+for _kw in PRIORITY_2_KEYWORDS:
+    KEYWORD_PRIORITY[_kw.lower()] = 15
+for _kw in PRIORITY_3_KEYWORDS:
+    KEYWORD_PRIORITY[_kw.lower()] = 0
 
 # --- JOURNAL TIERS ---
 TIER_1_JOURNALS = [
@@ -40,24 +110,6 @@ TIER_2_JOURNALS = [
     "Flow, Turbulence and Combustion",
     "Applied Thermal Engineering",
     "Journal of Computational Physics",
-]
-
-# --- KEYWORDS ---
-KEYWORDS = [
-    "aerodynamic heating",
-    "hypersonic boundary layer",
-    "reentry vehicle aerodynamics",
-    "shock wave boundary layer interaction",
-    "missile aerodynamics",
-    "scramjet aerothermodynamics",
-    "hypersonic transition prediction",
-    "computational fluid dynamics hypersonic",
-    "machine learning aerodynamics",
-    "ablation thermal protection",
-    "high enthalpy flow",
-    "aerothermal analysis",
-    "catalytic wall effects hypersonic",
-    "rarefied gas dynamics reentry",
 ]
 
 # --- ELITE INSTITUTIONS ---

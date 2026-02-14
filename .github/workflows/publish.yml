@@ -1,7 +1,7 @@
 # AeroSentinel Publisher — Triggered by Telegram approval via Google Apps Script
-# Moves draft to posts → Rebuilds Hugo site → Sends confirmation
+# Moves draft to posts -> Rebuilds Hugo site -> Sends confirmation
 
-name: "🚀 AeroSentinel Publish"
+name: "AeroSentinel Publish"
 
 on:
   repository_dispatch:
@@ -10,7 +10,6 @@ on:
 permissions:
   contents: write
   pages: write
-  id-token: write
 
 jobs:
   publish:
@@ -20,12 +19,12 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5  # v4
         with:
           submodules: true
 
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065  # v5
         with:
           python-version: "3.11"
 
@@ -45,11 +44,11 @@ jobs:
           git config user.name "AeroSentinel Bot"
           git config user.email "aerosentinel@proton.me"
           git add content/posts/ content/drafts/ || true
-          git diff --cached --quiet || git commit -m "🚀 Published: ${{ github.event.client_payload.filename }}"
+          git diff --cached --quiet || git commit -m "Published: ${{ github.event.client_payload.filename }}"
           git push
 
       - name: Setup Hugo
-        uses: peaceiris/actions-hugo@v3
+        uses: peaceiris/actions-hugo@75d2e84710de30f6ff7268e08f310b60ef14033f  # v3
         with:
           hugo-version: "latest"
           extended: true
@@ -58,7 +57,7 @@ jobs:
         run: hugo --minify
 
       - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v4
+        uses: peaceiris/actions-gh-pages@4f9cc6602d3f66b9c108549d475ec49e8ef4d45e  # v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./public
@@ -70,12 +69,12 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5  # v4
         with:
           submodules: true
 
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065  # v5
         with:
           python-version: "3.11"
 
@@ -89,5 +88,5 @@ jobs:
           git config user.name "AeroSentinel Bot"
           git config user.email "aerosentinel@proton.me"
           git add content/drafts/ || true
-          git diff --cached --quiet || git commit -m "🗑️ Discarded: ${{ github.event.client_payload.filename }}"
+          git diff --cached --quiet || git commit -m "Discarded: ${{ github.event.client_payload.filename }}"
           git push

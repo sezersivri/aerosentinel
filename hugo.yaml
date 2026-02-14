@@ -1,7 +1,76 @@
 baseURL: "https://sezersivri.github.io/aerosentinel/"
-languageCode: "en-us"
-title: "AeroSentinel"
 theme: "PaperMod"
+
+# Multilingual
+defaultContentLanguage: "en"
+defaultContentLanguageInSubdir: false
+
+languages:
+  en:
+    languageName: "English"
+    weight: 1
+    title: "AeroSentinel"
+    params:
+      description: "Automated Research Intelligence for Aerospace & Hypersonic Aerothermodynamics"
+      homeInfoParams:
+        Title: "AeroSentinel"
+        Content: >
+          AI-powered research intelligence on hypersonic aerodynamics,
+          aerothermodynamics, missile heating, and ML/AI surrogates for CFD.
+          Updated weekly. Quality-filtered from AIAA, JFM, Physics of Fluids,
+          NASA NTRS, Crossref, CORE, and other top-tier sources.
+    menu:
+      main:
+        - identifier: home
+          name: Home
+          url: /
+          weight: 1
+        - identifier: tags
+          name: Topics
+          url: /tags/
+          weight: 2
+        - identifier: archive
+          name: Archive
+          url: /archives/
+          weight: 3
+        - identifier: about
+          name: About
+          url: /about/
+          weight: 4
+
+  tr:
+    languageName: "Turkce"
+    weight: 2
+    title: "AeroSentinel"
+    params:
+      description: "Havaclik ve Hipersonik Aerotermodinamik icin Otomatik Arastirma Istihbarati"
+      homeInfoParams:
+        Title: "AeroSentinel"
+        Content: >
+          Hipersonik aerodinamik, aerotermodinamik, fuze isinmasi ve
+          CFD icin yapay zeka/makine ogrenmesi vekil modelleri hakkinda
+          yapay zeka destekli arastirma istihbarati.
+          Haftalik guncellenir. AIAA, JFM, Physics of Fluids,
+          NASA NTRS, Crossref, CORE ve diger ust duzey kaynaklardan
+          kalite filtrelidir.
+    menu:
+      main:
+        - identifier: home
+          name: Ana Sayfa
+          url: /tr/
+          weight: 1
+        - identifier: tags
+          name: Konular
+          url: /tr/tags/
+          weight: 2
+        - identifier: archive
+          name: Arsiv
+          url: /tr/archives/
+          weight: 3
+        - identifier: about
+          name: Hakkinda
+          url: /tr/about/
+          weight: 4
 
 # Build settings
 pagination:
@@ -23,8 +92,6 @@ privacy:
 
 params:
   env: production
-  title: "AeroSentinel"
-  description: "Automated Research Intelligence for Aerospace & Hypersonic Aerothermodynamics"
   author: "AeroSentinel"
 
   # PaperMod specific
@@ -34,15 +101,7 @@ params:
   ShowPostNavLinks: true
   ShowBreadCrumbs: true
   ShowCodeCopyButtons: true
-  ShowToc: false
-
-  homeInfoParams:
-    Title: "🛰️ AeroSentinel"
-    Content: >
-      Curated research intelligence on hypersonic aerodynamics,
-      aerothermodynamics, reentry vehicles, and AI applications in CFD.
-      Updated every 2 days. Quality-filtered from AIAA, JFM, Physics of Fluids,
-      NASA NTRS, and other top-tier sources.
+  ShowToc: true
 
   socialIcons:
     - name: github
@@ -57,30 +116,12 @@ params:
     - CFD
     - aerothermodynamics
     - machine learning aerodynamics
+    - surrogate model
+    - Gaussian process
 
 # Taxonomy
 taxonomies:
   tag: tags
-
-# Menu
-menu:
-  main:
-    - identifier: home
-      name: Home
-      url: /
-      weight: 1
-    - identifier: tags
-      name: Topics
-      url: /tags/
-      weight: 2
-    - identifier: archive
-      name: Archive
-      url: /archives/
-      weight: 3
-    - identifier: about
-      name: About
-      url: /about/
-      weight: 4
 
 # Output formats
 outputs:
@@ -93,6 +134,6 @@ outputs:
 markup:
   goldmark:
     renderer:
-      unsafe: true  # Allow raw HTML in markdown if needed
+      unsafe: true  # Allow raw HTML (<details>, collapsible sections)
   highlight:
     noClasses: false
