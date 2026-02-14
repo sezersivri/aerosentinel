@@ -12,7 +12,7 @@ GITHUB_TOKEN = os.environ.get("GITHUB_TOKEN", "")
 GITHUB_REPO = os.environ.get("GITHUB_REPO", "")
 
 # --- LLM MODEL ---
-GEMINI_MODEL = "gemini-2.5-pro"  # Best free-tier reasoning model
+GEMINI_MODEL = "gemini-2.0-flash"  # Best free-tier model with generous quota
 GEMINI_MAX_TOKENS = 1024
 
 # --- JOURNAL TIERS ---

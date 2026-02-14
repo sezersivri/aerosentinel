@@ -78,7 +78,7 @@ def call_gemini(papers: list) -> dict:
         }
     }
 
-    print(f"\n🧠 [Gemini 2.5 Pro] Generating summary from {len(papers)} papers...")
+    print(f"\n🧠 [{GEMINI_MODEL}] Generating summary from {len(papers)} papers...")
 
     try:
         r = requests.post(url, json=payload, timeout=120)
