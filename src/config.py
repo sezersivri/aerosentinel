@@ -32,7 +32,7 @@ IEEE_API_KEY = os.environ.get("IEEE_API_KEY", "")
 
 # --- LLM MODEL ---
 GEMINI_MODEL = "gemini-2.5-flash"  # Smartest free-tier model
-GEMINI_MAX_TOKENS = 8192  # Increased for rich structured output
+GEMINI_MAX_TOKENS = 16384  # Needs headroom for 6 papers + rich prompts
 
 # --- LANGUAGES ---
 LANGUAGES = ["en", "tr"]
