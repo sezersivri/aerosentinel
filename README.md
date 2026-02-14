@@ -5,7 +5,7 @@
 [![Bilingual](https://img.shields.io/badge/lang-EN%20%7C%20TR-brightgreen)](#)
 [![Cost](https://img.shields.io/badge/cost-%240%2Fmonth-success)](#cost-0month)
 
-**Automated Research Intelligence for Aerospace & Hypersonic Aerothermodynamics**
+**Automated Research Feed for Aerospace & Hypersonic Aerothermodynamics**
 
 AeroSentinel scans 7 academic databases on a weekly schedule, filters and ranks papers
 using a priority keyword system, generates bilingual (EN/TR) AI summaries via Gemini 2.5 Flash,
@@ -170,6 +170,21 @@ git submodule add https://github.com/adityatelange/hugo-PaperMod.git themes/Pape
 - **Manual trigger:** Go to Actions > "AeroSentinel Scout" > Run workflow
 - **Telegram:** Send `/scout` to your bot
 - **Automatic:** Runs every Saturday at 08:00 UTC
+
+## Hosting & Branches
+
+AeroSentinel is hosted for free on **GitHub Pages** — GitHub's built-in static site hosting service.
+
+- **What is GitHub Pages?** A free hosting service from GitHub that serves static websites directly from a repository. You get a free subdomain at `yourusername.github.io/reponame` with optional custom domain support. Limits: 1 GB storage, 100 GB bandwidth/month — more than enough for a research blog.
+
+- **Why two branches?**
+
+  | Branch | Purpose |
+  |--------|---------|
+  | `main` | Source code — Python pipeline, Hugo content, configuration, workflows |
+  | `gh-pages` | Built output — auto-generated HTML/CSS/JS that GitHub Pages serves as the live site |
+
+  You only work on `main`. The `gh-pages` branch is managed automatically by the deploy workflow — every time a post is approved, GitHub Actions runs `hugo build --minify` and pushes the output to `gh-pages`. **Never edit `gh-pages` directly.**
 
 ## Cost: $0/month
 

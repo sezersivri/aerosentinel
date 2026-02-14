@@ -1,6 +1,6 @@
 """
 AeroSentinel Brain
-Sends paper abstracts to Gemini API for professional research intelligence analysis.
+Sends paper abstracts to Gemini API for professional research digest analysis.
 Produces structured, bilingual (EN/TR) output ready for Hugo publishing.
 """
 import json
@@ -18,11 +18,11 @@ from src.config import (
 #  SYSTEM PROMPTS
 # ──────────────────────────────────────────────
 
-SYSTEM_PROMPT_EN = """You are a senior aerospace research intelligence analyst specializing in missile aerothermodynamics, hypersonic flow physics, and AI/ML applications in CFD.
+SYSTEM_PROMPT_EN = """You are a senior aerospace research analyst specializing in missile aerothermodynamics, hypersonic flow physics, and AI/ML applications in CFD.
 
 Your domain: "Prediction of Aerodynamic Heating on High-Speed Missiles Using Gaussian Process Based Surrogate Models"
 
-Your task is to analyze the following academic papers and produce a structured intelligence briefing.
+Your task is to analyze the following academic papers and produce a structured research digest.
 
 INSTRUCTIONS:
 
@@ -70,11 +70,11 @@ Tags must ALWAYS be in English regardless of output language.
   "trends": "2-3 sentences on what these papers collectively signal about the field"
 }}"""
 
-SYSTEM_PROMPT_TR = """Sen füze aerotermodinamiği, hipersonik akış fiziği ve CFD'de yapay zeka uygulamaları konusunda uzmanlaşmış kıdemli bir havacılık araştırma istihbarat analistisisin.
+SYSTEM_PROMPT_TR = """Sen füze aerotermodinamiği, hipersonik akış fiziği ve CFD'de yapay zeka uygulamaları konusunda uzmanlaşmış kıdemli bir havacılık araştırma analistisisin.
 
 Araştırma alanın: "Yüksek Hızlı Füzelerde Aerodinamik Isınmanın Gauss Süreci Tabanlı Vekil Modeller Kullanılarak Tahmini"
 
-Görevin, aşağıdaki akademik makaleleri analiz edip yapılandırılmış bir istihbarat brifing raporu üretmek.
+Görevin, aşağıdaki akademik makaleleri analiz edip yapılandırılmış bir araştırma özeti üretmek.
 
 TALİMATLAR:
 
@@ -268,14 +268,14 @@ def call_gemini(papers: list, lang: str = "en") -> dict:
 
 
 def generate_hugo_post(gemini_output: dict, papers: list, lang: str = "en") -> str:
-    """Generate a professional intelligence briefing Hugo markdown post."""
+    """Generate a professional research digest Hugo markdown post."""
     today = datetime.now().strftime("%Y-%m-%d")
     tags_yaml = "\n".join([f'  - "{tag}"' for tag in gemini_output["tags"]])
     badges = PAPER_TYPE_BADGES_TR if lang == "tr" else PAPER_TYPE_BADGES
 
     # Labels
     if lang == "tr":
-        lbl_overview = "İstihbarat Özeti"
+        lbl_overview = "Araştırma Özeti"
         lbl_trends = "Araştırma Trendleri"
         lbl_analysis = "Makale Analizi"
         lbl_type = "Tip"
@@ -287,7 +287,7 @@ def generate_hugo_post(gemini_output: dict, papers: list, lang: str = "en") -> s
         lbl_references = "Kaynaklar"
         lbl_connection = "Bağlantı"
     else:
-        lbl_overview = "Intelligence Overview"
+        lbl_overview = "Research Overview"
         lbl_trends = "Research Trends"
         lbl_analysis = "Paper Analysis"
         lbl_type = "Type"

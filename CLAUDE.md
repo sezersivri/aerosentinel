@@ -1,6 +1,6 @@
 # AeroSentinel
 
-Automated academic paper intelligence system for aerospace research, focused on the thesis domain: **"Prediction of Aerodynamic Heating on High-Speed Missiles Using Gaussian Process Based Surrogate Models."**
+Automated academic paper feed for aerospace research, focused on the thesis domain: **"Prediction of Aerodynamic Heating on High-Speed Missiles Using Gaussian Process Based Surrogate Models."**
 
 ## Architecture
 

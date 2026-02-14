@@ -38,7 +38,7 @@ def send_draft_preview(
         paper_types[ptype] = paper_types.get(ptype, 0) + 1
     type_str = ", ".join(f"{v}x {k}" for k, v in paper_types.items())
 
-    message = f"""🛰️ <b>AeroSentinel v2 — New Intelligence Briefing</b>
+    message = f"""🛰️ <b>AeroSentinel v2 — New Research Digest</b>
 
 📋 <b>{gemini_output.get('title', 'Untitled')}</b>
 
