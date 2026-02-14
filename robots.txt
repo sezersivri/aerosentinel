@@ -1,0 +1,3 @@
+User-agent: *
+Disallow:
+Sitemap: https://sezersivri.github.io/aerosentinel/sitemap.xml
