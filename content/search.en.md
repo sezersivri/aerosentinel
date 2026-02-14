@@ -4,4 +4,5 @@ layout: "search"
 url: "/search/"
 summary: "Search all posts"
 placeholder: "Search AeroSentinel..."
+translationKey: "search"
 ---

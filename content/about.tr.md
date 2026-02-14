@@ -3,6 +3,7 @@ title: "AeroSentinel Hakkinda"
 layout: "single"
 url: "/tr/about/"
 summary: "AeroSentinel nedir?"
+translationKey: "about"
 ---
 
 ## AeroSentinel Nedir?

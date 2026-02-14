@@ -3,6 +3,7 @@ title: "About AeroSentinel"
 layout: "single"
 url: "/about/"
 summary: "What is AeroSentinel?"
+translationKey: "about"
 ---
 
 ## What is AeroSentinel?
