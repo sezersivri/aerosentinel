@@ -32,7 +32,6 @@ Instructions:
   "title": "A precise technical title (max 15 words)",
   "summary": "The narrative synthesis paragraph (150-200 words)",
   "tags": ["tag1", "tag2", "tag3", "tag4", "tag5"],
-  "linkedin_snippet": "A 2-sentence teaser in casual-professional tone for LinkedIn, with 3 relevant hashtags"
 }"""
 
 
@@ -108,7 +107,7 @@ def call_gemini(papers: list) -> dict:
 
             result = json.loads(text)
 
-            for field in ["title", "summary", "tags", "linkedin_snippet"]:
+            for field in ["title", "summary", "tags"]:
                 if field not in result:
                     print(f"   ⚠️ Missing field: {field}")
                     return None
@@ -147,7 +146,7 @@ title: "{gemini_output['title']}"
 date: {today}
 tags:
 {tags_yaml}
-summary: "{gemini_output['linkedin_snippet'].split('.')[0]}."
+summary: "{gemini_output['summary'][:150].rsplit(' ', 1)[0]}..."
 draft: false
 papers_count: {len(papers)}
 ---

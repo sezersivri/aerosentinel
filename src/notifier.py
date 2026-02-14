@@ -34,8 +34,7 @@ def send_draft_preview(
 
 📚 Papers: {len(papers)} | Sources: {journal_str}
 🏷️ Tags: {tags_str}
-
-💼 LinkedIn: <i>{gemini_output['linkedin_snippet'][:200]}</i>"""
+"""
 
     # Inline keyboard with 3 buttons
     # Telegram limits callback_data to 64 bytes, so truncate filename
@@ -89,14 +88,11 @@ def send_simple_message(text: str):
         pass
 
 
-def send_published_confirmation(filename: str, site_url: str, linkedin_text: str):
-    """Send confirmation after publishing with LinkedIn copy-paste text."""
+def send_published_confirmation(filename: str, site_url: str):
+    """Send confirmation after publishing."""
     message = f"""✅ <b>Published!</b>
 
-🔗 <a href="{site_url}">{filename}</a>
-
-📋 <b>Copy for LinkedIn:</b>
-<code>{linkedin_text}</code>"""
+🔗 <a href="{site_url}">{filename}</a>"""
 
     url = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendMessage"
     payload = {
