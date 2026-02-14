@@ -1,0 +1,16 @@
+{
+  "filename": "2026-02-14-hypersonic-aerodynamics-and-propulsion-research-a.md",
+  "gemini_output": {
+    "title": "Hypersonic Aerodynamics and Propulsion Research: A Synthesis of NASA Programs",
+    "summary": "NASA's extensive research in hypersonic aerodynamics and propulsion, particularly concerning missile design, scramjet technology, and reusable launch vehicles (RLVs), reveals a sustained effort to advance airbreathing hypersonic flight. Early work, such as the MISSILE series of programs, focused on rapid engineering predictions for axisymmetric missile configurations, accounting for high angles of attack and vortex tracking. Later studies, including the DEMON series, aimed at detailed loading calculations on missiles with non-circular cross-sections. Nonlinear slender body theory was also explored for applications ranging from store carriage design to vortex flow modeling. The Hypersonic Research Engine Program concentrated on the internal aerothermodynamics of scramjets, with a focus on airbreathing liquid hydrogen-fueled engines. The Next Generation Launch Technology program (NGLT) furthered advancements in aerothermodynamics, aeropropulsion, and flight mechanics for future RLV systems, including scramjet flowpath development for Mach 10+ operation. The National Aero-Space Plane (NASP) program highlighted critical aerodynamic technologies and propulsion integration challenges associated with single-stage-to-orbit airbreathing vehicles, emphasizing the need to understand and predict complex fluid flow phenomena.",
+    "tags": [
+      "hypersonics",
+      "scramjet",
+      "aerodynamics",
+      "missile design",
+      "propulsion integration"
+    ]
+  },
+  "papers_count": 6,
+  "created_at": "2026-02-14T18:04:53.093223"
+}
