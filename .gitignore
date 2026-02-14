@@ -24,3 +24,4 @@ latest_hunt.json
 *.pdf
 .claude
 CLAUDE_CODE_PLAN.md
+worker/.wrangler/

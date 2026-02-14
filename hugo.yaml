@@ -33,10 +33,14 @@ languages:
           name: Archive
           url: /archives/
           weight: 3
+        - identifier: search
+          name: Search
+          url: /search/
+          weight: 4
         - identifier: about
           name: About
           url: /about/
-          weight: 4
+          weight: 5
 
   tr:
     languageName: "Turkce"
@@ -67,10 +71,14 @@ languages:
           name: Arsiv
           url: /tr/archives/
           weight: 3
+        - identifier: search
+          name: Ara
+          url: /tr/search/
+          weight: 4
         - identifier: about
           name: Hakkinda
           url: /tr/about/
-          weight: 4
+          weight: 5
 
 # Build settings
 pagination:
@@ -97,15 +105,43 @@ params:
   # PaperMod specific
   defaultTheme: "auto"
   ShowReadingTime: true
-  ShowShareButtons: false
+  ShowShareButtons: true
   ShowPostNavLinks: true
   ShowBreadCrumbs: true
   ShowCodeCopyButtons: true
   ShowToc: true
+  ShareButtons: ["telegram", "linkedin", "reddit", "x"]
+  ShowWordCount: true
+  ShowFullTextinRSS: true
+  displayFullLangName: true
+
+  editPost:
+    URL: "https://github.com/sezersivri/aerosentinel/tree/main/content"
+    Text: "Suggest Edit"
+    appendFilePath: true
+
+  assets:
+    favicon: "/favicon.svg"
+    favicon16x16: "/favicon.svg"
+    favicon32x32: "/favicon.svg"
+    apple_touch_icon: "/favicon.svg"
+    safari_pinned_tab: "/favicon.svg"
+    theme_color: "#1a1a2e"
+    msapplication_TileColor: "#1a1a2e"
+
+  footer:
+    text: "Powered by AeroSentinel AI | Updated weekly"
+
+  schema:
+    publisherType: "Organization"
+    sameAs:
+      - "https://github.com/sezersivri/aerosentinel"
 
   socialIcons:
     - name: github
       url: "https://github.com/sezersivri/aerosentinel"
+    - name: linkedin
+      url: "https://www.linkedin.com/in/sivri/"
 
   # SEO
   keywords:
