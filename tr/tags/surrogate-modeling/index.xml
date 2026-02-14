@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Surrogate Modeling on AeroSentinel</title><link>https://sezersivri.github.io/aerosentinel/tr/tags/surrogate-modeling/</link><description>Recent content in Surrogate Modeling on AeroSentinel</description><generator>Hugo -- 0.155.3</generator><language>tr</language><lastBuildDate>Sat, 14 Feb 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://sezersivri.github.io/aerosentinel/tr/tags/surrogate-modeling/index.xml" rel="self" type="application/rss+xml"/><item><title>Havacılık Araştırmalarında Aerodinamik ve Optimizasyon Yöntemleri Üzerine Bir Bakış</title><link>https://sezersivri.github.io/aerosentinel/tr/drafts/2026-02-14-aerodynamic-research-trends-optimization-flow-physics/</link><pubDate>Sat, 14 Feb 2026 00:00:00 +0000</pubDate><guid>https://sezersivri.github.io/aerosentinel/tr/drafts/2026-02-14-aerodynamic-research-trends-optimization-flow-physics/</guid><description>Bu brifing, havacılık alanındaki altı güncel akademik makaleyi analiz etmektedir. Makaleler ağırlıklı olarak genel aerodinamik performans,&amp;hellip;</description><content:encoded><![CDATA[<h2 id="araştırma-özeti">Araştırma Özeti</h2>
+<p>Bu brifing, havacılık alanındaki altı güncel akademik makaleyi analiz etmektedir. Makaleler ağırlıklı olarak genel aerodinamik performans, optimizasyon stratejileri ve akış fiziği üzerine odaklanmaktadır. Yüksek hızlı füzelerde aerodinamik ısınma tahmini için Gauss Süreci tabanlı vekil modellerin geliştirilmesi konusundaki araştırma alanımla doğrudan örtüşen bir çalışma bulunmamaktadır. Ancak, bazı makaleler hesaplamalı akışkanlar dinamiği (HAD) ve veri odaklı yöntemler gibi metodolojik yaklaşımlar açısından uzaktan ilgili olabilir.</p>
+<blockquote>
+<p><strong>Araştırma Trendleri:</strong> Bu makaleler toplu olarak, havacılık araştırmalarında aerodinamik performans optimizasyonuna ve tasarım için gelişmiş hesaplamalı yöntemlerin, özellikle veri odaklı tekniklerin uygulanmasına güçlü bir odaklanma olduğunu göstermektedir. Ancak, yüksek hızlı aerotermodinamik ve ısınma tahmini gibi kritik alanlara yönelik doğrudan bir vurgu bulunmamaktadır. Bu durum, havacılık araştırmalarının geniş yelpazesini gösterirken, benim uzmanlık alanımın daha niş ve spesifik bir odak gerektirdiğini ortaya koymaktadır.</p>
+</blockquote>
+<hr>
+<h2 id="makale-analizi">Makale Analizi</h2>
+<h3 id="1-accelerating-adjoint-based-aerodynamic-shape-optimization-through-integrating-reduced-order-modeling-and-active-learning">1. Accelerating adjoint-based aerodynamic shape optimization through integrating reduced-order modeling and active learning</h3>
+<p><strong>Tip:</strong> 🤖 MO/Aerodinamik | <strong>İlgililik:</strong> 40/100</p>
+<blockquote>
+<p><strong>Bu makale, aerodinamik şekil optimizasyonunu hızlandırmak için indirgenmiş mertebe modellemesini ve aktif öğrenmeyi birleştiren bir yaklaşım sunmaktadır.</strong></p>
+</blockquote>
+<p><strong>Temel Bulgular:</strong>
+Makale içeriği mevcut olmadığından spesifik sayısal sonuçlar belirtilmemiştir. Ancak, genel olarak bu tür çalışmalar, optimizasyon süreçlerinde önemli hızlanma faktörleri ve tasarım iyileştirmeleri elde etmeyi hedefler.</p>
+<p><strong>Temel Sayılar:</strong> Belirtilmemiş</p>
+<details>
+<summary><strong>Metodoloji Detayları</strong></summary>
+<p>Yaklaşım, HAD tabanlı adjoint yöntemleri, indirgenmiş mertebe modellemesini (ROM) ve aktif öğrenme stratejilerini entegre ederek aerodinamik şekil optimizasyonunu daha verimli hale getirmeyi amaçlamaktadır.</p>
+</details>
+<blockquote>
+<p><strong>Neden Önemli:</strong> Bu tür yöntemler, yeni nesil hava araçlarının tasarım döngülerini kısaltarak maliyetleri düşürebilir ve performans hedeflerine daha hızlı ulaşılmasını sağlayabilir. Tasarım alanının verimli bir şekilde keşfedilmesi için önemlidir.</p>
+</blockquote>
+<p><em>Bağlantı: Bu makale, vekil modelleme ve veri odaklı yöntemleri (aktif öğrenme, ROM) kullanması açısından benim araştırma alanımla metodolojik bir bağlantıya sahiptir, ancak uygulama alanı aerodinamik optimizasyon olup aerotermodinamik ısınma tahmini değildir.</em></p>
+<hr>
+<h3 id="2-correlation-between-aerodynamic-forces-and-vortex-dynamics-of-a-naca0012-wing-section-in-compressible-dynamic-stall-via-iddes">2. Correlation between aerodynamic forces and vortex dynamics of a NACA0012 wing section in compressible dynamic stall via IDDES</h3>
+<p><strong>Tip:</strong> 💻 Sayisal/HAD | <strong>İlgililik:</strong> 55/100</p>
+<blockquote>
+<p><strong>Bu araştırma, sıkıştırılabilir dinamik durma koşullarında bir NACA0012 kanat kesitinin aerodinamik kuvvetleri ile girdap dinamikleri arasındaki korelasyonu IDDES yöntemiyle incelemektedir.</strong></p>
+</blockquote>
+<p><strong>Temel Bulgular:</strong>
+Makale içeriği mevcut olmadığından spesifik sayısal sonuçlar belirtilmemiştir. Genellikle, bu tür çalışmalar, dinamik durma başlangıcı ve gelişimi ile ilişkili kaldırma ve sürükleme katsayılarındaki değişimleri ve girdap yapılarının evrimini nicel olarak analiz eder.</p>
+<p><strong>Temel Sayılar:</strong> Belirtilmemiş</p>
+<details>
+<summary><strong>Metodoloji Detayları</strong></summary>
+<p>Entegre Ayrık Girdap Simülasyonu (IDDES) yöntemi kullanılarak, sıkıştırılabilir akış koşullarında bir NACA0012 kanat kesitinin dinamik durma davranışı ve girdap oluşumu sayısal olarak modellenmiştir.</p>
+</details>
+<blockquote>
+<p><strong>Neden Önemli:</strong> Dinamik durma, helikopter rotorları ve yüksek manevra kabiliyetine sahip uçaklar gibi platformlarda önemli bir aerodinamik fenomendir. Bu fenomenin anlaşılması, uçuş zarfının genişletilmesi ve kontrol sistemlerinin iyileştirilmesi için hayati öneme sahiptir.</p>
+</blockquote>
+<p><em>Bağlantı: Bu makale, sıkıştırılabilir akış fiziğini ve HAD yöntemlerini (IDDES) kullanması açısından benim araştırma alanımın temel araçlarıyla bir miktar örtüşmektedir. Ancak, odak noktası dinamik durma ve girdap dinamikleri olup, yüksek hızlı aerotermodinamik ısınma veya vekil modelleme değildir.</em></p>
+<hr>
+<h2 id="kaynaklar">Kaynaklar</h2>
+<ol>
+<li>Wengang Chen, Weixiang Gao, Jiaqing Kou et al., &ldquo;Accelerating adjoint-based aerodynamic shape optimization through integrating reduced-order modeling and active learning,&rdquo; <em>Aerospace Science and Technology</em>, 2026-07. <a href="https://doi.org/10.1016/j.ast.2026.111876">Link</a></li>
+<li>Xintao Zhang, Gang Sun, Lijuan Feng et al., &ldquo;Aerodynamic optimization strategy and experimental study on short inlet in crosswind conditions using decoupled intuitive class shape transformation curves,&rdquo; <em>Aerospace Science and Technology</em>, 2026-07. <a href="https://doi.org/10.1016/j.ast.2026.111857">Link</a></li>
+<li>Yasuyuki Nishi, Masafumi Fukuyama, Naofumi Saeki et al., &ldquo;Aerodynamic performance of a cross-flow fan for VTOL and its multi-objective optimization,&rdquo; <em>Aerospace Science and Technology</em>, 2026-07. <a href="https://doi.org/10.1016/j.ast.2026.111872">Link</a></li>
+<li>Dechuan Ma, Gaohua Li, Jiahao Liu et al., &ldquo;Correlation between aerodynamic forces and vortex dynamics of a NACA0012 wing section in compressible dynamic stall via IDDES,&rdquo; <em>Aerospace Science and Technology</em>, 2026-06. <a href="https://doi.org/10.1016/j.ast.2026.111843">Link</a></li>
+<li>Qingkai Meng, Wei Wei, Zhifang Ke et al., &ldquo;Research on coupled aerodynamic characteristics for ducted rotor system of a deflectable land-air platform under duct deflection and ground effects,&rdquo; <em>Aerospace Science and Technology</em>, 2026-06. <a href="https://doi.org/10.1016/j.ast.2026.111770">Link</a></li>
+<li>Resul Kurt, Hürrem Akbıyık, &ldquo;Aerodynamic performance of a non-slender delta wing modified with passive flow channels under ground effect,&rdquo; <em>Aerospace Science and Technology</em>, 2026-06. <a href="https://doi.org/10.1016/j.ast.2026.111854">Link</a></li>
+</ol>
+]]></content:encoded></item></channel></rss>
