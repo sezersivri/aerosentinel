@@ -1,0 +1,17 @@
+{
+  "filename": "2026-02-14-hypersonic-aerodynamics-and-heat-transfer-phenomena-in-reentry.md",
+  "gemini_output": {
+    "title": "Hypersonic Aerodynamics and Heat Transfer Phenomena in Re-entry Vehicles",
+    "summary": "Research into hypersonic flowfields around re-entry vehicles has focused on several key areas. Studies of hypersonic inlet flows highlight the importance of understanding shock wave boundary layer interactions and shear flow regimes. A critical challenge is predicting boundary layer transition, particularly the late stages where experimental evidence suggests a departure from subsonic transition models, with spectral dispersion and energy spreading from the critical layer towards the wall. Newtonian flow models offer a simplified approach for aerodynamic analysis of general body shapes, while free-flight experiments provide data on the aerodynamic stability and drag characteristics of blunt-faced re-entry shapes, both with and without ablation effects. Specific configurations, such as dihedral right triangular pyramid lifting re-entry vehicles, have been assessed for static stability and control at Mach 3.05. Furthermore, detailed heat transfer measurements on rotor blades of rotor entry vehicle models contribute to understanding thermal management requirements during re-entry.",
+    "tags": [
+      "hypersonics",
+      "re-entry",
+      "boundary layer transition",
+      "aerodynamics",
+      "heat transfer"
+    ],
+    "linkedin_snippet": "Hypersonic re-entry vehicle design requires deep understanding of complex flow phenomena. Research highlights include boundary layer transition, aerodynamic stability, and heat transfer challenges. #hypersonics #aerospace #reentryvehicles"
+  },
+  "papers_count": 6,
+  "created_at": "2026-02-14T17:11:54.062246"
+}
