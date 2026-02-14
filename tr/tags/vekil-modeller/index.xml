@@ -1,1 +1,119 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Vekil Modeller on AeroSentinel</title><link>https://sezersivri.github.io/aerosentinel/tr/tags/vekil-modeller/</link><description>Recent content in Vekil Modeller on AeroSentinel</description><generator>Hugo -- 0.155.3</generator><language>tr</language><lastBuildDate>Sat, 14 Feb 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://sezersivri.github.io/aerosentinel/tr/tags/vekil-modeller/index.xml" rel="self" type="application/rss+xml"/><item><title>Havacılıkta Yapay Zeka ve Makine Öğrenimi Uygulamaları İstihbarat Brifingi</title><link>https://sezersivri.github.io/aerosentinel/tr/posts/2026-02-14-aiml-for-aerodynamic-modeling-uncertainty-quantification/</link><pubDate>Sat, 14 Feb 2026 00:00:00 +0000</pubDate><guid>https://sezersivri.github.io/aerosentinel/tr/posts/2026-02-14-aiml-for-aerodynamic-modeling-uncertainty-quantification/</guid><description>Bu brifing, makine öğrenimi ve yapay zeka tekniklerinin, özellikle Gauss Süreçleri ve Sinir Ağlarının, havacılık ve uzay mühendisliğindeki karmaşık&amp;hellip;</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Vekil Modeller on AeroSentinel</title><link>https://sezersivri.github.io/aerosentinel/tr/tags/vekil-modeller/</link><description>Recent content in Vekil Modeller on AeroSentinel</description><generator>Hugo -- 0.155.3</generator><language>tr</language><lastBuildDate>Sat, 14 Feb 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://sezersivri.github.io/aerosentinel/tr/tags/vekil-modeller/index.xml" rel="self" type="application/rss+xml"/><item><title>Havacılıkta Yapay Zeka ve Makine Öğrenimi Uygulamaları İstihbarat Brifingi</title><link>https://sezersivri.github.io/aerosentinel/tr/posts/2026-02-14-aiml-for-aerodynamic-modeling-uncertainty-quantification/</link><pubDate>Sat, 14 Feb 2026 00:00:00 +0000</pubDate><guid>https://sezersivri.github.io/aerosentinel/tr/posts/2026-02-14-aiml-for-aerodynamic-modeling-uncertainty-quantification/</guid><description>Bu brifing, makine öğrenimi ve yapay zeka tekniklerinin, özellikle Gauss Süreçleri ve Sinir Ağlarının, havacılık ve uzay mühendisliğindeki karmaşık&amp;hellip;</description><content:encoded><![CDATA[<h2 id="istihbarat-özeti">İstihbarat Özeti</h2>
+<p>Bu brifing, makine öğrenimi ve yapay zeka tekniklerinin, özellikle Gauss Süreçleri ve Sinir Ağlarının, havacılık ve uzay mühendisliğindeki karmaşık aerodinamik fenomenleri modelleme, belirsizlik nicelemesi ve tasarım optimizasyonu için nasıl kullanıldığını gösteren altı güncel makaleyi analiz etmektedir. Makaleler, sınır tabaka geçişi tahmininden uzay aracı aerodinamik belirsizliğine ve rotorlu hava aracı tasarım optimizasyonuna kadar geniş bir yelpazede ML vekil modellerinin potansiyelini vurgulamaktadır. Bu çalışmalar, füze aerotermodinamiği ve hipersonik akış fiziği alanlarında hesaplama verimliliği ve tasarım doğruluğu için kritik öneme sahiptir.</p>
+<blockquote>
+<p><strong>Araştırma Trendleri:</strong> Bu makaleler toplu olarak, makine öğrenimi ve yapay zeka tekniklerinin havacılık ve uzay mühendisliğinde, özellikle karmaşık akış fiziği modellemesi ve belirsizlik nicelemesi için giderek daha fazla kullanıldığını göstermektedir. Yüksek doğruluklu CFD simülasyonlarının ML vekil modelleriyle entegrasyonu, tasarım döngülerini önemli ölçüde hızlandırma ve riskleri azaltma potansiyeli sunmaktadır. Bu eğilim, füze aerotermodinamiği ve hipersonik araç tasarımı için hesaplama verimliliği ve güvenilirliği açısından kritik bir ilerlemeyi işaret etmektedir.</p>
+</blockquote>
+<hr>
+<h2 id="makale-analizi">Makale Analizi</h2>
+<h3 id="1-tuning-neural-network-models-for-improved-prediction-of-boundary-layer-transition">1. Tuning Neural Network Models for Improved Prediction of Boundary Layer Transition</h3>
+<p><strong>Tip:</strong> 🤖 MÖ/Vekil Model | <strong>İlgililik:</strong> 85/100</p>
+<blockquote>
+<p><strong>Sınır tabaka geçişini tahmin etmek için yapay sinir ağlarının doğruluğunu artırmak amacıyla optimizasyon teknikleri ve veri artırımı kullanılmıştır.</strong></p>
+</blockquote>
+<p><strong>Temel Bulgular:</strong>
+Yapay sinir ağları (ANN) Tollmien-Schlichting (TS) dalgalarının amplifikasyon oranlarını tahmin etmede umut vaat etmektedir. Optimize edilmiş modeller, farklı kanat profillerinde ve akış koşullarında geçiş konumu hatalarını orijinal manuel ayarlı ağın hatalarına kıyasla %51 oranında azaltmıştır.</p>
+<p><strong>Temel Sayılar:</strong> Hata azaltma: %51. Geçiş mekanizması: Tollmien-Schlichting (TS) dalgaları. Akış rejimi: 2D veya zayıf 3D sübsonik.</p>
+<details>
+<summary><strong>Metodoloji Detayları</strong></summary>
+<p>Doğrusal kararlılık teorisi (LST) korelasyonlarına dayalı olarak sınır tabaka geçişini tahmin etmek için yapay sinir ağları kullanılmıştır. Model doğruluğunu artırmak için vekil optimizasyon teknikleri ve veri artırımı uygulanmıştır.</p>
+</details>
+<blockquote>
+<p><strong>Neden Önemli:</strong> Sınır tabaka geçişinin doğru tahmini, yüzey sürtünmesini ve aerodinamik ısınmayı doğrudan etkilediği için yeni nesil hava araçlarının ve füzelerin tasarımı için kritik öneme sahiptir. Bu yöntem, CFD kodlarına entegre edilerek hesaplama verimliliği sağlayabilir.</p>
+</blockquote>
+<p><em>Bağlantı: Bu makale, makine öğrenimi modellerinin (özellikle sinir ağları) karmaşık aerodinamik fenomenleri (geçiş) tahmin etme yeteneğini vurgular. Paper 2, 3 ve 4&rsquo;teki ML modellerinin geliştirilmesi ve uygulanmasıyla metodolojik bir bağlantısı vardır.</em></p>
+<hr>
+<h3 id="2-sampling-functions-from-gaussian-processes-and-structured-covariance-gaussian-networks">2. Sampling Functions from Gaussian Processes and Structured Covariance Gaussian Networks</h3>
+<p><strong>Tip:</strong> 🤖 MÖ/Vekil Model | <strong>İlgililik:</strong> 95/100</p>
+<blockquote>
+<p><strong>Aerodinamik modellerden veri öğrenirken belirsizlik tahminlerini dahil etmek için Gauss Süreçleri ve Yapılandırılmış Kovaryans Gauss Ağlarından fonksiyon örnekleme yöntemleri tartışılmaktadır.</strong></p>
+</blockquote>
+<p><strong>Temel Bulgular:</strong>
+Gauss Süreç Regresörleri (GPR&rsquo;ler) ve Yapılandırılmış Kovaryans Gauss Ağları (SCGN&rsquo;ler) gibi olasılıksal modellerden tutarlı fonksiyon örnekleri üretme yaklaşımları sunulmuştur. Bu modeller, aerodinamik modellerin belirsizlik nicelemesi için kritik öneme sahiptir ve atmosferik yeniden giriş simülasyonlarında kullanılmıştır.</p>
+<p><strong>Temel Sayılar:</strong> Belirtilmemiş. Uygulama: Atmosferik yeniden giriş simülasyonu.</p>
+<details>
+<summary><strong>Metodoloji Detayları</strong></summary>
+<p>GPR&rsquo;lerden ve SCGN&rsquo;lerden tutarlı fonksiyon örnekleri oluşturmak için yöntemler sunulmuştur. SCGN, koşullu bir Gauss dağılımını öğrenen bir sinir ağı mimarisidir.</p>
+</details>
+<blockquote>
+<p><strong>Neden Önemli:</strong> Aerodinamik modellerdeki belirsizliğin doğru bir şekilde nicelenmesi, füze ve hipersonik araçların güvenli ve güvenilir tasarımı için hayati öneme sahiptir. Bu modeller, tasarımın erken aşamalarında risk değerlendirmesi ve yörünge simülasyonları için hızlı ve güvenilir belirsizlik bilgisi sağlayabilir.</p>
+</blockquote>
+<p><em>Bağlantı: Paper 3 ve 4 ile doğrudan bağlantılıdır, çünkü bu makaleler SCGN&rsquo;leri Orion mürettebat modülü aerodinamik belirsizlik nicelemesi için uygulamaktadır. Paper 5&rsquo;teki GPR kullanımıyla da metodolojik bir bağlantısı vardır.</em></p>
+<hr>
+<h3 id="3-structured-covariance-gaussian-networks-for-orion-crew-module-aerodynamic-uncertainty-quantification">3. Structured Covariance Gaussian Networks for Orion Crew Module Aerodynamic Uncertainty Quantification</h3>
+<p><strong>Tip:</strong> 🤖 MÖ/Vekil Model | <strong>İlgililik:</strong> 98/100</p>
+<blockquote>
+<p><strong>Orion mürettebat modülü için aerodinamik belirsizlik nicelemesi amacıyla, ortalama ve yoğun kovaryans fonksiyonlarını parametreleyen sinir ağlarına dayalı yeni bir Yapılandırılmış Kovaryans Gauss Ağı (SCGN) yaklaşımı önerilmiştir.</strong></p>
+</blockquote>
+<p><strong>Temel Bulgular:</strong>
+SCGN, doğrusal olmayan fonksiyonel ilişkileri ve yoğun kovaryansları öğrenmek için verimli ve sistematik bir yol sunar. Temel Gauss süreç regresörüne kıyasla benzer belirsizlik tanımları sağlarken, veri kümesi boyutuna göre ölçeklenebilirlik açısından iyileşme göstermiştir. Üretilen örnek fonksiyonlar çevrimiçi olarak hızlı bir şekilde değerlendirilebilir.</p>
+<p><strong>Temel Sayılar:</strong> Ölçeklenebilirlik: Veri kümesi boyutuna göre iyileştirilmiş. Belirsizlik tanımları: Temel GPR ile karşılaştırılabilir. Geometri tipi: Orion mürettebat modülü.</p>
+<details>
+<summary><strong>Metodoloji Detayları</strong></summary>
+<p>İki sinir ağı kullanarak çok değişkenli bir Gauss sürecinin ortalama ve yoğun kovaryans fonksiyonlarını parametreleyen bir SCGN modeli geliştirilmiştir. Model, verilen verilerin log-olasılığını maksimize etmek için eğitilmiştir.</p>
+</details>
+<blockquote>
+<p><strong>Neden Önemli:</strong> Orion gibi kritik uzay araçları için aerodinamik belirsizliğin doğru ve ölçeklenebilir bir şekilde nicelenmesi, görev güvenliği ve performansı için hayati öneme sahiptir. SCGN&rsquo;nin hızlı değerlendirme yeteneği, yörünge simülasyonlarında gerçek zamanlı risk değerlendirmesine olanak tanır.</p>
+</blockquote>
+<p><em>Bağlantı: Paper 2&rsquo;de tanıtılan SCGN konseptinin doğrudan bir uygulamasıdır. Paper 4 ile başlık ve özet açısından tamamen aynıdır, bu da aynı çalışmanın farklı bir DOI ile yayınlandığını düşündürmektedir. Paper 5&rsquo;teki GPR kullanımıyla da metodolojik bir bağlantısı vardır.</em></p>
+<hr>
+<h3 id="4-structured-covariance-gaussian-networks-for-orion-crew-module-aerodynamic-uncertainty-quantification">4. Structured Covariance Gaussian Networks for Orion Crew Module Aerodynamic Uncertainty Quantification</h3>
+<p><strong>Tip:</strong> 🤖 MÖ/Vekil Model | <strong>İlgililik:</strong> 98/100</p>
+<blockquote>
+<p><strong>Orion mürettebat modülü için aerodinamik belirsizlik nicelemesi amacıyla, ortalama ve yoğun kovaryans fonksiyonlarını parametreleyen sinir ağlarına dayalı yeni bir Yapılandırılmış Kovaryans Gauss Ağı (SCGN) yaklaşımı önerilmiştir.</strong></p>
+</blockquote>
+<p><strong>Temel Bulgular:</strong>
+SCGN, doğrusal olmayan fonksiyonel ilişkileri ve yoğun kovaryansları öğrenmek için verimli ve sistematik bir yol sunar. Temel Gauss süreç regresörüne kıyasla benzer belirsizlik tanımları sağlarken, veri kümesi boyutuna göre ölçeklenebilirlik açısından iyileşme göstermiştir. Üretilen örnek fonksiyonlar çevrimiçi olarak hızlı bir şekilde değerlendirilebilir.</p>
+<p><strong>Temel Sayılar:</strong> Ölçeklenebilirlik: Veri kümesi boyutuna göre iyileştirilmiş. Belirsizlik tanımları: Temel GPR ile karşılaştırılabilir. Geometri tipi: Orion mürettebat modülü.</p>
+<details>
+<summary><strong>Metodoloji Detayları</strong></summary>
+<p>İki sinir ağı kullanarak çok değişkenli bir Gauss sürecinin ortalama ve yoğun kovaryans fonksiyonlarını parametreleyen bir SCGN modeli geliştirilmiştir. Model, verilen verilerin log-olasılığını maksimize etmek için eğitilmiştir.</p>
+</details>
+<blockquote>
+<p><strong>Neden Önemli:</strong> Orion gibi kritik uzay araçları için aerodinamik belirsizliğin doğru ve ölçeklenebilir bir şekilde nicelemesi, görev güvenliği ve performansı için hayati öneme sahiptir. SCGN&rsquo;nin hızlı değerlendirme yeteneği, yörünge simülasyonlarında gerçek zamanlı risk değerlendirmesine olanak tanır.</p>
+</blockquote>
+<p><em>Bağlantı: Paper 2&rsquo;de tanıtılan SCGN konseptinin doğrudan bir uygulamasıdır. Paper 3 ile başlık ve özet açısından tamamen aynıdır, bu da aynı çalışmanın farklı bir DOI ile yayınlandığını düşündürmektedir.</em></p>
+<hr>
+<h3 id="5-long-range-mars-rotorcraft-design-optimization-using-machine-learning">5. Long-Range Mars Rotorcraft Design Optimization using Machine Learning</h3>
+<p><strong>Tip:</strong> 🤖 MÖ/Vekil Model | <strong>İlgililik:</strong> 90/100</p>
+<blockquote>
+<p><strong>Mars rotorlu hava aracı tasarımı optimizasyonu için, farklı doğruluk seviyelerindeki simülasyon verileri kullanılarak Gauss Süreç Regresyonu (GPR) ve Sinir Ağları (NN) gibi makine öğrenimi vekil modelleri geliştirilmiştir.</strong></p>
+</blockquote>
+<p><strong>Temel Bulgular:</strong>
+Yüksek doğruluklu CFD simülasyonları (3.000&rsquo;den fazla) GPU kaynakları kullanılarak 1.5 haftada tamamlanmıştır. GPR, seyrek GPR ve çeşitli sinir ağları gibi vekil modelleme teknikleri, kanat profili ve gövde aerodinamik performansını tahmin etmek için kullanılmıştır. Bu vekil modeller, tasarım optimizasyon çerçevesine entegre edilerek, daha erken tasarım aşamalarında yüksek doğruluklu verilerin kullanımını sağlamıştır.</p>
+<p><strong>Temel Sayılar:</strong> CFD simülasyonları: &gt;3,000. CFD süresi: 1.5 hafta (32 GPU düğümü, 128 NVIDIA V100 GPU). Vekil model simülasyonları: 3,000 (6 saatten az, 240 CPU çekirdeği). Geometri tipi: Altı rotorlu çift kanatlı kuyruk dikici hava aracı.</p>
+<details>
+<summary><strong>Metodoloji Detayları</strong></summary>
+<p>GPU tabanlı OVERFLOW ile yüksek doğruluklu CFD simülasyonları yapılmıştır. Bu verilerle GPR, seyrek GPR ve sinir ağları kullanılarak vekil modeller oluşturulmuştur. Bu vekil modeller, kütle ve atalet modülleriyle birleştirilerek CAMRAD-II&rsquo;de daha hızlı simülasyonlar ve ardından optimizasyon yapılmıştır.</p>
+</details>
+<blockquote>
+<p><strong>Neden Önemli:</strong> Makine öğrenimi vekil modellerinin kullanılması, karmaşık aerodinamik tasarımların optimizasyon sürecini önemli ölçüde hızlandırır ve tasarımın erken aşamalarında yüksek doğruluklu verilerin entegrasyonunu sağlar. Bu, füze ve hipersonik araçların tasarım döngülerini kısaltabilir ve riskleri azaltabilir.</p>
+</blockquote>
+<p><em>Bağlantı: Paper 2 ve 3&rsquo;teki GPR ve NN kullanımıyla metodolojik bir bağlantısı vardır. Bu makale, ML vekil modellerinin tasarım optimizasyonu gibi pratik bir mühendislik problemine nasıl uygulandığını gösterir.</em></p>
+<hr>
+<h3 id="6-probability-of-obstacle-collision-for-uavs-in-presence-of-wind">6. Probability of Obstacle Collision for UAVs in Presence of Wind</h3>
+<p><strong>Tip:</strong> 🤖 MÖ/Vekil Model | <strong>İlgililik:</strong> 70/100</p>
+<blockquote>
+<p><strong>İnsansız hava araçları (İHA) için rüzgar varlığında engel çarpışma olasılığını değerlendirmek amacıyla, rüzgarı temsil etmek için Gauss Süreç Regresyonu (GPR) tabanlı bir araç sunulmuştur.</strong></p>
+</blockquote>
+<p><strong>Temel Bulgular:</strong>
+İHA&rsquo;ların planlanan yörüngeden sapma riskini azaltmak için rüzgarın etkilerini doğru bir şekilde modellemek esastır. GPR tabanlı bir araç, rüzgarı önceden tanımlanmış bir yörünge üzerinde hızlı ve yaklaşık olarak temsil etmek için kullanılmıştır. Bu model, rüzgarın neden olduğu yörünge sapmalarını değerlendirmek için 6 serbestlik dereceli bir İHA yörünge simülatörü ile birleştirilmiştir.</p>
+<p><strong>Temel Sayılar:</strong> Simülatör: 6 serbestlik dereceli İHA yörünge simülatörü. Geometri tipi: Oktokopter İHA.</p>
+<details>
+<summary><strong>Metodoloji Detayları</strong></summary>
+<p>Rüzgarı temsil etmek için Gauss Süreç Regresyonu (GPR) kullanılmıştır. Bu GPR modeli, rüzgarın neden olduğu yörünge sapmalarını simüle etmek için 6 serbestlik dereceli bir İHA yörünge simülatörü ile entegre edilmiştir. Gerçek uçuş verileri ve simüle edilmiş rüzgar koşulları kullanılarak engel çarpışma olasılığı hesaplanmıştır.</p>
+</details>
+<blockquote>
+<p><strong>Neden Önemli:</strong> Otonom sistemlerde (füzeler dahil) çevresel bozuklukların (rüzgar gibi) yörünge üzerindeki etkilerini hızlı ve doğru bir şekilde modellemek, görev güvenliği ve risk azaltma için kritik öneme sahiptir. GPR gibi ML teknikleri, bu tür belirsizlikleri modellemek için verimli bir yol sunar.</p>
+</blockquote>
+<p><em>Bağlantı: Paper 2, 3 ve 5&rsquo;teki GPR kullanımına benzer bir ML metodolojisi kullanır. Bu makale, GPR&rsquo;nin çevresel faktörlerin (rüzgar) modellenmesinde ve yörünge tahmininde nasıl kullanılabileceğini gösterir, bu da füze yörünge dinamikleri için dolaylı olarak ilgili olabilir.</em></p>
+<hr>
+<h2 id="kaynaklar">Kaynaklar</h2>
+<ol>
+<li>, &ldquo;Tuning Neural Network Models for Improved Prediction of Boundary Layer Transition,&rdquo; <em>NASA Technical Report</em>, Unknown. <a href="https://ntrs.nasa.gov/citations/20205000994">Link</a></li>
+<li>, &ldquo;Sampling Functions from Gaussian Processes and Structured Covariance Gaussian Networks,&rdquo; <em>NASA Technical Report</em>, Unknown. <a href="https://ntrs.nasa.gov/citations/20220016480">Link</a></li>
+<li>, &ldquo;Structured Covariance Gaussian Networks for Orion Crew Module Aerodynamic Uncertainty Quantification,&rdquo; <em>NASA Technical Report</em>, Unknown. <a href="https://ntrs.nasa.gov/citations/20220017566">Link</a></li>
+<li>, &ldquo;Structured Covariance Gaussian Networks for Orion Crew Module Aerodynamic Uncertainty Quantification,&rdquo; <em>NASA Technical Report</em>, Unknown. <a href="https://ntrs.nasa.gov/citations/20220018143">Link</a></li>
+<li>, &ldquo;Long-Range Mars Rotorcraft Design Optimization using Machine Learning,&rdquo; <em>NASA Technical Report</em>, Unknown. <a href="https://ntrs.nasa.gov/citations/20250003721">Link</a></li>
+<li>, &ldquo;Probability of Obstacle Collision for UAVs in Presence of Wind,&rdquo; <em>NASA Technical Report</em>, Unknown. <a href="https://ntrs.nasa.gov/citations/20220006532">Link</a></li>
+</ol>
+]]></content:encoded></item></channel></rss>
