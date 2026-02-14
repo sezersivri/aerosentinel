@@ -22,7 +22,7 @@ from src.config import (
     KEYWORDS, TIER_1_JOURNALS, TIER_2_JOURNALS, ELITE_INSTITUTIONS,
     LOOKBACK_DAYS, CITATION_VELOCITY_THRESHOLD, HISTORY_FILE,
     S2_REQUESTS_PER_SECOND, S2_MAX_RETRIES, MAX_PAPERS_PER_POST,
-    KEYWORD_PRIORITY, IEEE_API_KEY
+    KEYWORD_PRIORITY, IEEE_API_KEY, MIN_HUNTER_SCORE, MAX_PAPER_AGE_DAYS
 )
 
 
@@ -754,11 +754,32 @@ def enrich_with_semantic_scholar(papers: list) -> list:
 #  FINAL RANKING & SELECTION
 # ──────────────────────────────────────────────
 
+def _is_recent(paper, cutoff):
+    """Return True if paper is newer than cutoff date, or if date is unparseable."""
+    date_str = paper.get("date", "")
+    if not date_str or date_str == "Unknown":
+        return False  # No date = reject
+    try:
+        pub_date = datetime.strptime(date_str[:10], "%Y-%m-%d")
+        return pub_date >= cutoff
+    except ValueError:
+        try:
+            # Try year-month format
+            pub_date = datetime.strptime(date_str[:7], "%Y-%m")
+            return pub_date >= cutoff
+        except ValueError:
+            return False  # Unparseable = reject
+
+
 def rank_and_select(papers: list) -> list:
     """
     Rank papers by quality score and select top N for summarization.
     Score = tier_bonus + source_bonus + keyword_priority + citation_metrics + recency + abstract
     """
+    # Hard recency cutoff — reject papers older than MAX_PAPER_AGE_DAYS
+    cutoff = datetime.now() - timedelta(days=MAX_PAPER_AGE_DAYS)
+    papers = [p for p in papers if _is_recent(p, cutoff)]
+
     for paper in papers:
         score = 0
 
@@ -805,8 +826,9 @@ def rank_and_select(papers: list) -> list:
     # Sort by score descending
     papers.sort(key=lambda p: p["score"], reverse=True)
 
-    # Select top papers
-    selected = papers[:MAX_PAPERS_PER_POST]
+    # Select top papers with minimum score threshold
+    qualified = [p for p in papers if p["score"] >= MIN_HUNTER_SCORE]
+    selected = qualified[:MAX_PAPERS_PER_POST]
 
     return selected
 

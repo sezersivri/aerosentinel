@@ -11,7 +11,7 @@ from datetime import datetime
 
 from src.config import (
     GEMINI_API_KEY, GEMINI_MODEL, GEMINI_MAX_TOKENS,
-    MIN_PAPERS_PER_POST, LANGUAGES
+    MIN_PAPERS_PER_POST, LANGUAGES, CURATED_TAGS
 )
 
 # ──────────────────────────────────────────────
@@ -20,18 +20,23 @@ from src.config import (
 
 SYSTEM_PROMPT_EN = """You are a senior aerospace research intelligence analyst specializing in missile aerothermodynamics, hypersonic flow physics, and AI/ML applications in CFD.
 
+Your domain: "Prediction of Aerodynamic Heating on High-Speed Missiles Using Gaussian Process Based Surrogate Models"
+
 Your task is to analyze the following academic papers and produce a structured intelligence briefing.
 
 INSTRUCTIONS:
 
-1. RELEVANCE SCORING (0-100): Score each paper based on relevance to:
-   - Missile aerothermodynamics and aerodynamic heating (high relevance)
-   - AI/ML surrogates for CFD, Gaussian processes, neural networks for heat flux (highest relevance)
-   - Hypersonic flow physics, boundary layer transition, SWBLI (medium-high)
-   - General aerospace CFD (medium)
+1. RELEVANCE SCORING (0-100): Score each paper based on relevance to the thesis domain above.
+   Scoring rubric:
+   - 90-100: GP surrogates for aerodynamic heating prediction
+   - 80-89: ML/DL methods for aerothermodynamics
+   - 70-79: Non-ML aerothermodynamics (CFD, experimental heating)
+   - 50-69: Broader hypersonics/supersonic without heating focus
+   - 30-49: General aerospace CFD, tangentially related
+   - 0-29: Unrelated to thesis domain
 
 2. PAPER TYPE CLASSIFICATION: Classify each paper as exactly one of:
-   experimental | numerical_cfd | ml_surrogate | review | analytical
+   ml_heating | ml_aerodynamics | ml_transition | numerical_cfd | experimental | analytical | review | multi_method
 
 3. HARD NUMBERS: Extract specific quantitative results — RMSE percentages, speedup factors, Mach number ranges, heat flux values, temperature ranges, geometry types. If a paper lacks specifics, say so honestly.
 
@@ -39,15 +44,19 @@ INSTRUCTIONS:
 
 5. TONE: Technical but accessible. Assume the reader understands M > 5 physics. No fluff, no "groundbreaking" or "revolutionary." Direct and honest.
 
-6. OUTPUT FORMAT: Return ONLY a raw JSON object (no markdown fences, no explanation). The JSON must match this exact schema:
-{
+6. TAGS: Select 4-7 tags from this list ONLY:
+{tag_vocabulary}
+Tags must ALWAYS be in English regardless of output language.
+
+7. OUTPUT FORMAT: Return ONLY a raw JSON object (no markdown fences, no explanation). The JSON must match this exact schema:
+{{
   "title": "Briefing title (max 15 words)",
   "overview": "3-4 sentence strategic overview connecting papers thematically",
   "papers": [
-    {
+    {{
       "title": "Exact paper title",
       "authors": "Author string",
-      "paper_type": "experimental | numerical_cfd | ml_surrogate | review | analytical",
+      "paper_type": "ml_heating | ml_aerodynamics | ml_transition | numerical_cfd | experimental | analytical | review | multi_method",
       "relevance_score": 85,
       "one_liner": "Single sentence core contribution",
       "key_findings": "2-3 sentences with specific numerical results (RMSE, Mach range, speedup)",
@@ -55,26 +64,31 @@ INSTRUCTIONS:
       "why_this_matters": "2 sentences on practical value for missile design / aerospace engineering",
       "key_numbers": "Formatted string: Mach X-Y, RMSE ±Z%, speedup Nx, geometry type",
       "connection": "How this relates to other papers in this batch (if applicable)"
-    }
+    }}
   ],
   "tags": ["tag1", "tag2", "tag3", "tag4", "tag5"],
   "trends": "2-3 sentences on what these papers collectively signal about the field"
-}"""
+}}"""
 
 SYSTEM_PROMPT_TR = """Sen füze aerotermodinamiği, hipersonik akış fiziği ve CFD'de yapay zeka uygulamaları konusunda uzmanlaşmış kıdemli bir havacılık araştırma istihbarat analistisisin.
+
+Araştırma alanın: "Yüksek Hızlı Füzelerde Aerodinamik Isınmanın Gauss Süreci Tabanlı Vekil Modeller Kullanılarak Tahmini"
 
 Görevin, aşağıdaki akademik makaleleri analiz edip yapılandırılmış bir istihbarat brifing raporu üretmek.
 
 TALİMATLAR:
 
-1. İLGİLİLİK PUANLAMASI (0-100): Her makaleyi şu konulara göre puanla:
-   - Füze aerotermodinamiği ve aerodinamik ısınma (yüksek ilgililik)
-   - CFD için yapay zeka/makine öğrenmesi vekil modelleri, Gauss süreçleri, ısı akısı için sinir ağları (en yüksek ilgililik)
-   - Hipersonik akış fiziği, sınır tabaka geçişi, şok-sınır tabaka etkileşimi (orta-yüksek)
-   - Genel havacılık CFD (orta)
+1. İLGİLİLİK PUANLAMASI (0-100): Her makaleyi yukarıdaki tez alanına göre puanla.
+   Puanlama kılavuzu:
+   - 90-100: Aerodinamik ısınma tahmini için GP vekil modelleri
+   - 80-89: Aerotermodinamik için MÖ/DÖ yöntemleri
+   - 70-79: MÖ olmayan aerotermodinamik (HAD, deneysel ısınma)
+   - 50-69: Isınma odağı olmayan geniş hipersonik/süpersonik
+   - 30-49: Genel havacılık HAD, teğetsel ilişkili
+   - 0-29: Tez alanıyla ilgisiz
 
 2. MAKALE TİPİ SINIFLANDIRMASI: Her makaleyi tam olarak birini seç:
-   experimental | numerical_cfd | ml_surrogate | review | analytical
+   ml_heating | ml_aerodynamics | ml_transition | numerical_cfd | experimental | analytical | review | multi_method
 
 3. KESİN SAYILAR: Belirli nicel sonuçları çıkar — RMSE yüzdeleri, hızlanma faktörleri, Mach sayısı aralıkları, ısı akısı değerleri, sıcaklık aralıkları, geometri tipleri. Makalede spesifik değer yoksa bunu dürüstçe belirt.
 
@@ -84,15 +98,19 @@ TALİMATLAR:
 
 6. ÖNEMLİ: Tüm analiz metni TÜRKÇE olmalıdır. Sadece makale başlıkları (title alanı) İngilizce kalmalıdır.
 
-7. ÇIKTI FORMATI: SADECE ham JSON nesnesi döndür (markdown çiti yok, açıklama yok). JSON tam olarak şu şemaya uymalı:
-{
+7. ETİKETLER: SADECE bu listeden 4-7 etiket seç:
+{tag_vocabulary}
+Etiketler DAIMA İngilizce olmalıdır.
+
+8. ÇIKTI FORMATI: SADECE ham JSON nesnesi döndür (markdown çiti yok, açıklama yok). JSON tam olarak şu şemaya uymalı:
+{{
   "title": "Brifing başlığı (en fazla 15 kelime, Türkçe)",
   "overview": "3-4 cümlelik stratejik genel bakış, makaleleri tematik olarak bağlayan (Türkçe)",
   "papers": [
-    {
+    {{
       "title": "Makalenin orijinal İngilizce başlığı",
       "authors": "Yazar dizesi",
-      "paper_type": "experimental | numerical_cfd | ml_surrogate | review | analytical",
+      "paper_type": "ml_heating | ml_aerodynamics | ml_transition | numerical_cfd | experimental | analytical | review | multi_method",
       "relevance_score": 85,
       "one_liner": "Tek cümlelik temel katkı (Türkçe)",
       "key_findings": "Spesifik sayısal sonuçlarla 2-3 cümle (Türkçe)",
@@ -100,11 +118,11 @@ TALİMATLAR:
       "why_this_matters": "Füze tasarımı / havacılık mühendisliği için pratik değer hakkında 2 cümle (Türkçe)",
       "key_numbers": "Biçimlendirilmiş: Mach X-Y, RMSE ±Z%, hızlanma Nx, geometri tipi",
       "connection": "Bu makalenin gruptaki diğer makalelerle ilişkisi (Türkçe)"
-    }
+    }}
   ],
-  "tags": ["etiket1", "etiket2", "etiket3", "etiket4", "etiket5"],
+  "tags": ["tag1", "tag2", "tag3", "tag4", "tag5"],
   "trends": "Bu makalelerin alan hakkında toplu olarak ne işaret ettiğine dair 2-3 cümle (Türkçe)"
-}"""
+}}"""
 
 
 # ──────────────────────────────────────────────
@@ -112,20 +130,42 @@ TALİMATLAR:
 # ──────────────────────────────────────────────
 
 PAPER_TYPE_BADGES = {
-    "experimental": "🧪 Experimental",
+    "ml_heating": "🤖 ML/Heating Prediction",
+    "ml_aerodynamics": "🤖 ML/Aerodynamics",
+    "ml_transition": "🤖 ML/Transition",
     "numerical_cfd": "💻 Numerical/CFD",
-    "ml_surrogate": "🤖 ML/Surrogate",
-    "review": "📚 Review",
+    "experimental": "🧪 Experimental",
     "analytical": "📐 Analytical",
+    "review": "📚 Review",
+    "multi_method": "🔬 Multi-Method",
 }
 
 PAPER_TYPE_BADGES_TR = {
+    "ml_heating": "🤖 MO/Isinma Tahmini",
+    "ml_aerodynamics": "🤖 MO/Aerodinamik",
+    "ml_transition": "🤖 MO/Gecis Tahmini",
+    "numerical_cfd": "💻 Sayisal/HAD",
     "experimental": "🧪 Deneysel",
-    "numerical_cfd": "💻 Sayısal/HAD",
-    "ml_surrogate": "🤖 MÖ/Vekil Model",
-    "review": "📚 Derleme",
     "analytical": "📐 Analitik",
+    "review": "📚 Derleme",
+    "multi_method": "🔬 Coklu Yontem",
 }
+
+
+def _build_tag_instruction() -> str:
+    """Format CURATED_TAGS into a readable prompt section."""
+    lines = []
+    for category, tags in CURATED_TAGS.items():
+        label = category.replace("_", " ").title()
+        lines.append(f"  {label}: {', '.join(tags)}")
+    return "\n".join(lines)
+
+
+def build_system_prompt(lang: str = "en") -> str:
+    """Return the full system prompt with embedded tag vocabulary."""
+    tag_vocabulary = _build_tag_instruction()
+    template = SYSTEM_PROMPT_TR if lang == "tr" else SYSTEM_PROMPT_EN
+    return template.format(tag_vocabulary=tag_vocabulary)
 
 
 def prepare_papers_for_prompt(papers: list) -> str:
@@ -154,7 +194,7 @@ def call_gemini(papers: list, lang: str = "en") -> dict:
         raise ValueError(f"Need at least {MIN_PAPERS_PER_POST} papers, got {len(papers)}")
 
     papers_text = prepare_papers_for_prompt(papers)
-    system_prompt = SYSTEM_PROMPT_TR if lang == "tr" else SYSTEM_PROMPT_EN
+    system_prompt = build_system_prompt(lang)
 
     user_prompt = f"""Here are {len(papers)} recent papers in aerospace/hypersonic research. Analyze them according to your instructions.
 

@@ -19,7 +19,7 @@ import shutil
 from datetime import datetime
 
 from src.hunter import run_hunt
-from src.brain import run_brain
+from src.brain import run_brain, generate_hugo_post
 from src.notifier import send_draft_preview, send_simple_message
 from src.config import DRAFTS_DIR, POSTS_DIR, MIN_PAPERS_PER_POST, LANGUAGES
 
@@ -56,6 +56,68 @@ def validate_filename(filename: str) -> bool:
     return True
 
 
+def normalize_and_validate(gemini_output):
+    """Normalize tags, validate paper types, filter low-relevance papers."""
+    from src.config import VALID_TAGS, VALID_TAGS_LOWER, VALID_PAPER_TYPES, MIN_RELEVANCE_SCORE
+
+    # --- Filter low-relevance papers ---
+    gemini_output["papers"] = [
+        p for p in gemini_output.get("papers", [])
+        if p.get("relevance_score", 0) >= MIN_RELEVANCE_SCORE
+    ]
+
+    # --- Normalize tags ---
+    raw_tags = gemini_output.get("tags", [])
+    normalized = []
+    for tag in raw_tags:
+        # Exact match
+        if tag in VALID_TAGS:
+            normalized.append(tag)
+            continue
+        # Case-insensitive match
+        lower = tag.lower()
+        if lower in VALID_TAGS_LOWER:
+            normalized.append(VALID_TAGS_LOWER[lower])
+            continue
+        # Substring match (for tags > 10 chars, check if any valid tag contains it or vice versa)
+        if len(tag) > 10:
+            matched = False
+            for valid_lower, canonical in VALID_TAGS_LOWER.items():
+                if lower in valid_lower or valid_lower in lower:
+                    normalized.append(canonical)
+                    matched = True
+                    break
+            if matched:
+                continue
+        # Drop unrecognized tag
+        print(f"   ⚠️ Dropping invalid tag: '{tag}'")
+
+    # Deduplicate while preserving order
+    seen = set()
+    deduped = []
+    for t in normalized:
+        if t not in seen:
+            seen.add(t)
+            deduped.append(t)
+
+    # Enforce 4-7 count
+    if len(deduped) > 7:
+        deduped = deduped[:7]
+
+    gemini_output["tags"] = deduped
+
+    # --- Validate paper types ---
+    OLD_TO_NEW = {"ml_surrogate": "ml_heating"}
+    for paper in gemini_output.get("papers", []):
+        ptype = paper.get("paper_type", "")
+        if ptype in OLD_TO_NEW:
+            paper["paper_type"] = OLD_TO_NEW[ptype]
+        elif ptype not in VALID_PAPER_TYPES:
+            paper["paper_type"] = "numerical_cfd"  # safe default
+
+    return gemini_output
+
+
 def run_scout():
     """
     Full scout pipeline: Hunt -> Brain (bilingual) -> Notify.
@@ -82,6 +144,33 @@ def run_scout():
 
     if result is None:
         msg = "⚠️ AeroSentinel: Gemini summarization failed. Check logs."
+        print(f"\n{msg}")
+        send_simple_message(msg)
+        return
+
+    # --- STAGE 2.5: VALIDATE & NORMALIZE ---
+    for lang in LANGUAGES:
+        if lang not in result:
+            continue
+        result[lang]["gemini_output"] = normalize_and_validate(result[lang]["gemini_output"])
+
+    # Force TR to use same English tags as EN
+    if "en" in result and "tr" in result:
+        result["tr"]["gemini_output"]["tags"] = result["en"]["gemini_output"]["tags"]
+
+    # Regenerate post content with cleaned data
+    for lang in LANGUAGES:
+        if lang not in result:
+            continue
+        result[lang]["content"] = generate_hugo_post(result[lang]["gemini_output"], papers, lang=lang)
+
+    # Check paper count still sufficient after filtering
+    max_papers = max(
+        len(result[lang]["gemini_output"].get("papers", []))
+        for lang in LANGUAGES if lang in result
+    )
+    if max_papers < MIN_PAPERS_PER_POST:
+        msg = f"⚠️ AeroSentinel: Only {max_papers} papers passed relevance filter (need {MIN_PAPERS_PER_POST}). Skipping."
         print(f"\n{msg}")
         send_simple_message(msg)
         return

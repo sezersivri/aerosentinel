@@ -85,6 +85,54 @@ for _kw in PRIORITY_2_KEYWORDS:
 for _kw in PRIORITY_3_KEYWORDS:
     KEYWORD_PRIORITY[_kw.lower()] = 0
 
+# --- CURATED TAG VOCABULARY (35 tags) ---
+CURATED_TAGS = {
+    "research_domains": [
+        "Aerothermodynamics", "Hypersonic Aerodynamics", "Supersonic Aerodynamics",
+        "Thermal Protection Systems", "Flight Vehicle Design", "Reentry Physics",
+        "Scramjet Propulsion",
+    ],
+    "methodologies": [
+        "Gaussian Process Surrogates", "Neural Network Surrogates", "Deep Learning",
+        "Multi-Fidelity Modeling", "Design Optimization", "Reduced-Order Modeling",
+        "Data-Driven Methods", "Analytical Methods",
+    ],
+    "physical_phenomena": [
+        "Stagnation Point Heating", "Shock-Boundary Layer Interaction", "Real Gas Effects",
+        "Turbulent Heating", "Radiative Heating", "Ablation Modeling",
+        "Laminar Heating", "Entropy Layer Effects",
+    ],
+    "flow_regimes": [
+        "Hypersonic Flow", "High Enthalpy Flow", "Rarefied Flow",
+    ],
+    "applications": [
+        "Missile Aerothermodynamics", "Reentry Vehicles", "Launch Vehicles",
+        "Planetary Entry",
+    ],
+    "cross_cutting": [
+        "Heat Flux Prediction", "Surrogate Modeling", "High-Performance Computing",
+        "Review Paper",
+    ],
+}
+
+# Flat set for fast membership checks
+VALID_TAGS = {tag for tags in CURATED_TAGS.values() for tag in tags}
+
+# Lowercase -> canonical mapping for normalization
+VALID_TAGS_LOWER = {tag.lower(): tag for tag in VALID_TAGS}
+
+# --- VALID PAPER TYPES (8 types) ---
+VALID_PAPER_TYPES = [
+    "ml_heating", "ml_aerodynamics", "ml_transition",
+    "numerical_cfd", "experimental", "analytical",
+    "review", "multi_method",
+]
+
+# --- SCORING & FILTERING THRESHOLDS ---
+MIN_HUNTER_SCORE = 25
+MIN_RELEVANCE_SCORE = 40
+MAX_PAPER_AGE_DAYS = 90
+
 # --- JOURNAL TIERS ---
 TIER_1_JOURNALS = [
     "AIAA Journal",
