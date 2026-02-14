@@ -1,0 +1,17 @@
+{
+  "filename": "2026-02-14-missile-aerodynamics-cfd-control-surfaces-store.md",
+  "gemini_output": {
+    "title": "Missile Aerodynamics: CFD, Control Surfaces, Store Separation, and Re-entry",
+    "summary": "Recent NASA reports highlight advancements in missile aerodynamics across several key areas. Numerical simulations using dynamic Chimera grids and thin-layer Navier-Stokes equations have been applied to powered missile separation from both generic wings and F/A-18 aircraft at transonic speeds (M=1.05), detailing plume interactions and their influence on aerodynamic loads. Furthermore, the aerodynamics of spinning missiles with dithering canards have been investigated using overset structured grids, generating databases from Euler and Navier-Stokes solutions to assess the impact of angle-of-attack, canard pitching, viscous effects, and roll rate. Addressing missile dynamics more broadly, aerodynamic force and moment equations have been developed for 6-DOF simulations, encompassing both ascent and tumbling re-entry scenarios, with a focus on the crucial role of aerodynamic damping for accurate modeling. These studies collectively contribute to a more refined understanding of complex flow phenomena affecting missile performance and control.",
+    "tags": [
+      "missile aerodynamics",
+      "CFD",
+      "store separation",
+      "control surfaces",
+      "re-entry"
+    ],
+    "linkedin_snippet": "Recent NASA research explores missile aerodynamics, including store separation, control surface dynamics, and re-entry modeling. Advances in CFD and 6-DOF simulations are enhancing missile design and performance. #MissileAerodynamics #CFD #AerospaceEngineering"
+  },
+  "papers_count": 6,
+  "created_at": "2026-02-14T17:37:00.278016"
+}
