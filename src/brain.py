@@ -156,7 +156,7 @@ def generate_filename(title: str) -> str:
     today = datetime.now().strftime("%Y-%m-%d")
     clean = title.lower()
     clean = "".join(c if c.isalnum() or c == " " else "" for c in clean)
-    clean = "-".join(clean.split()[:8])
+    clean = "-".join(clean.split()[:6])
     return f"{today}-{clean}.md"
 
 

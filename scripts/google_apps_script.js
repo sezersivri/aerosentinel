@@ -47,8 +47,8 @@ function doPost(e) {
     }
     
     // ── PUBLISH ──
-    if (payload.startsWith("PUBLISH_")) {
-      var filename = payload.substring(8); // Remove "PUBLISH_" prefix
+    if (payload.startsWith("PUB_")) {
+      var filename = payload.substring(4); // Remove "PUB_" prefix
       
       triggerGitHubAction(config, "publish", filename);
       editMessage(config, chatId, messageId, 
@@ -61,8 +61,8 @@ function doPost(e) {
     }
     
     // ── EDIT ──
-    else if (payload.startsWith("EDIT_")) {
-      var filename = payload.substring(5); // Remove "EDIT_" prefix
+    else if (payload.startsWith("EDT_")) {
+      var filename = payload.substring(4); // Remove "EDT_" prefix
       var editUrl = "https://github.com/" + config.GITHUB_REPO + 
                     "/edit/main/content/drafts/" + filename;
       
@@ -71,11 +71,12 @@ function doPost(e) {
         "\n\nAfter editing, commit the changes. Then come back here and click Publish.");
       
       // Re-send publish button
+      var shortName = filename.substring(0, 50);
       var keyboard = {
         "inline_keyboard": [
           [
-            {"text": "✅ Publish (after edit)", "callback_data": "PUBLISH_" + filename},
-            {"text": "🗑️ Discard", "callback_data": "DISCARD_" + filename}
+            {"text": "✅ Publish (after edit)", "callback_data": "PUB_" + shortName},
+            {"text": "🗑️ Discard", "callback_data": "DEL_" + shortName}
           ]
         ]
       };
@@ -83,8 +84,8 @@ function doPost(e) {
     }
     
     // ── DISCARD ──
-    else if (payload.startsWith("DISCARD_")) {
-      var filename = payload.substring(8);
+    else if (payload.startsWith("DEL_")) {
+      var filename = payload.substring(4);
       
       triggerGitHubAction(config, "discard", filename);
       editMessage(config, chatId, messageId, "🗑️ Draft discarded.");

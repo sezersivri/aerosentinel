@@ -38,12 +38,14 @@ def send_draft_preview(
 💼 LinkedIn: <i>{gemini_output['linkedin_snippet'][:200]}</i>"""
 
     # Inline keyboard with 3 buttons
+    # Telegram limits callback_data to 64 bytes, so truncate filename
+    short_name = filename[:50]
     keyboard = {
         "inline_keyboard": [
             [
-                {"text": "✅ Publish", "callback_data": f"PUBLISH_{filename}"},
-                {"text": "✏️ Edit", "callback_data": f"EDIT_{filename}"},
-                {"text": "🗑️ Discard", "callback_data": f"DISCARD_{filename}"},
+                {"text": "✅ Publish", "callback_data": f"PUB_{short_name}"},
+                {"text": "✏️ Edit", "callback_data": f"EDT_{short_name}"},
+                {"text": "🗑️ Discard", "callback_data": f"DEL_{short_name}"},
             ]
         ]
     }
