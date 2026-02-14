@@ -81,15 +81,13 @@
             </div>
         </div>
         {{- $currentPage := . }}
-        {{- $base := site.BaseURL }}
         <ul id="menu">
             {{- range site.Menus.main }}
-            {{- $menuURL := printf "%s%s" $base (strings.TrimPrefix "/" .URL) }}
-            {{- $menu_item_url := cond (strings.HasSuffix $menuURL "/") $menuURL (printf "%s/" $menuURL) }}
-            {{- $page_url := $currentPage.Permalink }}
+            {{- $menu_item_url := cond (strings.HasSuffix .URL "/") .URL (printf "%s/" .URL) }}
+            {{- $page_url := $currentPage.RelPermalink }}
             {{- $is_search := eq (site.GetPage .KeyName).Layout `search` }}
             <li>
-                <a href="{{ $menuURL }}" title="{{ .Title | default .Name }} {{- cond $is_search (" (Alt + /)" | safeHTMLAttr) ("" | safeHTMLAttr ) }}"
+                <a href="{{ .URL }}" title="{{ .Title | default .Name }} {{- cond $is_search (" (Alt + /)" | safeHTMLAttr) ("" | safeHTMLAttr ) }}"
                 {{- cond $is_search (" accesskey=/" | safeHTMLAttr) ("" | safeHTMLAttr ) }}>
                     <span {{- if eq $menu_item_url $page_url }} class="active" {{- end }}>
                         {{- .Pre }}
