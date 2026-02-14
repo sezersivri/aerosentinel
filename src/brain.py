@@ -80,42 +80,51 @@ def call_gemini(papers: list) -> dict:
 
     print(f"\n🧠 [{GEMINI_MODEL}] Generating summary from {len(papers)} papers...")
 
-    try:
-        r = requests.post(url, json=payload, timeout=120)
-        if r.status_code != 200:
-            print(f"   ⚠️ Gemini API error: HTTP {r.status_code}")
-            print(f"   Response: {r.text[:500]}")
-            return None
-
-        response = r.json()
-        text = response["candidates"][0]["content"]["parts"][0]["text"]
-
-        # Clean markdown fences if present
-        text = text.strip()
-        if text.startswith("```"):
-            text = text.split("\n", 1)[1]
-            if text.endswith("```"):
-                text = text[:-3]
-            text = text.strip()
-
-        result = json.loads(text)
-
-        for field in ["title", "summary", "tags", "linkedin_snippet"]:
-            if field not in result:
-                print(f"   ⚠️ Missing field: {field}")
+    import time
+    max_retries = 3
+    for attempt in range(max_retries):
+        try:
+            r = requests.post(url, json=payload, timeout=120)
+            if r.status_code == 429 and attempt < max_retries - 1:
+                wait = 30 * (attempt + 1)
+                print(f"   ⏳ Rate limited, retrying in {wait}s (attempt {attempt + 1}/{max_retries})...")
+                time.sleep(wait)
+                continue
+            if r.status_code != 200:
+                print(f"   ⚠️ Gemini API error: HTTP {r.status_code}")
+                print(f"   Response: {r.text[:500]}")
                 return None
 
-        print(f"   ✅ Title: {result['title']}")
-        print(f"   ✅ Summary: {len(result['summary'])} chars")
-        print(f"   ✅ Tags: {', '.join(result['tags'])}")
-        return result
+            response = r.json()
+            text = response["candidates"][0]["content"]["parts"][0]["text"]
 
-    except json.JSONDecodeError as e:
-        print(f"   ⚠️ JSON parse error: {e}")
-        return None
-    except Exception as e:
-        print(f"   ⚠️ Gemini error: {e}")
-        return None
+            # Clean markdown fences if present
+            text = text.strip()
+            if text.startswith("```"):
+                text = text.split("\n", 1)[1]
+                if text.endswith("```"):
+                    text = text[:-3]
+                text = text.strip()
+
+            result = json.loads(text)
+
+            for field in ["title", "summary", "tags", "linkedin_snippet"]:
+                if field not in result:
+                    print(f"   ⚠️ Missing field: {field}")
+                    return None
+
+            print(f"   ✅ Title: {result['title']}")
+            print(f"   ✅ Summary: {len(result['summary'])} chars")
+            print(f"   ✅ Tags: {', '.join(result['tags'])}")
+            return result
+
+        except json.JSONDecodeError as e:
+            print(f"   ⚠️ JSON parse error: {e}")
+            return None
+        except Exception as e:
+            print(f"   ⚠️ Gemini error: {e}")
+            return None
+    return None
 
 
 def generate_hugo_post(gemini_output: dict, papers: list) -> str:
