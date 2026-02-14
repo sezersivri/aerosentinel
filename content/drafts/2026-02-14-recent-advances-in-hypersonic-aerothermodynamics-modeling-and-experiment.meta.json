@@ -1,0 +1,17 @@
+{
+  "filename": "2026-02-14-recent-advances-in-hypersonic-aerothermodynamics-modeling-and-experiment.md",
+  "gemini_output": {
+    "title": "Recent Advances in Hypersonic Aerothermodynamics: Modeling and Experiment",
+    "summary": "Recent research addresses critical challenges in hypersonic aerothermodynamics, spanning fundamental modeling to experimental validation. Zhang et al. introduce a hybrid transformation framework using physics-informed symbolic regression to collapse compressible turbulent boundary layer profiles (M=0.5-8) onto incompressible forms, improving accuracy over existing methods. Liu et al. investigate the impact of wall curvature on Mack mode evolution, finding that convex curvature stabilizes, while concave curvature destabilizes, these modes. Prasad et al. explore bio-inspired pin fin geometries for enhanced thermal performance in cooling applications, demonstrating a 10-39% improvement in thermal efficiency compared to circular pins. Addressing high-temperature effects, Liu et al. refine CO2 dissociation models using TDLAS measurements between 3000-6000 K, updating reaction rate coefficients for improved accuracy. Ozawa and Bruce present experimental measurements of non-uniform surface temperature distributions on a flat plate at M=2.75, validating a passive control method using dissimilar thermal properties. Finally, Gu introduces a new theoretical approach for evaluating the tangential velocity gradient at the stagnation-point boundary-layer edge, crucial for accurate heat flux predictions, and validates it with Navier-Stokes simulations.",
+    "tags": [
+      "hypersonics",
+      "aerothermodynamics",
+      "boundary layer",
+      "heat transfer",
+      "CFD"
+    ],
+    "linkedin_snippet": "Latest hypersonic research dives into boundary layer transition, high-temperature gas dynamics, and innovative cooling techniques. These advancements are crucial for next-gen aerospace vehicle design! #hypersonics #aerospace #heattransfer"
+  },
+  "papers_count": 6,
+  "created_at": "2026-02-14T17:20:51.565022"
+}
