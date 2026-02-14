@@ -1,10 +1,11 @@
-baseURL: "https://YOUR_USERNAME.github.io/aerosentinel/"
+baseURL: "https://sezersivri.github.io/aerosentinel/"
 languageCode: "en-us"
 title: "AeroSentinel"
 theme: "PaperMod"
 
 # Build settings
-paginate: 10
+pagination:
+  pagerSize: 10
 enableRobotsTXT: true
 buildDrafts: false
 buildFuture: false
@@ -15,7 +16,7 @@ privacy:
     disable: true
   googleAnalytics:
     disable: true
-  twitter:
+  x:
     disable: true
   youtube:
     disable: true
@@ -45,7 +46,7 @@ params:
 
   socialIcons:
     - name: github
-      url: "https://github.com/YOUR_USERNAME/aerosentinel"
+      url: "https://github.com/sezersivri/aerosentinel"
 
   # SEO
   keywords:
