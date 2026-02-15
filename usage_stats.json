@@ -1,0 +1,15 @@
+{
+  "runs": [
+    {
+      "type": "custom_search",
+      "timestamp": "2026-02-15T00:27:21.816018",
+      "papers_found": 6,
+      "papers_selected": 6,
+      "sources": {
+        "NASA NTRS": 6
+      },
+      "gemini_calls": 2,
+      "duration_seconds": 631.4
+    }
+  ]
+}
