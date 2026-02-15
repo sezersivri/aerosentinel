@@ -9,6 +9,7 @@ Usage:
     python -m src.hunter --dry    # Dry run (don't save history)
 """
 
+import re
 import requests
 import json
 import os
@@ -103,7 +104,7 @@ def classify_journal(journal_name: str) -> int:
 #  SOURCE 1: OPENALEX
 # ──────────────────────────────────────────────
 
-def search_openalex(days: int = LOOKBACK_DAYS, keywords=None) -> dict:
+def search_openalex(days: int = LOOKBACK_DAYS, keywords=None, date_to=None) -> dict:
     """
     Query OpenAlex API for papers matching our keywords.
     Returns dict of {doi: paper_dict} for deduplication.
@@ -118,9 +119,12 @@ def search_openalex(days: int = LOOKBACK_DAYS, keywords=None) -> dict:
     for keyword in search_keywords:
         print(f"   🔍 '{keyword}'", end="")
         url = "https://api.openalex.org/works"
+        date_filter = f"from_publication_date:{start_date}"
+        if date_to:
+            date_filter += f",to_publication_date:{date_to}"
         params = {
             "search": keyword,
-            "filter": f"from_publication_date:{start_date}",
+            "filter": date_filter,
             "per-page": 25,
             "sort": "publication_date:desc",
             "mailto": "aerosentinel@proton.me"  # Polite pool (faster responses)
@@ -394,13 +398,14 @@ def search_nasa_ntrs(keywords=None) -> dict:
 #  SOURCE 4: CROSSREF (70M+ articles, no auth)
 # ──────────────────────────────────────────────
 
-def search_crossref(existing_dois: set, keywords=None) -> dict:
+def search_crossref(existing_dois: set, keywords=None, date_to=None) -> dict:
     """
     Query Crossref API for papers matching keywords.
     No authentication required. Polite header for faster responses.
     If keywords provided, uses those instead of KEYWORDS.
     """
     search_keywords = keywords if keywords is not None else KEYWORDS[:10]
+    is_custom = keywords is not None
     print(f"\n📡 [Crossref] Searching 70M+ articles...")
     candidates = {}
     start_date = (datetime.now() - timedelta(days=LOOKBACK_DAYS)).strftime("%Y-%m-%d")
@@ -408,9 +413,12 @@ def search_crossref(existing_dois: set, keywords=None) -> dict:
     for keyword in search_keywords:
         print(f"   🔍 '{keyword}'", end="")
         url = "https://api.crossref.org/works"
+        date_filter = f"from-pub-date:{start_date}"
+        if date_to:
+            date_filter += f",until-pub-date:{date_to}"
         params = {
             "query": keyword,
-            "filter": f"from-pub-date:{start_date}",
+            "filter": date_filter,
             "rows": 20,
             "sort": "published",
             "order": "desc",
@@ -445,15 +453,16 @@ def search_crossref(existing_dois: set, keywords=None) -> dict:
             journal = container[0] if container else "Unknown"
             tier = classify_journal(journal)
 
-            # Only keep Tier 1 or Tier 2 journals from Crossref
-            if tier == 0:
+            # Only keep Tier 1/2 journals, BUT allow theses and custom searches
+            doc_type = item.get("type", "")
+            is_thesis = doc_type in ("dissertation", "thesis")
+            if tier == 0 and not is_custom and not is_thesis:
                 continue
 
             # Abstract
             abstract = item.get("abstract", "")
             # Crossref abstracts sometimes have JATS XML tags
             if abstract:
-                import re
                 abstract = re.sub(r"<[^>]+>", "", abstract).strip()
 
             # Authors
@@ -511,6 +520,7 @@ def search_core(existing_dois: set, keywords=None) -> dict:
     If keywords provided, uses those instead of KEYWORDS.
     """
     search_keywords = keywords if keywords is not None else KEYWORDS[:8]
+    is_custom = keywords is not None
     print(f"\n📡 [CORE] Searching 200M+ open access articles...")
     candidates = {}
 
@@ -551,8 +561,10 @@ def search_core(existing_dois: set, keywords=None) -> dict:
                 journal = item.get("publisher", "Unknown")
 
             tier = classify_journal(journal)
-            # Only keep if we can classify the journal
-            if tier == 0:
+            # Only keep if we can classify the journal, BUT allow theses and custom searches
+            doc_type = (item.get("documentType") or "").lower()
+            is_thesis = "thesis" in doc_type or "dissertation" in doc_type
+            if tier == 0 and not is_custom and not is_thesis:
                 continue
 
             abstract = item.get("abstract", "")
@@ -671,8 +683,11 @@ def search_ieee(existing_dois: set, keywords=None) -> dict:
 
             # Skip old papers
             pub_year = item.get("publication_year", "")
-            if pub_year and int(pub_year) < 2020:
-                continue
+            try:
+                if pub_year and int(pub_year) < 2020:
+                    continue
+            except (ValueError, TypeError):
+                pass
 
             cited_by = item.get("citing_paper_count", 0) or 0
 
@@ -761,6 +776,13 @@ def enrich_with_semantic_scholar(papers: list) -> list:
 
         time.sleep(1 / S2_REQUESTS_PER_SECOND)
 
+        # Fallback: if retry loop exhausted without appending (all 429s)
+        if paper not in enriched:
+            paper["velocity"] = 0
+            paper["influential_citations"] = 0
+            enriched.append(paper)
+            print(f"   ⚠️ S2 retries exhausted for {doi[:40]}, keeping with defaults")
+
     return enriched
 
 
@@ -785,7 +807,23 @@ def _is_recent(paper, cutoff):
             return False  # Unparseable = reject
 
 
-def rank_and_select(papers: list, skip_age_filter: bool = False) -> list:
+def _is_before(paper, upper_bound):
+    """Return True if paper is before or on the upper_bound date, or if date is unparseable."""
+    date_str = paper.get("date", "")
+    if not date_str or date_str == "Unknown":
+        return True  # Keep if no date
+    try:
+        pub_date = datetime.strptime(date_str[:10], "%Y-%m-%d")
+        return pub_date <= upper_bound
+    except ValueError:
+        try:
+            pub_date = datetime.strptime(date_str[:7], "%Y-%m")
+            return pub_date <= upper_bound
+        except ValueError:
+            return True  # Keep if unparseable
+
+
+def rank_and_select(papers: list, skip_age_filter: bool = False, date_to: str = None) -> list:
     """
     Rank papers by quality score and select top N for summarization.
     Score = tier_bonus + source_bonus + keyword_priority + citation_metrics + recency + abstract
@@ -795,6 +833,18 @@ def rank_and_select(papers: list, skip_age_filter: bool = False) -> list:
     if not skip_age_filter:
         cutoff = datetime.now() - timedelta(days=MAX_PAPER_AGE_DAYS)
         papers = [p for p in papers if _is_recent(p, cutoff)]
+
+    # Upper-bound date filter (for custom searches with date_to)
+    if date_to:
+        try:
+            upper = datetime.strptime(date_to[:10], "%Y-%m-%d")
+            papers = [p for p in papers if _is_before(p, upper)]
+        except ValueError:
+            try:
+                upper = datetime.strptime(date_to[:7], "%Y-%m")
+                papers = [p for p in papers if _is_before(p, upper)]
+            except ValueError:
+                pass
 
     for paper in papers:
         score = 0
@@ -884,10 +934,10 @@ def run_hunt(dry_run: bool = False, custom_keywords=None, date_from=None, date_t
     print(f"📚 History: {len(seen_dois)} previously seen papers")
 
     # 2. Search all sources
-    openalex_papers = search_openalex(days=days, keywords=custom_keywords)
+    openalex_papers = search_openalex(days=days, keywords=custom_keywords, date_to=date_to)
     arxiv_papers = search_arxiv(set(openalex_papers.keys()) | seen_dois, keywords=custom_keywords)
     ntrs_papers = search_nasa_ntrs(keywords=custom_keywords)
-    crossref_papers = search_crossref(set(openalex_papers.keys()) | seen_dois, keywords=custom_keywords)
+    crossref_papers = search_crossref(set(openalex_papers.keys()) | seen_dois, keywords=custom_keywords, date_to=date_to)
     core_papers = search_core(
         set(openalex_papers.keys()) | set(crossref_papers.keys()) | seen_dois,
         keywords=custom_keywords
@@ -905,6 +955,31 @@ def run_hunt(dry_run: bool = False, custom_keywords=None, date_from=None, date_t
     all_papers.update(crossref_papers)
     all_papers.update(core_papers)
     all_papers.update(ieee_papers)
+
+    # 3.5 Title-based deduplication (same paper, different IDs)
+    seen_titles = {}
+    deduped_papers = {}
+    for doi, paper in all_papers.items():
+        norm_title = re.sub(r'[^a-z0-9\s]', '', paper.get("title", "").lower()).strip()
+        if not norm_title:
+            deduped_papers[doi] = paper
+            continue
+        if norm_title in seen_titles:
+            # Keep the one with higher tier or more citations
+            existing_doi = seen_titles[norm_title]
+            existing = deduped_papers[existing_doi]
+            if paper.get("tier", 0) > existing.get("tier", 0) or \
+               paper.get("cited_by", 0) > existing.get("cited_by", 0):
+                del deduped_papers[existing_doi]
+                deduped_papers[doi] = paper
+                seen_titles[norm_title] = doi
+        else:
+            seen_titles[norm_title] = doi
+            deduped_papers[doi] = paper
+
+    if len(all_papers) != len(deduped_papers):
+        print(f"   🔄 Deduplication: {len(all_papers)} → {len(deduped_papers)} (removed {len(all_papers) - len(deduped_papers)} title duplicates)")
+    all_papers = deduped_papers
 
     # 4. Remove previously seen
     new_papers = {
@@ -944,7 +1019,7 @@ def run_hunt(dry_run: bool = False, custom_keywords=None, date_from=None, date_t
     print(f"   ✅ After velocity filter: {len(filtered)} papers")
 
     # 7. Rank and select
-    selected = rank_and_select(filtered, skip_age_filter=is_custom)
+    selected = rank_and_select(filtered, skip_age_filter=is_custom, date_to=date_to)
 
     # 8. Display results
     print("\n" + "=" * 60)

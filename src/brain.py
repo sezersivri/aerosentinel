@@ -46,7 +46,7 @@ INSTRUCTIONS:
    - "peripheral" = everything else
 
 3. PAPER TYPE CLASSIFICATION: Classify each paper as exactly one of:
-   ml_heating | ml_aerodynamics | ml_transition | numerical_cfd | experimental | analytical | review | multi_method
+   ml_heating | ml_aerodynamics | ml_transition | numerical_cfd | experimental | analytical | review | multi_method | thesis
 
 4. For CORE papers: Provide full structured analysis with hard numbers, methodology, and practical significance.
 
@@ -56,13 +56,17 @@ INSTRUCTIONS:
 
 7. CROSS-PAPER CONNECTIONS: For core papers, identify how they relate to each other.
 
-8. TONE: Technical but accessible. Assume the reader understands M > 5 physics. No fluff, no "groundbreaking" or "revolutionary." Direct and honest.
+8. TONE: Technical but accessible. Assume the reader understands M > 5 physics. Direct and honest. BANNED PHRASES (never use these): "groundbreaking", "revolutionary", "delves into", "fascinating", "paving the way", "landscape", "in the realm of", "a testament to", "sheds light on", "pivotal", "underscores", "cutting-edge", "novel approach", "it is worth noting", "notably", "showcases", "leverages", "utilizing", "harnesses", "game-changing", "paradigm shift", "robust" (as praise), "comprehensive study", "innovative".
 
-9. TAGS: Select 4-7 tags from this list ONLY:
+9. MISSING ABSTRACTS: Papers marked with "[NO ABSTRACT]" — provide only a brief title-based classification. Do not attempt detailed analysis or pad with speculation. State "Abstract unavailable — classification based on title only."
+
+10. TAGS: Select 4-7 tags from this list ONLY:
 {tag_vocabulary}
 Tags must ALWAYS be in English regardless of output language.
 
-10. OUTPUT FORMAT: Return ONLY a raw JSON object (no markdown fences, no explanation). The JSON must match this exact schema:
+11. CRITICAL SCHEMA REQUIREMENT: You MUST use "core_papers" and "peripheral_papers" keys in your JSON output. NEVER use a flat "papers" key. Even if all papers are core or all are peripheral, always use both keys (one may be an empty array).
+
+12. OUTPUT FORMAT: Return ONLY a raw JSON object (no markdown fences, no explanation). The JSON must match this exact schema:
 {{
   "title": "Briefing title (max 15 words)",
   "overview": "3-4 sentence strategic overview connecting all papers thematically",
@@ -77,7 +81,8 @@ Tags must ALWAYS be in English regardless of output language.
       "methodology": "1-2 sentences on approach (solver, turbulence model, ML architecture)",
       "why_this_matters": "2 sentences on practical value for missile design / aerospace engineering",
       "key_numbers": "Formatted string: Mach X-Y, RMSE ±Z%, speedup Nx, geometry type",
-      "connection": "How this relates to other core papers in this batch"
+      "connection": "How this relates to other core papers in this batch",
+      "limitations": "1-2 sentences on methodological limitations, evidence strength, or scope constraints"
     }}
   ],
   "peripheral_papers": [
@@ -122,7 +127,7 @@ TALİMATLAR:
    - "peripheral" = diğer her şey
 
 3. MAKALE TİPİ SINIFLANDIRMASI: Her makaleyi tam olarak birini seç:
-   ml_heating | ml_aerodynamics | ml_transition | numerical_cfd | experimental | analytical | review | multi_method
+   ml_heating | ml_aerodynamics | ml_transition | numerical_cfd | experimental | analytical | review | multi_method | thesis
 
 4. TEMEL makaleler için: Kesin sayılar, metodoloji ve pratik önem ile tam yapılandırılmış analiz sağla.
 
@@ -136,7 +141,9 @@ TALİMATLAR:
 {tag_vocabulary}
 Etiketler DAIMA İngilizce olmalıdır.
 
-9. ÇIKTI FORMATI: SADECE ham JSON nesnesi döndür (markdown çiti yok, açıklama yok). JSON tam olarak şu şemaya uymalı:
+9. KRİTİK ŞEMA GEREKSİNİMİ: JSON çıktınızda MUTLAKA "core_papers" ve "peripheral_papers" anahtarlarını kullanmalısınız. ASLA düz bir "papers" anahtarı kullanmayın. Tüm makaleler core veya peripheral olsa bile, her iki anahtarı da kullanın (biri boş dizi olabilir).
+
+10. ÇIKTI FORMATI: SADECE ham JSON nesnesi döndür (markdown çiti yok, açıklama yok). JSON tam olarak şu şemaya uymalı:
 {{
   "title": "Brifing başlığı (en fazla 15 kelime, Türkçe)",
   "overview": "3-4 cümlelik stratejik genel bakış, tüm makaleleri tematik olarak bağlayan (Türkçe)",
@@ -151,7 +158,8 @@ Etiketler DAIMA İngilizce olmalıdır.
       "methodology": "Yaklaşım hakkında 1-2 cümle (Türkçe)",
       "why_this_matters": "Füze tasarımı / havacılık mühendisliği için pratik değer hakkında 2 cümle (Türkçe)",
       "key_numbers": "Biçimlendirilmiş: Mach X-Y, RMSE ±Z%, hızlanma Nx, geometri tipi",
-      "connection": "Bu makalenin gruptaki diğer temel makalelerle ilişkisi (Türkçe)"
+      "connection": "Bu makalenin gruptaki diğer temel makalelerle ilişkisi (Türkçe)",
+      "limitations": "Metodolojik sınırlamalar, kanıt gücü veya kapsam kısıtlamaları hakkında 1-2 cümle (Türkçe)"
     }}
   ],
   "peripheral_papers": [
@@ -182,6 +190,7 @@ PAPER_TYPE_BADGES = {
     "analytical": "📐 Analytical",
     "review": "📚 Review",
     "multi_method": "🔬 Multi-Method",
+    "thesis": "🎓 Thesis/Dissertation",
 }
 
 PAPER_TYPE_BADGES_TR = {
@@ -193,6 +202,7 @@ PAPER_TYPE_BADGES_TR = {
     "analytical": "📐 Analitik",
     "review": "📚 Derleme",
     "multi_method": "🔬 Coklu Yontem",
+    "thesis": "🎓 Tez/Doktora",
 }
 
 
@@ -203,6 +213,30 @@ def _build_tag_instruction() -> str:
         label = category.replace("_", " ").title()
         lines.append(f"  {label}: {', '.join(tags)}")
     return "\n".join(lines)
+
+
+# Anti-slop patterns — strip AI-generated filler phrases from output
+_SLOP_PATTERNS = [
+    r'\bgroundbreaking\b', r'\brevolutionary\b', r'\bdelves?\s+into\b',
+    r'\bfascinating\b', r'\bpaving\s+the\s+way\b', r'\bin\s+the\s+realm\s+of\b',
+    r'\ba\s+testament\s+to\b', r'\bsheds?\s+light\s+on\b', r'\bpivotal\b',
+    r'\bunderscore[sd]?\b', r'\bcutting[\s-]edge\b', r'\bnovel\s+approach\b',
+    r'\bit\s+is\s+worth\s+noting\b', r'\bshowcase[sd]?\b', r'\bleverages?\b',
+    r'\bharnesses?\b', r'\bgame[\s-]changing\b', r'\bparadigm\s+shift\b',
+    r'\binnovative\b',
+]
+_SLOP_RE = re.compile('|'.join(_SLOP_PATTERNS), re.IGNORECASE)
+
+
+def clean_slop(text: str) -> str:
+    """Remove AI-generated filler phrases from text."""
+    cleaned = _SLOP_RE.sub('', text)
+    # Clean up double spaces left behind
+    cleaned = re.sub(r'  +', ' ', cleaned)
+    # Clean up orphaned commas/periods
+    cleaned = re.sub(r'\s+,', ',', cleaned)
+    cleaned = re.sub(r'\s+\.', '.', cleaned)
+    return cleaned.strip()
 
 
 def build_system_prompt(lang: str = "en") -> str:
@@ -292,17 +326,27 @@ def call_gemini(papers: list, lang: str = "en") -> tuple:
 
             result = json.loads(text)
 
-            # Validate required fields (support both old and new schema)
+            # Validate required fields
             for field in ["title", "overview", "tags", "trends"]:
                 if field not in result:
                     print(f"   ⚠️ Missing field: {field}")
                     return None, None
 
-            # Accept either new two-tier or old flat schema
-            has_new_schema = "core_papers" in result
-            if not has_new_schema and "papers" not in result:
-                print(f"   ⚠️ Missing field: papers (or core_papers)")
-                return None, None
+            # Enforce two-tier schema — reject old flat "papers" key
+            if "core_papers" not in result:
+                if "papers" in result and attempt < max_retries - 1:
+                    print(f"   ⚠️ Got old flat schema, retrying for two-tier format...")
+                    time.sleep(5)
+                    continue
+                elif "papers" in result:
+                    # Last attempt: auto-convert old schema to new
+                    print(f"   ⚠️ Converting flat schema to two-tier on final attempt")
+                    result["core_papers"] = result.pop("papers")
+                    result["peripheral_papers"] = []
+                    result["peripheral_narrative"] = ""
+                else:
+                    print(f"   ⚠️ Missing required field: core_papers")
+                    return None, None
 
             # Extract token usage from response metadata
             usage_meta = response.get("usageMetadata", {})
@@ -326,7 +370,10 @@ def call_gemini(papers: list, lang: str = "en") -> tuple:
             return result, token_usage
 
         except json.JSONDecodeError as e:
-            print(f"   ⚠️ JSON parse error: {e}")
+            print(f"   ⚠️ JSON parse error (attempt {attempt + 1}/{max_retries}): {e}")
+            if attempt < max_retries - 1:
+                time.sleep(5)
+                continue
             return None, None
         except Exception as e:
             print(f"   ⚠️ Gemini error: {e}")
@@ -374,17 +421,20 @@ def generate_hugo_post(gemini_output: dict, papers: list, lang: str = "en") -> s
         lbl_references = "References"
         lbl_connection = "Connection"
 
-    overview = gemini_output.get("overview", "")
-    trends = gemini_output.get("trends", "")
+    overview = clean_slop(gemini_output.get("overview", ""))
+    trends = clean_slop(gemini_output.get("trends", ""))
 
     # Detect schema: new two-tier or old flat
     core_papers = gemini_output.get("core_papers", [])
     peripheral_papers = gemini_output.get("peripheral_papers", [])
     peripheral_narrative = gemini_output.get("peripheral_narrative", "")
+    if peripheral_narrative:
+        peripheral_narrative = clean_slop(peripheral_narrative)
 
-    # Fallback: old flat schema → treat all as core
+    # Fallback: old flat schema → treat all as core (legacy safety net)
     if not core_papers and "papers" in gemini_output:
         core_papers = gemini_output["papers"]
+        print("   ⚠️ WARNING: Using legacy flat schema fallback in Hugo generation")
 
     # ── Build Core Analysis sections ──
     core_sections = []
@@ -416,6 +466,11 @@ def generate_hugo_post(gemini_output: dict, papers: list, lang: str = "en") -> s
         if connection:
             section += f"\n\n*{lbl_connection}: {connection}*"
 
+        limitations = p.get("limitations", "")
+        if limitations:
+            section += f"\n\n> ⚠️ **Limitations:** {limitations}"
+
+        section = clean_slop(section)
         core_sections.append(section)
 
     core_content = "\n\n---\n\n".join(core_sections) if core_sections else ""
@@ -459,9 +514,9 @@ def generate_hugo_post(gemini_output: dict, papers: list, lang: str = "en") -> s
 
     # Attribution footer
     if lang == "tr":
-        attribution = "*Bu arastirma ozeti [Gemini 2.5 Flash](https://deepmind.google/technologies/gemini/) tarafindan olusturulmus ve AeroSentinel v2.3.0 tarafindan duzenlenmistir.*"
+        attribution = "*Bu arastirma ozeti [Gemini 2.5 Flash](https://deepmind.google/technologies/gemini/) tarafindan olusturulmus ve AeroSentinel v2.4.0 tarafindan duzenlenmistir.*"
     else:
-        attribution = "*This research digest was generated by [Gemini 2.5 Flash](https://deepmind.google/technologies/gemini/) and curated by AeroSentinel v2.3.0.*"
+        attribution = "*This research digest was generated by [Gemini 2.5 Flash](https://deepmind.google/technologies/gemini/) and curated by AeroSentinel v2.4.0.*"
 
     # ── Frontmatter ──
     core_count = len(core_papers)

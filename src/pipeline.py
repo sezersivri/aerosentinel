@@ -175,10 +175,11 @@ def save_usage_stats(stats: dict):
 
 
 def record_run_stats(run_type: str, papers_found: int, papers_selected: int,
-                     sources: dict, duration: float, gemini_calls: int = 0):
+                     sources: dict, duration: float, gemini_calls: int = 0,
+                     token_usage: dict = None):
     """Record stats for a single pipeline run."""
     stats = load_usage_stats()
-    stats["runs"].append({
+    run_entry = {
         "type": run_type,
         "timestamp": datetime.now().isoformat(),
         "papers_found": papers_found,
@@ -186,7 +187,10 @@ def record_run_stats(run_type: str, papers_found: int, papers_selected: int,
         "sources": sources,
         "gemini_calls": gemini_calls,
         "duration_seconds": round(duration, 1),
-    })
+    }
+    if token_usage:
+        run_entry["token_usage"] = token_usage
+    stats["runs"].append(run_entry)
     save_usage_stats(stats)
 
 
@@ -201,6 +205,16 @@ def format_usage_message(stats: dict) -> str:
     total_gemini = sum(r.get("gemini_calls", 0) for r in runs)
     total_duration = sum(r.get("duration_seconds", 0) for r in runs)
 
+    total_prompt_tokens = 0
+    total_output_tokens = 0
+    for r in runs:
+        tu = r.get("token_usage", {})
+        if isinstance(tu, dict):
+            for lang_data in tu.values():
+                if isinstance(lang_data, dict):
+                    total_prompt_tokens += lang_data.get("prompt_tokens", 0)
+                    total_output_tokens += lang_data.get("candidates_tokens", 0)
+
     # Aggregate source counts
     agg_sources = Counter()
     for r in runs:
@@ -211,10 +225,15 @@ def format_usage_message(stats: dict) -> str:
     mins = int(total_duration // 60)
     secs = int(total_duration % 60)
 
+    token_line = ""
+    if total_prompt_tokens or total_output_tokens:
+        token_line = f"├ Tokens: {total_prompt_tokens + total_output_tokens:,} (prompt: {total_prompt_tokens:,}, output: {total_output_tokens:,})\n"
+
     return (
         f"📊 Pipeline Stats ({len(runs)} runs)\n"
         f"├ Papers: {total_found} found → {total_selected} selected\n"
         f"├ Gemini calls: {total_gemini}\n"
+        f"{token_line}"
         f"├ Sources: {source_str}\n"
         f"└ Duration: {mins}m {secs}s"
     )
@@ -301,6 +320,11 @@ def run_custom_search(search_json: str):
         send_simple_message(msg)
         return
 
+    # Flag papers with missing abstracts for Gemini
+    for paper in papers:
+        if not paper.get("abstract") or paper["abstract"].strip() == "":
+            paper["abstract"] = "[NO ABSTRACT] " + paper.get("title", "")
+
     # --- STAGE 2: BRAIN (bilingual) ---
     result = run_brain(papers)
 
@@ -321,6 +345,25 @@ def run_custom_search(search_json: str):
 
     if "en" in result and "tr" in result:
         result["tr"]["gemini_output"]["tags"] = result["en"]["gemini_output"]["tags"]
+    elif "tr" in result and "en" not in result:
+        # EN failed — normalize TR tags to English curated vocabulary anyway
+        from src.config import VALID_TAGS, VALID_TAGS_LOWER
+        tr_tags = result["tr"]["gemini_output"].get("tags", [])
+        normalized = []
+        for tag in tr_tags:
+            if tag in VALID_TAGS:
+                normalized.append(tag)
+            elif tag.lower() in VALID_TAGS_LOWER:
+                normalized.append(VALID_TAGS_LOWER[tag.lower()])
+            else:
+                # Try fuzzy match
+                for valid_lower, canonical in VALID_TAGS_LOWER.items():
+                    if tag.lower() in valid_lower or valid_lower in tag.lower():
+                        normalized.append(canonical)
+                        break
+        if normalized:
+            result["tr"]["gemini_output"]["tags"] = normalized
+            print(f"   🏷️ TR tags normalized to English: {normalized}")
 
     for lang in LANGUAGES:
         if lang not in result:
@@ -377,7 +420,8 @@ def run_custom_search(search_json: str):
     # Record usage stats
     duration = time.time() - t_start
     source_counts = dict(Counter(p.get("source", "Unknown") for p in papers))
-    record_run_stats("custom_search", len(papers), max_papers, source_counts, duration, gemini_calls=len(LANGUAGES))
+    record_run_stats("custom_search", len(papers), max_papers, source_counts, duration,
+                     gemini_calls=len(LANGUAGES), token_usage=result.get("token_usage"))
 
     print("\n✅ Custom search pipeline complete. Awaiting your approval on Telegram.")
 
@@ -407,6 +451,11 @@ def run_scout():
         send_simple_message(msg)
         return
 
+    # Flag papers with missing abstracts for Gemini
+    for paper in papers:
+        if not paper.get("abstract") or paper["abstract"].strip() == "":
+            paper["abstract"] = "[NO ABSTRACT] " + paper.get("title", "")
+
     # --- STAGE 2: BRAIN (bilingual) ---
     result = run_brain(papers)
 
@@ -428,6 +477,25 @@ def run_scout():
     # Force TR to use same English tags as EN
     if "en" in result and "tr" in result:
         result["tr"]["gemini_output"]["tags"] = result["en"]["gemini_output"]["tags"]
+    elif "tr" in result and "en" not in result:
+        # EN failed — normalize TR tags to English curated vocabulary anyway
+        from src.config import VALID_TAGS, VALID_TAGS_LOWER
+        tr_tags = result["tr"]["gemini_output"].get("tags", [])
+        normalized = []
+        for tag in tr_tags:
+            if tag in VALID_TAGS:
+                normalized.append(tag)
+            elif tag.lower() in VALID_TAGS_LOWER:
+                normalized.append(VALID_TAGS_LOWER[tag.lower()])
+            else:
+                # Try fuzzy match
+                for valid_lower, canonical in VALID_TAGS_LOWER.items():
+                    if tag.lower() in valid_lower or valid_lower in tag.lower():
+                        normalized.append(canonical)
+                        break
+        if normalized:
+            result["tr"]["gemini_output"]["tags"] = normalized
+            print(f"   🏷️ TR tags normalized to English: {normalized}")
 
     # Regenerate post content with cleaned data
     for lang in LANGUAGES:
@@ -487,7 +555,8 @@ def run_scout():
     # Record usage stats
     duration = time.time() - t_start
     source_counts = dict(Counter(p.get("source", "Unknown") for p in papers))
-    record_run_stats("scout", len(papers), max_papers, source_counts, duration, gemini_calls=len(LANGUAGES))
+    record_run_stats("scout", len(papers), max_papers, source_counts, duration,
+                     gemini_calls=len(LANGUAGES), token_usage=result.get("token_usage"))
 
     print("\n✅ Scout pipeline complete. Awaiting your approval on Telegram.")
 

@@ -9,6 +9,37 @@ import requests
 
 from src.config import TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID
 
+TELEGRAM_MAX_LENGTH = 4096
+
+
+def _split_message(text: str, max_length: int = TELEGRAM_MAX_LENGTH) -> list[str]:
+    """Split a message into chunks that fit Telegram's character limit."""
+    if len(text) <= max_length:
+        return [text]
+
+    chunks = []
+    while text:
+        if len(text) <= max_length:
+            chunks.append(text)
+            break
+        # Find a good split point (newline, then space)
+        split_at = text.rfind('\n', 0, max_length)
+        if split_at == -1 or split_at < max_length // 2:
+            split_at = text.rfind(' ', 0, max_length)
+        if split_at == -1:
+            split_at = max_length
+        chunks.append(text[:split_at])
+        text = text[split_at:].lstrip()
+    return chunks
+
+
+def _html_escape(text: str) -> str:
+    """Escape HTML special characters in text for Telegram HTML mode."""
+    return (text
+            .replace("&", "&amp;")
+            .replace("<", "&lt;")
+            .replace(">", "&gt;"))
+
 
 def send_draft_preview(
     filename_base: str,
@@ -29,7 +60,8 @@ def send_draft_preview(
     tags_str = ", ".join(gemini_output.get("tags", [])[:5])
 
     # Use overview instead of summary for the new rich format
-    overview = gemini_output.get("overview", gemini_output.get("summary", ""))
+    overview = _html_escape(gemini_output.get("overview", gemini_output.get("summary", "")))
+    title_display = _html_escape(gemini_output.get('title', 'Untitled'))
 
     # Paper type summary (support both schemas)
     paper_types = {}
@@ -51,9 +83,9 @@ def send_draft_preview(
     else:
         structure_str = f"📚 Papers: {len(papers)} | Types: {type_str}"
 
-    message = f"""🛰️ <b>AeroSentinel v2.3 — New Research Digest</b>
+    message = f"""🛰️ <b>AeroSentinel v2.4 — New Research Digest</b>
 
-📋 <b>{gemini_output.get('title', 'Untitled')}</b>
+📋 <b>{title_display}</b>
 
 📝 {overview[:500]}{'...' if len(overview) > 500 else ''}
 
@@ -62,6 +94,10 @@ def send_draft_preview(
 🏷️ Tags: {tags_str}
 🌐 Languages: EN + TR
 """
+
+    # Truncate preview if exceeding Telegram limit (leave room for buttons)
+    if len(message) > TELEGRAM_MAX_LENGTH - 100:
+        message = message[:TELEGRAM_MAX_LENGTH - 150] + "\n\n<i>[Preview truncated]</i>"
 
     # Inline keyboard with 3 buttons
     # Telegram limits callback_data to 64 bytes, so truncate filename_base
@@ -107,15 +143,16 @@ def send_draft_preview(
 def send_simple_message(text: str):
     """Send a plain text message to Telegram (for status updates)."""
     url = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendMessage"
-    payload = {
-        "chat_id": TELEGRAM_CHAT_ID,
-        "text": text,
-        "parse_mode": "HTML",
-    }
-    try:
-        requests.post(url, json=payload, timeout=10)
-    except Exception:
-        pass
+    for chunk in _split_message(text):
+        payload = {
+            "chat_id": TELEGRAM_CHAT_ID,
+            "text": chunk,
+            "parse_mode": "HTML",
+        }
+        try:
+            requests.post(url, json=payload, timeout=10)
+        except Exception:
+            pass
 
 
 def send_published_confirmation(filename_base: str, site_url: str):

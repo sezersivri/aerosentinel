@@ -83,6 +83,15 @@ export default {
             parse_mode: "HTML",
           });
         }
+
+        // Non-command text with no active session — likely expired search
+        if (!text.startsWith("/")) {
+          return webhookReply("sendMessage", {
+            chat_id: chatId,
+            text: "⏰ No active session. Send /search to start a new search, or /help for available commands.",
+            parse_mode: "HTML",
+          });
+        }
         return new Response("OK", { status: 200 });
       }
 
@@ -226,7 +235,7 @@ async function buildCommandReply(config, env, chatId, text) {
       return await getLatestWorkflowStatus(config);
 
     case "/help":
-      return "🛰️ <b>AeroSentinel v2.3 Commands</b>\n\n" +
+      return "🛰️ <b>AeroSentinel v2.4 Commands</b>\n\n" +
         "/scout — Trigger a paper hunt now\n" +
         "/search — Custom search with tags & date range\n" +
         "/bibtex — Export latest digest as BibTeX\n" +
@@ -430,13 +439,14 @@ async function getBibtexExport(config) {
       if (papers.length === 0) continue;
 
       let bibtex = "";
+      const currentYear = new Date().getFullYear().toString();
       for (let i = 0; i < papers.length; i++) {
         const p = papers[i];
-        const key = p.title.split(" ").slice(0, 3).join("").replace(/[^a-zA-Z]/g, "") + "2026";
+        const key = p.title.split(" ").slice(0, 3).join("").replace(/[^a-zA-Z]/g, "") + currentYear;
         bibtex += `@article{${key},\n`;
         bibtex += `  title = {${p.title}},\n`;
         bibtex += `  author = {${p.authors || "Unknown"}},\n`;
-        bibtex += `  year = {2026}\n`;
+        bibtex += `  year = {${currentYear}}\n`;
         bibtex += `}\n\n`;
       }
 

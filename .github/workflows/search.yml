@@ -7,6 +7,10 @@ on:
   repository_dispatch:
     types: [telegram_search]
 
+concurrency:
+  group: "aerosentinel-pipeline"
+  cancel-in-progress: false
+
 permissions:
   contents: write
 
@@ -35,7 +39,8 @@ jobs:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
           IEEE_API_KEY: ${{ secrets.IEEE_API_KEY }}
-        run: python -m src.pipeline --search '${{ github.event.client_payload.search_json }}'
+          SEARCH_JSON: ${{ github.event.client_payload.search_json }}
+        run: python -m src.pipeline --search "$SEARCH_JSON"
 
       - name: Commit results
         run: |

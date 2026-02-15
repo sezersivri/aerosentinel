@@ -111,7 +111,7 @@ CURATED_TAGS = {
     ],
     "cross_cutting": [
         "Heat Flux Prediction", "Surrogate Modeling", "High-Performance Computing",
-        "Review Paper",
+        "Review Paper", "Thesis Research",
     ],
 }
 
@@ -125,7 +125,7 @@ VALID_TAGS_LOWER = {tag.lower(): tag for tag in VALID_TAGS}
 VALID_PAPER_TYPES = [
     "ml_heating", "ml_aerodynamics", "ml_transition",
     "numerical_cfd", "experimental", "analytical",
-    "review", "multi_method",
+    "review", "multi_method", "thesis",
 ]
 
 # --- SCORING & FILTERING THRESHOLDS ---

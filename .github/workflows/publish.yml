@@ -7,6 +7,10 @@ on:
   repository_dispatch:
     types: [telegram_command]
 
+concurrency:
+  group: "aerosentinel-pipeline"
+  cancel-in-progress: false
+
 permissions:
   contents: write
   pages: write
@@ -35,16 +39,18 @@ jobs:
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          FILENAME: ${{ github.event.client_payload.filename }}
         run: |
-          FILENAME="${{ github.event.client_payload.filename }}"
           python -m src.pipeline --publish "$FILENAME"
 
       - name: Commit published post
+        env:
+          FILENAME: ${{ github.event.client_payload.filename }}
         run: |
           git config user.name "AeroSentinel Bot"
           git config user.email "aerosentinel@proton.me"
           git add content/posts/ content/drafts/ || true
-          git diff --cached --quiet || git commit -m "Published: ${{ github.event.client_payload.filename }}"
+          git diff --cached --quiet || git commit -m "Published: $FILENAME"
           git push
 
       - name: Setup Hugo
@@ -79,14 +85,17 @@ jobs:
           python-version: "3.11"
 
       - name: Discard draft
+        env:
+          FILENAME: ${{ github.event.client_payload.filename }}
         run: |
-          FILENAME="${{ github.event.client_payload.filename }}"
           python -m src.pipeline --discard "$FILENAME"
 
       - name: Commit removal
+        env:
+          FILENAME: ${{ github.event.client_payload.filename }}
         run: |
           git config user.name "AeroSentinel Bot"
           git config user.email "aerosentinel@proton.me"
           git add content/drafts/ || true
-          git diff --cached --quiet || git commit -m "Discarded: ${{ github.event.client_payload.filename }}"
+          git diff --cached --quiet || git commit -m "Discarded: $FILENAME"
           git push
