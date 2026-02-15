@@ -216,16 +216,28 @@ def search_openalex(days: int = LOOKBACK_DAYS, keywords=None, date_to=None) -> d
 
 def search_arxiv(existing_dois: set, keywords=None) -> dict:
     """
-    Query arXiv for recent preprints in physics.flu-dyn and physics.ao-ph.
-    Only keeps papers from elite institutions (checked via author affiliations in text).
+    Query arXiv for recent preprints in aerospace-relevant categories.
+    Requires topic relevance (aerospace terms in title/abstract) + elite institution.
     If keywords provided, uses those instead of KEYWORDS.
     """
+    # Aerospace topic terms — at least one must appear in title+abstract
+    AERO_TERMS = [
+        "aerodynamic", "hypersonic", "supersonic", "heat flux", "heating",
+        "missile", "reentry", "cfd", "computational fluid", "boundary layer",
+        "shock wave", "mach", "thermal protection", "ablation", "scramjet",
+        "turbulence model", "navier-stokes", "flow simulation", "wind tunnel",
+        "surrogate model", "gaussian process", "kriging", "aerotherm",
+        "stagnation", "enthalpy", "rarefied", "flight vehicle", "rocket",
+    ]
+    # Restrict to relevant arXiv categories
+    ARXIV_CATEGORIES = "cat:physics.flu-dyn OR cat:physics.ao-ph OR cat:physics.comp-ph OR cat:cs.CE"
+
     search_keywords = keywords if keywords is not None else KEYWORDS[:8]
     print(f"\n📡 [arXiv] Searching recent preprints...")
     candidates = {}
 
     for keyword in search_keywords:
-        query = f"all:{keyword}"
+        query = f"({ARXIV_CATEGORIES}) AND all:{keyword}"
         url = "https://export.arxiv.org/api/query"  # HTTPS (security fix)
         params = {
             "search_query": query,
@@ -275,14 +287,18 @@ def search_arxiv(existing_dois: set, keywords=None) -> dict:
             if dedup_key in existing_dois or dedup_key in candidates:
                 continue
 
-            # Only keep arXiv papers from elite institutions
-            if is_elite:
+            # Topic relevance check — title+abstract must contain aerospace terms
+            text_lower = (title + " " + summary).lower()
+            is_aero_relevant = any(term in text_lower for term in AERO_TERMS)
+
+            # Only keep arXiv papers that are topic-relevant AND from elite institutions
+            if is_aero_relevant and is_elite:
                 candidates[dedup_key] = {
                     "doi": doi or arxiv_id,
                     "title": title,
                     "journal": "arXiv Preprint",
                     "tier": 0,
-                    "reason": "arXiv + Keyword match",
+                    "reason": "arXiv + Aero-relevant + Elite",
                     "abstract": summary,
                     "authors": authors[:5],
                     "date": entry.find("atom:published", ns).text[:10],
