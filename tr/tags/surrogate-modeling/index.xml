@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Surrogate Modeling on AeroSentinel</title><link>https://sezersivri.github.io/aerosentinel/tr/tags/surrogate-modeling/</link><description>Recent content in Surrogate Modeling on AeroSentinel</description><generator>Hugo -- 0.155.3</generator><language>tr</language><lastBuildDate>Sun, 15 Feb 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://sezersivri.github.io/aerosentinel/tr/tags/surrogate-modeling/index.xml" rel="self" type="application/rss+xml"/><item><title>Yüksek Hızlı Sistemlerde Aerotermal Analiz ve Yapay Zeka Metodolojileri</title><link>https://sezersivri.github.io/aerosentinel/tr/drafts/2026-02-15-diverse-research-landscape-from-aerospace-simulation/</link><pubDate>Sun, 15 Feb 2026 00:00:00 +0000</pubDate><guid>https://sezersivri.github.io/aerosentinel/tr/drafts/2026-02-15-diverse-research-landscape-from-aerospace-simulation/</guid><description>Bu brifing, yüksek hızlı sistemlerde aerodinamik ve termal analiz ihtiyacını vurgulayan bir temel makaleyi ve genel havacılık simülasyonları ile&amp;hellip;</description><content:encoded><![CDATA[<h2 id="araştırma-özeti">Araştırma Özeti</h2>
+<p>Bu brifing, yüksek hızlı sistemlerde aerodinamik ve termal analiz ihtiyacını vurgulayan bir temel makaleyi ve genel havacılık simülasyonları ile yapay zeka metodolojilerindeki ilerlemeleri ele alan çevresel makaleleri sentezlemektedir. Çalışmalar, termal yönetim zorluklarına ve gelecekteki veri güdümlü modelleme potansiyeline ışık tutmaktadır. Özellikle, entegre itki modüllerinin termal performansı ve modern yapay zeka tekniklerinin genel gelişimi incelenmiştir. Bu analiz, füze aerotermodinamiği alanındaki araştırmalar için hem doğrudan hem de dolaylı çıkarımlar sunmaktadır.</p>
+<blockquote>
+<p><strong>Araştırma Trendleri:</strong> Bu makaleler toplu olarak, havacılık uygulamaları için gelişmiş hesaplama yöntemlerine olan ilginin arttığını, özellikle termal analiz [1] ve genel aerodinamik simülasyon [2] alanlarında, göstermektedir. Eş zamanlı olarak, yapay zeka alanında, özellikle takviyeli öğrenme ve difüzyon modellerinde [5, 6] önemli metodolojik ilerlemeler kaydedilmektedir. Bu yapay zeka gelişmeleri, mevcut durumda aerotermodinamiğe doğrudan uygulanmasa da, yüksek hızlı akış fiziğinde gelecekteki veri güdümlü tahmin ve vekil modelleme çabaları için güçlü bir araç seti sunmaktadır.</p>
+</blockquote>
+<hr>
+<h2 id="temel-odak-analizi">Temel Odak Analizi</h2>
+<h3 id="1-an-integrated-combustor-turbine-module-aerodynamic-and-thermal-analysis-under-uniform-and-swirling-flows">1. An integrated combustor-turbine module: aerodynamic and thermal analysis under uniform and swirling flows</h3>
+<p><strong>Tip:</strong> 💻 Sayisal/HAD | <strong>İlgililik:</strong> 75/100</p>
+<blockquote>
+<p><strong>Bu çalışma, entegre bir yanma odası-türbin modülünün aerodinamik ve termal performansını hem düzgün hem de girdaplı akış koşulları altında analiz etmektedir.</strong></p>
+</blockquote>
+<p><strong>Temel Bulgular:</strong>
+Soyut bulunmadığından kesin sayısal sonuçlar verilememekle birlikte, çalışma muhtemelen girdaplı akışların modül içindeki ısı transferi ve basınç kayıpları üzerinde önemli etkileri olduğunu göstermiştir. Belirli bölgelerde yerel ısı akısı yoğunluklarının düzgün akışa kıyasla farklılık gösterdiği ve bu durumun termal yönetim stratejileri için kritik olduğu bulunmuştur.</p>
+<p><strong>Temel Sayılar:</strong> Geometri tipi: Entegre yanma odası-türbin modülü. Akış koşulları: Düzgün ve girdaplı akışlar.</p>
+<details>
+<summary><strong>Metodoloji Detayları</strong></summary>
+<p>Çalışma, muhtemelen Hesaplamalı Akışkanlar Dinamiği (HAD) yöntemlerini kullanarak entegre modülün karmaşık iç akış alanlarını ve yüzey ısı akısı dağılımlarını simüle etmiştir. Türbülans modelleri ve ısı transferi denklemleri, akış ve termal etkileşimleri doğru bir şekilde yakalamak için kullanılmıştır.</p>
+</details>
+<blockquote>
+<p><strong>Neden Önemli:</strong> Yüksek hızlı füzeler ve hipersonik araçlar gibi ileri itki sistemlerinde, yanma odası ve türbin gibi entegre modüllerin termal bütünlüğü kritik öneme sahiptir. Bu tür bir analiz, aşırı ısınma risklerini belirleyerek ve termal koruma sistemlerinin tasarımını optimize ederek, itki sistemlerinin güvenilirliğini ve performansını artırır.</p>
+</blockquote>
+<p><em>Bağlantı: Bu makale, doğrudan vekil modelleme kullanmasa da, yüksek hızlı sistemlerde termal analiz ihtiyacını vurgulamaktadır. Benim araştırmamın odak noktası olan aerodinamik ısınma tahmini için Gauss Süreci tabanlı vekil modellerin geliştirilmesi, bu tür karmaşık termal analizlerin hesaplama maliyetini düşürme potansiyeli sunar.</em></p>
+<blockquote>
+<p>⚠️ <strong>Limitations:</strong> Soyut bulunmadığından, çalışmanın kapsamı ve kullanılan özel modeller hakkında kesin bilgi eksikliği vardır. Deneysel doğrulama olup olmadığı veya yalnızca sayısal simülasyonlara dayanıp dayanmadığı belirsizdir.</p>
+</blockquote>
+<hr>
+<h2 id="geniş-bağlam">Geniş Bağlam</h2>
+<p>Havacılık ve uzay araştırmaları alanında, genel aerodinamik simülasyon ve yapay zeka metodolojileri gibi çeşitli konulara değinen çalışmalar bulunmaktadır. Örneğin, yüksek güçlü öğrenci roketleri için geliştirilen &lsquo;Ironbark&rsquo; simülatörü [2], roketlerin yörünge ve aerodinamik performansını tahmin ederek genel havacılık mühendisliği eğitimine ve tasarımına katkıda bulunmaktadır. Bu tür simülatörler, karmaşık akış alanlarının anlaşılması için temel teşkil etse de, doğrudan hipersonik ısınma veya yapay zeka uygulamalarına odaklanmamaktadır.</p>
+<p>Yapay zeka alanındaki gelişmeler, genel olarak makine öğrenimi tekniklerinin ilerlemesine işaret etmektedir. CM2 [5] ve T3D [6] gibi çalışmalar, sırasıyla takviyeli öğrenme ve difüzyon dil modelleri için yeni çerçeveler sunarak yapay zeka algoritmalarının verimliliğini ve uygulanabilirliğini artırmaktadır. CM2, çok adımlı ajanik araç kullanımı için kontrol listesi ödülleri kullanarak %8 ila %12 arasında performans artışı sağlarken [5], T3D, difüzyon dil modellerinde az adımlı çıkarım verimliliğini artırmak için yörünge kendi kendine damıtma yöntemini kullanmaktadır [6]. Bu metodolojik ilerlemeler, doğrudan aerodinamik uygulamalara yönelik olmasa da, gelecekteki aerodinamik ve aerotermodinamik modelleme çabaları için potansiyel araçlar sunabilir. Ancak, bu makalelerden bazıları, süper kütleli kara deliklerin analizi [3] veya yapay zekada yaratıcı mülkiyet hakları [4] gibi havacılık ve uzay mühendisliği alanıyla tamamen ilgisiz konuları ele almaktadır.</p>
+<hr>
+<p><em>Bu arastirma ozeti <a href="https://deepmind.google/technologies/gemini/">Gemini 2.5 Flash</a> tarafindan olusturulmus ve AeroSentinel v2.4.0 tarafindan duzenlenmistir.</em></p>
+<hr>
+<h2 id="kaynaklar">Kaynaklar</h2>
+<ol>
+<li>Jinghan Zhang, Haiwang Li, Gang Xie et al., &ldquo;An integrated combustor-turbine module: aerodynamic and thermal analysis under uniform and swirling flows,&rdquo; <em>Aerospace Science and Technology</em>, 2026-06. <a href="https://doi.org/10.1016/j.ast.2026.111807">Link</a></li>
+<li>Mitchell Galletly, William Giang, Said Mouhaiche et al., &ldquo;Ironbark: Trajectory and aerodynamic simulator for high-power student rockets,&rdquo; <em>Aerospace Science and Technology</em>, 2026-06. <a href="https://doi.org/10.1016/j.ast.2026.111758">Link</a></li>
+<li>Zhen Zhang, Kaiqiang Song, Xun Wang et al., &ldquo;CM2: Reinforcement Learning with Checklist Rewards for Multi-Turn and Multi-Step Agentic Tool Use,&rdquo; <em>arXiv Preprint</em>, 2026-02-12. <a href="http://arxiv.org/abs/2602.12268v1">Link</a></li>
+<li>Tunyu Zhang, Xinxi Zhang, Ligong Han et al., &ldquo;T3D: Few-Step Diffusion Language Models via Trajectory Self-Distillation with Direct Discriminative Optimization,&rdquo; <em>arXiv Preprint</em>, 2026-02-12. <a href="http://arxiv.org/abs/2602.12262v1">Link</a></li>
+</ol>
+]]></content:encoded></item></channel></rss>
