@@ -80,39 +80,93 @@ Experiments confirmed passive surface temperature control, demonstrating tempera
 <li>Chandan Kumar, S. Unnikrishnan, Datta V. Gaitonde, &ldquo;Receptivity and evolution of free-stream acoustic disturbances in hypersonic flow over cone–cylinder–flare,&rdquo; <em>Journal of Fluid Mechanics</em>, 2026-02-06. <a href="https://doi.org/10.1017/jfm.2026.11156">Link</a></li>
 </ol>
 ]]></content:encoded></item><item><title>About AeroSentinel</title><link>https://sezersivri.github.io/aerosentinel/about/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://sezersivri.github.io/aerosentinel/about/</guid><description>What is AeroSentinel?</description><content:encoded><![CDATA[<h2 id="what-is-aerosentinel">What is AeroSentinel?</h2>
-<p>AeroSentinel is an AI-powered research intelligence platform focused on <strong>hypersonic aerodynamics, aerothermodynamics, missile heating prediction, and ML/AI surrogates for CFD</strong>.</p>
-<p>Every week, the system scans top-tier academic databases for new publications, filters them through a strict quality gate, and publishes a curated intelligence briefing with structured analysis of the most important findings.</p>
+<p>AeroSentinel is an AI-powered research intelligence platform built for a specific thesis domain: <strong>&ldquo;Prediction of Aerodynamic Heating on High-Speed Missiles Using Gaussian Process Based Surrogate Models.&rdquo;</strong></p>
+<p>Every week, the system scans 7 top-tier academic databases for new publications, filters them through a multi-layer quality gate, classifies papers into core and peripheral research, and publishes curated bilingual intelligence briefings with structured analysis &ndash; all driven by a Telegram bot with one-tap approval.</p>
+<h2 id="thesis-focus">Thesis Focus</h2>
+<p>This platform is specifically tuned to track research at the intersection of:</p>
+<ul>
+<li><strong>Aerodynamic heating</strong> &ndash; prediction, measurement, and simulation of surface heat flux on high-speed vehicles</li>
+<li><strong>AI/ML surrogates for CFD</strong> &ndash; Gaussian process regression, neural networks, deep learning, and physics-informed methods applied to aerodynamic and aerothermodynamic problems</li>
+<li><strong>Hypersonic flow physics</strong> &ndash; boundary layer transition, shock-boundary layer interaction, real gas effects, stagnation point heating</li>
+</ul>
+<p>Papers directly on these topics get full individual deep-dive reviews (<strong>core papers</strong>). Everything else &ndash; broader CFD, general aerospace, scramjet propulsion, reentry physics &ndash; is synthesized into a flowing academic narrative with in-text citations (<strong>peripheral papers</strong>).</p>
 <h2 id="sources">Sources</h2>
 <p>Papers are sourced from 7 academic databases:</p>
 <ul>
-<li><strong>OpenAlex</strong> — broad academic coverage (200M+ works)</li>
-<li><strong>Crossref</strong> — 70M+ articles, DOI-based metadata</li>
-<li><strong>CORE</strong> — 200M+ open access articles</li>
-<li><strong>Semantic Scholar</strong> — citation velocity and influence metrics</li>
-<li><strong>arXiv</strong> — latest preprints from elite institutions</li>
-<li><strong>NASA NTRS</strong> — NASA technical reports and memoranda</li>
-<li><strong>IEEE Xplore</strong> — IEEE conference and journal papers (optional)</li>
+<li><strong>OpenAlex</strong> &ndash; broad academic coverage (200M+ works), with journal tier and institution filtering</li>
+<li><strong>Crossref</strong> &ndash; 70M+ articles, DOI-based metadata, with thesis/dissertation discovery</li>
+<li><strong>CORE</strong> &ndash; 200M+ open access articles, including theses and grey literature</li>
+<li><strong>Semantic Scholar</strong> &ndash; citation velocity, influential citation counts, abstract enrichment</li>
+<li><strong>arXiv</strong> &ndash; latest preprints, restricted to physics and computational categories with aerospace topic relevance check</li>
+<li><strong>NASA NTRS</strong> &ndash; NASA technical reports and memoranda (always Tier 1)</li>
+<li><strong>IEEE Xplore</strong> &ndash; IEEE conference and journal papers (optional, requires API key)</li>
 </ul>
-<h2 id="quality-filter">Quality Filter</h2>
-<p>Only papers meeting strict criteria are included:</p>
+<h2 id="quality-system">Quality System</h2>
+<h3 id="journal-tiers">Journal Tiers</h3>
 <ul>
-<li>Published in <strong>Tier 1 journals</strong>: AIAA Journal, Journal of Fluid Mechanics, Physics of Fluids, Journal of Spacecraft and Rockets, and others</li>
-<li>From <strong>Tier 2 journals</strong> only if authored by researchers at NASA, DLR, ONERA, JAXA, or other leading aerospace institutions</li>
-<li><strong>arXiv preprints</strong> only from established research groups</li>
-<li><strong>Keyword priority scoring</strong> based on thesis relevance: AI/ML in aerothermodynamics (+25), general heating (+15), broader CFD (baseline)</li>
+<li><strong>Tier 1</strong> (always kept): AIAA Journal, Journal of Fluid Mechanics, Physics of Fluids, Journal of Spacecraft and Rockets, Aerospace Science and Technology, Shock Waves, and others</li>
+<li><strong>Tier 2</strong> (kept with citation velocity or elite institution): Computers &amp; Fluids, Acta Astronautica, International Journal of Heat and Mass Transfer, Chinese Journal of Aeronautics, and others</li>
+<li><strong>Tier 0</strong> (blocked, except theses/dissertations): unranked journals</li>
 </ul>
-<h2 id="analysis-features">Analysis Features</h2>
-<p>Each briefing includes:</p>
+<h3 id="scoring">Scoring</h3>
+<p>Papers are scored (0-100+) based on journal tier, source, keyword priority match, citation metrics, recency, and abstract availability. Only papers scoring 30+ are included. Papers scoring below 20 are discarded entirely.</p>
+<h3 id="thesis-discovery">Thesis Discovery</h3>
+<p>Crossref dissertations and CORE theses bypass the tier-0 filter, enabling discovery of PhD and MSc work directly relevant to the thesis domain. These still pass through scoring, so irrelevant theses are naturally filtered out.</p>
+<h2 id="ai-analysis">AI Analysis</h2>
+<p>Each briefing is generated by <strong>Gemini 2.5 Flash</strong> and includes:</p>
 <ul>
-<li><strong>Relevance scoring</strong> (0-100) based on missile aerothermodynamics and ML/CFD relevance</li>
-<li><strong>Paper type classification</strong>: Experimental, Numerical/CFD, ML/Surrogate, Review, Analytical</li>
-<li><strong>Key numbers</strong>: Mach ranges, RMSE percentages, speedup factors, heat flux values</li>
-<li><strong>Cross-paper connections</strong> and field trend analysis</li>
-<li><strong>Collapsible methodology details</strong> for in-depth reading</li>
-<li><strong>Bilingual</strong>: Available in English and Turkish</li>
+<li><strong>Two-tier structure</strong> &ndash; Core papers get full analysis (methodology, key findings, key numbers, limitations, cross-paper connections); peripheral papers are woven into a literature-review-style narrative</li>
+<li><strong>9 paper type classifications</strong> &ndash; ML/Heating, ML/Aerodynamics, ML/Transition, Numerical/CFD, Experimental, Analytical, Review, Multi-Method, Thesis</li>
+<li><strong>36 curated tags</strong> &ndash; Strict English-only vocabulary covering research domains, methodologies, physical phenomena, flow regimes, applications, and cross-cutting topics</li>
+<li><strong>Relevance scoring</strong> (0-100) based on proximity to the thesis domain</li>
+<li><strong>Critical analysis</strong> &ndash; Limitations field identifies methodological weaknesses and evidence strength</li>
+<li><strong>Anti-slop filter</strong> &ndash; 24 banned AI filler phrases blocked in prompts and scrubbed from output</li>
+<li><strong>Bilingual output</strong> &ndash; Every briefing in both English and Turkish</li>
 </ul>
-<h2 id="topics-covered">Topics Covered</h2>
-<p>Aerodynamic heating prediction, ML surrogates for CFD, Gaussian process regression, physics-informed neural networks, hypersonic boundary layer transition, shock-boundary layer interaction, scramjet aerothermodynamics, reentry vehicle heating, ablation and thermal protection, conjugate heat transfer, stagnation point heating, and turbulence modeling.</p>
+<h2 id="telegram-bot">Telegram Bot</h2>
+<p>Control everything from Telegram:</p>
+<table>
+  <thead>
+      <tr>
+          <th>Command</th>
+          <th>Description</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>/scout</code></td>
+          <td>Trigger a paper hunt now</td>
+      </tr>
+      <tr>
+          <td><code>/search</code></td>
+          <td>Interactive custom search &ndash; pick from 36 tags, set date range</td>
+      </tr>
+      <tr>
+          <td><code>/bibtex</code></td>
+          <td>Export latest digest as BibTeX citations</td>
+      </tr>
+      <tr>
+          <td><code>/bookmarks</code></td>
+          <td>View your bookmarked digests</td>
+      </tr>
+      <tr>
+          <td><code>/status</code></td>
+          <td>Check latest workflow status</td>
+      </tr>
+      <tr>
+          <td><code>/help</code></td>
+          <td>Show available commands</td>
+      </tr>
+  </tbody>
+</table>
+<p>Draft previews arrive with one-tap <strong>Publish / Edit / Discard / Bookmark</strong> buttons.</p>
 <h2 id="technical-details">Technical Details</h2>
-<p>This site is fully automated, open source, and costs $0/month to operate. Built with Hugo, hosted on GitHub Pages, orchestrated by GitHub Actions, and analyzed by Google Gemini 2.5 Flash.</p>
+<ul>
+<li><strong>Fully automated</strong> &ndash; GitHub Actions runs the pipeline on schedule (weekly) or on demand via Telegram</li>
+<li><strong>Open source</strong> &ndash; <a href="https://github.com/sezersivri/aerosentinel">github.com/sezersivri/aerosentinel</a></li>
+<li><strong>$0/month</strong> &ndash; GitHub Actions, GitHub Pages, Cloudflare Worker, Gemini API, Telegram Bot API, and all academic APIs are free tier</li>
+<li><strong>Privacy first</strong> &ndash; No analytics, no tracking, no cookies</li>
+<li><strong>Built with</strong> Hugo (PaperMod theme), Python 3.11, Cloudflare Workers, Gemini 2.5 Flash</li>
+<li><strong>Current version:</strong> 2.4.0</li>
+</ul>
 ]]></content:encoded></item></channel></rss>

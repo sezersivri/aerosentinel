@@ -80,39 +80,93 @@ Mach 2.75 süpersonik rüzgar tünelinde yapılan deneyler, farklı termal özel
 <li>Chandan Kumar, S. Unnikrishnan, Datta V. Gaitonde, &ldquo;Receptivity and evolution of free-stream acoustic disturbances in hypersonic flow over cone–cylinder–flare,&rdquo; <em>Journal of Fluid Mechanics</em>, 2026-02-06. <a href="https://doi.org/10.1017/jfm.2026.11156">Link</a></li>
 </ol>
 ]]></content:encoded></item><item><title>AeroSentinel Hakkinda</title><link>https://sezersivri.github.io/aerosentinel/tr/about/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://sezersivri.github.io/aerosentinel/tr/about/</guid><description>AeroSentinel nedir?</description><content:encoded><![CDATA[<h2 id="aerosentinel-nedir">AeroSentinel Nedir?</h2>
-<p>AeroSentinel, <strong>hipersonik aerodinamik, aerotermodinamik, fuze isinma tahmini ve CFD icin yapay zeka/makine ogrenmesi vekil modelleri</strong> konularina odaklanan yapay zeka destekli bir arastirma istihbarat platformudur.</p>
-<p>Her hafta, sistem ust duzey akademik veritabanlarini yeni yayinlar icin tarar, bunlari siki bir kalite filtresinden gecirir ve en onemli bulgularin yapilandirilmis analizini iceren kuratoryel bir istihbarat brifingi yayinlar.</p>
+<p>AeroSentinel, belirli bir tez alanina odaklanan yapay zeka destekli bir arastirma istihbarat platformudur: <strong>&ldquo;Yuksek Hizli Fuzelerde Aerodinamik Isinmanin Gauss Sureci Tabanli Vekil Modeller Kullanilarak Tahmini.&rdquo;</strong></p>
+<p>Her hafta, sistem 7 ust duzey akademik veritabanini yeni yayinlar icin tarar, bunlari cok katmanli bir kalite filtresinden gecirir, makaleleri temel ve cevresel arastirma olarak siniflandirir ve yapilandirilmis analizle iki dilli istihbarat brifingleri yayinlar &ndash; tumunu Telegram botu uzerinden tek dokunusla onay ile yonetir.</p>
+<h2 id="tez-odagi">Tez Odagi</h2>
+<p>Bu platform ozellikle asagidaki kesisim noktalarindaki arastirmalari takip etmek icin ayarlanmistir:</p>
+<ul>
+<li><strong>Aerodinamik isinma</strong> &ndash; yuksek hizli araclarda yuzey isi akisi tahmini, olcumu ve simulasyonu</li>
+<li><strong>CFD icin YZ/MO vekil modelleri</strong> &ndash; Gauss sureci regresyonu, sinir aglari, derin ogrenme ve aerodinamik/aerotermodinamik problemlerine uygulanan fizik bilgili yontemler</li>
+<li><strong>Hipersonik akis fizigi</strong> &ndash; sinir tabaka gecisi, sok-sinir tabaka etkilesimi, gercek gaz etkileri, durma noktasi isinmasi</li>
+</ul>
+<p>Bu konulardaki makaleler tam bireysel derin inceleme aliyor (<strong>temel makaleler</strong>). Diger her sey &ndash; genel HAD, genel havacilik, scramjet itisi, yeniden giris fizigi &ndash; metin ici atiflarla akici bir akademik anlatima donusturuluyor (<strong>cevresel makaleler</strong>).</p>
 <h2 id="kaynaklar">Kaynaklar</h2>
 <p>Makaleler 7 akademik veritabanindan toplanir:</p>
 <ul>
-<li><strong>OpenAlex</strong> — genis akademik kapsam (200M+ eser)</li>
-<li><strong>Crossref</strong> — 70M+ makale, DOI tabanli metadata</li>
-<li><strong>CORE</strong> — 200M+ acik erisim makale</li>
-<li><strong>Semantic Scholar</strong> — atif hizi ve etki metrikleri</li>
-<li><strong>arXiv</strong> — elit kurumlardan son on-baskilar</li>
-<li><strong>NASA NTRS</strong> — NASA teknik raporlari ve muhtiralar</li>
-<li><strong>IEEE Xplore</strong> — IEEE konferans ve dergi makaleleri (opsiyonel)</li>
+<li><strong>OpenAlex</strong> &ndash; genis akademik kapsam (200M+ eser), dergi kademesi ve kurum filtrelemesiyle</li>
+<li><strong>Crossref</strong> &ndash; 70M+ makale, DOI tabanli metadata, tez/doktora kesfi ile</li>
+<li><strong>CORE</strong> &ndash; 200M+ acik erisim makale, tezler ve gri literatur dahil</li>
+<li><strong>Semantic Scholar</strong> &ndash; atif hizi, etkili atif sayilari, ozet zenginlestirme</li>
+<li><strong>arXiv</strong> &ndash; en son on-baskilar, fizik ve hesaplama kategorileriyle sinirli, havacilik konu ilgilisi kontrolu ile</li>
+<li><strong>NASA NTRS</strong> &ndash; NASA teknik raporlari ve muhtiralar (her zaman 1. Kademe)</li>
+<li><strong>IEEE Xplore</strong> &ndash; IEEE konferans ve dergi makaleleri (opsiyonel, API anahtari gerektirir)</li>
 </ul>
-<h2 id="kalite-filtresi">Kalite Filtresi</h2>
-<p>Yalnizca siki kriterleri karsilayan makaleler dahil edilir:</p>
+<h2 id="kalite-sistemi">Kalite Sistemi</h2>
+<h3 id="dergi-kademeleri">Dergi Kademeleri</h3>
 <ul>
-<li><strong>1. Kademe dergilerde</strong> yayinlanan: AIAA Journal, Journal of Fluid Mechanics, Physics of Fluids, Journal of Spacecraft and Rockets ve digerleri</li>
-<li><strong>2. Kademe dergilerden</strong> yalnizca NASA, DLR, ONERA, JAXA veya diger onde gelen havacilik kurumlari araştirmacilari tarafindan yazilmissa</li>
-<li><strong>arXiv on-baskilari</strong> yalnizca yerlesik arastirma gruplarinda</li>
-<li>Tez ilgilisine dayali <strong>anahtar kelime oncelik puanlamasi</strong>: Aerotermodinamikte YZ/MO (+25), genel isinma (+15), genis CFD (temel)</li>
+<li><strong>1. Kademe</strong> (her zaman tutulur): AIAA Journal, Journal of Fluid Mechanics, Physics of Fluids, Journal of Spacecraft and Rockets, Aerospace Science and Technology, Shock Waves ve digerleri</li>
+<li><strong>2. Kademe</strong> (atif hizi veya elit kurumla tutulur): Computers &amp; Fluids, Acta Astronautica, International Journal of Heat and Mass Transfer, Chinese Journal of Aeronautics ve digerleri</li>
+<li><strong>0. Kademe</strong> (engellenir, tezler/doktora haric): derecelendirilmemis dergiler</li>
 </ul>
-<h2 id="analiz-ozellikleri">Analiz Ozellikleri</h2>
-<p>Her brifing sunlari icerir:</p>
+<h3 id="puanlama">Puanlama</h3>
+<p>Makaleler dergi kademesi, kaynak, anahtar kelime onceligi, atif metrikleri, guncellik ve ozet varligina gore puanlanir (0-100+). Yalnizca 30+ puan alan makaleler dahil edilir. 20&rsquo;nin altinda puan alan makaleler tamamen cikarilir.</p>
+<h3 id="tez-kesfi">Tez Kesfi</h3>
+<p>Crossref doktora tezleri ve CORE tezleri 0. kademe filtresini atlar, tez alaniyla dogrudan ilgili doktora ve yuksek lisans calismalarina erisimi saglar. Bunlar yine de puanlamadan gecer, bu nedenle ilgisiz tezler dogal olarak filtrelenir.</p>
+<h2 id="yapay-zeka-analizi">Yapay Zeka Analizi</h2>
+<p>Her brifing <strong>Gemini 2.5 Flash</strong> tarafindan olusturulur ve sunlari icerir:</p>
 <ul>
-<li><strong>Ilgililik puanlamasi</strong> (0-100) fuze aerotermodinamigi ve MO/CFD ilgilisine dayali</li>
-<li><strong>Makale tipi siniflandirmasi</strong>: Deneysel, Sayisal/HAD, MO/Vekil Model, Derleme, Analitik</li>
-<li><strong>Temel sayilar</strong>: Mach araliklari, RMSE yuzdeleri, hizlanma faktorleri, isi akisi degerleri</li>
-<li><strong>Makaleler arasi baglantilar</strong> ve alan trend analizi</li>
-<li><strong>Katlanabilir metodoloji detaylari</strong></li>
-<li><strong>Iki dilli</strong>: Ingilizce ve Turkce</li>
+<li><strong>Iki katmanli yapi</strong> &ndash; Temel makaleler tam analiz alir (metodoloji, temel bulgular, temel sayilar, sinirliliklar, makaleler arasi baglantilar); cevresel makaleler literatur taramasi tarzi bir anlatima dokunur</li>
+<li><strong>9 makale tipi siniflandirmasi</strong> &ndash; MO/Isinma, MO/Aerodinamik, MO/Gecis, Sayisal/HAD, Deneysel, Analitik, Derleme, Coklu Yontem, Tez</li>
+<li><strong>36 kuratoryel etiket</strong> &ndash; Arastirma alanlari, metodolojiler, fiziksel olgular, akis rejimleri, uygulamalar ve capraz konulari kapsayan siki Ingilizce kelime dagarciqi</li>
+<li><strong>Ilgililik puanlamasi</strong> (0-100) tez alanina yakinliga dayali</li>
+<li><strong>Elestirel analiz</strong> &ndash; Sinirliliklar alani metodolojik zayifliklari ve kanit gucunu tanimlar</li>
+<li><strong>Yapay zeka dolgu filtresi</strong> &ndash; 24 yasakli YZ dolgu ifadesi istemde engellenir ve ciktidan temizlenir</li>
+<li><strong>Iki dilli cikti</strong> &ndash; Her brifing hem Ingilizce hem Turkce</li>
 </ul>
-<h2 id="kapsanan-konular">Kapsanan Konular</h2>
-<p>Aerodinamik isinma tahmini, CFD icin MO vekil modelleri, Gauss sureci regresyonu, fizik bilgili sinir aglari, hipersonik sinir tabaka gecisi, sok-sinir tabaka etkilesimi, scramjet aerotermodinamigi, yeniden giris araci isinmasi, ablasyon ve termal koruma, konjuge isi transferi, durma noktasi isinmasi ve turbuslans modellemesi.</p>
+<h2 id="telegram-botu">Telegram Botu</h2>
+<p>Her seyi Telegram&rsquo;dan yonetin:</p>
+<table>
+  <thead>
+      <tr>
+          <th>Komut</th>
+          <th>Aciklama</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>/scout</code></td>
+          <td>Hemen bir makale avi baslatir</td>
+      </tr>
+      <tr>
+          <td><code>/search</code></td>
+          <td>Interaktif ozel arama &ndash; 36 etiketten secin, tarih araligi belirleyin</td>
+      </tr>
+      <tr>
+          <td><code>/bibtex</code></td>
+          <td>Son ozeti BibTeX olarak disari aktarin</td>
+      </tr>
+      <tr>
+          <td><code>/bookmarks</code></td>
+          <td>Yer imlerine alinan ozetlerinizi goruntuler</td>
+      </tr>
+      <tr>
+          <td><code>/status</code></td>
+          <td>Son is akisi durumunu kontrol eder</td>
+      </tr>
+      <tr>
+          <td><code>/help</code></td>
+          <td>Kullanilabilir komutlari gosterir</td>
+      </tr>
+  </tbody>
+</table>
+<p>Taslak on izlemeler tek dokunusla <strong>Yayinla / Duzenle / Cikar / Yer Imi</strong> butonlariyla gelir.</p>
 <h2 id="teknik-detaylar">Teknik Detaylar</h2>
-<p>Bu site tamamen otomatik, acik kaynakli ve aylik $0 maliyetle calisir. Hugo ile insa edilmis, GitHub Pages&rsquo;da barindirilan, GitHub Actions tarafindan yonetilen ve Google Gemini 2.5 Flash tarafindan analiz edilen bir platformdur.</p>
+<ul>
+<li><strong>Tamamen otomatik</strong> &ndash; GitHub Actions, programli (haftalik) veya Telegram uzerinden talep uzerine calisir</li>
+<li><strong>Acik kaynak</strong> &ndash; <a href="https://github.com/sezersivri/aerosentinel">github.com/sezersivri/aerosentinel</a></li>
+<li><strong>Aylik $0</strong> &ndash; GitHub Actions, GitHub Pages, Cloudflare Worker, Gemini API, Telegram Bot API ve tum akademik API&rsquo;ler ucretsiz katmandadir</li>
+<li><strong>Gizlilik oncelikli</strong> &ndash; Analitik yok, izleme yok, cerez yok</li>
+<li><strong>Kullanilanlar:</strong> Hugo (PaperMod temasi), Python 3.11, Cloudflare Workers, Gemini 2.5 Flash</li>
+<li><strong>Guncel surum:</strong> 2.4.0</li>
+</ul>
 ]]></content:encoded></item></channel></rss>
