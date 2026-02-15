@@ -1,0 +1,44 @@
+{
+  "filename_base": "2026-02-15-machine-learning-for-mars-rotorcraft-faster",
+  "filename_en": "2026-02-15-machine-learning-for-mars-rotorcraft-faster.en.md",
+  "filename_tr": "2026-02-15-machine-learning-for-mars-rotorcraft-faster.tr.md",
+  "gemini_output_en": {
+    "title": "Machine Learning for Mars Rotorcraft: Faster Aerodynamic Design and Optimization",
+    "paper_title": "Long-Range Mars Rotorcraft Design Optimization using Machine Learning",
+    "authors": "Not specified in abstract",
+    "paper_type": "ml_aerodynamics",
+    "relevance_score": 40,
+    "summary": "This paper describes a methodology for optimizing the design of a long-range Mars rotorcraft by integrating high-fidelity simulation data with machine learning techniques. The approach begins with generating extensive aerodynamic simulation databases for a hex-rotor bi-plane tailsitter aircraft across various geometric perturbations and flight conditions. Over 3,000 full aircraft aerodynamic simulations were performed using GPU-enabled OVERFLOW with an actuator disk model, taking approximately 1.5 weeks on 32 GPU nodes equipped with 128 NVIDIA V100 GPUs.\n\nGaussian Process Regression (GPR), sparse GPRs, and various Neural Networks were then trained as surrogate models to predict airfoil and airframe aerodynamic performance based on flight conditions, airframe geometry, and rotor control inputs. These surrogate models, combined with additional modules for aircraft mass and inertia, enabled another 3,000 aircraft simulations in CAMRAD-II in less than six hours using 240 CPU cores. This significantly reduced the computational cost for subsequent design iterations. The framework was then configured for simultaneous optimization of aircraft parameters and flight conditions, aiming for objectives such as maximum range or endurance while satisfying controllability constraints.\n\nThis work demonstrates a practical application of data-driven methods to bring higher-fidelity simulation data into the early stages of conceptual design. By creating accurate and efficient surrogate models, the design process can achieve improved accuracy and potentially identify critical design issues much earlier than traditional methods, despite the computational expense of the initial high-fidelity data generation.",
+    "tags": [
+      "Gaussian Process Surrogates",
+      "Neural Network Surrogates",
+      "Design Optimization",
+      "Flight Vehicle Design",
+      "Data-Driven Methods"
+    ]
+  },
+  "gemini_output_tr": {
+    "title": "Makine Ogrenmesiyle Uzun Menzilli Mars Rotorlu Arac Tasarim Optimizasyonu",
+    "paper_title": "Long-Range Mars Rotorcraft Design Optimization using Machine Learning",
+    "authors": "Unknown",
+    "paper_type": "ml_aerodynamics",
+    "relevance_score": 40,
+    "summary": "Bu makale, uzun menzilli bir Mars rotorlu aracinin tasarim optimizasyonu icin coklu dogruluk seviyelerindeki simülasyon verilerinin ve makine ogrenmesi tekniklerinin kullanilmasini detaylandirmaktadir. Yaklasim, bir heksa-rotorlu cift kanatli kuyruk-oturucu ucagin geometrik pertürbasyonlari ve ucus kosullari araligi icin GPU hizlandirmali OVERFLOW kullanarak iki buyuk aerodinamik simülasyon veritabani olusturmayi iceriyordu. Bu yuksek dogruluklu HAD sonuclari, kanat profili ve govde aerodinamik performansini tahmin etmek icin Gauss Surec Regresyonu (GSR) ve cesitli Yapay Sinir Aglari (YSA) dahil olmak uzere vekil modelleri egitmek icin kullanildi.\n\n3.000'den fazla tam ucak aerodinamik simülasyonu, bir aktüatör disk modeliyle GPU destekli OVERFLOW kullanilarak gerceklestirildi ve bu simülasyonlar 32 GPU dügümünde (128 NVIDIA V100 GPU) yaklasik 1.5 haftada tamamlandi. Gelistirilen vekil modeller, kütle ve ataleti tahmin eden ek Python modülleriyle birlestirilerek, 240 Merkezi Islem Birimi (CPU) cekirdegi kullanilarak CAMRAD-II'de alti saatten daha kisa sürede 3.000 ek ucak simülasyonunun yapilmasini sagladi. Bu, tasarim sürecini önemli olcude hizlandirarak stabilite ve kontrol türevlerinin hizli bir sekilde degerlendirilmesine olanak tanidi. Cerceve artik ucagi maksimum menzil, dayaniklilik veya faydali yük gibi hedefler icin kontrol edilebilirlik kisitlamalarina uyarak optimize edebilmektedir.\n\nYuksek hizli aerotermodinamigi dogrudan ele almasa da, bu calisma, yuksek dogruluklu HAD verilerini kavramsal tasarimin erken asamalarina entegre etmek icin saglam bir metodoloji sergilemektedir. Vekil modelleme yoluyla elde edilen hizlanma, ozellikle karmasik aerodinamik olaylari temsil etmek icin GSR ve YSA kullanimi, aerotermodinamik gibi daha karmasik fizik icerenler de dahil olmak uzere cesitli havacilik uygulamalarinda tasarim optimizasyonu icin daha genis cikarimlar tasimaktadir. Bu yaklasim, sonuclarin dogrulugunu artirarak ve tasarim iterasyon süresini azaltarak kritik tasarim sorunlarinin gözden kacirilmasi riskini azaltabilir.",
+    "tags": [
+      "Gaussian Process Surrogates",
+      "Neural Network Surrogates",
+      "Design Optimization",
+      "Flight Vehicle Design",
+      "Data-Driven Methods"
+    ]
+  },
+  "paper": {
+    "title": "Long-Range Mars Rotorcraft Design Optimization using Machine Learning",
+    "authors": [],
+    "journal": "NASA Technical Report",
+    "url": "https://ntrs.nasa.gov/citations/20250003721",
+    "doi": "ntrs:20250003721",
+    "date": "Unknown"
+  },
+  "created_at": "2026-02-15T14:00:39.294567"
+}

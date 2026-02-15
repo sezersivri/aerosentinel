@@ -80,6 +80,29 @@
           "total_tokens": 7895
         }
       }
+    },
+    {
+      "type": "scout",
+      "timestamp": "2026-02-15T14:00:40.069178",
+      "papers_found": 5,
+      "papers_selected": 5,
+      "sources": {
+        "NASA NTRS": 5
+      },
+      "gemini_calls": 10,
+      "duration_seconds": 353.0,
+      "token_usage": {
+        "en": {
+          "prompt_tokens": 6391,
+          "candidates_tokens": 1861,
+          "total_tokens": 17426
+        },
+        "tr": {
+          "prompt_tokens": 7656,
+          "candidates_tokens": 3209,
+          "total_tokens": 22774
+        }
+      }
     }
   ]
 }

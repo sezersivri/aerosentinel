@@ -1,0 +1,44 @@
+{
+  "filename_base": "2026-02-15-quantifying-uncertainty-in-aerodynamic-models-for",
+  "filename_en": "2026-02-15-quantifying-uncertainty-in-aerodynamic-models-for.en.md",
+  "filename_tr": "2026-02-15-quantifying-uncertainty-in-aerodynamic-models-for.tr.md",
+  "gemini_output_en": {
+    "title": "Quantifying Uncertainty in Aerodynamic Models for Reentry Simulations",
+    "paper_title": "Sampling Functions from Gaussian Processes and Structured Covariance Gaussian Networks",
+    "authors": "Unknown",
+    "paper_type": "ml_aerodynamics",
+    "relevance_score": 88,
+    "summary": "This paper addresses the critical need to incorporate model uncertainty when developing aerodynamic models from data, aiming to create probabilistic aerodynamic databases. It explores methods for sampling deterministic functions from two types of probabilistic models: Gaussian Process Regressors (GPRs) and a specific neural network architecture. A key challenge for GPRs is generating consistent function evaluations across multiple samples when input points are not predetermined.\n\nFor GPRs, the paper presents an approach to achieve consistent function sampling. For the neural network architecture, which learns a conditional Gaussian distribution by maximizing marginal likelihood, it discusses and compares various options for generating sample functions that align with this learned distribution. The utility of these probabilistic aerodynamic models is then demonstrated through an application in an atmospheric reentry simulation. The abstract does not provide specific quantitative results such as Mach numbers, RMSE values, or speedup factors from these demonstrations.\n\nThe work is significant for the aerothermodynamics community as it directly contributes to building more reliable aerodynamic models by quantifying and propagating uncertainty. This capability is essential for robust design, control, and trajectory planning of high-speed missiles and reentry vehicles, where accurate aerodynamic predictions under varying conditions are paramount.",
+    "tags": [
+      "Gaussian Process Surrogates",
+      "Neural Network Surrogates",
+      "Aerothermodynamics",
+      "Reentry Vehicles",
+      "Surrogate Modeling"
+    ]
+  },
+  "gemini_output_tr": {
+    "title": "Aerodinamik Modeller Icin Gauss Sureci ve Sinir Agi Tabanli Olasi Fonksiyon Orneklemesi",
+    "paper_title": "Sampling Functions from Gaussian Processes and Structured Covariance Gaussian Networks",
+    "authors": "Unknown",
+    "paper_type": "ml_aerodynamics",
+    "relevance_score": 85,
+    "summary": "Bu makale, aerodinamik modelleri verilerden öğrenirken model belirsizliği tahminlerini dahil etmenin önemini ele almaktadır. Bu amaçla, fiziksel ve istatistiksel olarak makul aerodinamik modeller oluşturmak için örnekleme yapılabilen olasılıksal aerodinamik veritabanlarının tasarımını teşvik etmektedir. Çalışma, iki farklı olasılıksal model türünden deterministik fonksiyonların nasıl örnekleneceğini tartışmakta ve bunların kullanımını göstermektedir: Gauss Süreci Regresörleri (GPR'ler) ve koşullu Gauss dağılımını öğrenen bir sinir ağı mimarisi. GPR'lerden tutarlı fonksiyon değerlendirmelerinin çoklu örnekler üzerinde nasıl örnekleneceğine dair bir yaklaşım sunulmaktadır.\n\nMakale, GPR'lerin çekirdek parametre alanı üzerinde eğitim verilerinin marjinal olasılığını maksimize ederek eğitildiğini ve istenen girdi noktalarında Gauss dağılımından noktalar çekilerek fonksiyon örneklerinin kolayca oluşturulduğunu belirtmektedir. Ancak, noktalar önceden bilinmediğinde, klasik örnekleme yaklaşımının ardışık fonksiyon örneklerinin farklı fonksiyon gerçekleşmeleri üreteceği için mümkün olmadığını vurgulamaktadır. Bu sorunu çözmek için tutarlı bir örnekleme yöntemi sunulmaktadır. İkinci olarak, girdi uzayındaki her noktada marjinal olasılığı maksimize ederek koşullu bir Gauss dağılımı öğrenen bir sinir ağı mimarisi açıklanmaktadır. Bu dağılıma uygun örnek fonksiyonlar üretmek için çeşitli seçenekler tartışılmakta ve karşılaştırılmaktadır. Son olarak, bu olasılıksal aerodinamik modellerin atmosferik yeniden giriş simülasyonunda nasıl kullanıldığı gösterilmektedir. Makalede belirli sayısal sonuçlar veya performans metrikleri (örn. Mach aralıkları, RMSE değerleri) detaylandırılmamıştır.\n\nBu çalışma, yüksek hızlı uçuş araçları için aerodinamik modelleme ve tasarımda belirsizlik nicelemesi açısından önemlidir. Veri odaklı yaklaşımlarla oluşturulan ve belirsizliği içerebilen modellerden tutarlı fonksiyon örnekleri elde etme yeteneği, tasarım optimizasyonu ve risk değerlendirmesi için sağlam araçlar sunar. Bu tür olasılıksal modeller, sınırlı deneysel veya hesaplamalı verilerin olduğu durumlarda mühendislik kararlarının güvenilirliğini artırabilir.",
+    "tags": [
+      "Gaussian Process Surrogates",
+      "Neural Network Surrogates",
+      "Aerothermodynamics",
+      "Reentry Vehicles",
+      "Surrogate Modeling"
+    ]
+  },
+  "paper": {
+    "title": "Sampling Functions from Gaussian Processes and Structured Covariance Gaussian Networks",
+    "authors": [],
+    "journal": "NASA Technical Report",
+    "url": "https://ntrs.nasa.gov/citations/20220016480",
+    "doi": "ntrs:20220016480",
+    "date": "Unknown"
+  },
+  "created_at": "2026-02-15T14:00:38.563701"
+}

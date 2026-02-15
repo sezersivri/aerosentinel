@@ -1,0 +1,44 @@
+{
+  "filename_base": "2026-02-15-quantifying-orion-aerodynamic-uncertainty-with-structured",
+  "filename_en": "2026-02-15-quantifying-orion-aerodynamic-uncertainty-with-structured.en.md",
+  "filename_tr": "2026-02-15-quantifying-orion-aerodynamic-uncertainty-with-structured.tr.md",
+  "gemini_output_en": {
+    "title": "Quantifying Orion Aerodynamic Uncertainty with Structured Covariance Gaussian Networks",
+    "paper_title": "Structured Covariance Gaussian Networks for Orion Crew Module Aerodynamic Uncertainty Quantification",
+    "authors": "Unknown",
+    "paper_type": "ml_aerodynamics",
+    "relevance_score": 85,
+    "summary": "This paper introduces Structured Covariance Gaussian Networks (SCGNs), a new method for nonlinear regression and uncertainty quantification. The approach involves a pair of neural networks that parameterize the mean and a dense covariance function of a multivariate Gaussian process. These networks are trained together to maximize the log-likelihood of the observed data, with the covariance matrix constructed to ensure positive definiteness at every input. The authors also present a sampling technique to generate viable surrogate function realizations from the Gaussian process, applying the SCGN model to learn an aerodynamic response surface with built-in uncertainty for the Orion crew module.\n\nThe results indicate that SCGN provides an efficient and systematic way to learn complex nonlinear functional relationships and dense covariances. When compared to a baseline Gaussian process regressor, SCGN delivers comparable uncertainty descriptions while demonstrating improved scalability with increasing dataset size. The sample functions produced by SCGN are quick to evaluate online, making them suitable for integration into trajectory simulations.\n\nThese findings suggest that SCGN is a viable computational method for aerodynamic uncertainty quantification. Its ability to combine the flexibility of neural networks with the uncertainty quantification capabilities of Gaussian processes, particularly with improved scalability, holds promise for the design and analysis of high-speed vehicles where accurate aerodynamic predictions and their associated uncertainties are critical.",
+    "tags": [
+      "Gaussian Process Surrogates",
+      "Neural Network Surrogates",
+      "Data-Driven Methods",
+      "Hypersonic Aerodynamics",
+      "Surrogate Modeling"
+    ]
+  },
+  "gemini_output_tr": {
+    "title": "Orion Modülü Aerodinamik Belirsizlik Kuantifikasyonu için Gauss Ağları",
+    "paper_title": "Structured Covariance Gaussian Networks for Orion Crew Module Aerodynamic Uncertainty Quantification",
+    "authors": "Not specified",
+    "paper_type": "ml_aerodynamics",
+    "relevance_score": 65,
+    "summary": "Bu makale, doğrusal olmayan regresyon ve belirsizlik nicelemesi için Yapılandırılmış Kovaryans Gauss Ağları (SCGN) adı verilen yeni bir yaklaşım sunmaktadır. Yöntem, çok değişkenli bir Gauss sürecinin ortalama ve yoğun kovaryans fonksiyonlarını parametreleştiren bir çift sinir ağına dayanır. Bu ağlar, verilen verileri gözlemleme log-olasılığını en üst düzeye çıkarmak için birlikte eğitilir ve kovaryans matrisinin her girişte yapı gereği pozitif tanımlı olmasını sağlar. Makale ayrıca, Gauss sürecinden uygulanabilir vekil fonksiyon gerçekleştirmeleri üreten bir örnekleme yaklaşımı da önermektedir.\n\nSCGN'lerin kullanımı, Orion mürettebat modülü için yerleşik belirsizlikle bir aerodinamik tepki yüzeyini öğrenmek amacıyla gösterilmiştir. SCGN'nin doğrusal olmayan fonksiyonel ilişkileri ve yoğun kovaryansları öğrenmek için verimli ve sistematik bir yol sağladığı bulunmuştur. Sonuçlar, SCGN'nin temel bir Gauss süreci regresörüne kıyasla karşılaştırılabilir belirsizlik açıklamaları sunduğunu ve veri kümesi boyutuna göre ölçeklenebilirlik açısından iyileşme gösterdiğini ortaya koymaktadır. SCGN tarafından üretilen örnek fonksiyonlar, çevrimiçi olarak hızlı bir şekilde değerlendirilebilir, bu da onları yörünge simülasyonlarında kullanım için uygun hale getirir. Makalede belirli Mach aralıkları, RMSE değerleri veya hızlanma faktörleri belirtilmemiştir.\n\nBu çalışma, doğrudan aerodinamik ısıtma tahmini üzerine odaklanmasa da, Gauss süreci tabanlı vekil modeller ve belirsizlik nicelemesi konusundaki metodolojik ilerlemeleri nedeniyle aerotermodinamik topluluğu için önemlidir. Yüksek hızlı füzeler ve yeniden giriş araçları için aerodinamik ısıtma tahminlerinde karşılaşılan karmaşık, yüksek boyutlu belirsizlik problemlerini ele almak için benzer yaklaşımlar uygulanabilir. Özellikle, vekil fonksiyonların hızlı değerlendirilmesi, tasarım optimizasyonu ve yörünge analizi için kritik bir avantaj sunar.",
+    "tags": [
+      "Gaussian Process Surrogates",
+      "Neural Network Surrogates",
+      "Data-Driven Methods",
+      "Hypersonic Aerodynamics",
+      "Surrogate Modeling"
+    ]
+  },
+  "paper": {
+    "title": "Structured Covariance Gaussian Networks for Orion Crew Module Aerodynamic Uncertainty Quantification",
+    "authors": [],
+    "journal": "NASA Technical Report",
+    "url": "https://ntrs.nasa.gov/citations/20220017566",
+    "doi": "ntrs:20220017566",
+    "date": "Unknown"
+  },
+  "created_at": "2026-02-15T14:00:38.937468"
+}
