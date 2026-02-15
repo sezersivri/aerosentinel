@@ -8,19 +8,19 @@ translationKey: "about"
 
 ## AeroSentinel Nedir?
 
-AeroSentinel, belirli bir tez alanina odaklanan yapay zeka destekli bir arastirma istihbarat platformudur: **"Yuksek Hizli Fuzelerde Aerodinamik Isinmanin Gauss Sureci Tabanli Vekil Modeller Kullanilarak Tahmini."**
+AeroSentinel, **aerotermodinamik, hipersonik akis fizigi ve HAD'de YZ/MO uygulamalari** alanindaki en son gelismeleri takip eden yapay zeka destekli bir arastirma istihbarat platformudur.
 
-Her hafta, sistem 7 ust duzey akademik veritabanini yeni yayinlar icin tarar, bunlari cok katmanli bir kalite filtresinden gecirir, makaleleri temel ve cevresel arastirma olarak siniflandirir ve yapilandirilmis analizle iki dilli istihbarat brifingleri yayinlar -- tumunu Telegram botu uzerinden tek dokunusla onay ile yonetir.
+Her hafta, sistem 7 ust duzey akademik veritabanini yeni yayinlar icin tarar, bunlari cok katmanli bir kalite filtresinden gecirir ve iki dilli makale incelemeleri yayinlar -- tumunu Telegram botu uzerinden tek dokunusla onay ile yonetir.
 
-## Tez Odagi
+## Arastirma Odagi
 
-Bu platform ozellikle asagidaki kesisim noktalarindaki arastirmalari takip etmek icin ayarlanmistir:
+Platform uc ana alanda arastirmalari takip eder:
 
 - **Aerodinamik isinma** -- yuksek hizli araclarda yuzey isi akisi tahmini, olcumu ve simulasyonu
 - **CFD icin YZ/MO vekil modelleri** -- Gauss sureci regresyonu, sinir aglari, derin ogrenme ve aerodinamik/aerotermodinamik problemlerine uygulanan fizik bilgili yontemler
 - **Hipersonik akis fizigi** -- sinir tabaka gecisi, sok-sinir tabaka etkilesimi, gercek gaz etkileri, durma noktasi isinmasi
 
-Bu konulardaki makaleler tam bireysel derin inceleme aliyor (**temel makaleler**). Diger her sey -- genel HAD, genel havacilik, scramjet itisi, yeniden giris fizigi -- metin ici atiflarla akici bir akademik anlatima donusturuluyor (**cevresel makaleler**).
+Her makale, okunabilir duz yazi ozetleri, tip rozeti ve ilgililik puani ile kendi bireysel inceleme yazisinialir.
 
 ## Kaynaklar
 
@@ -42,22 +42,21 @@ Makaleler 7 akademik veritabanindan toplanir:
 - **0. Kademe** (engellenir, tezler/doktora haric): derecelendirilmemis dergiler
 
 ### Puanlama
-Makaleler dergi kademesi, kaynak, anahtar kelime onceligi, atif metrikleri, guncellik ve ozet varligina gore puanlanir (0-100+). Yalnizca 30+ puan alan makaleler dahil edilir. 20'nin altinda puan alan makaleler tamamen cikarilir.
+Makaleler dergi kademesi, kaynak, anahtar kelime onceligi, atif metrikleri, guncellik ve ozet varligina gore puanlanir (0-100+). Yalnizca 30+ puan alan makaleler dahil edilir.
 
 ### Tez Kesfi
-Crossref doktora tezleri ve CORE tezleri 0. kademe filtresini atlar, tez alaniyla dogrudan ilgili doktora ve yuksek lisans calismalarina erisimi saglar. Bunlar yine de puanlamadan gecer, bu nedenle ilgisiz tezler dogal olarak filtrelenir.
+Crossref doktora tezleri ve CORE tezleri 0. kademe filtresini atlar, ilgili doktora ve yuksek lisans calismalarina erisimi saglar. Bunlar yine de puanlamadan gecer, bu nedenle ilgisiz tezler dogal olarak filtrelenir.
 
 ## Yapay Zeka Analizi
 
-Her brifing **Gemini 2.5 Flash** tarafindan olusturulur ve sunlari icerir:
+Her makale incelemesi **Gemini 2.5 Flash** tarafindan olusturulur ve sunlari icerir:
 
-- **Iki katmanli yapi** -- Temel makaleler tam analiz alir (metodoloji, temel bulgular, temel sayilar, sinirliliklar, makaleler arasi baglantilar); cevresel makaleler literatur taramasi tarzi bir anlatima dokunur
+- **Dogal duz yazi ozetleri** -- Makaleyi bilgili bir meslektasin anlattigi gibi 2-3 paragraf, yapilandirilmis kontrol listesi degil
 - **9 makale tipi siniflandirmasi** -- MO/Isinma, MO/Aerodinamik, MO/Gecis, Sayisal/HAD, Deneysel, Analitik, Derleme, Coklu Yontem, Tez
 - **36 kuratoryel etiket** -- Arastirma alanlari, metodolojiler, fiziksel olgular, akis rejimleri, uygulamalar ve capraz konulari kapsayan siki Ingilizce kelime dagarciqi
-- **Ilgililik puanlamasi** (0-100) tez alanina yakinliga dayali
-- **Elestirel analiz** -- Sinirliliklar alani metodolojik zayifliklari ve kanit gucunu tanimlar
+- **Ilgililik puanlamasi** (0-100) arastirma odak alanlarina yakinliga dayali
 - **Yapay zeka dolgu filtresi** -- 24 yasakli YZ dolgu ifadesi istemde engellenir ve ciktidan temizlenir
-- **Iki dilli cikti** -- Her brifing hem Ingilizce hem Turkce
+- **Iki dilli cikti** -- Her inceleme hem Ingilizce hem Turkce
 
 ## Telegram Botu
 
@@ -81,4 +80,4 @@ Taslak on izlemeler tek dokunusla **Yayinla / Duzenle / Cikar / Yer Imi** butonl
 - **Aylik $0** -- GitHub Actions, GitHub Pages, Cloudflare Worker, Gemini API, Telegram Bot API ve tum akademik API'ler ucretsiz katmandadir
 - **Gizlilik oncelikli** -- Analitik yok, izleme yok, cerez yok
 - **Kullanilanlar:** Hugo (PaperMod temasi), Python 3.11, Cloudflare Workers, Gemini 2.5 Flash
-- **Guncel surum:** 2.4.0
+- **Guncel surum:** 2.5.0
