@@ -1,5 +1,10 @@
 /**
- * AeroSentinel v2 — Google Apps Script Webhook Bridge
+ * ⚠️ DEPRECATED — This Google Apps Script bridge has been replaced by
+ * worker/index.js (Cloudflare Worker). It only supports /scout, /status,
+ * /help and lacks v2.3 features (search, bibtex, bookmarks, two-tier posts).
+ * Kept for reference only. See worker/index.js for the active implementation.
+ *
+ * AeroSentinel v2 — Google Apps Script Webhook Bridge (LEGACY)
  *
  * This script runs FREE on Google's servers 24/7.
  * It listens for Telegram button clicks AND text commands,

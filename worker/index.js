@@ -1,5 +1,5 @@
 /**
- * AeroSentinel v2 — Cloudflare Worker Webhook Bridge
+ * AeroSentinel v2.3 — Cloudflare Worker Webhook Bridge
  * Replaces Google Apps Script. No 302 redirect issues.
  * Free tier: 100K requests/day.
  *
