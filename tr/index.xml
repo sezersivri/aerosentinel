@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>AeroSentinel</title><link>https://sezersivri.github.io/aerosentinel/tr/</link><description>Recent content on AeroSentinel</description><generator>Hugo -- 0.155.3</generator><language>tr</language><atom:link href="https://sezersivri.github.io/aerosentinel/tr/index.xml" rel="self" type="application/rss+xml"/><item><title>AeroSentinel Hakkinda</title><link>https://sezersivri.github.io/aerosentinel/tr/about/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://sezersivri.github.io/aerosentinel/tr/about/</guid><description>AeroSentinel nedir?</description><content:encoded><![CDATA[<h2 id="aerosentinel-nedir">AeroSentinel Nedir?</h2>
-<p>AeroSentinel, belirli bir tez alanina odaklanan yapay zeka destekli bir arastirma istihbarat platformudur: <strong>&ldquo;Yuksek Hizli Fuzelerde Aerodinamik Isinmanin Gauss Sureci Tabanli Vekil Modeller Kullanilarak Tahmini.&rdquo;</strong></p>
-<p>Her hafta, sistem 7 ust duzey akademik veritabanini yeni yayinlar icin tarar, bunlari cok katmanli bir kalite filtresinden gecirir, makaleleri temel ve cevresel arastirma olarak siniflandirir ve yapilandirilmis analizle iki dilli istihbarat brifingleri yayinlar &ndash; tumunu Telegram botu uzerinden tek dokunusla onay ile yonetir.</p>
-<h2 id="tez-odagi">Tez Odagi</h2>
-<p>Bu platform ozellikle asagidaki kesisim noktalarindaki arastirmalari takip etmek icin ayarlanmistir:</p>
+<p>AeroSentinel, <strong>aerotermodinamik, hipersonik akis fizigi ve HAD&rsquo;de YZ/MO uygulamalari</strong> alanindaki en son gelismeleri takip eden yapay zeka destekli bir arastirma istihbarat platformudur.</p>
+<p>Her hafta, sistem 7 ust duzey akademik veritabanini yeni yayinlar icin tarar, bunlari cok katmanli bir kalite filtresinden gecirir ve iki dilli makale incelemeleri yayinlar &ndash; tumunu Telegram botu uzerinden tek dokunusla onay ile yonetir.</p>
+<h2 id="arastirma-odagi">Arastirma Odagi</h2>
+<p>Platform uc ana alanda arastirmalari takip eder:</p>
 <ul>
 <li><strong>Aerodinamik isinma</strong> &ndash; yuksek hizli araclarda yuzey isi akisi tahmini, olcumu ve simulasyonu</li>
 <li><strong>CFD icin YZ/MO vekil modelleri</strong> &ndash; Gauss sureci regresyonu, sinir aglari, derin ogrenme ve aerodinamik/aerotermodinamik problemlerine uygulanan fizik bilgili yontemler</li>
 <li><strong>Hipersonik akis fizigi</strong> &ndash; sinir tabaka gecisi, sok-sinir tabaka etkilesimi, gercek gaz etkileri, durma noktasi isinmasi</li>
 </ul>
-<p>Bu konulardaki makaleler tam bireysel derin inceleme aliyor (<strong>temel makaleler</strong>). Diger her sey &ndash; genel HAD, genel havacilik, scramjet itisi, yeniden giris fizigi &ndash; metin ici atiflarla akici bir akademik anlatima donusturuluyor (<strong>cevresel makaleler</strong>).</p>
+<p>Her makale, okunabilir duz yazi ozetleri, tip rozeti ve ilgililik puani ile kendi bireysel inceleme yazisinialir.</p>
 <h2 id="kaynaklar">Kaynaklar</h2>
 <p>Makaleler 7 akademik veritabanindan toplanir:</p>
 <ul>
@@ -28,19 +28,18 @@
 <li><strong>0. Kademe</strong> (engellenir, tezler/doktora haric): derecelendirilmemis dergiler</li>
 </ul>
 <h3 id="puanlama">Puanlama</h3>
-<p>Makaleler dergi kademesi, kaynak, anahtar kelime onceligi, atif metrikleri, guncellik ve ozet varligina gore puanlanir (0-100+). Yalnizca 30+ puan alan makaleler dahil edilir. 20&rsquo;nin altinda puan alan makaleler tamamen cikarilir.</p>
+<p>Makaleler dergi kademesi, kaynak, anahtar kelime onceligi, atif metrikleri, guncellik ve ozet varligina gore puanlanir (0-100+). Yalnizca 30+ puan alan makaleler dahil edilir.</p>
 <h3 id="tez-kesfi">Tez Kesfi</h3>
-<p>Crossref doktora tezleri ve CORE tezleri 0. kademe filtresini atlar, tez alaniyla dogrudan ilgili doktora ve yuksek lisans calismalarina erisimi saglar. Bunlar yine de puanlamadan gecer, bu nedenle ilgisiz tezler dogal olarak filtrelenir.</p>
+<p>Crossref doktora tezleri ve CORE tezleri 0. kademe filtresini atlar, ilgili doktora ve yuksek lisans calismalarina erisimi saglar. Bunlar yine de puanlamadan gecer, bu nedenle ilgisiz tezler dogal olarak filtrelenir.</p>
 <h2 id="yapay-zeka-analizi">Yapay Zeka Analizi</h2>
-<p>Her brifing <strong>Gemini 2.5 Flash</strong> tarafindan olusturulur ve sunlari icerir:</p>
+<p>Her makale incelemesi <strong>Gemini 2.5 Flash</strong> tarafindan olusturulur ve sunlari icerir:</p>
 <ul>
-<li><strong>Iki katmanli yapi</strong> &ndash; Temel makaleler tam analiz alir (metodoloji, temel bulgular, temel sayilar, sinirliliklar, makaleler arasi baglantilar); cevresel makaleler literatur taramasi tarzi bir anlatima dokunur</li>
+<li><strong>Dogal duz yazi ozetleri</strong> &ndash; Makaleyi bilgili bir meslektasin anlattigi gibi 2-3 paragraf, yapilandirilmis kontrol listesi degil</li>
 <li><strong>9 makale tipi siniflandirmasi</strong> &ndash; MO/Isinma, MO/Aerodinamik, MO/Gecis, Sayisal/HAD, Deneysel, Analitik, Derleme, Coklu Yontem, Tez</li>
 <li><strong>36 kuratoryel etiket</strong> &ndash; Arastirma alanlari, metodolojiler, fiziksel olgular, akis rejimleri, uygulamalar ve capraz konulari kapsayan siki Ingilizce kelime dagarciqi</li>
-<li><strong>Ilgililik puanlamasi</strong> (0-100) tez alanina yakinliga dayali</li>
-<li><strong>Elestirel analiz</strong> &ndash; Sinirliliklar alani metodolojik zayifliklari ve kanit gucunu tanimlar</li>
+<li><strong>Ilgililik puanlamasi</strong> (0-100) arastirma odak alanlarina yakinliga dayali</li>
 <li><strong>Yapay zeka dolgu filtresi</strong> &ndash; 24 yasakli YZ dolgu ifadesi istemde engellenir ve ciktidan temizlenir</li>
-<li><strong>Iki dilli cikti</strong> &ndash; Her brifing hem Ingilizce hem Turkce</li>
+<li><strong>Iki dilli cikti</strong> &ndash; Her inceleme hem Ingilizce hem Turkce</li>
 </ul>
 <h2 id="telegram-botu">Telegram Botu</h2>
 <p>Her seyi Telegram&rsquo;dan yonetin:</p>
@@ -86,6 +85,6 @@
 <li><strong>Aylik $0</strong> &ndash; GitHub Actions, GitHub Pages, Cloudflare Worker, Gemini API, Telegram Bot API ve tum akademik API&rsquo;ler ucretsiz katmandadir</li>
 <li><strong>Gizlilik oncelikli</strong> &ndash; Analitik yok, izleme yok, cerez yok</li>
 <li><strong>Kullanilanlar:</strong> Hugo (PaperMod temasi), Python 3.11, Cloudflare Workers, Gemini 2.5 Flash</li>
-<li><strong>Guncel surum:</strong> 2.4.0</li>
+<li><strong>Guncel surum:</strong> 2.5.0</li>
 </ul>
 ]]></content:encoded></item></channel></rss>
