@@ -4,4 +4,4 @@ compatibility_date = "2024-01-01"
 
 [[kv_namespaces]]
 binding = "SEARCH_SESSIONS"
-id = "PLACEHOLDER_CREATE_VIA_WRANGLER"
+id = "e8d10be7a2e14c3596cc718094867f95"
