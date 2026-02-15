@@ -10,6 +10,30 @@
       },
       "gemini_calls": 2,
       "duration_seconds": 631.4
+    },
+    {
+      "type": "scout",
+      "timestamp": "2026-02-15T10:01:20.599192",
+      "papers_found": 6,
+      "papers_selected": 4,
+      "sources": {
+        "Crossref": 2,
+        "arXiv": 4
+      },
+      "gemini_calls": 2,
+      "duration_seconds": 274.4,
+      "token_usage": {
+        "en": {
+          "prompt_tokens": 3156,
+          "candidates_tokens": 1323,
+          "total_tokens": 6293
+        },
+        "tr": {
+          "prompt_tokens": 3294,
+          "candidates_tokens": 2185,
+          "total_tokens": 11415
+        }
+      }
     }
   ]
 }
