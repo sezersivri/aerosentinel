@@ -176,6 +176,8 @@ LOOKBACK_DAYS = 14
 CITATION_VELOCITY_THRESHOLD = 5
 MAX_PAPERS_PER_POST = 2
 MIN_PAPERS_PER_POST = 1
+BOOTSTRAP_PAPERS = 5            # Papers to generate on first-ever run
+BOOTSTRAP_LOOKBACK_DAYS = 1825  # ~5 years lookback for bootstrap
 
 # --- FILE PATHS ---
 HISTORY_FILE = "seen_papers.json"

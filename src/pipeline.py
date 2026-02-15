@@ -22,12 +22,13 @@ import time
 from collections import Counter
 from datetime import datetime, timedelta
 
-from src.hunter import run_hunt
+from src.hunter import run_hunt, load_history
 from src.brain import run_brain, generate_hugo_post
 from src.notifier import send_draft_preview, send_simple_message
 from src.config import (
     DRAFTS_DIR, POSTS_DIR, MIN_PAPERS_PER_POST, LANGUAGES,
     TAG_TO_KEYWORDS, USAGE_STATS_FILE,
+    BOOTSTRAP_PAPERS, BOOTSTRAP_LOOKBACK_DAYS,
 )
 
 
@@ -266,9 +267,9 @@ def run_custom_search(search_json: str):
     print(f"\n🔎 Custom search: tags={tags}, keywords={len(custom_keywords)}, "
           f"date_from={date_from}, date_to={date_to}")
 
-    # --- STAGE 1: HUNT (custom) ---
+    # --- STAGE 1: HUNT (custom, skip seen filter) ---
     papers = run_hunt(dry_run=False, custom_keywords=custom_keywords,
-                      date_from=date_from, date_to=date_to)
+                      date_from=date_from, date_to=date_to, skip_seen=True)
 
     if len(papers) < MIN_PAPERS_PER_POST:
         duration = time.time() - t_start
@@ -415,7 +416,15 @@ def run_scout():
     print("=" * 60)
 
     # --- STAGE 1: HUNT ---
-    papers = run_hunt(dry_run=False)
+    # Detect first run (empty history = bootstrap mode)
+    is_bootstrap = not load_history()
+    if is_bootstrap:
+        print("🌟 First run detected — bootstrap mode (5 years, top 5 papers)")
+        bootstrap_from = (datetime.now() - timedelta(days=BOOTSTRAP_LOOKBACK_DAYS)).strftime("%Y-%m-%d")
+        papers = run_hunt(dry_run=False, date_from=bootstrap_from,
+                          max_papers=BOOTSTRAP_PAPERS, bootstrap=True)
+    else:
+        papers = run_hunt(dry_run=False)
 
     if len(papers) < MIN_PAPERS_PER_POST:
         duration = time.time() - t_start

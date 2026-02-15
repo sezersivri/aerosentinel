@@ -23,7 +23,8 @@ from src.config import (
     KEYWORDS, TIER_1_JOURNALS, TIER_2_JOURNALS, ELITE_INSTITUTIONS,
     LOOKBACK_DAYS, CITATION_VELOCITY_THRESHOLD, HISTORY_FILE,
     S2_REQUESTS_PER_SECOND, S2_MAX_RETRIES, MAX_PAPERS_PER_POST,
-    KEYWORD_PRIORITY, IEEE_API_KEY, MIN_HUNTER_SCORE, MAX_PAPER_AGE_DAYS
+    KEYWORD_PRIORITY, IEEE_API_KEY, MIN_HUNTER_SCORE, MAX_PAPER_AGE_DAYS,
+    BOOTSTRAP_PAPERS, BOOTSTRAP_LOOKBACK_DAYS,
 )
 
 
@@ -317,7 +318,7 @@ def search_arxiv(existing_dois: set, keywords=None) -> dict:
 #  SOURCE 3: NASA NTRS (Technical Reports)
 # ──────────────────────────────────────────────
 
-def search_nasa_ntrs(keywords=None) -> dict:
+def search_nasa_ntrs(keywords=None, days: int = LOOKBACK_DAYS) -> dict:
     """
     Query NASA Technical Reports Server for recent publications.
     These are gold-tier sources for reentry aerothermodynamics.
@@ -359,7 +360,7 @@ def search_nasa_ntrs(keywords=None) -> dict:
                     pd = datetime.strptime(pub_date[:10], "%Y-%m-%d")
                     if pd.year < 2020:
                         continue  # Skip old papers
-                    if pd < datetime.now() - timedelta(days=LOOKBACK_DAYS * 2):
+                    if pd < datetime.now() - timedelta(days=days * 2):
                         continue  # Too old
                 except ValueError:
                     pass  # Keep if date is unparseable
@@ -414,7 +415,7 @@ def search_nasa_ntrs(keywords=None) -> dict:
 #  SOURCE 4: CROSSREF (70M+ articles, no auth)
 # ──────────────────────────────────────────────
 
-def search_crossref(existing_dois: set, keywords=None, date_to=None) -> dict:
+def search_crossref(existing_dois: set, keywords=None, date_to=None, days: int = LOOKBACK_DAYS) -> dict:
     """
     Query Crossref API for papers matching keywords.
     No authentication required. Polite header for faster responses.
@@ -424,7 +425,7 @@ def search_crossref(existing_dois: set, keywords=None, date_to=None) -> dict:
     is_custom = keywords is not None
     print(f"\n📡 [Crossref] Searching 70M+ articles...")
     candidates = {}
-    start_date = (datetime.now() - timedelta(days=LOOKBACK_DAYS)).strftime("%Y-%m-%d")
+    start_date = (datetime.now() - timedelta(days=days)).strftime("%Y-%m-%d")
 
     for keyword in search_keywords:
         print(f"   🔍 '{keyword}'", end="")
@@ -839,7 +840,7 @@ def _is_before(paper, upper_bound):
             return True  # Keep if unparseable
 
 
-def rank_and_select(papers: list, skip_age_filter: bool = False, date_to: str = None) -> list:
+def rank_and_select(papers: list, skip_age_filter: bool = False, date_to: str = None, max_papers: int = None) -> list:
     """
     Rank papers by quality score and select top N for summarization.
     Score = tier_bonus + source_bonus + keyword_priority + citation_metrics + recency + abstract
@@ -910,7 +911,8 @@ def rank_and_select(papers: list, skip_age_filter: bool = False, date_to: str = 
 
     # Select top papers with minimum score threshold
     qualified = [p for p in papers if p["score"] >= MIN_HUNTER_SCORE]
-    selected = qualified[:MAX_PAPERS_PER_POST]
+    limit = max_papers if max_papers else MAX_PAPERS_PER_POST
+    selected = qualified[:limit]
 
     return selected
 
@@ -919,7 +921,8 @@ def rank_and_select(papers: list, skip_age_filter: bool = False, date_to: str = 
 #  MAIN ENTRY POINT
 # ──────────────────────────────────────────────
 
-def run_hunt(dry_run: bool = False, custom_keywords=None, date_from=None, date_to=None) -> list:
+def run_hunt(dry_run: bool = False, custom_keywords=None, date_from=None, date_to=None,
+             skip_seen: bool = False, max_papers: int = None, bootstrap: bool = False) -> list:
     """
     Execute the full hunting pipeline.
     Returns list of selected papers ready for summarization.
@@ -929,7 +932,10 @@ def run_hunt(dry_run: bool = False, custom_keywords=None, date_from=None, date_t
     """
     is_custom = custom_keywords is not None
     print("=" * 60)
-    if is_custom:
+    if bootstrap:
+        print(f"🌟 AEROSENTINEL BOOTSTRAP — {datetime.now().strftime('%Y-%m-%d %H:%M')}")
+        print("🌟 First run detected — searching last ~5 years for top papers")
+    elif is_custom:
         print(f"🔎 AEROSENTINEL CUSTOM SEARCH — {datetime.now().strftime('%Y-%m-%d %H:%M')}")
     else:
         print(f"🚀 AEROSENTINEL HUNTER — {datetime.now().strftime('%Y-%m-%d %H:%M')}")
@@ -946,14 +952,18 @@ def run_hunt(dry_run: bool = False, custom_keywords=None, date_from=None, date_t
         days = LOOKBACK_DAYS
 
     # 1. Load history
-    seen_dois = load_history()
-    print(f"📚 History: {len(seen_dois)} previously seen papers")
+    if skip_seen:
+        seen_dois = set()
+        print("📚 History: skipped (search mode)")
+    else:
+        seen_dois = load_history()
+        print(f"📚 History: {len(seen_dois)} previously seen papers")
 
     # 2. Search all sources
     openalex_papers = search_openalex(days=days, keywords=custom_keywords, date_to=date_to)
     arxiv_papers = search_arxiv(set(openalex_papers.keys()) | seen_dois, keywords=custom_keywords)
-    ntrs_papers = search_nasa_ntrs(keywords=custom_keywords)
-    crossref_papers = search_crossref(set(openalex_papers.keys()) | seen_dois, keywords=custom_keywords, date_to=date_to)
+    ntrs_papers = search_nasa_ntrs(keywords=custom_keywords, days=days)
+    crossref_papers = search_crossref(set(openalex_papers.keys()) | seen_dois, keywords=custom_keywords, date_to=date_to, days=days)
     core_papers = search_core(
         set(openalex_papers.keys()) | set(crossref_papers.keys()) | seen_dois,
         keywords=custom_keywords
@@ -1035,7 +1045,7 @@ def run_hunt(dry_run: bool = False, custom_keywords=None, date_from=None, date_t
     print(f"   ✅ After velocity filter: {len(filtered)} papers")
 
     # 7. Rank and select
-    selected = rank_and_select(filtered, skip_age_filter=is_custom, date_to=date_to)
+    selected = rank_and_select(filtered, skip_age_filter=is_custom or bootstrap, date_to=date_to, max_papers=max_papers)
 
     # 8. Display results
     print("\n" + "=" * 60)
