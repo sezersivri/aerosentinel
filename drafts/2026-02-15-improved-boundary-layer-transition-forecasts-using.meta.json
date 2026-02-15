@@ -1,0 +1,44 @@
+{
+  "filename_base": "2026-02-15-improved-boundary-layer-transition-forecasts-using",
+  "filename_en": "2026-02-15-improved-boundary-layer-transition-forecasts-using.en.md",
+  "filename_tr": "2026-02-15-improved-boundary-layer-transition-forecasts-using.tr.md",
+  "gemini_output_en": {
+    "title": "Improved Boundary Layer Transition Forecasts Using Optimized Neural Networks",
+    "paper_title": "Tuning Neural Network Models for Improved Prediction of Boundary Layer Transition",
+    "authors": "Unknown",
+    "paper_type": "ml_transition",
+    "relevance_score": 85,
+    "summary": "This paper explores methods to enhance Artificial Neural Network (ANN) models for predicting boundary layer transition, specifically focusing on Tollmien-Schlichting (TS) instability waves in subsonic boundary layers. The authors aimed to improve the accuracy of ANNs in forecasting the amplification rates of these waves, which are fundamental to determining transition location. Their approach involved applying recent machine learning developments, including surrogate optimization techniques and strategic augmentation of the training data, to refine the ANN models.\n\nThe optimized ANN models, trained on the modified dataset, demonstrated a significant improvement in prediction accuracy. They reduced the average transition location errors on various airfoils and flow conditions by 51% compared to the original manually-tuned network. These transition locations were benchmarked against results from the Langley Stability and Transition Analysis Code (LASTRAC).\n\nThis work contributes to making linear stability theory-based transition prediction more computationally efficient and less user-intensive for integration into computational fluid dynamics codes, particularly for general aviation applications where TS waves are the dominant transition mechanism.",
+    "tags": [
+      "Neural Network Surrogates",
+      "Data-Driven Methods",
+      "Aerothermodynamics",
+      "Surrogate Modeling",
+      "Laminar Heating"
+    ]
+  },
+  "gemini_output_tr": {
+    "title": "Sınır Tabaka Geçiş Tahmini için Yapay Sinir Ağlarının Optimizasyonu",
+    "paper_title": "Tuning Neural Network Models for Improved Prediction of Boundary Layer Transition",
+    "authors": "Unknown",
+    "paper_type": "ml_transition",
+    "relevance_score": 40,
+    "summary": "Bu makale, sınır tabaka geçişini tahmin etmek için Yapay Sinir Ağı (YSA) modellerinin doğruluğunu artırmayı ele alıyor ve özellikle Tollmien-Schlichting (TS) dalga amplifikasyon oranlarına odaklanıyor. Amaç, bu tahminleri Hesaplamalı Akışkanlar Dinamiği (HAD) kodlarına entegre ederek, özellikle ses altı, genel havacılık uygulamalarında uçuş aracı tasarımını iyileştirmektir. Yazarlar, vekil optimizasyon teknikleri ve veri artırma dahil olmak üzere makine öğrenimindeki son gelişmeleri, YSA'ların doğrusal kararlılık teorisi (LST) korelasyonlarına dayalı geçiş konumlarını tahmin etme yeteneğini geliştirmek amacıyla uyguluyor.\n\nBu optimizasyonlar ve veri modifikasyonları sayesinde, ayarlanmış YSA modelleri tahmin hatalarını önemli ölçüde azalttı. Özellikle, çeşitli kanat profilleri ve akış koşullarındaki ortalama geçiş konumu hataları, orijinal, manuel olarak ayarlanmış ağın aynı akış durumlarındaki hatalarına kıyasla %51 oranında düşürüldü. Karşılaştırma için kullanılan gerçek geçiş konumları, Langley Kararlılık ve Geçiş Analiz Kodu (LASTRAC) ile elde edildi.\n\nSes altı geçişe odaklanmasına rağmen, karmaşık akış fenomenlerinin tahmini için optimize edilmiş makine öğrenimi modellerini kullanma metodolojisi daha geniş çıkarımlara sahiptir. Düşük hızlı rejimlerde bile doğru geçiş tahmini, yüzey sürtünmesini ve dolayısıyla aerodinamik ısınmayı ve araç performansını doğrudan etkilediği için temel bir öneme sahiptir. YSA'ların bu bağlamda gösterdiği verimlilik ve azaltılmış kullanıcı katılımı, daha karmaşık, yüksek hızlı aerotermodinamik zorluklara uyarlanabilecek hızlı, LST tabanlı geçiş tahminleri sağlayarak tasarım döngülerini hızlandırma potansiyellerini düşündürmektedir.",
+    "tags": [
+      "Neural Network Surrogates",
+      "Data-Driven Methods",
+      "Aerothermodynamics",
+      "Surrogate Modeling",
+      "Laminar Heating"
+    ]
+  },
+  "paper": {
+    "title": "Tuning Neural Network Models for Improved Prediction of Boundary Layer Transition",
+    "authors": [],
+    "journal": "NASA Technical Report",
+    "url": "https://ntrs.nasa.gov/citations/20205000994",
+    "doi": "ntrs:20205000994",
+    "date": "Unknown"
+  },
+  "created_at": "2026-02-15T14:00:38.030938"
+}
