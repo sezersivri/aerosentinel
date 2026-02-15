@@ -32,7 +32,7 @@ IEEE_API_KEY = os.environ.get("IEEE_API_KEY", "")
 
 # --- LLM MODEL ---
 GEMINI_MODEL = "gemini-2.5-flash"  # Smartest free-tier model
-GEMINI_MAX_TOKENS = 16384  # Needs headroom for 6 papers + rich prompts
+GEMINI_MAX_TOKENS = 4096
 
 # --- LANGUAGES ---
 LANGUAGES = ["en", "tr"]
@@ -133,31 +133,6 @@ MIN_HUNTER_SCORE = 30
 MIN_RELEVANCE_SCORE = 40
 MAX_PAPER_AGE_DAYS = 90
 
-# --- TWO-TIER POST STRUCTURE ---
-# Core focus: papers directly on these topics get full solo reviews.
-# Everything else goes into a narrative "Broader Context" section.
-CORE_FOCUS_KEYWORDS = [
-    "aerodynamic heating",
-    "heat flux prediction",
-    "thermal protection",
-    "stagnation point heating",
-    "surface heating",
-    "aeroheating",
-    "aerothermodynamic heating",
-    "machine learning aerodynamics",
-    "surrogate model",
-    "gaussian process",
-    "neural network cfd",
-    "deep learning aerodynamics",
-    "physics-informed neural network",
-    "data-driven cfd",
-    "ml surrogate",
-]
-# Core paper types — these are always considered core focus
-CORE_PAPER_TYPES = ["ml_heating", "ml_aerodynamics", "ml_transition"]
-# Below this score, papers are dropped entirely (truly irrelevant)
-MIN_PERIPHERAL_SCORE = 20
-
 # --- JOURNAL TIERS ---
 TIER_1_JOURNALS = [
     "AIAA Journal",
@@ -199,8 +174,8 @@ ELITE_INSTITUTIONS = [
 # --- FILTER SETTINGS ---
 LOOKBACK_DAYS = 14
 CITATION_VELOCITY_THRESHOLD = 5
-MAX_PAPERS_PER_POST = 6
-MIN_PAPERS_PER_POST = 2
+MAX_PAPERS_PER_POST = 2
+MIN_PAPERS_PER_POST = 1
 
 # --- FILE PATHS ---
 HISTORY_FILE = "seen_papers.json"

@@ -1,5 +1,5 @@
 /**
- * AeroSentinel v2.3 — Cloudflare Worker Webhook Bridge
+ * AeroSentinel v2.5 — Cloudflare Worker Webhook Bridge
  * Replaces Google Apps Script. No 302 redirect issues.
  * Free tier: 100K requests/day.
  *
@@ -235,7 +235,7 @@ async function buildCommandReply(config, env, chatId, text) {
       return await getLatestWorkflowStatus(config);
 
     case "/help":
-      return "🛰️ <b>AeroSentinel v2.4 Commands</b>\n\n" +
+      return "🛰️ <b>AeroSentinel v2.5 Commands</b>\n\n" +
         "/scout — Trigger a paper hunt now\n" +
         "/search — Custom search with tags & date range\n" +
         "/bibtex — Export latest digest as BibTeX\n" +
@@ -429,25 +429,38 @@ async function getBibtexExport(config) {
       });
       const meta = await metaResp.json();
 
-      // Build BibTeX from EN gemini output (supports both old and new schema)
+      // Build BibTeX from EN gemini output (supports old and new schema)
       const gemini = meta.gemini_output_en || {};
-      const papers = [
-        ...(gemini.core_papers || []),
-        ...(gemini.peripheral_papers || []),
-        ...(gemini.papers || []),
-      ];
-      if (papers.length === 0) continue;
-
       let bibtex = "";
       const currentYear = new Date().getFullYear().toString();
-      for (let i = 0; i < papers.length; i++) {
-        const p = papers[i];
-        const key = p.title.split(" ").slice(0, 3).join("").replace(/[^a-zA-Z]/g, "") + currentYear;
-        bibtex += `@article{${key},\n`;
-        bibtex += `  title = {${p.title}},\n`;
+
+      // New v2.5 single-paper schema: fields at top level
+      if (gemini.paper_title && !gemini.core_papers) {
+        const p = gemini;
+        const key = p.paper_title.split(" ").slice(0, 3).join("").replace(/[^a-zA-Z]/g, "") + currentYear;
+        bibtex = `@article{${key},\n`;
+        bibtex += `  title = {${p.paper_title}},\n`;
         bibtex += `  author = {${p.authors || "Unknown"}},\n`;
         bibtex += `  year = {${currentYear}}\n`;
-        bibtex += `}\n\n`;
+        bibtex += `}\n`;
+      } else {
+        // Old v2.4 batch schema: arrays of papers
+        const papers = [
+          ...(gemini.core_papers || []),
+          ...(gemini.peripheral_papers || []),
+          ...(gemini.papers || []),
+        ];
+        if (papers.length === 0) continue;
+
+        for (let i = 0; i < papers.length; i++) {
+          const p = papers[i];
+          const key = p.title.split(" ").slice(0, 3).join("").replace(/[^a-zA-Z]/g, "") + currentYear;
+          bibtex += `@article{${key},\n`;
+          bibtex += `  title = {${p.title}},\n`;
+          bibtex += `  author = {${p.authors || "Unknown"}},\n`;
+          bibtex += `  year = {${currentYear}}\n`;
+          bibtex += `}\n\n`;
+        }
       }
 
       return "📚 <b>BibTeX Export</b>\n\n<pre>" + bibtex.trim() + "</pre>";

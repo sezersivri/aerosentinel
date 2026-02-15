@@ -19,7 +19,7 @@ GitHub Actions (cron/webhook)
 |------|---------|
 | `src/config.py` | All settings: API keys, keyword tiers, journal tiers, curated tag vocabulary, thresholds |
 | `src/hunter.py` | Multi-source paper search (OpenAlex, arXiv, NASA NTRS, Crossref, CORE, IEEE, Semantic Scholar), scoring & ranking |
-| `src/brain.py` | Gemini system prompts, structured JSON analysis, Hugo post generation, paper type badges |
+| `src/brain.py` | Gemini system prompts, single-paper analysis, Hugo post generation, paper type badges |
 | `src/pipeline.py` | Orchestrator: hunt -> brain -> normalize/validate -> notify -> publish/discard |
 | `src/notifier.py` | Telegram Bot API integration (previews, confirmations, status messages) |
 | `worker/index.js` | Cloudflare Worker webhook bridge (Telegram commands, callbacks, search sessions) |
@@ -27,24 +27,26 @@ GitHub Actions (cron/webhook)
 | `.github/workflows/search.yml` | Custom search workflow (triggered by `/search` command) |
 | `usage_stats.json` | API usage tracking (Gemini tokens, API calls per source) |
 | `scripts/google_apps_script.js` | **LEGACY** — Old webhook bridge, replaced by `worker/index.js` |
-| `VERSION` | Semantic version (current: 2.3.0) |
+| `VERSION` | Semantic version (current: 2.5.0) |
 
 ## Data Flow
 
 1. **Hunter** searches 7 APIs using keyword tiers, applies journal/institution filters
 2. **Recency gate**: papers older than `MAX_PAPER_AGE_DAYS` (90 days) are rejected — this is a NEWS platform
-3. **Score gate**: papers below `MIN_HUNTER_SCORE` (25) are dropped; papers below `MIN_PERIPHERAL_SCORE` (20) are discarded entirely
-4. **Two-tier classification**: papers matching `CORE_FOCUS_KEYWORDS` + `CORE_PAPER_TYPES` become **core papers** (solo deep-dive reviews); remaining papers become **peripheral papers** (grouped into an academic narrative with `[N]` citation keys)
-5. **Brain** sends papers to Gemini with structured prompts, generates bilingual analysis; usage tracked in `usage_stats.json`
-6. **Normalization**: tags validated against 35-tag curated vocabulary, low-relevance papers filtered, paper types validated
-7. **Notifier** sends Telegram preview with Publish/Edit/Discard/Bookmark buttons
-8. **Publish** moves drafts from `content/drafts/` to `content/posts/`
+3. **Score gate**: papers below `MIN_HUNTER_SCORE` (30) are dropped
+4. **Brain** analyzes each paper individually with Gemini, generates bilingual (EN/TR) prose review; usage tracked in `usage_stats.json`
+5. **Normalization**: tags validated against 36-tag curated vocabulary, paper types validated
+6. **Notifier** sends Telegram preview per paper with Publish/Edit/Discard/Bookmark buttons
+7. **Publish** moves drafts from `content/drafts/` to `content/posts/`
 
-## Two-Tier Post Structure
+## Post Format
 
-- **Core papers**: high-relevance papers matching `CORE_FOCUS_KEYWORDS` (aerodynamic heating, hypersonic heating, thermal prediction, etc.) and `CORE_PAPER_TYPES` (`ml_heating`, `ml_aerodynamics`, `numerical_cfd`). Each gets a solo deep-dive review post.
-- **Peripheral papers**: remaining papers with score >= `MIN_PERIPHERAL_SCORE` (20). Grouped into an academic narrative with `[N]` citation keys for in-text references.
-- Papers below `MIN_PERIPHERAL_SCORE` are silently dropped.
+Each paper gets its own individual blog post with:
+- **Badge line**: `Type: 🤖 ML/Heating Prediction | Relevance: 95/100`
+- **Summary**: 2-3 paragraphs of natural flowing prose (no bullet points, no structured sections)
+- **Reference**: Full citation with DOI link
+
+The system selects 1-2 best papers per hunt cycle. No batch digests.
 
 ## Telegram Commands
 
@@ -57,7 +59,7 @@ GitHub Actions (cron/webhook)
 | `/status` | Check latest workflow status |
 | `/help` | Show available commands |
 
-## Curated Tag Vocabulary (35 tags)
+## Curated Tag Vocabulary (36 tags)
 
 Tags are defined in `src/config.py` → `CURATED_TAGS`. Tags are ALWAYS in English, even for Turkish posts.
 
@@ -71,9 +73,9 @@ Tags are defined in `src/config.py` → `CURATED_TAGS`. Tags are ALWAYS in Engli
 
 **Applications:** Missile Aerothermodynamics, Reentry Vehicles, Launch Vehicles, Planetary Entry
 
-**Cross-Cutting:** Heat Flux Prediction, Surrogate Modeling, High-Performance Computing, Review Paper
+**Cross-Cutting:** Heat Flux Prediction, Surrogate Modeling, High-Performance Computing, Review Paper, Thesis Research
 
-## Paper Types (8)
+## Paper Types (9)
 
 | Key | EN Badge | TR Badge |
 |-----|----------|----------|
@@ -85,6 +87,7 @@ Tags are defined in `src/config.py` → `CURATED_TAGS`. Tags are ALWAYS in Engli
 | `analytical` | Analytical | Analitik |
 | `review` | Review | Derleme |
 | `multi_method` | Multi-Method | Coklu Yontem |
+| `thesis` | Thesis/Dissertation | Tez/Doktora |
 
 ## Development
 

@@ -64,42 +64,10 @@ def validate_filename(filename: str) -> bool:
 
 
 def normalize_and_validate(gemini_output):
-    """Normalize tags, validate paper types, filter truly irrelevant papers.
-
-    Supports two schemas:
-    - New two-tier: core_papers[] + peripheral_papers[] + peripheral_narrative
-    - Old flat: papers[] (treated as all-core for backward compat)
-    """
+    """Normalize tags and validate paper type for a single-paper Gemini output."""
     from src.config import (
         VALID_TAGS, VALID_TAGS_LOWER, VALID_PAPER_TYPES,
-        MIN_PERIPHERAL_SCORE,
     )
-
-    # --- Determine schema ---
-    has_new_schema = "core_papers" in gemini_output
-
-    if has_new_schema:
-        # Drop truly irrelevant papers (below hard floor)
-        gemini_output["core_papers"] = [
-            p for p in gemini_output.get("core_papers", [])
-            if p.get("relevance_score", 0) >= MIN_PERIPHERAL_SCORE
-        ]
-        gemini_output["peripheral_papers"] = [
-            p for p in gemini_output.get("peripheral_papers", [])
-            if p.get("relevance_score", 0) >= MIN_PERIPHERAL_SCORE
-        ]
-        all_paper_lists = [
-            gemini_output.get("core_papers", []),
-            gemini_output.get("peripheral_papers", []),
-        ]
-    else:
-        # Old schema: filter low-relevance papers
-        from src.config import MIN_RELEVANCE_SCORE
-        gemini_output["papers"] = [
-            p for p in gemini_output.get("papers", [])
-            if p.get("relevance_score", 0) >= MIN_RELEVANCE_SCORE
-        ]
-        all_paper_lists = [gemini_output.get("papers", [])]
 
     # --- Normalize tags ---
     raw_tags = gemini_output.get("tags", [])
@@ -133,24 +101,15 @@ def normalize_and_validate(gemini_output):
         deduped = deduped[:7]
     gemini_output["tags"] = deduped
 
-    # --- Validate paper types in all lists ---
+    # --- Validate paper type ---
     OLD_TO_NEW = {"ml_surrogate": "ml_heating"}
-    for paper_list in all_paper_lists:
-        for paper in paper_list:
-            ptype = paper.get("paper_type", "")
-            if ptype in OLD_TO_NEW:
-                paper["paper_type"] = OLD_TO_NEW[ptype]
-            elif ptype not in VALID_PAPER_TYPES:
-                paper["paper_type"] = "numerical_cfd"
+    ptype = gemini_output.get("paper_type", "")
+    if ptype in OLD_TO_NEW:
+        gemini_output["paper_type"] = OLD_TO_NEW[ptype]
+    elif ptype not in VALID_PAPER_TYPES:
+        gemini_output["paper_type"] = "numerical_cfd"
 
     return gemini_output
-
-
-def _count_gemini_papers(gemini_output: dict) -> int:
-    """Count total papers in Gemini output (supports both schemas)."""
-    if "core_papers" in gemini_output:
-        return len(gemini_output.get("core_papers", [])) + len(gemini_output.get("peripheral_papers", []))
-    return len(gemini_output.get("papers", []))
 
 
 # ──────────────────────────────────────────────
@@ -325,117 +284,133 @@ def run_custom_search(search_json: str):
         if not paper.get("abstract") or paper["abstract"].strip() == "":
             paper["abstract"] = "[NO ABSTRACT] " + paper.get("title", "")
 
-    # --- STAGE 2: BRAIN (bilingual) ---
-    result = run_brain(papers)
+    # --- STAGE 2: BRAIN (bilingual, per paper) ---
+    results = run_brain(papers)
 
-    if result is None:
+    if not results:
         duration = time.time() - t_start
         source_counts = dict(Counter(p.get("source", "Unknown") for p in papers))
         record_run_stats("custom_search", len(papers), len(papers), source_counts, duration, gemini_calls=1)
-        msg = "⚠️ Custom search: Gemini summarization failed. Check logs."
+        msg = "⚠️ Custom search: Gemini analysis failed for all papers. Check logs."
         print(f"\n{msg}")
         send_simple_message(msg)
         return
 
-    # --- STAGE 2.5: VALIDATE & NORMALIZE ---
-    for lang in LANGUAGES:
-        if lang not in result:
-            continue
-        result[lang]["gemini_output"] = normalize_and_validate(result[lang]["gemini_output"])
+    # --- STAGE 2.5 + 3: VALIDATE, SAVE, NOTIFY per paper ---
+    total_token_usage = {}
+    papers_published = 0
 
-    if "en" in result and "tr" in result:
-        result["tr"]["gemini_output"]["tags"] = result["en"]["gemini_output"]["tags"]
-    elif "tr" in result and "en" not in result:
-        # EN failed — normalize TR tags to English curated vocabulary anyway
-        from src.config import VALID_TAGS, VALID_TAGS_LOWER
-        tr_tags = result["tr"]["gemini_output"].get("tags", [])
-        normalized = []
-        for tag in tr_tags:
-            if tag in VALID_TAGS:
-                normalized.append(tag)
-            elif tag.lower() in VALID_TAGS_LOWER:
-                normalized.append(VALID_TAGS_LOWER[tag.lower()])
-            else:
-                # Try fuzzy match
-                for valid_lower, canonical in VALID_TAGS_LOWER.items():
-                    if tag.lower() in valid_lower or valid_lower in tag.lower():
-                        normalized.append(canonical)
-                        break
-        if normalized:
-            result["tr"]["gemini_output"]["tags"] = normalized
-            print(f"   🏷️ TR tags normalized to English: {normalized}")
+    for result in results:
+        # Validate & normalize each language
+        for lang in LANGUAGES:
+            if lang not in result:
+                continue
+            result[lang]["gemini_output"] = normalize_and_validate(result[lang]["gemini_output"])
 
-    for lang in LANGUAGES:
-        if lang not in result:
-            continue
-        result[lang]["content"] = generate_hugo_post(result[lang]["gemini_output"], papers, lang=lang)
+        # Force TR to use same English tags as EN
+        if "en" in result and "tr" in result:
+            result["tr"]["gemini_output"]["tags"] = result["en"]["gemini_output"]["tags"]
+        elif "tr" in result and "en" not in result:
+            from src.config import VALID_TAGS, VALID_TAGS_LOWER
+            tr_tags = result["tr"]["gemini_output"].get("tags", [])
+            normalized = []
+            for tag in tr_tags:
+                if tag in VALID_TAGS:
+                    normalized.append(tag)
+                elif tag.lower() in VALID_TAGS_LOWER:
+                    normalized.append(VALID_TAGS_LOWER[tag.lower()])
+                else:
+                    for valid_lower, canonical in VALID_TAGS_LOWER.items():
+                        if tag.lower() in valid_lower or valid_lower in tag.lower():
+                            normalized.append(canonical)
+                            break
+            if normalized:
+                result["tr"]["gemini_output"]["tags"] = normalized
+                print(f"   🏷️ TR tags normalized to English: {normalized}")
 
-    # Check paper count still sufficient after filtering
-    max_papers = max(
-        _count_gemini_papers(result[lang]["gemini_output"])
-        for lang in LANGUAGES if lang in result
-    )
-    if max_papers < MIN_PAPERS_PER_POST:
-        duration = time.time() - t_start
-        source_counts = dict(Counter(p.get("source", "Unknown") for p in papers))
-        record_run_stats("custom_search", len(papers), max_papers, source_counts, duration, gemini_calls=len(LANGUAGES))
-        msg = f"⚠️ Custom search: Only {max_papers} papers passed relevance filter (need {MIN_PAPERS_PER_POST}). Skipping."
-        print(f"\n{msg}")
-        send_simple_message(msg)
-        return
+        # Regenerate post content with cleaned data
+        for lang in LANGUAGES:
+            if lang not in result:
+                continue
+            result[lang]["content"] = generate_hugo_post(
+                result[lang]["gemini_output"], result["paper"], lang=lang
+            )
 
-    filename_base = result["filename_base"]
+        filename_base = result["filename_base"]
 
-    for lang in LANGUAGES:
-        if lang not in result:
-            continue
-        lang_data = result[lang]
-        draft_path = os.path.join(DRAFTS_DIR, lang_data["filename"])
-        with open(draft_path, "w", encoding="utf-8") as f:
-            f.write(lang_data["content"])
-        print(f"💾 Draft saved: {draft_path}")
+        # Save drafts for each language
+        for lang in LANGUAGES:
+            if lang not in result:
+                continue
+            lang_data = result[lang]
+            draft_path = os.path.join(DRAFTS_DIR, lang_data["filename"])
+            with open(draft_path, "w", encoding="utf-8") as f:
+                f.write(lang_data["content"])
+            print(f"💾 Draft saved: {draft_path}")
 
-    meta = {
-        "filename_base": filename_base,
-        "filename_en": result.get("en", {}).get("filename", ""),
-        "filename_tr": result.get("tr", {}).get("filename", ""),
-        "gemini_output_en": result.get("en", {}).get("gemini_output", {}),
-        "gemini_output_tr": result.get("tr", {}).get("gemini_output", {}),
-        "papers_count": len(papers),
-        "search_params": params,
-        "created_at": datetime.now().isoformat(),
-    }
-    meta_path = os.path.join(DRAFTS_DIR, f"{filename_base}.meta.json")
-    with open(meta_path, "w", encoding="utf-8") as f:
-        json.dump(meta, f, indent=2, ensure_ascii=False)
+        # Save metadata
+        paper = result["paper"]
+        meta = {
+            "filename_base": filename_base,
+            "filename_en": result.get("en", {}).get("filename", ""),
+            "filename_tr": result.get("tr", {}).get("filename", ""),
+            "gemini_output_en": result.get("en", {}).get("gemini_output", {}),
+            "gemini_output_tr": result.get("tr", {}).get("gemini_output", {}),
+            "paper": {
+                "title": paper.get("title", ""),
+                "authors": paper.get("authors", []),
+                "journal": paper.get("journal", ""),
+                "url": paper.get("url", ""),
+                "doi": paper.get("doi", ""),
+                "date": paper.get("date", ""),
+            },
+            "search_params": params,
+            "created_at": datetime.now().isoformat(),
+        }
+        meta_path = os.path.join(DRAFTS_DIR, f"{filename_base}.meta.json")
+        with open(meta_path, "w", encoding="utf-8") as f:
+            json.dump(meta, f, indent=2, ensure_ascii=False)
 
-    en_data = result.get("en", result.get("tr", {}))
-    send_draft_preview(
-        filename_base,
-        en_data.get("gemini_output", {}),
-        papers,
-        en_data.get("content", ""),
-    )
+        # Send Telegram preview for THIS paper
+        en_data = result.get("en", result.get("tr", {}))
+        send_draft_preview(
+            filename_base,
+            en_data.get("gemini_output", {}),
+            paper,
+            en_data.get("content", ""),
+        )
+
+        papers_published += 1
+
+        # Aggregate token usage
+        if "token_usage" in result:
+            for lang, usage in result["token_usage"].items():
+                if lang not in total_token_usage:
+                    total_token_usage[lang] = usage
+                else:
+                    for k, v in usage.items():
+                        total_token_usage[lang][k] = total_token_usage[lang].get(k, 0) + v
 
     # Record usage stats
     duration = time.time() - t_start
     source_counts = dict(Counter(p.get("source", "Unknown") for p in papers))
-    record_run_stats("custom_search", len(papers), max_papers, source_counts, duration,
-                     gemini_calls=len(LANGUAGES), token_usage=result.get("token_usage"))
+    record_run_stats("custom_search", len(papers), papers_published, source_counts, duration,
+                     gemini_calls=papers_published * len(LANGUAGES),
+                     token_usage=total_token_usage if total_token_usage else None)
 
-    print("\n✅ Custom search pipeline complete. Awaiting your approval on Telegram.")
+    print(f"\n✅ Custom search pipeline complete. {papers_published} paper(s) sent for review.")
 
 
 def run_scout():
     """
-    Full scout pipeline: Hunt -> Brain (bilingual) -> Notify.
+    Full scout pipeline: Hunt -> Brain (bilingual per paper) -> Notify.
     Called by the scheduled GitHub Action.
     """
     ensure_dirs()
     t_start = time.time()
 
     print("\n" + "=" * 60)
-    print("🛰️  AEROSENTINEL SCOUT PIPELINE v2")
+    print("🛰️  AEROSENTINEL SCOUT PIPELINE v2.5")
     print(f"📅 {datetime.now().strftime('%Y-%m-%d %H:%M UTC')}")
     print("=" * 60)
 
@@ -446,7 +421,7 @@ def run_scout():
         duration = time.time() - t_start
         source_counts = dict(Counter(p.get("source", "Unknown") for p in papers))
         record_run_stats("scout", len(papers), 0, source_counts, duration)
-        msg = f"🔇 AeroSentinel: Only {len(papers)} papers found (need {MIN_PAPERS_PER_POST}). Skipping this cycle."
+        msg = f"🔇 AeroSentinel: No papers found above threshold. Skipping this cycle."
         print(f"\n{msg}")
         send_simple_message(msg)
         return
@@ -456,109 +431,120 @@ def run_scout():
         if not paper.get("abstract") or paper["abstract"].strip() == "":
             paper["abstract"] = "[NO ABSTRACT] " + paper.get("title", "")
 
-    # --- STAGE 2: BRAIN (bilingual) ---
-    result = run_brain(papers)
+    # --- STAGE 2: BRAIN (bilingual, per paper) ---
+    results = run_brain(papers)
 
-    if result is None:
+    if not results:
         duration = time.time() - t_start
         source_counts = dict(Counter(p.get("source", "Unknown") for p in papers))
         record_run_stats("scout", len(papers), len(papers), source_counts, duration, gemini_calls=1)
-        msg = "⚠️ AeroSentinel: Gemini summarization failed. Check logs."
+        msg = "⚠️ AeroSentinel: Gemini analysis failed for all papers. Check logs."
         print(f"\n{msg}")
         send_simple_message(msg)
         return
 
-    # --- STAGE 2.5: VALIDATE & NORMALIZE ---
-    for lang in LANGUAGES:
-        if lang not in result:
-            continue
-        result[lang]["gemini_output"] = normalize_and_validate(result[lang]["gemini_output"])
+    # --- STAGE 2.5 + 3: VALIDATE, SAVE, NOTIFY per paper ---
+    total_token_usage = {}
+    papers_published = 0
 
-    # Force TR to use same English tags as EN
-    if "en" in result and "tr" in result:
-        result["tr"]["gemini_output"]["tags"] = result["en"]["gemini_output"]["tags"]
-    elif "tr" in result and "en" not in result:
-        # EN failed — normalize TR tags to English curated vocabulary anyway
-        from src.config import VALID_TAGS, VALID_TAGS_LOWER
-        tr_tags = result["tr"]["gemini_output"].get("tags", [])
-        normalized = []
-        for tag in tr_tags:
-            if tag in VALID_TAGS:
-                normalized.append(tag)
-            elif tag.lower() in VALID_TAGS_LOWER:
-                normalized.append(VALID_TAGS_LOWER[tag.lower()])
-            else:
-                # Try fuzzy match
-                for valid_lower, canonical in VALID_TAGS_LOWER.items():
-                    if tag.lower() in valid_lower or valid_lower in tag.lower():
-                        normalized.append(canonical)
-                        break
-        if normalized:
-            result["tr"]["gemini_output"]["tags"] = normalized
-            print(f"   🏷️ TR tags normalized to English: {normalized}")
+    for result in results:
+        # Validate & normalize each language
+        for lang in LANGUAGES:
+            if lang not in result:
+                continue
+            result[lang]["gemini_output"] = normalize_and_validate(result[lang]["gemini_output"])
 
-    # Regenerate post content with cleaned data
-    for lang in LANGUAGES:
-        if lang not in result:
-            continue
-        result[lang]["content"] = generate_hugo_post(result[lang]["gemini_output"], papers, lang=lang)
+        # Force TR to use same English tags as EN
+        if "en" in result and "tr" in result:
+            result["tr"]["gemini_output"]["tags"] = result["en"]["gemini_output"]["tags"]
+        elif "tr" in result and "en" not in result:
+            from src.config import VALID_TAGS, VALID_TAGS_LOWER
+            tr_tags = result["tr"]["gemini_output"].get("tags", [])
+            normalized = []
+            for tag in tr_tags:
+                if tag in VALID_TAGS:
+                    normalized.append(tag)
+                elif tag.lower() in VALID_TAGS_LOWER:
+                    normalized.append(VALID_TAGS_LOWER[tag.lower()])
+                else:
+                    for valid_lower, canonical in VALID_TAGS_LOWER.items():
+                        if tag.lower() in valid_lower or valid_lower in tag.lower():
+                            normalized.append(canonical)
+                            break
+            if normalized:
+                result["tr"]["gemini_output"]["tags"] = normalized
+                print(f"   🏷️ TR tags normalized to English: {normalized}")
 
-    # Check paper count still sufficient after filtering
-    max_papers = max(
-        _count_gemini_papers(result[lang]["gemini_output"])
-        for lang in LANGUAGES if lang in result
-    )
-    if max_papers < MIN_PAPERS_PER_POST:
-        duration = time.time() - t_start
-        source_counts = dict(Counter(p.get("source", "Unknown") for p in papers))
-        record_run_stats("scout", len(papers), max_papers, source_counts, duration, gemini_calls=len(LANGUAGES))
-        msg = f"⚠️ AeroSentinel: Only {max_papers} papers passed relevance filter (need {MIN_PAPERS_PER_POST}). Skipping."
-        print(f"\n{msg}")
-        send_simple_message(msg)
-        return
+        # Regenerate post content with cleaned data
+        for lang in LANGUAGES:
+            if lang not in result:
+                continue
+            result[lang]["content"] = generate_hugo_post(
+                result[lang]["gemini_output"], result["paper"], lang=lang
+            )
 
-    filename_base = result["filename_base"]
+        filename_base = result["filename_base"]
 
-    # Save drafts for each language
-    for lang in LANGUAGES:
-        if lang not in result:
-            continue
-        lang_data = result[lang]
-        draft_path = os.path.join(DRAFTS_DIR, lang_data["filename"])
-        with open(draft_path, "w", encoding="utf-8") as f:
-            f.write(lang_data["content"])
-        print(f"💾 Draft saved: {draft_path}")
+        # Save drafts for each language
+        for lang in LANGUAGES:
+            if lang not in result:
+                continue
+            lang_data = result[lang]
+            draft_path = os.path.join(DRAFTS_DIR, lang_data["filename"])
+            with open(draft_path, "w", encoding="utf-8") as f:
+                f.write(lang_data["content"])
+            print(f"💾 Draft saved: {draft_path}")
 
-    # Save metadata (shared across languages)
-    meta = {
-        "filename_base": filename_base,
-        "filename_en": result.get("en", {}).get("filename", ""),
-        "filename_tr": result.get("tr", {}).get("filename", ""),
-        "gemini_output_en": result.get("en", {}).get("gemini_output", {}),
-        "gemini_output_tr": result.get("tr", {}).get("gemini_output", {}),
-        "papers_count": len(papers),
-        "created_at": datetime.now().isoformat(),
-    }
-    meta_path = os.path.join(DRAFTS_DIR, f"{filename_base}.meta.json")
-    with open(meta_path, "w", encoding="utf-8") as f:
-        json.dump(meta, f, indent=2, ensure_ascii=False)
+        # Save metadata
+        paper = result["paper"]
+        meta = {
+            "filename_base": filename_base,
+            "filename_en": result.get("en", {}).get("filename", ""),
+            "filename_tr": result.get("tr", {}).get("filename", ""),
+            "gemini_output_en": result.get("en", {}).get("gemini_output", {}),
+            "gemini_output_tr": result.get("tr", {}).get("gemini_output", {}),
+            "paper": {
+                "title": paper.get("title", ""),
+                "authors": paper.get("authors", []),
+                "journal": paper.get("journal", ""),
+                "url": paper.get("url", ""),
+                "doi": paper.get("doi", ""),
+                "date": paper.get("date", ""),
+            },
+            "created_at": datetime.now().isoformat(),
+        }
+        meta_path = os.path.join(DRAFTS_DIR, f"{filename_base}.meta.json")
+        with open(meta_path, "w", encoding="utf-8") as f:
+            json.dump(meta, f, indent=2, ensure_ascii=False)
 
-    # --- STAGE 3: NOTIFY (use EN data for preview) ---
-    en_data = result.get("en", result.get("tr", {}))
-    send_draft_preview(
-        filename_base,
-        en_data.get("gemini_output", {}),
-        papers,
-        en_data.get("content", ""),
-    )
+        # Send Telegram preview for THIS paper
+        en_data = result.get("en", result.get("tr", {}))
+        send_draft_preview(
+            filename_base,
+            en_data.get("gemini_output", {}),
+            paper,
+            en_data.get("content", ""),
+        )
+
+        papers_published += 1
+
+        # Aggregate token usage
+        if "token_usage" in result:
+            for lang, usage in result["token_usage"].items():
+                if lang not in total_token_usage:
+                    total_token_usage[lang] = usage
+                else:
+                    for k, v in usage.items():
+                        total_token_usage[lang][k] = total_token_usage[lang].get(k, 0) + v
 
     # Record usage stats
     duration = time.time() - t_start
     source_counts = dict(Counter(p.get("source", "Unknown") for p in papers))
-    record_run_stats("scout", len(papers), max_papers, source_counts, duration,
-                     gemini_calls=len(LANGUAGES), token_usage=result.get("token_usage"))
+    record_run_stats("scout", len(papers), papers_published, source_counts, duration,
+                     gemini_calls=papers_published * len(LANGUAGES),
+                     token_usage=total_token_usage if total_token_usage else None)
 
-    print("\n✅ Scout pipeline complete. Awaiting your approval on Telegram.")
+    print(f"\n✅ Scout pipeline complete. {papers_published} paper(s) sent for review.")
 
 
 def run_publish(filename_base: str):

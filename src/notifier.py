@@ -44,7 +44,7 @@ def _html_escape(text: str) -> str:
 def send_draft_preview(
     filename_base: str,
     gemini_output: dict,
-    papers: list,
+    paper: dict,
     post_content: str
 ):
     """
@@ -55,42 +55,30 @@ def send_draft_preview(
         raise ValueError("TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID must be set")
 
     # Build the preview message
-    journal_list = list(set(p["journal"] for p in papers))
-    journal_str = ", ".join(journal_list[:4])
+    title_display = _html_escape(gemini_output.get('title', 'Untitled'))
+    paper_title = _html_escape(gemini_output.get('paper_title', ''))
+    summary = _html_escape(gemini_output.get('summary', ''))
+
+    # Badge
+    from src.brain import PAPER_TYPE_BADGES
+    ptype = gemini_output.get('paper_type', 'numerical_cfd')
+    badge = PAPER_TYPE_BADGES.get(ptype, f"📄 {ptype}")
+    score = gemini_output.get('relevance_score', 0)
+
+    # Source journal
+    journal = _html_escape(paper.get('journal', 'Unknown'))
+
     tags_str = ", ".join(gemini_output.get("tags", [])[:5])
 
-    # Use overview instead of summary for the new rich format
-    overview = _html_escape(gemini_output.get("overview", gemini_output.get("summary", "")))
-    title_display = _html_escape(gemini_output.get('title', 'Untitled'))
-
-    # Paper type summary (support both schemas)
-    paper_types = {}
-    all_analyzed = (
-        gemini_output.get("core_papers", [])
-        + gemini_output.get("peripheral_papers", [])
-        + gemini_output.get("papers", [])
-    )
-    for p in all_analyzed:
-        ptype = p.get("paper_type", "unknown")
-        paper_types[ptype] = paper_types.get(ptype, 0) + 1
-    type_str = ", ".join(f"{v}x {k}" for k, v in paper_types.items())
-
-    # Core / peripheral counts
-    core_count = len(gemini_output.get("core_papers", []))
-    periph_count = len(gemini_output.get("peripheral_papers", []))
-    if core_count:
-        structure_str = f"🎯 Core: {core_count} (full analysis) | 📄 Context: {periph_count} (narrative)"
-    else:
-        structure_str = f"📚 Papers: {len(papers)} | Types: {type_str}"
-
-    message = f"""🛰️ <b>AeroSentinel v2.4 — New Research Digest</b>
+    message = f"""🛰️ <b>AeroSentinel v2.5 — New Paper Review</b>
 
 📋 <b>{title_display}</b>
+📄 {paper_title}
+{badge} | Relevance: {score}/100
 
-📝 {overview[:500]}{'...' if len(overview) > 500 else ''}
+📝 {summary[:300]}{'...' if len(summary) > 300 else ''}
 
-{structure_str}
-📰 Sources: {journal_str}
+📰 Source: {journal}
 🏷️ Tags: {tags_str}
 🌐 Languages: EN + TR
 """
