@@ -1,0 +1,44 @@
+{
+  "filename_base": "2026-02-21-aircraft-lh2-tanks-understanding-transient-boiloff",
+  "filename_en": "2026-02-21-aircraft-lh2-tanks-understanding-transient-boiloff.en.md",
+  "filename_tr": "2026-02-21-aircraft-lh2-tanks-understanding-transient-boiloff.tr.md",
+  "gemini_output_en": {
+    "title": "Aircraft LH2 Tanks: Understanding Transient Boil-Off and Pressure Dynamics",
+    "paper_title": "Transient boil-off and pressure dynamics analysis in aircraft liquid hydrogen tanks",
+    "authors": "Musavir Bashir, Gala Licheva, Susan Liscouét Hanke",
+    "paper_type": "multi_method",
+    "relevance_score": 10,
+    "summary": "Abstract unavailable — classification based on title only.",
+    "tags": [
+      "Flight Vehicle Design",
+      "Heat Flux Prediction",
+      "Thermal Protection Systems"
+    ]
+  },
+  "gemini_output_tr": {
+    "title": "Sıvı Hidrojen Uçak Tanklarında Termal Yönetim ve Basınç Dinamikleri",
+    "paper_title": "Transient boil-off and pressure dynamics analysis in aircraft liquid hydrogen tanks",
+    "authors": "Musavir Bashir, Gala Licheva, Susan Liscouét Hanke",
+    "paper_type": "numerical_cfd",
+    "relevance_score": 15,
+    "summary": "Ozet mevcut degil — siniflandirma yalnizca basliga dayalidir.",
+    "tags": [
+      "Flight Vehicle Design",
+      "Heat Flux Prediction",
+      "Thermal Protection Systems"
+    ]
+  },
+  "paper": {
+    "title": "Transient boil-off and pressure dynamics analysis in aircraft liquid hydrogen tanks",
+    "authors": [
+      "Musavir Bashir",
+      "Gala Licheva",
+      "Susan Liscouét Hanke"
+    ],
+    "journal": "Aerospace Science and Technology",
+    "url": "https://doi.org/10.1016/j.ast.2026.111887",
+    "doi": "10.1016/j.ast.2026.111887",
+    "date": "2026-02-12"
+  },
+  "created_at": "2026-02-21T08:50:09.449997"
+}

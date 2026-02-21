@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Heat Flux Prediction on AeroSentinel</title><link>https://sezersivri.github.io/aerosentinel/tr/tags/heat-flux-prediction/</link><description>Recent content in Heat Flux Prediction on AeroSentinel</description><generator>Hugo -- 0.156.0</generator><language>tr</language><lastBuildDate>Sat, 21 Feb 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://sezersivri.github.io/aerosentinel/tr/tags/heat-flux-prediction/index.xml" rel="self" type="application/rss+xml"/><item><title>Sıvı Hidrojen Uçak Tanklarında Termal Yönetim ve Basınç Dinamikleri</title><link>https://sezersivri.github.io/aerosentinel/tr/drafts/2026-02-21-aircraft-lh2-tanks-understanding-transient-boiloff/</link><pubDate>Sat, 21 Feb 2026 00:00:00 +0000</pubDate><guid>https://sezersivri.github.io/aerosentinel/tr/drafts/2026-02-21-aircraft-lh2-tanks-understanding-transient-boiloff/</guid><description>Ozet mevcut degil — siniflandirma yalnizca basliga dayalidir&amp;hellip;.</description><content:encoded><![CDATA[<p><strong>Type:</strong> 💻 Sayisal/HAD | <strong>Relevance:</strong> 15/100</p>
+<p>Ozet mevcut degil — siniflandirma yalnizca basliga dayalidir.</p>
+<hr>
+<p><em>Bu makale incelemesi <a href="https://deepmind.google/technologies/gemini/">Gemini 2.5 Flash</a> tarafindan olusturulmus ve AeroSentinel v2.5.0 tarafindan duzenlenmistir.</em></p>
+<hr>
+<h2 id="kaynak">Kaynak</h2>
+<ol>
+<li>Musavir Bashir, Gala Licheva, Susan Liscouét Hanke, &ldquo;Transient boil-off and pressure dynamics analysis in aircraft liquid hydrogen tanks,&rdquo; <em>Aerospace Science and Technology</em>, 2026-02-12. <a href="https://doi.org/10.1016/j.ast.2026.111887">Link</a></li>
+</ol>
+]]></content:encoded></item></channel></rss>
