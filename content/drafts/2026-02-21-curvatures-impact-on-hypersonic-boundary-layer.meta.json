@@ -1,0 +1,46 @@
+{
+  "filename_base": "2026-02-21-curvatures-impact-on-hypersonic-boundary-layer",
+  "filename_en": "2026-02-21-curvatures-impact-on-hypersonic-boundary-layer.en.md",
+  "filename_tr": "2026-02-21-curvatures-impact-on-hypersonic-boundary-layer.tr.md",
+  "gemini_output_en": {
+    "title": "Curvature's Impact on Hypersonic Boundary Layer Transition: A Numerical Study",
+    "paper_title": "Effects of Curvature on Mack Mode Evolution in Hypersonic Boundary Layer",
+    "authors": "Chunhui Liu, Shenghao Yu, Jisen Yuan, Di Wang et al.",
+    "paper_type": "numerical_cfd",
+    "relevance_score": 75,
+    "summary": "This paper investigates how wall curvature influences the evolution of Mack modes in hypersonic boundary layers, a critical factor for boundary layer transition. The authors use linearized compressible Navier-Stokes equations to parametrically study flat-plate, concave, and convex curvatures, aiming to understand their impact on transition mechanisms. The work addresses a gap in understanding curvature effects on Mack modes in hypersonic flows, building upon existing research that primarily focuses on freestream parameters.\n\nThe study's findings indicate that convex curvature stabilizes Mack modes due to favorable pressure gradients, while concave curvature destabilizes them through adverse pressure gradients. As curvature increases, these effects become more pronounced: greater convex curvature further suppresses Mack modes, and greater concave curvature amplifies them. The research provides a detailed numerical analysis of these physical phenomena.\n\nUnderstanding these curvature effects is important for the design of hypersonic configurations, as boundary layer transition significantly affects aerodynamic heating and vehicle performance. The insights gained offer guidance for managing transition location, which is crucial for thermal management and overall vehicle integrity.",
+    "tags": [
+      "Hypersonic Aerodynamics",
+      "Aerothermodynamics",
+      "Missile Aerothermodynamics"
+    ]
+  },
+  "gemini_output_tr": {
+    "title": "Hipersonik Sınır Tabakasında Mack Modu ve Eğrilik Etkileşimi",
+    "paper_title": "Effects of Curvature on Mack Mode Evolution in Hypersonic Boundary Layer",
+    "authors": "Chunhui Liu, Shenghao Yu, Jisen Yuan, Di Wang et al.",
+    "paper_type": "numerical_cfd",
+    "relevance_score": 65,
+    "summary": "Bu makale, hipersonik sınır tabakalarındaki Mack modunun evrimi üzerindeki duvar eğriliğinin etkilerini parametrik olarak inceliyor. Çalışma, düzlem plaka, içbükey ve dışbükey eğriliklere sahip yüzeylerdeki hipersonik akışlar için doğrusallaştırılmış sıkıştırılabilir Navier-Stokes denklemlerini kullanarak bu fenomeni araştırıyor. Mevcut araştırmaların çoğunlukla serbest akış parametrelerine odaklandığı bir alanda, bu çalışma duvar eğriliğinin Mack modu üzerindeki etkisini, özellikle hipersonik rejimde, daha iyi anlamayı hedefliyor.\n\nElde edilen sonuçlar, dışbükey eğriliğe sahip sınır tabakasındaki elverişli basınç gradyanının Mack modunu stabilize ettiğini, içbükey eğriliğe sahip sınır tabakasındaki olumsuz basınç gradyanının ise Mack modunu destabilize ettiğini gösteriyor. Eğrilik arttıkça, dışbükey yüzeyler için elverişli basınç gradyanı daha belirgin hale geliyor ve Mack modu bastırılıyor. Tersine, içbükey yüzeyler için olumsuz basınç gradyanı güçleniyor ve Mack modu amplifiye oluyor. Bu bulgular, hipersonik araçların aerodinamik tasarımında sınır tabakası geçişini yönetmek için bilgiler sunuyor.\n\nBu çalışma, hipersonik araçların termal yönetimi ve aerodinamik performansı için önemli olan sınır tabakası geçişinin karmaşık doğasına dair anlayışımızı geliştiriyor. Mack modunun eğrilik etkileşimlerinin belirlenmesi, özellikle yüksek hızlı füzelerde aerodinamik ısıtma tahminleri için bir girdi sağlayarak, daha doğru ısı akısı hesaplamalarına ve termal koruma sistemi tasarımlarına olanak tanıyabilir.",
+    "tags": [
+      "Hypersonic Aerodynamics",
+      "Aerothermodynamics",
+      "Missile Aerothermodynamics"
+    ]
+  },
+  "paper": {
+    "title": "Effects of Curvature on Mack Mode Evolution in Hypersonic Boundary Layer",
+    "authors": [
+      "Chunhui Liu",
+      "Shenghao Yu",
+      "Jisen Yuan",
+      "Di Wang",
+      "Liangjie Gao"
+    ],
+    "journal": "AIAA Journal",
+    "url": "https://doi.org/10.2514/1.j066641",
+    "doi": "10.2514/1.j066641",
+    "date": "2026-02-12"
+  },
+  "created_at": "2026-02-21T08:50:09.072167"
+}
