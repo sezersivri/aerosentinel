@@ -1,0 +1,47 @@
+{
+  "filename_base": "2026-02-28-controlling-supersonic-stbli-with-ridge-roughness",
+  "filename_en": "2026-02-28-controlling-supersonic-stbli-with-ridge-roughness.en.md",
+  "filename_tr": "2026-02-28-controlling-supersonic-stbli-with-ridge-roughness.tr.md",
+  "gemini_output_en": {
+    "title": "Controlling Supersonic STBLI with Ridge Roughness: LES Insights",
+    "paper_title": "Passive control of shock-wave/turbulent boundary-layer interaction via ridge-type roughness",
+    "authors": "Wencan Wu, L. Laguarda, Davide Modesti, Stefan Hickel",
+    "paper_type": "numerical_cfd",
+    "relevance_score": 65,
+    "summary": "This paper investigates the effectiveness of spanwise heterogeneous, ridge-type wall roughness in passively controlling shock-wave/turbulent boundary-layer interactions (STBLIs). The authors employed wall-resolved large-eddy simulations (LES) to analyze a Mach 2.0 impinging STBLI flow with a 40-degree impinging-shock angle. They considered incoming turbulent boundary layers at two friction Reynolds numbers, approximately 350 and 1200, and explored multiple roughness configurations scaled by either inner or outer flow parameters.\n\nThe results indicate that while the rough-wall configurations introduce a moderate increase in mean drag, they substantially alter the dynamics of the interaction. The wall-pressure fluctuations near the separation-shock foot, which consist of low-frequency components from large-scale shock excursions and high-frequency components from amplified turbulence, were significantly attenuated. At the lower Reynolds number, both low- and high-frequency components contributed comparably to the overall reduction. At the higher Reynolds number, a stronger overall reduction of the pressure fluctuation peak was observed, primarily due to the effective suppression of the low-frequency component. Cross-correlation analyses suggest downstream mechanisms drive the low-frequency dynamics in this strong interaction regime, where large-scale shock excursions are mainly driven by the breathing of the reverse-flow bubble. Large-scale Görtler-like vortices were identified around the reattachment location in all cases, appearing largely unaffected by roughness geometry.\n\nThis work provides valuable insights into passive flow control strategies for STBLIs, which are critical phenomena in high-speed flight. Understanding how wall roughness can modify turbulence and shock dynamics offers potential avenues for mitigating adverse effects in supersonic and hypersonic vehicle designs, particularly in areas prone to strong shock interactions.",
+    "tags": [
+      "Supersonic Aerodynamics",
+      "Shock-Boundary Layer Interaction",
+      "Missile Aerothermodynamics",
+      "Turbulent Heating"
+    ]
+  },
+  "gemini_output_tr": {
+    "title": "Sırt Tipi Pürüzlülükle Süpersonik Şok-Sınır Tabakası Etkileşimlerinin Pasif Kontrolü",
+    "paper_title": "Passive control of shock-wave/turbulent boundary-layer interaction via ridge-type roughness",
+    "authors": "Wencan Wu, L. Laguarda, Davide Modesti, Stefan Hickel",
+    "paper_type": "numerical_cfd",
+    "relevance_score": 60,
+    "summary": "Bu makale, Mach 2.0'da 40 derecelik bir şok açısıyla oluşan şok dalgası/türbülanslı sınır tabakası etkileşimlerinin (STBLI) pasif kontrolünü, sırt tipi pürüzlülük kullanarak duvar çözümlü büyük girdap simülasyonları (LES) aracılığıyla inceliyor. Araştırmacılar, tüm hesaplama alanı boyunca uzanan, akış yönünde hizalanmış sinüzoidal sırtlar ve düz vadilerden oluşan pürüzlülük konfigürasyonlarını değerlendiriyorlar. Gelen türbülanslı sınır tabakaları için yaklaşık 350 ve 1200 sürtünme Reynolds sayıları ($Re_\\tau$) olmak üzere iki farklı durum ele alınıyor.\n\nÇalışma, pürüzlü duvar konfigürasyonlarının ortalama sürüklemede orta düzeyde bir artışa neden olurken, etkileşimin dinamiklerini önemli ölçüde değiştirdiğini gösteriyor. Ayrılma şoku ayağı yakınındaki duvar basıncı dalgalanmalarının hem düşük frekanslı şok salınımları hem de yüksek frekanslı türbülansla ilişkili bileşenlerinin incelenen duvar pürüzlülüğü tarafından önemli ölçüde zayıflatılabileceği bulunmuştur. Düşük Reynolds sayısında, düşük ve yüksek frekanslı bileşenlerin zayıflaması genel azalmaya benzer şekilde katkıda bulunurken, yüksek Reynolds sayısında basınç dalgalanması zirvesinde daha güçlü bir genel azalma gözlemleniyor ve bu esas olarak düşük frekanslı bileşenin etkili bir şekilde bastırılmasına bağlanıyor. Ayrıca, tüm durumlarda yeniden yapışma bölgesinde büyük ölçekli Görtler benzeri girdaplar tanımlanmış ve bunların pürüzlülük geometrisinden büyük ölçüde etkilenmediği görülmüştür.\n\nBu çalışma, yüksek hızlı akışlarda şok dalgası/sınır tabakası etkileşimlerinin kontrolüne yönelik pasif yöntemlerin anlaşılmasına katkıda bulunuyor. Her ne kadar doğrudan aerodinamik ısınma üzerine odaklanmasa da, STBLI'ların kontrolü, yüksek hızlı araçların yüzeylerindeki termal yüklerin yönetimi ve genel aerodinamik performansın iyileştirilmesi açısından dolaylı olarak önem taşımaktadır. Özellikle, basınç dalgalanmalarının azaltılması, yapısal yorulma ve potansiyel olarak lokalize ısı transferi artışları gibi aerotermodinamik sorunları hafifletebilir.",
+    "tags": [
+      "Supersonic Aerodynamics",
+      "Shock-Boundary Layer Interaction",
+      "Missile Aerothermodynamics",
+      "Turbulent Heating"
+    ]
+  },
+  "paper": {
+    "title": "Passive control of shock-wave/turbulent boundary-layer interaction via ridge-type roughness",
+    "authors": [
+      "Wencan Wu",
+      "L. Laguarda",
+      "Davide Modesti",
+      "Stefan Hickel"
+    ],
+    "journal": "Journal of Fluid Mechanics",
+    "url": "https://doi.org/10.1017/jfm.2026.11204",
+    "doi": "10.1017/jfm.2026.11204",
+    "date": "2026-02-23"
+  },
+  "created_at": "2026-02-28T08:39:56.544088"
+}
