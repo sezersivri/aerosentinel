@@ -1,0 +1,50 @@
+{
+  "filename_base": "2026-03-07-scramjet-flame-stabilization-how-pilot-injection",
+  "filename_en": "2026-03-07-scramjet-flame-stabilization-how-pilot-injection.en.md",
+  "filename_tr": "2026-03-07-scramjet-flame-stabilization-how-pilot-injection.tr.md",
+  "gemini_output_en": {
+    "title": "Scramjet Flame Stabilization: How Pilot Injection Switches Modes",
+    "paper_title": "Flame Stabilization Mode Transition Induced by Pilot Injection in a Cavity-Based Scramjet",
+    "authors": "Xu Zhang, Lianjie Yue, Dehai Yu, Qili Liu et al.",
+    "paper_type": "numerical_cfd",
+    "relevance_score": 68,
+    "summary": "This paper investigates the influence of pilot hot gas injection on flame stabilization within a cavity-based scramjet combustor. The authors employed three-dimensional unsteady Reynolds-averaged Navier–Stokes simulations to model ethylene fuel injection in a dual-solution regime, where two distinct flame stabilization modes could exist. The primary goal was to understand how pilot injection, at varying heating levels, affects both ignition and sustained flame stabilization, particularly focusing on potential mode transitions.\n\nThe simulations revealed that flame stabilization is highly sensitive to the pilot heating power. A low level of pilot heating maintained the flame in a cavity shear-layer stabilization mode. However, when the pilot heating was sufficiently high, it induced a transition to a jet-wake stabilization mode. This transition was primarily attributed to a reduction in the ignition delay within the unburned jet-wake region, caused by the elevated temperatures from the pilot. Additionally, pilot injection was found to enhance fuel–air mixing through the generation of vortices, with both the reduced ignition delay and mixing enhancement intensifying as the pilot heating power increased. Consequently, high heating power facilitated upstream flame propagation and flow separation, which ultimately triggered the observed mode transition. A theoretical analysis, based on Semenov thermal ignition theory, supported these findings by showing that high pilot heating promoted chemical heat release in the unburned jet-wake, exceeding the enthalpy outflow of the initial cavity shear-layer mode, leading to a sustained temperature rise and initiating the transition.\n\nUnderstanding these flame stabilization mode transitions is important for the design and operation of scramjet engines. The ability to control or predict such transitions through pilot injection strategies directly impacts the reliability and performance envelope of high-speed propulsion systems, which are critical for applications like high-speed missiles.",
+    "tags": [
+      "Scramjet Propulsion",
+      "Hypersonic Flow",
+      "Aerothermodynamics",
+      "Turbulent Heating",
+      "Missile Aerothermodynamics"
+    ]
+  },
+  "gemini_output_tr": {
+    "title": "Scramjetlerde Pilot Enjeksiyonu ile Alev Stabilizasyon Modu Gecisleri",
+    "paper_title": "Flame Stabilization Mode Transition Induced by Pilot Injection in a Cavity-Based Scramjet",
+    "authors": "Xu Zhang, Lianjie Yue, Dehai Yu, Qili Liu et al.",
+    "paper_type": "numerical_cfd",
+    "relevance_score": 60,
+    "summary": "Bu makale, oyuk tabanlı bir scramjet motorunda alev stabilizasyonunun pilot sıcak gaz enjeksiyonuyla nasıl etkilendiğini üç boyutlu kararsız Reynolds ortalamalı Navier-Stokes (RANS) simülasyonları kullanarak inceliyor. Çalışma, etilen yakıtın iki olası alev stabilizasyon modunun bulunduğu çift çözümlü bir rejimde enjekte edildiği durumları ele alıyor. Temel yaklaşım, pilot enjeksiyonun hem tutuşmaya hem de alev stabilizasyonuna nasıl yardımcı olduğunu ve farklı pilot ısıtma seviyelerinin alev davranışı ile mod geçişleri üzerindeki etkisini değerlendirmek.\n\nElde edilen sonuçlar, alev stabilizasyonunun pilot ısıtma gücüne oldukça duyarlı olduğunu gösteriyor. Düşük ısıtma seviyeleri oyuk kesme tabakası stabilizasyonunu sürdürürken, yeterince yüksek ısıtma seviyeleri jet-uyanık stabilizasyonuna bir geçişi tetikliyor. Bu geçişin ana nedeni, pilot ısıtmanın yükselttiği sıcaklıklar nedeniyle yanmamış jet-uyanık bölgesindeki tutuşma gecikmesinin azalması. Ayrıca, pilot enjeksiyonu girdap oluşumu yoluyla yakıt-hava karışımını iyileştiriyor. Her iki etki de pilot ısıtma gücü arttıkça yoğunlaşıyor. Semenov termal tutuşma teorisine dayalı teorik bir analiz de, yüksek pilot ısıtmanın yanmamış jet-uyanık bölgesindeki kontrol hacmi içinde kimyasal ısı salınımını artırdığını ve bunun başlangıçtaki oyuk kesme tabakası stabilizasyon modundaki entalpi çıkışını aştığını gösteriyor. Bu enerji dengesizliği, sürekli bir sıcaklık artışına ve mod geçişine yol açıyor.\n\nAerotermodinamik topluluğu için bu çalışma, scramjet motorlarında güvenilir yanma ve itki sistemleri tasarımı açısından önemli çıkarımlar sunuyor. Yüksek hızlı akış ortamlarında alev stabilizasyon mekanizmalarını ve mod geçişlerini anlamak, hipersonik uçuş koşullarında optimum tutuşma ve yanma verimliliği elde etmek için temel bir gereklilik. Bu tür iç akış dinamiklerinin modellenmesi, genel hipersonik araç performansının termal yönetimi ve aerotermodinamik yüklerin değerlendirilmesi için de dolaylı olarak bilgi sağlıyor.",
+    "tags": [
+      "Scramjet Propulsion",
+      "Hypersonic Flow",
+      "Aerothermodynamics",
+      "Turbulent Heating",
+      "Missile Aerothermodynamics"
+    ]
+  },
+  "paper": {
+    "title": "Flame Stabilization Mode Transition Induced by Pilot Injection in a Cavity-Based Scramjet",
+    "authors": [
+      "Xu Zhang",
+      "Lianjie Yue",
+      "Dehai Yu",
+      "Qili Liu",
+      "Yue Guan"
+    ],
+    "journal": "AIAA Journal",
+    "url": "https://doi.org/10.2514/1.j065899",
+    "doi": "10.2514/1.j065899",
+    "date": "2026-03-01"
+  },
+  "created_at": "2026-03-07T08:43:53.137364"
+}

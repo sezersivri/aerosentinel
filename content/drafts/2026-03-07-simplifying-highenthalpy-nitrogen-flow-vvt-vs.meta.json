@@ -1,0 +1,50 @@
+{
+  "filename_base": "2026-03-07-simplifying-highenthalpy-nitrogen-flow-vvt-vs",
+  "filename_en": "2026-03-07-simplifying-highenthalpy-nitrogen-flow-vvt-vs.en.md",
+  "filename_tr": "2026-03-07-simplifying-highenthalpy-nitrogen-flow-vvt-vs.tr.md",
+  "gemini_output_en": {
+    "title": "Simplifying High-Enthalpy Nitrogen Flow: VVT vs. VTm for Aerodynamic Heating",
+    "paper_title": "Effects of vibration–vibration–translation reactions in vibrational state-specific modeling of high-enthalpy nitrogen flow over a sphere",
+    "authors": "Xiaoyong Wang, Qiming Zhang, Ming Che, Jiale Zhu et al.",
+    "paper_type": "numerical_cfd",
+    "relevance_score": 75,
+    "summary": "This paper investigates the impact of vibration–vibration–translation (VVT) reactions in state-to-state (StS) simulations of high-enthalpy nitrogen flow over a sphere. The primary objective is to reduce the significant computational cost associated with detailed StS simulations by evaluating two simplification methods: multiquantum restrictions and simplifying VVT transitions to vibration–translation (VTm) transitions. This work extends a previous study, systematically analyzing how these transition models affect flowfield characteristics and, crucially, heat flux distributions.\n\nThe numerical results demonstrate that both the full StS VVT model and the simplified VTm model predict nearly identical shock standoff distances and stagnation-point heat fluxes. These predictions align well with available experimental data. When comparing VVT and VTm transitions, the study finds minimal differences in the predictions of translational temperature, vibrational temperature, and nitrogen mass fraction. Near the wall, both models yield almost identical state populations, which exhibit gradually pronounced non-Boltzmann distributions.\n\nThe key finding is that VVT transitions can be effectively reduced to VTm transitions without compromising essential accuracy for predicting aerodynamic heating in this high-enthalpy nitrogen flow scenario. This outcome is valuable for the aerothermodynamics community, as it offers a practical approach to decrease the computational burden of detailed state-to-state simulations, making them more feasible for multidimensional applications while maintaining accuracy in critical heating predictions.",
+    "tags": [
+      "Aerothermodynamics",
+      "Hypersonic Flow",
+      "High Enthalpy Flow",
+      "Heat Flux Prediction",
+      "Stagnation Point Heating"
+    ]
+  },
+  "gemini_output_tr": {
+    "title": "Yüksek Entalpili Azot Akışında Aerodinamik Isınma: VVT Geçişlerinin Etkisi",
+    "paper_title": "Effects of vibration–vibration–translation reactions in vibrational state-specific modeling of high-enthalpy nitrogen flow over a sphere",
+    "authors": "Xiaoyong Wang, Qiming Zhang, Ming Che, Jiale Zhu et al.",
+    "paper_type": "numerical_cfd",
+    "relevance_score": 75,
+    "summary": "Bu makale, yüksek entalpili azot akışının bir küre üzerindeki davranışını, titreşim-titreşim-öteleme (VVT) ve basitleştirilmiş titreşim-öteleme (VTm) geçişlerinin akış alanı özellikleri ve ısı akısı dağılımları üzerindeki etkilerini incelemektedir. Çalışma, hesaplama maliyetini azaltmayı hedeflerken, aerodinamik ısınma tahminlerinde doğruluğu korumak için durumdan-duruma (StS) simülasyon yaklaşımını kullanmaktadır. Bu analiz, daha önceki bir çalışmanın devamı niteliğindedir.\n\nYapılan sayısal analizler, hem StS VVT hem de VTm geçişlerinin şok ayrılma mesafeleri ve durma noktası ısı akıları için neredeyse aynı tahminler ürettiğini göstermiştir; bu sonuçlar deneysel verilerle uyumludur. VVT geçişlerinin dahil edilmesi, öteleme sıcaklığı, titreşim sıcaklığı ve N kütle kesri tahminlerinde VTm süreçlerine kıyasla çok küçük farklılıklar ortaya koymuştur. Duvara yakın bölgelerde, VVT ve VTm geçişleri neredeyse özdeş durum popülasyonları üretmiş ve kademeli olarak belirginleşen non-Boltzmann dağılımları gözlenmiştir.\n\nBu bulgular, yüksek entalpili akışlarda aerodinamik ısınma tahminleri için daha karmaşık ve hesaplama açısından yoğun VVT geçişlerinin, temel doğruluğu koruyarak daha basit VTm geçişlerine etkili bir şekilde indirgenebileceğini düşündürmektedir. Bu durum, benzer termokimyasal dengesizlik akışlarının daha verimli sayısal simülasyonları için önemli bir potansiyel sunmaktadır.",
+    "tags": [
+      "Aerothermodynamics",
+      "Hypersonic Flow",
+      "High Enthalpy Flow",
+      "Heat Flux Prediction",
+      "Stagnation Point Heating"
+    ]
+  },
+  "paper": {
+    "title": "Effects of vibration–vibration–translation reactions in vibrational state-specific modeling of high-enthalpy nitrogen flow over a sphere",
+    "authors": [
+      "Xiaoyong Wang",
+      "Qiming Zhang",
+      "Ming Che",
+      "Jiale Zhu",
+      "Jinghui Guo"
+    ],
+    "journal": "Physics of Fluids",
+    "url": "https://doi.org/10.1063/5.0313122",
+    "doi": "10.1063/5.0313122",
+    "date": "2026-03-01"
+  },
+  "created_at": "2026-03-07T08:43:52.724393"
+}
