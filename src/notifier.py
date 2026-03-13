@@ -70,7 +70,7 @@ def send_draft_preview(
 
     tags_str = ", ".join(gemini_output.get("tags", [])[:5])
 
-    message = f"""🛰️ <b>AeroSentinel v2.5 — New Paper Review</b>
+    message = f"""🛰️ <b>AeroSentinel v3.0 — New Paper Review</b>
 
 📋 <b>{title_display}</b>
 📄 {paper_title}

@@ -6,11 +6,12 @@ Automated academic paper feed for aerospace research, focused on the thesis doma
 
 ```
 GitHub Actions (cron/webhook)
-  -> Hunter (7 academic APIs)
-    -> Brain (Gemini LLM analysis, bilingual EN/TR)
-      -> Notifier (Telegram preview + inline buttons)
-        -> Cloudflare Worker (callback handler)
-          -> Hugo Publish (GitHub Pages)
+  -> Hunter (7 academic APIs + Intelligence module)
+    -> Intelligence (semantic scoring, citation graph, author watch, concept search)
+      -> Brain (Gemini LLM analysis with few-shot examples, bilingual EN/TR)
+        -> Notifier (Telegram preview + inline buttons)
+          -> Cloudflare Worker (callback handler)
+            -> Hugo Publish (GitHub Pages)
 ```
 
 ## Key Files
@@ -19,25 +20,48 @@ GitHub Actions (cron/webhook)
 |------|---------|
 | `src/config.py` | All settings: API keys, keyword tiers, journal tiers, curated tag vocabulary, thresholds |
 | `src/hunter.py` | Multi-source paper search (OpenAlex, arXiv, NASA NTRS, Crossref, CORE, IEEE, Semantic Scholar), scoring & ranking |
-| `src/brain.py` | Gemini system prompts, single-paper analysis, Hugo post generation, paper type badges |
-| `src/pipeline.py` | Orchestrator: hunt -> brain -> normalize/validate -> notify -> publish/discard |
+| `src/intelligence.py` | **NEW v3.0** — Semantic scoring, citation graph expansion, author watchlist, keyword analytics, concept search, trend detection |
+| `src/brain.py` | Gemini system prompts with few-shot examples, single-paper analysis, Hugo post generation, paper type badges |
+| `src/pipeline.py` | Orchestrator: hunt -> intelligence -> brain -> normalize/validate -> notify -> publish/discard |
 | `src/notifier.py` | Telegram Bot API integration (previews, confirmations, status messages) |
 | `worker/index.js` | Cloudflare Worker webhook bridge (Telegram commands, callbacks, search sessions) |
 | `worker/wrangler.toml` | Cloudflare Worker configuration (KV namespace: SEARCH_SESSIONS) |
 | `.github/workflows/search.yml` | Custom search workflow (triggered by `/search` command) |
 | `usage_stats.json` | API usage tracking (Gemini tokens, API calls per source) |
+| `data/watchlist_authors.json` | **NEW v3.0** — Tracked authors from published papers |
+| `data/keyword_stats.json` | **NEW v3.0** — Keyword performance tracking (found/selected/published) |
+| `data/trend_history.json` | **NEW v3.0** — Tag/topic frequency snapshots for trend detection |
+| `data/thesis_embedding.json` | **NEW v3.0** — Cached thesis abstract embedding vector |
 | `scripts/google_apps_script.js` | **LEGACY** — Old webhook bridge, replaced by `worker/index.js` |
-| `VERSION` | Semantic version (current: 2.5.0) |
+| `VERSION` | Semantic version (current: 3.0.0) |
 
 ## Data Flow
 
 1. **Hunter** searches 7 APIs using keyword tiers, applies journal/institution filters
-2. **Recency gate**: papers older than `MAX_PAPER_AGE_DAYS` (90 days) are rejected — this is a NEWS platform
-3. **Score gate**: papers below `MIN_HUNTER_SCORE` (30) are dropped
-4. **Brain** analyzes each paper individually with Gemini, generates bilingual (EN/TR) prose review; usage tracked in `usage_stats.json`
-5. **Normalization**: tags validated against 36-tag curated vocabulary, paper types validated
-6. **Notifier** sends Telegram preview per paper with Publish/Edit/Discard/Bookmark buttons
-7. **Publish** moves drafts from `content/drafts/` to `content/posts/`
+2. **Intelligence: Concept Search** — OpenAlex targeted compound queries find papers at concept intersections
+3. **Intelligence: Author Watch** — checks watched authors for new publications
+4. **Intelligence: Semantic Scoring** — Gemini embeddings API scores each abstract against thesis (cosine similarity)
+5. **Intelligence: Citation Graph** — expands from top-scoring papers via citing/co-citation networks
+6. **Recency gate**: papers older than `MAX_PAPER_AGE_DAYS` (90 days) are rejected — this is a NEWS platform
+7. **Score gate**: papers below `MIN_HUNTER_SCORE` (30) are dropped (semantic score adds up to +30 bonus)
+8. **Brain** analyzes each paper individually with Gemini (few-shot prompted), generates bilingual (EN/TR) prose review
+9. **Normalization**: tags validated against 36-tag curated vocabulary, paper types validated
+10. **Notifier** sends Telegram preview per paper with Publish/Edit/Discard/Bookmark buttons
+11. **Publish** moves drafts to posts; updates author watchlist and keyword stats
+
+## Intelligence Module (v3.0)
+
+Seven features, all free, no new dependencies:
+
+| Feature | How It Works | Data File |
+|---------|-------------|-----------|
+| **Semantic Scoring** | Gemini `text-embedding-004` API computes cosine similarity between paper abstract and thesis abstract | `data/thesis_embedding.json` (cached) |
+| **Citation Graph** | From top-scoring papers, follows citing works and co-citation neighbors via OpenAlex | — |
+| **Author Watchlist** | Auto-tracks authors of published papers; checks their new publications each run | `data/watchlist_authors.json` |
+| **Keyword Self-Tuning** | Tracks which keywords led to found/selected/published papers; reports precision | `data/keyword_stats.json` |
+| **Concept Search** | Targeted compound queries on OpenAlex (e.g., "gaussian process surrogate aerodynamic heating") | — |
+| **Trend Detection** | Tag frequency snapshots per run; moving average detects spikes and drops | `data/trend_history.json` |
+| **Few-Shot Gemini** | Includes a high-quality example output in the Gemini prompt for consistent tone/structure | Embedded in `src/brain.py` |
 
 ## Post Format
 
@@ -110,6 +134,12 @@ python -m src.pipeline --search '{"tags":["Aerothermodynamics","Deep Learning"],
 # Weekly usage stats
 python -m src.pipeline --weekly-stats
 
+# Research trend report
+python -m src.pipeline --trends
+
+# Keyword performance report
+python -m src.pipeline --keyword-stats
+
 # Test Telegram connection
 python -m src.notifier
 ```
@@ -122,3 +152,4 @@ python -m src.notifier
 - Hugo frontmatter uses YAML format
 - All tags always in English (cross-language consistency)
 - Paper dates must be parseable and within MAX_PAPER_AGE_DAYS to be included
+- Intelligence features degrade gracefully (if Gemini embeddings fail, keyword scoring still works)

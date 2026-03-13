@@ -904,6 +904,15 @@ def rank_and_select(papers: list, skip_age_filter: bool = False, date_to: str = 
         if paper.get("abstract"):
             score += 10
 
+        # Semantic similarity bonus (from intelligence module)
+        semantic = paper.get("semantic_score", 0)
+        if semantic >= 70:
+            score += 30
+        elif semantic >= 50:
+            score += 20
+        elif semantic >= 30:
+            score += 10
+
         paper["score"] = score
 
     # Sort by score descending
@@ -973,6 +982,11 @@ def run_hunt(dry_run: bool = False, custom_keywords=None, date_from=None, date_t
         keywords=custom_keywords
     )
 
+    # 2.5 Intelligence sources (concept search + author watchlist)
+    from src.intelligence import search_by_concepts, check_watchlist_authors
+    concept_papers = search_by_concepts(seen_dois, days=days)
+    author_papers = check_watchlist_authors(seen_dois, days=days)
+
     # 3. Merge all sources (DOI-based dedup)
     all_papers = {}
     all_papers.update(openalex_papers)
@@ -981,6 +995,8 @@ def run_hunt(dry_run: bool = False, custom_keywords=None, date_from=None, date_t
     all_papers.update(crossref_papers)
     all_papers.update(core_papers)
     all_papers.update(ieee_papers)
+    all_papers.update(concept_papers)
+    all_papers.update(author_papers)
 
     # 3.5 Title-based deduplication (same paper, different IDs)
     seen_titles = {}
@@ -1015,7 +1031,8 @@ def run_hunt(dry_run: bool = False, custom_keywords=None, date_from=None, date_t
     print(f"\n📊 Total: {len(all_papers)} found, {len(new_papers)} are new")
     print(f"   Sources: OpenAlex={len(openalex_papers)}, arXiv={len(arxiv_papers)}, "
           f"NTRS={len(ntrs_papers)}, Crossref={len(crossref_papers)}, "
-          f"CORE={len(core_papers)}, IEEE={len(ieee_papers)}")
+          f"CORE={len(core_papers)}, IEEE={len(ieee_papers)}, "
+          f"Concepts={len(concept_papers)}, AuthorWatch={len(author_papers)}")
 
     if not new_papers:
         print("\n✅ No new papers found. The field is quiet today.")
@@ -1023,6 +1040,22 @@ def run_hunt(dry_run: bool = False, custom_keywords=None, date_from=None, date_t
 
     # 5. Enrich with Semantic Scholar
     enriched = enrich_with_semantic_scholar(list(new_papers.values()))
+
+    # 5.5 Intelligence: semantic scoring + citation graph expansion
+    from src.intelligence import compute_semantic_scores, expand_citation_graph
+    enriched = compute_semantic_scores(enriched)
+
+    # Expand citation graph from top-scoring papers (by semantic score)
+    top_semantic = sorted(enriched, key=lambda p: p.get("semantic_score", 0), reverse=True)[:3]
+    if top_semantic and top_semantic[0].get("semantic_score", 0) > 30:
+        graph_papers = expand_citation_graph(top_semantic, seen_dois | set(new_papers.keys()))
+        if graph_papers:
+            # Score and add graph-discovered papers
+            graph_list = list(graph_papers.values())
+            graph_list = compute_semantic_scores(graph_list)
+            graph_enriched = enrich_with_semantic_scholar(graph_list)
+            enriched.extend(graph_enriched)
+            print(f"   🔗 Added {len(graph_enriched)} papers from citation graph")
 
     # 6. Apply Tier 2 citation velocity filter
     # Papers that are Tier 2 without elite institution need velocity >= threshold

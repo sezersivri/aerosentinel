@@ -27,8 +27,14 @@ from src.brain import run_brain, generate_hugo_post
 from src.notifier import send_draft_preview, send_simple_message
 from src.config import (
     DRAFTS_DIR, POSTS_DIR, MIN_PAPERS_PER_POST, LANGUAGES,
-    TAG_TO_KEYWORDS, USAGE_STATS_FILE,
+    TAG_TO_KEYWORDS, USAGE_STATS_FILE, KEYWORDS,
     BOOTSTRAP_PAPERS, BOOTSTRAP_LOOKBACK_DAYS,
+)
+from src.intelligence import (
+    record_keyword_hits, record_keyword_published,
+    update_watchlist_from_published, record_trend_snapshot,
+    get_keyword_report, format_trend_report,
+    ensure_data_dir,
 )
 
 
@@ -410,8 +416,10 @@ def run_scout():
     ensure_dirs()
     t_start = time.time()
 
+    ensure_data_dir()
+
     print("\n" + "=" * 60)
-    print("🛰️  AEROSENTINEL SCOUT PIPELINE v2.5")
+    print("🛰️  AEROSENTINEL SCOUT PIPELINE v3.0")
     print(f"📅 {datetime.now().strftime('%Y-%m-%d %H:%M UTC')}")
     print("=" * 60)
 
@@ -434,6 +442,10 @@ def run_scout():
         print(f"\n{msg}")
         send_simple_message(msg)
         return
+
+    # Record keyword performance stats
+    selected_dois = {p.get("doi", "") for p in papers}
+    record_keyword_hits(papers, KEYWORDS, selected_dois)
 
     # Flag papers with missing abstracts for Gemini
     for paper in papers:
@@ -553,6 +565,9 @@ def run_scout():
                      gemini_calls=papers_published * len(LANGUAGES),
                      token_usage=total_token_usage if total_token_usage else None)
 
+    # Intelligence: record trend snapshot
+    record_trend_snapshot(papers, results)
+
     print(f"\n✅ Scout pipeline complete. {papers_published} paper(s) sent for review.")
 
 
@@ -580,9 +595,18 @@ def run_publish(filename_base: str):
         else:
             print(f"⚠️ Draft not found: {draft_path}")
 
-    # Clean up metadata file
+    # Intelligence: update author watchlist + keyword stats from published paper
     meta_path = os.path.join(DRAFTS_DIR, f"{filename_base}.meta.json")
     if os.path.exists(meta_path):
+        try:
+            with open(meta_path) as f:
+                meta = json.load(f)
+            paper_meta = meta.get("paper", {})
+            if paper_meta:
+                update_watchlist_from_published(paper_meta)
+                record_keyword_published(paper_meta, KEYWORDS)
+        except (json.JSONDecodeError, IOError):
+            pass
         os.remove(meta_path)
 
     return published
@@ -635,6 +659,18 @@ if __name__ == "__main__":
     elif "--weekly-stats" in sys.argv:
         # Send weekly usage stats to Telegram
         run_weekly_stats()
+
+    elif "--trends" in sys.argv:
+        # Show research trend report
+        report = format_trend_report()
+        print(report)
+        send_simple_message(report)
+
+    elif "--keyword-stats" in sys.argv:
+        # Show keyword performance report
+        report = get_keyword_report()
+        print(report)
+        send_simple_message(report)
 
     else:
         # Default: full scout pipeline
