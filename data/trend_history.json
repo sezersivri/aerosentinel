@@ -1,1 +1,28 @@
-{"snapshots": []}
+{
+  "snapshots": [
+    {
+      "date": "2026-03-14T08:50:57.481513",
+      "paper_count": 2,
+      "tags": {
+        "Wake": 1,
+        "Detached eddy simulation": 1,
+        "Aerodynamics": 1,
+        "Roof": 1,
+        "Drag": 1,
+        "Aerothermodynamics": 2,
+        "Deep Learning": 2,
+        "Multi-Fidelity Modeling": 2,
+        "Heat Flux Prediction": 2,
+        "Hypersonic Flow": 2,
+        "Gaussian Process Surrogates": 2,
+        "Design Optimization": 2,
+        "Data-Driven Methods": 2,
+        "Surrogate Modeling": 2
+      },
+      "sources": {
+        "OpenAlex": 1,
+        "ConceptSearch": 1
+      }
+    }
+  ]
+}
