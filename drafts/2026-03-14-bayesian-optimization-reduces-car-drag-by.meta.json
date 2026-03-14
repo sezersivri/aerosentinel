@@ -1,0 +1,46 @@
+{
+  "filename_base": "2026-03-14-bayesian-optimization-reduces-car-drag-by",
+  "filename_en": "2026-03-14-bayesian-optimization-reduces-car-drag-by.en.md",
+  "filename_tr": "2026-03-14-bayesian-optimization-reduces-car-drag-by.tr.md",
+  "gemini_output_en": {
+    "title": "Bayesian Optimization Reduces Car Drag by 6.5% Using LES",
+    "paper_title": "Bayesian optimisation of a roof extension/spoiler on a simplified vehicle, employing wall-resolved large eddy simulation",
+    "authors": "Kacper Janczuk, Adrian Gaylard, Aimee S. Morgans",
+    "paper_type": "ml_aerodynamics",
+    "relevance_score": 40,
+    "summary": "This paper investigates passive control for drag reduction on a simplified road vehicle geometry, specifically the square-back Windsor body, through the optimization of a rear roof extension. The study employs high-fidelity wall-resolved large eddy simulation (LES) to model the flow. The optimization process relies on Gaussian process-based surrogate modeling combined with Bayesian optimization, guided by an expected improvement criterion, to efficiently explore the design space defined by the roof extension's taper penetration distance, angle of incidence, and length.\n\nThe optimization converged within six iterations, requiring a total of 60 LES simulations, and resulted in a 6.5% reduction in drag. The authors identified six distinct mechanisms contributing to this drag reduction, including diffuser-induced pressure recovery, base-size reduction, and modifications to the vertical wake balance. The optimal configuration was found when the roof extension angle corresponded to the onset of separation, with both the taper penetration distance and extension length at their maximum values within the analyzed domain.\n\nThis work provides a framework for aerodynamic optimization, demonstrating how coupled wake–geometry interactions can be effectively managed for improved aerodynamic performance. While the application is to road vehicles, the methodology of using Gaussian processes for design optimization with high-fidelity CFD is relevant to broader engineering design challenges.",
+    "tags": [
+      "Gaussian Process Surrogates",
+      "Design Optimization",
+      "Data-Driven Methods",
+      "Surrogate Modeling"
+    ]
+  },
+  "gemini_output_tr": {
+    "title": "LES ve Gauss Süreçleri Kullanılarak Yol Aracı Sürüklemesi Optimizasyonu",
+    "paper_title": "Bayesian optimisation of a roof extension/spoiler on a simplified vehicle, employing wall-resolved large eddy simulation",
+    "authors": "Kacper Janczuk, Adrian Gaylard, Aimee S. Morgans",
+    "paper_type": "ml_aerodynamics",
+    "relevance_score": 25,
+    "summary": "Kacper Janczuk ve ekibi, basitleştirilmiş bir yol aracı olan Windsor gövdesinin arka tavan uzantısının/spoilerının optimizasyonu yoluyla sürüklemeyi azaltmayı amaçlayan bir çalışma sunuyor. Yaklaşım, yüksek doğruluklu duvar çözümlü büyük girdap simülasyonlarını (LES) Gauss süreci tabanlı vekil modelleme ve Bayes optimizasyonu (Kriging) ile birleştiriyor. Optimizasyon süreci, beklenen iyileşme kriterini kullanarak tavan uzantısının konik penetrasyon mesafesi, geliş açısı ve uzunluğu gibi geometrik parametrelerini belirliyor.\n\nOptimizasyon, altı iterasyonda (60 simülasyon) %6.5'lik bir sürükleme azalması elde etti. Çalışma, difüzör kaynaklı basınç geri kazanımı, taban boyutu küçültme, dikey iz denge modifikasyonu, ayrılma etkileri, geri dolaşım bölgesi çekirdek yer değiştirmesi ve açıklık yönünde yeniden simetrizasyon olmak üzere altı farklı sürükleme azaltma mekanizması tanımladı. Optimal konfigürasyon, ayrılmanın başlangıcına karşılık gelen bir tavan uzantısı geliş açısında, analiz edilen etki alanı içindeki maksimum konik penetrasyon mesafesi ve uzantı uzunluğunda bulundu.\n\nBu çalışma, Bayes optimizasyonunun hesaplamalı akışkanlar dinamiği tabanlı tasarımda etkinliğini gösteren sağlam bir çerçeve sunuyor. Yüksek hızlı füzelerdeki aerotermodinamik optimizasyon problemlerinde de benzer vekil modelleme ve optimizasyon yaklaşımlarının kullanılabileceği metodolojik bir örnek teşkil etse de, fiziksel uygulama alanı ve ele alınan akış rejimi benim doğrudan araştırma alanımın dışındadır.",
+    "tags": [
+      "Gaussian Process Surrogates",
+      "Design Optimization",
+      "Data-Driven Methods",
+      "Surrogate Modeling"
+    ]
+  },
+  "paper": {
+    "title": "Bayesian optimisation of a roof extension/spoiler on a simplified vehicle, employing wall-resolved large eddy simulation",
+    "authors": [
+      "Kacper Janczuk",
+      "Adrian Gaylard",
+      "Aimee S. Morgans"
+    ],
+    "journal": "Journal of Fluid Mechanics",
+    "url": "https://doi.org/10.1017/jfm.2026.11244",
+    "doi": "10.1017/jfm.2026.11244",
+    "date": "2026-03-09"
+  },
+  "created_at": "2026-03-14T08:50:57.137925"
+}

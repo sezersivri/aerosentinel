@@ -1,0 +1,50 @@
+{
+  "filename_base": "2026-03-14-multifidelity-data-fusion-for-hypersonic-heating",
+  "filename_en": "2026-03-14-multifidelity-data-fusion-for-hypersonic-heating.en.md",
+  "filename_tr": "2026-03-14-multifidelity-data-fusion-for-hypersonic-heating.tr.md",
+  "gemini_output_en": {
+    "title": "Multifidelity Data Fusion for Hypersonic Heating: Experiments Meet AI",
+    "paper_title": "Multifidelity Data Fusion Method for Aerodynamic Heating Prediction of Hypersonic Vehicles",
+    "authors": "Zhiyu Duan, Wei Zhao, Wanshu Li, Yanhui Zhang et al.",
+    "paper_type": "ml_heating",
+    "relevance_score": 88,
+    "summary": "Duan and colleagues introduce an augmented data fusion framework aimed at predicting aerodynamic heating on hypersonic vehicles. This framework combines data enhancement strategies with a multifidelity U-NET (MF-UNet) architecture. The approach addresses the challenges of sparse experimental data and the inherent trade-offs in accuracy and resolution associated with traditional CFD and wind-tunnel measurements. The MF-UNet is developed to optimize multifidelity mapping for high-precision heat-flux reconstruction, while systematic data augmentation expands limited experimental datasets to improve extrapolation capabilities.\n\nThe methodology was validated on a hypersonic double-ellipsoid configuration. It successfully integrated three sparse experimental datasets to generate complete surface heating profiles. The framework demonstrated significant improvements over baseline CFD solutions, achieving a surface-averaged normalized root-mean-square error below 3% when compared with experimental measurements. The approach enables full-surface extrapolation, even with limited experimental inputs.\n\nThis work provides a practical solution for aerodynamic heating analysis by effectively integrating multifidelity data, particularly sparse experimental measurements, with a deep learning model. The ability to generate complete heating profiles and extrapolate to new conditions from limited experimental data is valuable for design cycles where experimental campaigns are costly and time-consuming.",
+    "tags": [
+      "Aerothermodynamics",
+      "Deep Learning",
+      "Multi-Fidelity Modeling",
+      "Heat Flux Prediction",
+      "Hypersonic Flow"
+    ]
+  },
+  "gemini_output_tr": {
+    "title": "Hipersonik Isinma Tahmininde Coklu Dogrulukta Veri Birlestirme ve MF-UNet Yaklasimi",
+    "paper_title": "Multifidelity Data Fusion Method for Aerodynamic Heating Prediction of Hypersonic Vehicles",
+    "authors": "Zhiyu Duan, Wei Zhao, Wanshu Li, Yanhui Zhang et al.",
+    "paper_type": "ml_heating",
+    "relevance_score": 92,
+    "summary": "Duan ve arkadaslari, hipersonik araclarin aerodinamik isinma tahmini icin coklu dogrulukta bir veri birlestirme cercevesi sunuyor. Mevcut yontemlerin deneysel veri kitligi nedeniyle tum yuzey tahminini ve yeni ucus kosullarina guvenilir ekstrapolasyonu saglayamadigi zorlugunu ele aliyorlar. Yaklasimlari, sinirli deneysel veri setlerini genisletmek icin sistematik veri artirma stratejileri ile yenilikci bir coklu dogrulukta U-NET (MF-UNet) mimarisini birlestiriyor. Bu cerceve, veri artirma yoluyla ekstrapolasyon saglamligini artirmayi ve MF-UNet araciligiyla yuksek hassasiyetli isi akisi yeniden yapilandirmasi icin optimize edilmis bir coklu dogrulukta esleme mekanizmasi gelistirmeyi hedefliyor.\n\nCalisma, hipersonik cift-elipsoid bir konfigürasyon uzerinde uc seyrek deneysel veri setini entegre ederek tam yuzey isinma profilleri olusturmada cercevenin etkinligini gosteriyor. Deneysel sonuclar, temel CFD cozumlerine kiyasla onemli iyilesmeler saglayarak, deneysel olcumlerle karsilastirildiginda yuzey ortalamali normalize kok-ortalama-kare hatasini %3'un altina dusuruyor. Bu metodoloji, coklu dogrulukta entegrasyon zorluklarini basariyla ele alirken, tam yuzey ekstrapolasyonunu mumkun kiliyor.\n\nBu calisma, aerodinamik isinma analizi icin muhendislik acisindan uygulanabilir bir cozum sunarak, ozellikle sinirli deneysel verilerle calisirken hipersonik arac tasariminda karsilasilan kritik bir zorlugu ele aliyor. Veri artirma ve MF-UNet'in entegrasyonu, hem tahmin dogrulugunu hem de yeni kosullara genellenebilirligi artirmak icin umut verici bir yol gosteriyor.",
+    "tags": [
+      "Aerothermodynamics",
+      "Deep Learning",
+      "Multi-Fidelity Modeling",
+      "Heat Flux Prediction",
+      "Hypersonic Flow"
+    ]
+  },
+  "paper": {
+    "title": "Multifidelity Data Fusion Method for Aerodynamic Heating Prediction of Hypersonic Vehicles",
+    "authors": [
+      "Zhiyu Duan",
+      "Wei Zhao",
+      "Wanshu Li",
+      "Yanhui Zhang",
+      "Weiqiu Chen"
+    ],
+    "journal": "AIAA Journal",
+    "url": "https://doi.org/10.2514/1.j066092",
+    "doi": "10.2514/1.j066092",
+    "date": "2026-03-08"
+  },
+  "created_at": "2026-03-14T08:50:56.707744"
+}
