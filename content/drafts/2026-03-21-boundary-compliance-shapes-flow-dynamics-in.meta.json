@@ -1,0 +1,32 @@
+{
+  "filename_base": "2026-03-21-boundary-compliance-shapes-flow-dynamics-in",
+  "filename_en": "2026-03-21-boundary-compliance-shapes-flow-dynamics-in.en.md",
+  "filename_tr": "",
+  "gemini_output_en": {
+    "title": "Boundary Compliance Shapes Flow Dynamics in Shear-Thickening Suspensions",
+    "paper_title": "Boundary compliance selects heterogeneous dynamics in shear-thickening suspensions",
+    "authors": "Li-Xin Shi, Meng-Fei Hu, Song-Chuan Zhao",
+    "paper_type": "experimental",
+    "relevance_score": 10,
+    "summary": "Li-Xin Shi and colleagues investigate how the mechanical properties of confining boundaries influence the flow behavior of shear-thickening suspensions. Their approach involves shearing a dense cornstarch suspension beneath a viscous silicone oil layer, where the oil viscosity is adjusted to tune boundary compliance. The study combines flow visualization with rheometry to characterize the suspension's response under varying confinement conditions.\n\nThe research identifies two distinct flow regimes. With compliant boundaries, the suspension exhibits long-lived heterogeneities, manifesting as density waves or persistent clusters. These structures are maintained by an interplay between interface deformation and particle rearrangement. Conversely, more resistant confinement leads to transient jamming events, characterized by the abrupt formation of load-bearing structures spanning the suspension thickness and the emergence of secondary stress waves. The onset stress for these jamming events consistently aligns with the discontinuous shear thickening (DST) threshold, independent of the bounding viscosity.\n\nThese findings demonstrate that boundary compliance plays a role in selecting the lifetime and morphology of heterogeneous structures within shear-thickening suspensions. The work provides insight into the complex interactions between shear thickening, shear jamming, and confinement mechanics. This research area is distinct from high-speed aerothermodynamics and the application of machine learning for heat flux prediction.",
+    "tags": [
+      "Data-Driven Methods",
+      "Analytical Methods",
+      "High-Performance Computing"
+    ]
+  },
+  "gemini_output_tr": {},
+  "paper": {
+    "title": "Boundary compliance selects heterogeneous dynamics in shear-thickening suspensions",
+    "authors": [
+      "Li-Xin Shi",
+      "Meng-Fei Hu",
+      "Song-Chuan Zhao"
+    ],
+    "journal": "Journal of Fluid Mechanics",
+    "url": "https://doi.org/10.1017/jfm.2026.11305",
+    "doi": "10.1017/jfm.2026.11305",
+    "date": "2026-03-19"
+  },
+  "created_at": "2026-03-21T08:46:23.012516"
+}

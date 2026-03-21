@@ -23,6 +23,21 @@
         "OpenAlex": 1,
         "ConceptSearch": 1
       }
+    },
+    {
+      "date": "2026-03-21T08:46:23.898809",
+      "paper_count": 2,
+      "tags": {
+        "Data-Driven Methods": 3,
+        "Analytical Methods": 1,
+        "High-Performance Computing": 3,
+        "Hypersonic Aerodynamics": 2,
+        "Supersonic Aerodynamics": 2,
+        "Reduced-Order Modeling": 2
+      },
+      "sources": {
+        "OpenAlex": 2
+      }
     }
   ]
 }

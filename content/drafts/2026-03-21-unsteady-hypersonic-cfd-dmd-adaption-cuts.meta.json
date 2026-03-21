@@ -1,0 +1,48 @@
+{
+  "filename_base": "2026-03-21-unsteady-hypersonic-cfd-dmd-adaption-cuts",
+  "filename_en": "2026-03-21-unsteady-hypersonic-cfd-dmd-adaption-cuts.en.md",
+  "filename_tr": "2026-03-21-unsteady-hypersonic-cfd-dmd-adaption-cuts.tr.md",
+  "gemini_output_en": {
+    "title": "Unsteady Hypersonic CFD: DMD Adaption Cuts Drag Error Fourfold",
+    "paper_title": "Unsteady Metric-Based Adaptation via Koopman Expansion",
+    "authors": "Cherith Lavisetty, Luca Massa, Rakesh K. Kapania",
+    "paper_type": "numerical_cfd",
+    "relevance_score": 45,
+    "summary": "This paper addresses the computational expense and accuracy challenges of simulating unsteady supersonic and hypersonic flows, particularly concerning mesh refinement. The authors propose a method to improve anisotropic grid adaptation for unsteady flowfields by integrating Dynamic Mode Decomposition (DMD) into the adaptation process. DMD, which is linked to the Koopman operator, is used as a data-driven technique to model complex nonlinear flows and dynamically adjust the mesh in response to evolving flow features, aiming to maintain accuracy with less computational complexity.\n\nThe effectiveness of this approach was demonstrated through numerical experiments on configurations such as a cylinder in subsonic flow and an oscillating cylinder in a supersonic channel flow. The results indicate that incorporating DMD enables an accurate representation of unsteady flow dynamics, independent of the remeshing interval. The dynamic anisotropic mesh adaptation achieved a fourfold reduction in drag error when compared to traditional static meshing methods.\n\nThis method offers a way to improve the efficiency and accuracy of unsteady CFD simulations for high-speed applications. By reducing computational cost and improving accuracy in capturing dynamic features, it could indirectly benefit downstream analyses requiring precise unsteady flowfields, such as those informing aerothermodynamic predictions.",
+    "tags": [
+      "Hypersonic Aerodynamics",
+      "Supersonic Aerodynamics",
+      "Data-Driven Methods",
+      "High-Performance Computing",
+      "Reduced-Order Modeling"
+    ]
+  },
+  "gemini_output_tr": {
+    "title": "Yüksek Hızlı Akışlarda Dinamik Örgü Adaptasyonu: Koopman ve DMD Yaklaşımı",
+    "paper_title": "Unsteady Metric-Based Adaptation via Koopman Expansion",
+    "authors": "Cherith Lavisetty, Luca Massa, Rakesh K. Kapania",
+    "paper_type": "numerical_cfd",
+    "relevance_score": 60,
+    "summary": "Cherith Lavisetty ve arkadaşları, kararsız akış alanlarının hesaplamalı akışkanlar dinamiği (HAD) simülasyonlarında örgü adaptasyonu sorununa odaklanıyor. Özellikle yüksek hızlı uygulamalarda kararsız akışların doğru modellenmesinin zorluğunu ve bunun getirdiği yüksek hesaplama maliyetini ele alıyorlar. Mevcut anizotropik metrik tabanlı adaptif örgü iyileştirme yöntemlerinin genellikle kararlı akışlara yönelik olduğunu belirterek, bu çalışmada Koopman operatörü ile ilişkisi olan ve karmaşık doğrusal olmayan akışları modellemede güçlü bir araç olduğu kanıtlanmış dinamik mod ayrıştırması (DMD) adı verilen veri odaklı bir tekniği kullanarak kararsız akışlar için anizotropik örgü adaptasyonuna yeni bir yaklaşım sunuyorlar. Amaç, akış özelliklerinin evrimine dinamik olarak yanıt vermek için örgüyü otomatik olarak ayarlamak.\n\nÖnerilen yaklaşımın etkinliği, bir silindirin ses altı akışta ve salınan bir silindirin ses üstü kanal akışında olduğu gibi temsili kararsız akış konfigürasyonları üzerinde sayısal deneylerle gösteriliyor. Sonuçlar, DMD'nin örgü yeniden oluşturma aralığından bağımsız olarak kararsız akış dinamiklerinin doğru bir şekilde temsil edilmesini sağladığını gösteriyor. Dinamik anizotropik örgü adaptasyonu ile elde edilen HAD sonuçları, statik örgü yöntemlerine kıyasla sürükleme hatasında dört kat azalma sağlıyor.\n\nBu çalışma, yüksek hızlı füzeler ve diğer kararsız aerodinamik sistemler için HAD simülasyonlarının doğruluğunu ve verimliliğini artırma potansiyeline sahip. Özellikle, dinamik örgü adaptasyonunun, karmaşık akış yapılarını daha az hesaplama maliyetiyle yakalamak için kritik olduğu durumlarda, DMD tabanlı bu yaklaşım, mühendislik tasarım döngülerinde önemli hızlanmalar sağlayabilir.",
+    "tags": [
+      "Hypersonic Aerodynamics",
+      "Supersonic Aerodynamics",
+      "Data-Driven Methods",
+      "High-Performance Computing",
+      "Reduced-Order Modeling"
+    ]
+  },
+  "paper": {
+    "title": "Unsteady Metric-Based Adaptation via Koopman Expansion",
+    "authors": [
+      "Cherith Lavisetty",
+      "Luca Massa",
+      "Rakesh K. Kapania"
+    ],
+    "journal": "AIAA Journal",
+    "url": "https://doi.org/10.2514/1.j066274",
+    "doi": "10.2514/1.j066274",
+    "date": "2026-03-16"
+  },
+  "created_at": "2026-03-21T08:46:23.483651"
+}
