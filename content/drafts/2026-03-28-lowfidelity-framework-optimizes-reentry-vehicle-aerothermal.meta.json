@@ -1,0 +1,48 @@
+{
+  "filename_base": "2026-03-28-lowfidelity-framework-optimizes-reentry-vehicle-aerothermal",
+  "filename_en": "2026-03-28-lowfidelity-framework-optimizes-reentry-vehicle-aerothermal.en.md",
+  "filename_tr": "2026-03-28-lowfidelity-framework-optimizes-reentry-vehicle-aerothermal.tr.md",
+  "gemini_output_en": {
+    "title": "Low-Fidelity Framework Optimizes Reentry Vehicle Aerothermal Performance and Geometry",
+    "paper_title": "Prediction and Optimization Framework for Assessing Aerothermal Performance of Hypersonic Reentry Vehicles",
+    "authors": "Jeswin Joseph, Ryan Whitside, Jean-Pierre Hickey",
+    "paper_type": "multi_method",
+    "relevance_score": 85,
+    "summary": "This paper presents a low-fidelity optimization framework designed to assist in the initial design phase of high-speed reentry capsules and vehicles. The framework integrates several models, including those for reentry trajectory simulation, hypersonic shock structure formation, spatiotemporal aerothermal load prediction, and conjugate heat transfer to the vehicle. These interconnected effects are incorporated into the open-source Stanford University Aerospace Vehicle Environment (SUAVE) framework, which facilitates vehicle design and trajectory optimization.\n\nThe work first evaluates the accuracy of its various aerothermal modeling assumptions for both sharp and blunt geometries. Following this validation, the framework is applied to a realistic reentry case, where it is used to optimize the vehicle's geometry and trajectory with the objective of minimizing the peak surface temperature experienced during reentry.\n\nThis approach provides a rapid method for initial design considerations, particularly where quick assessments of aerothermal loads and their influence on thermal protection systems are essential. By combining various low-fidelity models, the framework enables efficient exploration of design spaces and mission profiles, offering a valuable tool before more computationally intensive high-fidelity simulations are undertaken.",
+    "tags": [
+      "Aerothermodynamics",
+      "Hypersonic Aerodynamics",
+      "Heat Flux Prediction",
+      "Design Optimization",
+      "Reentry Vehicles"
+    ]
+  },
+  "gemini_output_tr": {
+    "title": "Hipersonik Yeniden Giris Araclarinda Aerotermal Performans Optimizasyonu Cercevesi",
+    "paper_title": "Prediction and Optimization Framework for Assessing Aerothermal Performance of Hypersonic Reentry Vehicles",
+    "authors": "Jeswin Joseph, Ryan Whitside, Jean-Pierre Hickey",
+    "paper_type": "multi_method",
+    "relevance_score": 85,
+    "summary": "Joseph ve arkadaslari, hipersonik yeniden giris araclari icin aerotermal performansi degerlendirmek ve optimize etmek amaciyla dusuk-sadakatli bir cerceve sunuyor. Bu cerceve, yeniden giris yorunge simülasyonu, hipersonik sok yapisi olusumu, uzay-zamansal aerotermal yuk tahmini ve araca konjuge isi transferi icin modelleri entegre ediyor. Calisma, bu etkileri Stanford Universitesi Havacilik Arac Ortami (SUAVE) adli acik kaynakli cok-sadakatli cerceveye dahil ederek arac tasarimi ve yorunge optimizasyonunu mumkun kiliyor.\n\nMakale, ilk olarak cesitli aerotermal modelleme varsayimlarinin dogrulugunu hem keskin hem de kuntu geometriler icin degerlendiriyor. Ardindan, cerceveyi gercekci bir yeniden giris durumuna uygulayarak, aracin zirve yuzey sicakligini en aza indirmek icin geometri ve yorunge optimizasyonu yapiyor. Ozet, bu degerlendirmelerden veya optimizasyon sonuclarindan belirli sayisal veriler sunmuyor.\n\nBu tur bir entegre optimizasyon cercevesi, hipersonik araclarin ilk tasarim asamalarinda termal yonetim ve isi koruma sistemlerinin belirlenmesi icin onemlidir. Dusuk-sadakatli modellerin kullanimi, tasarim alaninin hizli bir sekilde kesfedilmesine olanak tanir ve daha pahali yuksek-sadakatli analizlere gecmeden once potansiyel tasarim alanlarini daraltir.",
+    "tags": [
+      "Aerothermodynamics",
+      "Hypersonic Aerodynamics",
+      "Heat Flux Prediction",
+      "Design Optimization",
+      "Reentry Vehicles"
+    ]
+  },
+  "paper": {
+    "title": "Prediction and Optimization Framework for Assessing Aerothermal Performance of Hypersonic Reentry Vehicles",
+    "authors": [
+      "Jeswin Joseph",
+      "Ryan Whitside",
+      "Jean-Pierre Hickey"
+    ],
+    "journal": "Journal of Spacecraft and Rockets",
+    "url": "https://doi.org/10.2514/1.a36485",
+    "doi": "10.2514/1.a36485",
+    "date": "2026-03-25"
+  },
+  "created_at": "2026-03-28T08:54:42.133113"
+}

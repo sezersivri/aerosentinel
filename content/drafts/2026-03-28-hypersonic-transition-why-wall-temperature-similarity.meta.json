@@ -1,0 +1,46 @@
+{
+  "filename_base": "2026-03-28-hypersonic-transition-why-wall-temperature-similarity",
+  "filename_en": "2026-03-28-hypersonic-transition-why-wall-temperature-similarity.en.md",
+  "filename_tr": "2026-03-28-hypersonic-transition-why-wall-temperature-similarity.tr.md",
+  "gemini_output_en": {
+    "title": "Hypersonic Transition: Why Wall Temperature Similarity Matters for Experiments",
+    "paper_title": "Numerical Analysis of Wall Temperature Similarity in Hypersonic Boundary-Layer Transition Experiments",
+    "authors": "Selwyn Van der Laan, Mathieu Lugrin, Guillaume Bégou, Clément Caillaud et al.",
+    "paper_type": "numerical_cfd",
+    "relevance_score": 65,
+    "summary": "This paper presents a numerical analysis investigating the importance of wall-to-recovery temperature ratio similarity in hypersonic boundary-layer transition. The study focuses on a cone-cylinder-flare geometry at Mach 6 and a Reynolds number of 1.2 x 10^7. The authors use global stability and resolvent analysis to compare three cases: typical flight conditions, standard wind-tunnel conditions, and a cooled-wall wind-tunnel case designed to achieve wall-to-recovery temperature similarity with flight.\n\nThe results indicate that global bubble modes are strongly destabilized by wall cooling. Critically, Mach and Reynolds number similarities alone are insufficient to replicate the linear transition mechanisms observed in hypersonic flight. In typical wind-tunnel conditions, both first and second modes contribute to transition, whereas flight conditions primarily show amplification of the second mode. The cooled-wall case, which incorporates wall-to-recovery temperature ratio similarity, successfully reproduces the linear transition mechanisms seen in flight, even at lower stagnation temperatures.\n\nThese findings highlight the crucial role of the wall-to-recovery temperature ratio in hypersonic boundary-layer transition studies. The work the challenges in accurately replicating flight conditions in ground-test campaigns, which has direct implications for validating computational tools used in aerothermodynamic design and heating prediction.",
+    "tags": [
+      "Hypersonic Aerodynamics",
+      "Aerothermodynamics",
+      "Missile Aerothermodynamics"
+    ]
+  },
+  "gemini_output_tr": {
+    "title": "Hipersonik Geçişte Duvar Sıcaklığı Benzerliğinin Önemi: Uçuş ve Rüzgar Tüneli Karşılaştırması",
+    "paper_title": "Numerical Analysis of Wall Temperature Similarity in Hypersonic Boundary-Layer Transition Experiments",
+    "authors": "Selwyn Van der Laan, Mathieu Lugrin, Guillaume Bégou, Clément Caillaud et al.",
+    "paper_type": "numerical_cfd",
+    "relevance_score": 75,
+    "summary": "Selwyn Van der Laan ve arkadaşları, Mach 6 ve 2.2 x 10^7 Reynolds sayısında bir koni-silindir-flare geometrisi üzerinde sınır tabaka kararlılığının sayısal bir analizini gerçekleştiriyor. Çalışmanın temel amacı, hipersonik sınır tabaka geçişinde duvar-geri kazanım sıcaklık oranı benzerliğinin rolünü derinlemesine incelemek. Araştırmacılar, tipik uçuş koşullarını rüzgar tüneli deneyleriyle karşılaştırarak, eksik duvar sıcaklığı benzerlik parametresinin neden olduğu farklılıkları değerlendiriyor. Ayrıca, uçuşla Mach, Reynolds ve duvar-geri kazanım sıcaklık oranı benzerliğini sağlamak için soğutulmuş duvarlı ikinci bir rüzgar tüneli durumu da inceleniyor. Baskın küresel ve konvektif kararsızlıkları karakterize etmek için küresel kararlılık ve çözücü analizleri kullanılıyor.\n\nElde edilen sonuçlar, duvar soğutmasının küresel kabarcık modlarını güçlü bir şekilde destabilize ettiğini ortaya koyuyor. Konvektif modlar açısından, Mach ve Reynolds sayısı benzerliklerinin tek başına hipersonik uçuş sırasında gözlemlenen doğrusal geçiş mekanizmalarını kopyalamak için yetersiz olduğu belirlenmiş. Rüzgar tüneli koşullarında hem birinci hem de ikinci modların geçişe katkıda bulunduğu, oysa uçuş koşullarında esas olarak ikinci modun güçlendiği belirtiliyor. Duvar-geri kazanım sıcaklık oranı benzerliğini içeren üçüncü durum, bu parametrenin dahil edilmesinin, düşük durgunluk sıcaklıklarında bile uçuş koşullarındaki geçiş sürecinde etkili olan doğrusal mekanizmaların başarılı bir şekilde yeniden üretilmesine olanak tanıdığını gösteriyor.\n\nBu bulgular, hipersonik sınır tabaka geçişi çalışmalarında duvar-geri kazanım sıcaklık oranı etkilerinin önemini ve yer testi kampanyalarında uçuş koşullarını doğru bir şekilde kopyalamanın zorluklarını vurguluyor. Bu, özellikle deneysel verilerin uçuş koşullarına aktarılabilirliği ve termal koruma sistemlerinin tasarımı açısından aerotermodinamik topluluğu için önemli çıkarımlara sahiptir.",
+    "tags": [
+      "Hypersonic Aerodynamics",
+      "Aerothermodynamics",
+      "Missile Aerothermodynamics"
+    ]
+  },
+  "paper": {
+    "title": "Numerical Analysis of Wall Temperature Similarity in Hypersonic Boundary-Layer Transition Experiments",
+    "authors": [
+      "Selwyn Van der Laan",
+      "Mathieu Lugrin",
+      "Guillaume Bégou",
+      "Clément Caillaud",
+      "Cédric Content"
+    ],
+    "journal": "AIAA Journal",
+    "url": "https://doi.org/10.2514/1.j066550",
+    "doi": "10.2514/1.j066550",
+    "date": "2026-03-26"
+  },
+  "created_at": "2026-03-28T08:54:41.647160"
+}

@@ -38,6 +38,21 @@
       "sources": {
         "OpenAlex": 2
       }
+    },
+    {
+      "date": "2026-03-28T08:54:42.589709",
+      "paper_count": 2,
+      "tags": {
+        "Hypersonic Aerodynamics": 4,
+        "Aerothermodynamics": 4,
+        "Missile Aerothermodynamics": 2,
+        "Heat Flux Prediction": 2,
+        "Design Optimization": 2,
+        "Reentry Vehicles": 2
+      },
+      "sources": {
+        "OpenAlex": 2
+      }
     }
   ]
 }
