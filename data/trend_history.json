@@ -53,6 +53,21 @@
       "sources": {
         "OpenAlex": 2
       }
+    },
+    {
+      "date": "2026-04-04T08:55:14.727472",
+      "paper_count": 2,
+      "tags": {
+        "Hypersonic Aerodynamics": 2,
+        "Missile Aerothermodynamics": 2,
+        "Turbulent Heating": 2,
+        "Laminar Heating": 2,
+        "Supersonic Aerodynamics": 2,
+        "Shock-Boundary Layer Interaction": 2
+      },
+      "sources": {
+        "OpenAlex": 2
+      }
     }
   ]
 }

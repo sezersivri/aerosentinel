@@ -1,0 +1,47 @@
+{
+  "filename_base": "2026-04-04-wavy-walls-staggered-roughness-accelerates-hypersonic",
+  "filename_en": "2026-04-04-wavy-walls-staggered-roughness-accelerates-hypersonic.en.md",
+  "filename_tr": "2026-04-04-wavy-walls-staggered-roughness-accelerates-hypersonic.tr.md",
+  "gemini_output_en": {
+    "title": "Wavy Walls: Staggered Roughness Accelerates Hypersonic Boundary Layer Transition",
+    "paper_title": "Staggered versus aligned: how wavy wall topology governs hypersonic boundary layer transition",
+    "authors": "Zepeng Yang, Zhenxun Gao, Xinliang Guo, Yuhan Wang",
+    "paper_type": "numerical_cfd",
+    "relevance_score": 65,
+    "summary": "This paper investigates the influence of three-dimensional wavy wall roughness topology on hypersonic boundary layer transition at Mach 5.92 using direct numerical simulations. The authors specifically compare two distribution types: staggered (type-S) and aligned (type-A) roughness, marking the first time these specific topologies have been directly contrasted for their transition-inducing effects.\n\nThe study found that type-S roughness significantly promotes earlier transition, occurring approximately 34.5% sooner than with type-A roughness under the conditions examined. Both roughness types generate counter-rotating pairs of streamwise vortices. However, a 'staggered-enhancing' mechanism was identified for type-S roughness, leading to substantially stronger vortices and subsequent stronger shear layers compared to type-A. Analysis using spectral proper orthogonal decomposition revealed that for type-S, downstream linear instability is dominated by a low-frequency shear layer instability near 50 kHz, which triggers nonlinear breakdown. For type-A, instability is co-dominated by a lower-frequency shear layer instability near 23 kHz and a high-frequency Mack's second mode above 100 kHz, both exhibiting lower growth rates than the dominant mode in the type-S case, thus delaying transition onset.\n\nUnderstanding how surface roughness topology impacts boundary layer transition is critical for predicting aerodynamic heating on high-speed vehicles. The findings highlight that manufacturing tolerances or design choices leading to staggered roughness patterns could have a pronounced effect on the location and intensity of turbulent heating, which is a key consideration for thermal protection system design on hypersonic missiles.",
+    "tags": [
+      "Hypersonic Aerodynamics",
+      "Missile Aerothermodynamics",
+      "Turbulent Heating",
+      "Laminar Heating"
+    ]
+  },
+  "gemini_output_tr": {
+    "title": "Hipersonik Akışta Dalgalı Duvar Pürüzlülüğü: Geçişi Tetikleyen Topoloji Sırları",
+    "paper_title": "Staggered versus aligned: how wavy wall topology governs hypersonic boundary layer transition",
+    "authors": "Zepeng Yang, Zhenxun Gao, Xinliang Guo, Yuhan Wang",
+    "paper_type": "numerical_cfd",
+    "relevance_score": 75,
+    "summary": "Yang ve arkadaslari, Mach 5.92 hipersonik akis kosullarinda, uc boyutlu dalgali duvar pürüzlülüklerinin sinir tabaka geçisine etkilerini dogrudan sayisal simülasyonlar (DNS) kullanarak incelemislerdir. Calisma, pürüzlülüklerin dagilim topolojisinin (siralı tip-A ve kademeli tip-S) geçis baslangicini nasil etkiledigini karsilastirmali olarak analiz etmektedir. Bu, iki farkli dagilim topolojisinin geçis üzerindeki etkilerinin ilk kez dogrudan karsilastirildigi bir calismadir.\n\nTemel bulgulardan biri, kademeli (type-S) pürüzlülügün, siralı (type-A) pürüzlülüge göre geçisi yaklasik %34.5 oraninda daha erken tetiklemesidir. Her iki pürüzlülük tipi de akis yönünde dönen karsit cift girdaplar olustururken, type-S topolojisinde bu girdaplarin \"kademeli-güçlendirme\" mekanizmasiyla belirgin sekilde daha kuvvetli oldugu gözlemlenmistir. Bu güçlenmis girdaplar, daha siddetli kesme tabakalari olusturarak geçisin daha erken baslamasina yol açmaktadir. Spektral öz-ayristirma (SPOD) analizleri, type-S geçisinin baskın olarak 50 kHz civarindaki düsük frekansli kesme tabakasi kararsizligi tarafindan yönlendirildigini gösterirken, type-A geçisinin 23 kHz civarindaki düsük frekansli kesme tabakasi kararsizligi ve 100 kHz üzerindeki yüksek frekansli Mack'in ikinci modu tarafindan birlikte yönlendirildigini ortaya koymustur. Type-A'daki her iki modun büyüme oranlari, type-S'deki baskın moddan önemli ölçüde düsüktür.\n\nBu calisma, hipersonik araçlarin yüzey pürüzlülüklerinin sinir tabaka geçisi üzerindeki mekanistik etkilerini anlamak için degerli bilgiler sunmaktadir. Geçis baslangicini bu denli erken etkileyen topolojik farkliliklarin belirlenmesi, özellikle yüksek hizli füzelerde termal koruma sistemleri ve aerodinamik performans optimizasyonu açisindan önemli sonuçlar dogurabilir.",
+    "tags": [
+      "Hypersonic Aerodynamics",
+      "Missile Aerothermodynamics",
+      "Turbulent Heating",
+      "Laminar Heating"
+    ]
+  },
+  "paper": {
+    "title": "Staggered versus aligned: how wavy wall topology governs hypersonic boundary layer transition",
+    "authors": [
+      "Zepeng Yang",
+      "Zhenxun Gao",
+      "Xinliang Guo",
+      "Yuhan Wang"
+    ],
+    "journal": "Journal of Fluid Mechanics",
+    "url": "https://doi.org/10.1017/jfm.2025.11062",
+    "doi": "10.1017/jfm.2025.11062",
+    "date": "2026-03-30"
+  },
+  "created_at": "2026-04-04T08:55:14.041339"
+}

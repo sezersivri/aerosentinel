@@ -1,0 +1,42 @@
+{
+  "filename_base": "2026-04-04-unsteady-supersonic-jets-momentum-flux-ratios",
+  "filename_en": "2026-04-04-unsteady-supersonic-jets-momentum-flux-ratios.en.md",
+  "filename_tr": "2026-04-04-unsteady-supersonic-jets-momentum-flux-ratios.tr.md",
+  "gemini_output_en": {
+    "title": "Unsteady Supersonic Jets: Momentum Flux Ratio's Impact on Atomization",
+    "paper_title": "Elliptical liquid jets in a supersonic cross-flow: Influence of J on atomization mechanism and unsteadiness",
+    "authors": "Chandrasekhar Medipati, Sivakumar Deivandren, Raghuraman N. Govardhan",
+    "paper_type": "experimental",
+    "relevance_score": 35,
+    "summary": "This experimental study investigates the behavior of elliptical liquid jets injected into a supersonic cross-flow at Mach 2.5. The authors examine how the momentum flux ratio (J) and orifice aspect ratio (AR) affect the jet breakup mechanism, shock structures, and overall unsteadiness. Three aspect ratios (0.3, 1, and 3.3) and a wide range of momentum flux ratios (1.5–9.7) are considered.\n\nThe findings indicate that lower momentum flux ratios lead to significant jet unsteadiness, characterized by larger wavelength Rayleigh–Taylor (RT) waves on the windward surface. Conversely, increasing J reduces unsteadiness and promotes the formation of smaller, more regular RT waves due to enhanced drag from reduced jet deflection. For aspect ratios of 0.3 and 1, Kelvin–Helmholtz instabilities on the lateral surfaces are identified as the primary atomization mechanism, irrespective of J. Furthermore, at lower J values, the shock waves upstream of the jet exhibit considerable corrugation and temporal variation, with intense interaction between the liquid jet and oncoming boundary layer streaks driving the large-scale unsteadiness.\n\nThis work provides insights into the complex fluid dynamics of liquid jets in supersonic environments, which is relevant for understanding phenomena such as fuel injection in high-speed propulsion systems or liquid-based flow control. While not directly focused on aerodynamic heating, it contributes to the broader understanding of high-speed flow interactions.",
+    "tags": [
+      "Supersonic Aerodynamics",
+      "Shock-Boundary Layer Interaction"
+    ]
+  },
+  "gemini_output_tr": {
+    "title": "Supersonik Akışta Eliptik Sıvı Jetlerinin Atomizasyon Mekanizması ve Kararsızlığı",
+    "paper_title": "Elliptical liquid jets in a supersonic cross-flow: Influence of J on atomization mechanism and unsteadiness",
+    "authors": "Chandrasekhar Medipati, Sivakumar Deivandren, Raghuraman N. Govardhan",
+    "paper_type": "experimental",
+    "relevance_score": 55,
+    "summary": "Chandrasekhar Medipati ve ekibi, Mach 2.5'lik bir supersonik akış içerisindeki eliptik sıvı jetlerinin atomizasyon mekanizması ve kararsızlıkları üzerindeki momentum akı oranı (J) etkisini deneysel olarak incelemiş. Çalışma, daha önceki bir araştırmanın devamı niteliğinde olup, jetin enine/boyuna oranı (AR) sabit tutularak J'nin etkisine odaklanıyor. Üç farklı AR değeri (0.3, 1 ve 3.3) ve geniş bir J aralığı (1.5-9.7) kullanılarak, jetin parçalanma mekanizmaları, şok yapıları ve akışla etkileşimleri analiz edilmiş.\nDüşük J değerlerinde jetin belirgin bir kararsızlık gösterdiği ve rüzgarüstü yüzeyde daha büyük dalga boylu Rayleigh-Taylor (RT) dalgaları oluşturduğu gözlemlenmiş. J arttıkça, jet sapmasının azalmasına bağlı olarak sürüklenmenin artmasıyla kararsızlık azalmış ve daha küçük, düzenli RT dalga boyları oluşmuş. Ancak, AR 0.3 ve 1 olan durumlarda, J değerinden bağımsız olarak birincil atomizasyon mekanizması yanal yüzeylerdeki Kelvin-Helmholtz kararsızlıkları olarak belirlenmiş. Düşük J'de, jetin önünde oluşan şok dalgalarının zamanla önemli varyasyonlar göstererek oldukça oluklu olduğu ve sıvı jetinin gelen sınır tabakası çizgileriyle yoğun etkileşiminin büyük ölçekli kararsızlığın ana kaynağı olduğu tespit edilmiş.\nBu çalışma, yüksek hızlı akışlarda sıvı enjeksiyonunun dinamiklerini anlamak için önemli bilgiler sunuyor. Özellikle yakıt enjeksiyonu veya termal yönetim sistemleri gibi uygulamalarda, momentum akı oranının jetin dağılması ve akışla etkileşimi üzerindeki rolünü vurguluyor.",
+    "tags": [
+      "Supersonic Aerodynamics",
+      "Shock-Boundary Layer Interaction"
+    ]
+  },
+  "paper": {
+    "title": "Elliptical liquid jets in a supersonic cross-flow: Influence of <i>J</i> on atomization mechanism and unsteadiness",
+    "authors": [
+      "Chandrasekhar Medipati",
+      "Sivakumar Deivandren",
+      "Raghuraman N. Govardhan"
+    ],
+    "journal": "Physics of Fluids",
+    "url": "https://doi.org/10.1063/5.0317279",
+    "doi": "10.1063/5.0317279",
+    "date": "2026-04-01"
+  },
+  "created_at": "2026-04-04T08:55:14.393285"
+}
