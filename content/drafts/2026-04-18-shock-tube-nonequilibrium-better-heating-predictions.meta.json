@@ -1,0 +1,36 @@
+{
+  "filename_base": "2026-04-18-shock-tube-nonequilibrium-better-heating-predictions",
+  "filename_en": "2026-04-18-shock-tube-nonequilibrium-better-heating-predictions.en.md",
+  "filename_tr": "",
+  "gemini_output_en": {
+    "title": "Shock Tube Non-Equilibrium: Better Heating Predictions for Hypersonic Vehicles",
+    "paper_title": "Non-equilibrium thermochemistry in real shock tubes",
+    "authors": "Joseph Steer, Justin Clarke, Peter L. Collen, Matthew McGilvray et al.",
+    "paper_type": "analytical",
+    "relevance_score": 75,
+    "summary": "This paper addresses the challenge of accurately interpreting non-equilibrium thermochemistry in real shock tube experiments, which are critical for understanding hypersonic flight environments. The authors propose a rigorous method to decouple the effects of flow non-uniformities from fundamental chemical rate constants. Their approach uses experimental measurements as boundary conditions and incorporates reverse time integration, building upon previous implementations by strictly enforcing conservation laws, including two-temperature non-equilibrium thermochemistry, and explicitly modeling both forward and backward-running sound waves within the shock tube test slug through a method of characteristics formulation.\n\nThe method was validated against a viscous, two-dimensional axisymmetric Navier–Stokes solver, showing agreement within 1.5% for predicted properties. When applied to specific shock tube test cases from the EAST and T6 facilities, simulating conditions relevant to lunar return and Titan entry, the model demonstrated improved agreement with experimentally measured oxygen 777 nm and 240–440 nm radiance, respectively. This improvement was particularly evident towards the rear of the test slug, where forward-running sound waves from the driver section become influential. The study also explored the impact of shock speed variation in highly non-equilibrium tests pertinent to Titan entry for the first time.\n\nThis work is significant for the aerothermodynamics community because it refines the fundamental understanding of chemical and relaxation processes in high-enthalpy flows. By providing a more accurate means to determine chemical rate constants from shock tube data, it directly contributes to reducing uncertainty in surface heat flux predictions for hypersonic vehicles, which is a critical input for advanced aerothermodynamic models and surrogate development.",
+    "tags": [
+      "Aerothermodynamics",
+      "Hypersonic Aerodynamics",
+      "Real Gas Effects",
+      "Heat Flux Prediction",
+      "Missile Aerothermodynamics"
+    ]
+  },
+  "gemini_output_tr": {},
+  "paper": {
+    "title": "Non-equilibrium thermochemistry in real shock tubes",
+    "authors": [
+      "Joseph Steer",
+      "Justin Clarke",
+      "Peter L. Collen",
+      "Matthew McGilvray",
+      "Luca di Mare"
+    ],
+    "journal": "Journal of Fluid Mechanics",
+    "url": "https://doi.org/10.1017/jfm.2026.11341",
+    "doi": "10.1017/jfm.2026.11341",
+    "date": "2026-04-06"
+  },
+  "created_at": "2026-04-18T09:03:21.320000"
+}

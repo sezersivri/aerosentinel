@@ -81,6 +81,29 @@
       "sources": {
         "OpenAlex": 2
       }
+    },
+    {
+      "date": "2026-04-18T09:03:21.835932",
+      "paper_count": 2,
+      "tags": {
+        "Wake": 1,
+        "Turbulence": 1,
+        "Airfoil": 1,
+        "Nonlinear system": 1,
+        "Coherence (philosophical gambling strategy)": 1,
+        "Reduced-Order Modeling": 2,
+        "Data-Driven Methods": 2,
+        "High-Performance Computing": 2,
+        "Aerothermodynamics": 1,
+        "Hypersonic Aerodynamics": 1,
+        "Real Gas Effects": 1,
+        "Heat Flux Prediction": 1,
+        "Missile Aerothermodynamics": 1
+      },
+      "sources": {
+        "ConceptSearch": 1,
+        "OpenAlex": 1
+      }
     }
   ]
 }

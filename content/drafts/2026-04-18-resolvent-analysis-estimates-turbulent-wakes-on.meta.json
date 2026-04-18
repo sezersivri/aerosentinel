@@ -1,0 +1,43 @@
+{
+  "filename_base": "2026-04-18-resolvent-analysis-estimates-turbulent-wakes-on",
+  "filename_en": "2026-04-18-resolvent-analysis-estimates-turbulent-wakes-on.en.md",
+  "filename_tr": "2026-04-18-resolvent-analysis-estimates-turbulent-wakes-on.tr.md",
+  "gemini_output_en": {
+    "title": "Resolvent Analysis Estimates Turbulent Wakes on Airfoils at Mach 0.3",
+    "paper_title": "Resolvent-based estimation of a turbulent wake",
+    "authors": "Junoh Jung, Aaron Towne",
+    "paper_type": "ml_aerodynamics",
+    "relevance_score": 42,
+    "summary": "Jung and Towne extend a resolvent-based framework for estimating turbulent velocity fluctuations, applying it to the turbulent wake of a NACA0012 airfoil at Mach 0.3, Reynolds number 23,000, and 6 degrees angle of attack. The approach addresses challenges of globally unstable modes, multi-scale turbulent structures, and high-dimensional datasets. They construct causal resolvent-based estimation kernels from cross-spectral densities derived from large-eddy simulations, employing the Wiener–Hopf method to enforce causality.\n\nThe framework effectively captures the spectral signatures of coherent structures and implicitly accounts for the colored statistics of nonlinear forcing through empirically determined cross-spectral densities. To manage computational demands for high-dimensional estimation, parallel algorithms are employed. The authors also investigate sensor placement by analyzing single-sensor estimation error and coherence with target flow quantities. Results indicate accurate causal estimation of streamwise velocity for the spanwise-averaged, spanwise-Fourier-transformed, and mid-span flow, based on limited shear-stress measurements on the airfoil surface.\n\nThis work demonstrates the potential of the resolvent-based framework for efficient flow estimation in compressible, turbulent environments. While the specific application is a low-speed turbulent wake, the methodology for data-driven flow estimation and understanding complex turbulent structures could inform broader efforts in analyzing and controlling high-speed flows.",
+    "tags": [
+      "Reduced-Order Modeling",
+      "Data-Driven Methods",
+      "High-Performance Computing"
+    ]
+  },
+  "gemini_output_tr": {
+    "title": "Düşük Mach Sayısında Türbülanslı Akış Tahmini İçin Resolvent Yaklaşımı",
+    "paper_title": "Resolvent-based estimation of a turbulent wake",
+    "authors": "Junoh Jung, Aaron Towne",
+    "paper_type": "ml_aerodynamics",
+    "relevance_score": 35,
+    "summary": "Jung ve Towne, Mach 0.3 ve Reynolds sayısı 23.000'deki bir NACA0012 kanat profilinin türbülanslı art izindeki hız dalgalanmalarını tahmin etmek için resolvent tabanlı bir çerçeve sunuyor. Yaklaşım, büyük girdap simülasyonlarından (LES) elde edilen çapraz spektral yoğunluklardan nedensel resolvent tabanlı tahmin çekirdekleri oluşturmak için veri odaklı bir yöntem kullanıyor. Bu çekirdekler, nedenselliği en iyi şekilde uygulayarak gerçek zamanlı tahmin doğruluğunu artıran Wiener-Hopf yöntemiyle türetilmiştir. Çalışma, doğrusallaştırılmış Navier-Stokes operatöründeki küresel olarak kararsız modlar, çok ölçekli türbülanslı yapılar ve yüksek boyutlu veri kümeleri gibi türbülanslı art izi rejiminin getirdiği üç temel zorluğun üstesinden gelmeyi hedefliyor.\n\nÇerçeve, tutarlı yapıların spektral imzalarını yakalamakta ve ampirik olarak belirlenen çapraz spektral yoğunluklar aracılığıyla doğrusal sistem üzerindeki doğrusal olmayan zorlamanın renkli istatistiklerini dolaylı olarak hesaba katmaktadır. Yüksek boyutlu tahmin probleminin hesaplama taleplerini karşılamak için paralel algoritmalar kullanılmıştır. Sonuçlar, kanat profilinin yüzeyindeki sınırlı kayma gerilmesi ölçümleri kullanılarak akış yönündeki hızın açıklık ortalamalı, açıklık-Fourier dönüşümlü ve orta açıklık akışı için doğru nedensel tahminini göstermektedir.\n\nBu çalışma, sıkıştırılabilir, türbülanslı ortamlarda akış özelliklerinin tahminine yönelik veri odaklı yöntemlerin potansiyelini göstermektedir. Ancak, Mach 0.3 gibi düşük hızlı bir rejimde türbülanslı art izi tahmini üzerine odaklanması ve aerodinamik ısınma veya hipersonik akış fiziği ile doğrudan ilişkili olmaması nedeniyle yüksek hızlı füze aerotermodinamiği alanındaki araştırmalarım için doğrudan uygulanabilirliği sınırlıdır.",
+    "tags": [
+      "Reduced-Order Modeling",
+      "Data-Driven Methods",
+      "High-Performance Computing"
+    ]
+  },
+  "paper": {
+    "title": "Resolvent-based estimation of a turbulent wake",
+    "authors": [
+      "Junoh Jung",
+      "Aaron Towne"
+    ],
+    "journal": "Journal of Fluid Mechanics",
+    "url": "https://doi.org/10.1017/jfm.2026.11444",
+    "doi": "10.1017/jfm.2026.11444",
+    "date": "2026-04-16"
+  },
+  "created_at": "2026-04-18T09:03:20.781647"
+}
