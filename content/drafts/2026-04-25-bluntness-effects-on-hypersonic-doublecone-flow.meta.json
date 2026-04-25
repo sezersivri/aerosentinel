@@ -1,0 +1,46 @@
+{
+  "filename_base": "2026-04-25-bluntness-effects-on-hypersonic-doublecone-flow",
+  "filename_en": "2026-04-25-bluntness-effects-on-hypersonic-doublecone-flow.en.md",
+  "filename_tr": "2026-04-25-bluntness-effects-on-hypersonic-doublecone-flow.tr.md",
+  "gemini_output_en": {
+    "title": "Bluntness Effects on Hypersonic Double-Cone Flow Unsteadiness at Mach 6",
+    "paper_title": "Investigation of hypersonic flow over double-cone geometries with varying nose bluntness",
+    "authors": "Xin Li, Zhen Zhang, Xu Liu, Jiaao Hao et al.",
+    "paper_type": "experimental",
+    "relevance_score": 65,
+    "summary": "This paper presents an experimental investigation into the hypersonic flow over 30°–50° double-cone configurations, examining the impact of three distinct nose bluntness levels (sharp, small-blunt, large-blunt) at Mach 6. The researchers employed high-speed schlieren photography, pressure sensors, and pressure-sensitive paint (PSP) to characterize both global flow patterns and unsteady dynamics within a transitional Reynolds number regime. The study's primary goal was to understand how nose bluntness influences the complex shock-boundary layer interactions and flow unsteadiness inherent to these geometries.\n\nThe experimental findings indicate that increasing nose bluntness leads to an enlargement of the separation region at the cone junction. All three configurations exhibited Type V shock–shock interactions, but the shock wave structures downstream of the triple point varied: Mach shock wave reflection was observed in the sharp and small-blunt cases, while regular shock wave reflection occurred in the large-blunt case. Spectral analysis of the schlieren sequences revealed two types of unsteadiness: low-frequency shock oscillations and high-frequency structures along the supersonic jet boundary. For the low-frequency unsteadiness, sharp and small-blunt configurations showed a broadband nature, whereas the large-blunt case displayed a dominant frequency of approximately 2 kHz, associated with shock motion and bubble breathing. Wall pressure contours confirmed that this low-frequency unsteadiness was predominantly axisymmetric across all configurations. Global stability and resolvent analyses further suggested that all configurations act as noise amplifiers, with the dominant low-frequency unsteadiness in the large-blunt case attributed to modal resonance.\n\nUnderstanding the influence of nose bluntness on shock-boundary layer interaction and associated unsteadiness is important for the design and analysis of high-speed missiles. The observed unsteady phenomena directly contribute to fluctuating pressure and thermal loads, which are critical considerations for structural integrity and thermal protection system performance.",
+    "tags": [
+      "Hypersonic Aerodynamics",
+      "Missile Aerothermodynamics",
+      "Shock-Boundary Layer Interaction"
+    ]
+  },
+  "gemini_output_tr": {
+    "title": "Hipersonik Cift Konide Burun Kuntlugunun Akis Dinamiklerine Etkisi",
+    "paper_title": "Investigation of hypersonic flow over double-cone geometries with varying nose bluntness",
+    "authors": "Xin Li, Zhen Zhang, Xu Liu, Jiaao Hao et al.",
+    "paper_type": "multi_method",
+    "relevance_score": 60,
+    "summary": "Li ve arkadaslari, Mach 6'da 30°-50° cift koni konfigürasyonlari uzerindeki hipersonik akisi deneysel olarak incelemis, burun kuntlugunun akis yapilari ve kararsiz dinamikler uzerindeki etkisine odaklanmistir. Calismada, uc farkli kuntluk seviyesi kullanilmis ve gecisli bir Reynolds sayisinda akis desenlerini ve kararsiz dinamikleri yakalamak icin yuksek hizli schlieren fotografcilik, basinç sensorleri ve basinç hassas boya teknikleri uygulanmistir. Ayrica, gozlemlenen kararsizliklari anlamak icin kuresel kararlilik analizi ve cozunurluk analizi de kullanilmistir.\n\nTemel bulgular arasinda, koni birlesim yerindeki ayirma bolgesinin boyutunun burun kuntlugu arttikca buyumesi yer almaktadir. Tum konfigürasyonlarda Tip V sok-sok etkilesimleri gozlemlenmistir. Uc noktanin altindaki sok dalgasi yapilari ise farklilik gostermistir: keskin ve kucuk kunt burunlu durumlarda Mach sok dalgasi yansimasi, buyuk kunt burunlu durumda ise duzenli sok dalgasi yansimasi gorulmustur. Schlieren verilerinin spektral analizi, iki tur kararsizlik ortaya koymustur: dusuk frekansli sok salinimlari ve ikinci koni uzerindeki supersonik jet siniri boyunca yuksek frekansli kararsiz yapilar. Dusuk frekansli kararsizlik icin, keskin ve kucuk kunt burunlu konfigürasyonlarda genis bantli salinimlar gozlemlenirken, buyuk kunt burunlu durumda yaklasik 2 kHz'lik baskin bir frekans, sok hareketi ve \"kabarcik nefes almasi\" ile karakterize edilmistir; bu, daha once deneysel olarak rapor edilmemis bir gozlemdir. Duvar basinç konturlarinın spektral analizi, dusuk frekansli kararsizligin tum konfigürasyonlarda esas olarak eksenel modlarla karakterize edildigini gostermistir.\n\nBu calisma, hipersonik araclar uzerindeki karmasik akis fizigini anlamak icin sok-sok etkilesimleri, ayirma bolgesi dinamikleri ve akis kararsizligi, ozellikle de kuntlugun neden oldugu degisiklikler ve yeni \"kabarcik nefes almasi\" fenomeni hakkinda degerli bilgiler sunmaktadir. Dogrudan isinma tahminiyle ilgili olmasa da, bu akis ozellikleri yerel isi transferi dagilimlarini onemli olcude etkiler ve sok carpmasi ve ayirma egilimli bolgelerde gelecekteki aerotermal modelleme calismalarina yon verebilir.",
+    "tags": [
+      "Hypersonic Aerodynamics",
+      "Missile Aerothermodynamics",
+      "Shock-Boundary Layer Interaction"
+    ]
+  },
+  "paper": {
+    "title": "Investigation of hypersonic flow over double-cone geometries with varying nose bluntness",
+    "authors": [
+      "Xin Li",
+      "Zhen Zhang",
+      "Xu Liu",
+      "Jiaao Hao",
+      "Chung Chu Wong"
+    ],
+    "journal": "Journal of Fluid Mechanics",
+    "url": "https://doi.org/10.1017/jfm.2026.11443",
+    "doi": "10.1017/jfm.2026.11443",
+    "date": "2026-04-23"
+  },
+  "created_at": "2026-04-25T09:07:53.872935"
+}

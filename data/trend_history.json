@@ -104,6 +104,21 @@
         "ConceptSearch": 1,
         "OpenAlex": 1
       }
+    },
+    {
+      "date": "2026-04-25T09:07:54.998128",
+      "paper_count": 2,
+      "tags": {
+        "Hypersonic Aerodynamics": 2,
+        "Missile Aerothermodynamics": 2,
+        "Shock-Boundary Layer Interaction": 2,
+        "Analytical Methods": 1,
+        "High-Performance Computing": 1,
+        "Data-Driven Methods": 1
+      },
+      "sources": {
+        "OpenAlex": 2
+      }
     }
   ]
 }
