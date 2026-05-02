@@ -1,0 +1,50 @@
+{
+  "filename_base": "2026-05-02-pinns-improve-rans-turbulence-closure-for",
+  "filename_en": "2026-05-02-pinns-improve-rans-turbulence-closure-for.en.md",
+  "filename_tr": "2026-05-02-pinns-improve-rans-turbulence-closure-for.tr.md",
+  "gemini_output_en": {
+    "title": "PINNs Improve RANS Turbulence Closure for Low-Speed Cylinder Flows",
+    "paper_title": "Turbulence closure in Reynolds-averaged Navier–Stokes and flow inference around a cylinder using physics-informed neural networks and sparse experimental data",
+    "authors": "Zhen Zhang, Khemraj Shukla, Zhicheng Wang, Anthony Morales et al.",
+    "paper_type": "ml_aerodynamics",
+    "relevance_score": 40,
+    "summary": "This paper addresses the long-standing challenge of inaccurate turbulence closure in traditional Reynolds-averaged Navier–Stokes (RANS) models, particularly for flows where the Boussinesq eddy-viscosity hypothesis falls short. The authors focus on flow past a circular cylinder across Reynolds numbers from 3900 to 100,000 and Mach numbers from 0 to 0.3, covering incompressible and weakly compressible regimes. Their approach involves developing a data-driven closure by assembling a cross-validated dataset from hydrodynamic PIV, aerodynamic PIV, and high-fidelity DNS and LES data.\n\nThe core methodology employs physics-informed neural networks (PINNs) to infer the velocity field and Reynolds-stress forcing directly from boundary conditions, with the unclosed RANS equations embedded in the network's loss function. Analysis of the assembled data revealed a universal distribution of Reynolds stresses across the studied parameter space, which informed the data-driven closure. The resulting PINN-derived closure, when integrated into a forward PINN solver and the OpenFOAM numerical solver, significantly improves RANS predictions for both mean flow and turbulence statistics compared to conventional models.\n\nWhile the study's focus is on low-speed, incompressible flows around a cylinder, the methodology for improving RANS turbulence closure using data-driven methods and PINNs is relevant to the broader CFD community. Accurate turbulence modeling is a foundational requirement for predicting complex flow phenomena, including those encountered in high-speed aerothermodynamics, even if this specific paper does not directly address heating or hypersonic regimes.",
+    "tags": [
+      "Neural Network Surrogates",
+      "Deep Learning",
+      "Data-Driven Methods",
+      "Turbulent Heating",
+      "Surrogate Modeling"
+    ]
+  },
+  "gemini_output_tr": {
+    "title": "Veri Destekli PINN'ler ile RANS Turbulans Kapanımında Doğruluk Artışı",
+    "paper_title": "Turbulence closure in Reynolds-averaged Navier–Stokes and flow inference around a cylinder using physics-informed neural networks and sparse experimental data",
+    "authors": "Zhen Zhang, Khemraj Shukla, Zhicheng Wang, Anthony Morales et al.",
+    "paper_type": "ml_aerodynamics",
+    "relevance_score": 35,
+    "summary": "Zhang ve ekibi, geleneksel RANS kapanımlarının ortalama akış ve türbülans istatistiklerindeki yetersizliklerini gidermek amacıyla, dairesel bir silindir etrafındaki akışı ele alıyor. Çalışma, 3900 ila 100,000 Reynolds sayıları ve 0 ila 0.3 Mach sayıları aralığını kapsayan, sıkıştırılamaz ve zayıf sıkıştırılabilir rejimlerdeki akışları inceliyor. Araştırmacılar, hidrodinamik PIV, aerodinamik PIV ve yüksek doğruluklu DNS/LES verilerini bir araya getirerek çapraz doğrulanmış kapsamlı bir veri seti oluşturuyor. Bu veri seti, veri odaklı bir türbülans kapanımı geliştirmek için temel oluşturuyor. Yaklaşımları, sadece sınır bilgilerini kullanarak hız alanını ve Reynolds gerilimi zorlamasını çıkarmak için kapalı olmayan RANS denklemleriyle eğitilmiş Fizik-Bilgili Sinir Ağlarını (PINN'ler) kullanmak üzerine kurulu.\n\nToplanan verilerin analizi, incelenen parametre uzayında Reynolds gerilmelerinin evrensel bir dağılımını ortaya koyarak veri odaklı kapanımın temelini oluşturuyor. PINN'lerden türetilen kapanım, hem ileriye dönük bir PINN çözücüsüne hem de OpenFOAM sayısal çözücüsüne entegre edildiğinde, RANS tahminlerini geleneksel modellere kıyasla önemli ölçüde iyileştiriyor. Bu iyileşme, hem ortalama akış hem de türbülans istatistikleri için daha doğru sonuçlar sağlıyor.\n\nBu çalışma, yüksek hızlı aerotermodinamik veya ısı transferine doğrudan odaklanmasa da, PINN'ler aracılığıyla veri odaklı türbülans modellemesi kullanarak RANS doğruluğunu artırmak için sağlam bir metodoloji sunuyor. Seyrek deneysel ve yüksek doğruluklu simülasyon verilerini kullanarak akışkanlar dinamiğindeki tahmin yeteneklerini geliştiren bu yaklaşım, genel CFD topluluğu için, özellikle de yönetici denklemlerdeki kapalı olmayan terimleri çıkarmak için PINN'lerin kullanımı açısından değerlidir.",
+    "tags": [
+      "Neural Network Surrogates",
+      "Deep Learning",
+      "Data-Driven Methods",
+      "Turbulent Heating",
+      "Surrogate Modeling"
+    ]
+  },
+  "paper": {
+    "title": "Turbulence closure in Reynolds-averaged Navier–Stokes and flow inference around a cylinder using physics-informed neural networks and sparse experimental data",
+    "authors": [
+      "Zhen Zhang",
+      "Khemraj Shukla",
+      "Zhicheng Wang",
+      "Anthony Morales",
+      "Theo Käufer"
+    ],
+    "journal": "Journal of Fluid Mechanics",
+    "url": "https://doi.org/10.1017/jfm.2026.11471",
+    "doi": "10.1017/jfm.2026.11471",
+    "date": "2026-04-27"
+  },
+  "created_at": "2026-05-02T09:18:39.268330"
+}

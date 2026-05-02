@@ -119,6 +119,24 @@
       "sources": {
         "OpenAlex": 2
       }
+    },
+    {
+      "date": "2026-05-02T09:18:39.589093",
+      "paper_count": 2,
+      "tags": {
+        "High-Performance Computing": 1,
+        "Shock-Boundary Layer Interaction": 1,
+        "Hypersonic Flow": 1,
+        "High Enthalpy Flow": 1,
+        "Neural Network Surrogates": 2,
+        "Deep Learning": 2,
+        "Data-Driven Methods": 2,
+        "Turbulent Heating": 2,
+        "Surrogate Modeling": 2
+      },
+      "sources": {
+        "OpenAlex": 2
+      }
     }
   ]
 }
