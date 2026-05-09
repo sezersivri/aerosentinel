@@ -1,0 +1,46 @@
+{
+  "filename_base": "2026-05-09-validating-co2-thermal-nonequilibrium-models-with",
+  "filename_en": "2026-05-09-validating-co2-thermal-nonequilibrium-models-with.en.md",
+  "filename_tr": "2026-05-09-validating-co2-thermal-nonequilibrium-models-with.tr.md",
+  "gemini_output_en": {
+    "title": "Validating CO2 Thermal Nonequilibrium Models with Shock Tunnel TDLAS",
+    "paper_title": "Thermal Nonequilibrium Characterization of Expanding CO <sub>2</sub> Flows in a Reflected Shock Tunnel",
+    "authors": "Yitong Zhang, Qi Wang, R K Li, Fei Li et al.",
+    "paper_type": "multi_method",
+    "relevance_score": 75,
+    "summary": "This paper presents a time-resolved experimental and computational study of thermochemical nonequilibrium CO2 expanding flows, conducted in the JF-10 reflected shock tunnel. The authors employed tunable diode laser absorption spectroscopy (TDLAS) in both mid-infrared and near-infrared ranges to measure rotational and vibrational temperatures, as well as species concentrations. Water vapor was used as a tracer to identify driver-gas contamination, helping to define the effective test window for the experiments.\n\nThe study found a quasi-steady test period of approximately 0.6 ms, characterized by minimal contamination and stable thermochemical conditions. A two-temperature computational fluid dynamics (CFD) simulation, using the Eilmer4 solver, was performed to model the vibrational relaxation behavior of CO2. When comparing various relaxation models, the Simpson model provided the best agreement with the experimentally observed vibrational temperature evolution.\n\nThis work provides valuable benchmark data for CO2 test flows, particularly those relevant to planetary entry conditions. It also demonstrates the capability of TDLAS as a diagnostic tool for validating nonequilibrium flow models, which is crucial for improving the accuracy of aerothermodynamic predictions in high-speed flight regimes.",
+    "tags": [
+      "Aerothermodynamics",
+      "Hypersonic Flow",
+      "Real Gas Effects"
+    ]
+  },
+  "gemini_output_tr": {
+    "title": "Sok Tunelinde CO2 Akislarinin Termal Dengesizligi: TDLAS ile Deneysel Karakterizasyon",
+    "paper_title": "Thermal Nonequilibrium Characterization of Expanding CO <sub>2</sub> Flows in a Reflected Shock Tunnel",
+    "authors": "Yitong Zhang, Qi Wang, R K Li, Fei Li et al.",
+    "paper_type": "multi_method",
+    "relevance_score": 65,
+    "summary": "Yitong Zhang ve arkadaslari, JF-10 yansimali sok tunelinde genisleyen CO2 akislarinin termokimyasal dengesizligini zamanla cozumlenmis bir sekilde incelemislerdir. Calisma, ayarlanabilir diyot lazer absorpsiyon spektroskopisi (TDLAS) kullanarak CO2 ve H2O'nun donme ve titresim sicakliklari ile tur konsantrasyonlarini belirlemeyi amaclamistir. Surucu gaz olarak CO ve test gazi olarak CO2 kullanilarak dissosiyatif olmayan, dusuk entalpili akislar uretilmistir.\n\nTDLAS sistemi, orta ve yakin kizilotesi diyot lazerleri kullanarak CO2 ve H2O'nun coklu rovibrasyonel gecislerini incelemistir. Su buhari, surucu gaz kontaminasyonunu belirlemek icin bir izleyici olarak kullanilmis ve yaklasik 0.6 ms'lik kararlilikta bir test penceresi tespit edilmistir. Elde edilen deneysel veriler, Eilmer4 cozucusu kullanilarak gerceklestirilen iki-sicaklikli hesaplamali akiskanlar dinamigi (HAD) simulasyonlari ile karsilastirilmistir. Incelenen modeller arasinda, Simpson relaksasyon modelinin, gozlenen titresim sicakligi evrimi ile en iyi uyumu sagladigi bulunmustur.\n\nBu calisma, TDLAS'in dengesiz akis modellerini dogrulamadaki yetenegini gostermekte ve gezegen giris kosullariyla ilgili CO2 test akislari icin onemli karsilastirma verileri sunmaktadir. Bu tur veriler, hipersonik akislarda termokimyasal modellerin gelistirilmesi ve dogrulanmasi icin temel teskil eder.",
+    "tags": [
+      "Aerothermodynamics",
+      "Hypersonic Flow",
+      "Real Gas Effects"
+    ]
+  },
+  "paper": {
+    "title": "Thermal Nonequilibrium Characterization of Expanding CO <sub>2</sub> Flows in a Reflected Shock Tunnel",
+    "authors": [
+      "Yitong Zhang",
+      "Qi Wang",
+      "R K Li",
+      "Fei Li",
+      "Wei Zhao"
+    ],
+    "journal": "AIAA Journal",
+    "url": "https://doi.org/10.2514/1.j066552",
+    "doi": "10.2514/1.j066552",
+    "date": "2026-05-06"
+  },
+  "created_at": "2026-05-09T09:28:23.073779"
+}

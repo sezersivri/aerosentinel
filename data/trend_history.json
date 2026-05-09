@@ -137,6 +137,22 @@
       "sources": {
         "OpenAlex": 2
       }
+    },
+    {
+      "date": "2026-05-09T09:28:23.575334",
+      "paper_count": 2,
+      "tags": {
+        "Hypersonic Aerodynamics": 2,
+        "Aerothermodynamics": 4,
+        "Flight Vehicle Design": 2,
+        "Laminar Heating": 2,
+        "Turbulent Heating": 2,
+        "Hypersonic Flow": 2,
+        "Real Gas Effects": 2
+      },
+      "sources": {
+        "OpenAlex": 2
+      }
     }
   ]
 }
