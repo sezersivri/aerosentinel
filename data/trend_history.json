@@ -153,6 +153,23 @@
       "sources": {
         "OpenAlex": 2
       }
+    },
+    {
+      "date": "2026-05-16T09:50:04.365928",
+      "paper_count": 2,
+      "tags": {
+        "Aerothermodynamics": 4,
+        "Hypersonic Aerodynamics": 2,
+        "Heat Flux Prediction": 4,
+        "Laminar Heating": 2,
+        "Missile Aerothermodynamics": 2,
+        "Scramjet Propulsion": 2,
+        "Hypersonic Flow": 2,
+        "Turbulent Heating": 2
+      },
+      "sources": {
+        "OpenAlex": 2
+      }
     }
   ]
 }

@@ -1,0 +1,49 @@
+{
+  "filename_base": "2026-05-16-surface-temperature-streaks-stabilize-hypersonic-boundary",
+  "filename_en": "2026-05-16-surface-temperature-streaks-stabilize-hypersonic-boundary.en.md",
+  "filename_tr": "2026-05-16-surface-temperature-streaks-stabilize-hypersonic-boundary.tr.md",
+  "gemini_output_en": {
+    "title": "Surface Temperature Streaks Stabilize Hypersonic Boundary Layers",
+    "paper_title": "Stabilisation of second Mack mode in hypersonic boundary layers through spanwise non-uniform surface temperature distribution",
+    "authors": "L. Boscagli, George Rigas, O. Marxen, P. J. K. Bruce",
+    "paper_type": "numerical_cfd",
+    "relevance_score": 75,
+    "summary": "Boscagli and co-authors investigate a passive control method to stabilize the second Mack mode instability in hypersonic boundary layers, aiming to suppress laminar-to-turbulent transition. Their approach involves generating steady streaks within the boundary layer by applying a spanwise non-uniform surface temperature distribution. This method capitalizes on the aerothermodynamic characteristics of the flow. The study employs direct numerical simulations (DNS) of a hypersonic boundary layer over a flat plate, covering Mach numbers from 4.8 to 6 and wall temperature ratios relevant to both wind tunnel and flight conditions.\n\nThe computational analyses demonstrate that this control method can reduce the energy of the second Mack mode by up to approximately 60%. The effectiveness is strongly dependent on the streak wavelength parameter. For a Mach 6 configuration, the most linearly amplified second Mack mode disturbance frequency showed nearly optimum performance when the spanwise wavelength was approximately 8–10 times the local boundary layer thickness.\n\nThese findings offer a promising direction for controlling hypersonic boundary layers, which is critical for managing the extreme heat fluxes experienced by high-speed vehicles. The work provides valuable guidance for future experimental campaigns designed to validate this control strategy, potentially leading to more efficient thermal management systems for hypersonic missiles.",
+    "tags": [
+      "Aerothermodynamics",
+      "Hypersonic Aerodynamics",
+      "Heat Flux Prediction",
+      "Laminar Heating",
+      "Missile Aerothermodynamics"
+    ]
+  },
+  "gemini_output_tr": {
+    "title": "Yüzey Sıcaklığı Değişimiyle Hipersonik Sınır Tabaka Kararlılığı ve Isınma Kontrolü",
+    "paper_title": "Stabilisation of second Mack mode in hypersonic boundary layers through spanwise non-uniform surface temperature distribution",
+    "authors": "L. Boscagli, George Rigas, O. Marxen, P. J. K. Bruce",
+    "paper_type": "numerical_cfd",
+    "relevance_score": 78,
+    "summary": "Boscagli ve arkadaslari, hipersonik sinir tabakalardaki ikinci Mack modu kararsizliklarini pasif olarak stabilize etmek icin yeni bir kontrol yontemini arastiriyor. Bu yontem, yuzey uzerindeki enine duzlemde tekduze olmayan sicaklik dagilimlari kullanarak kararlı cizgiler (streaks) olusturmaya dayanir. Bu cizgilerin, aerotermodinamik akis ozelliklerinden faydalanarak sinir tabaka gecisini etkiledigi ve boylece asiri isi akilarini azaltmaya yardimci oldugu dusunulmektedir. Calisma, Mach 4.8 ile 6 arasindaki sayilar ve cesitli duvar sicakligi oranlari icin dogrudan sayisal benzetimler (DNS) kullanir.\n\nYapilan benzetimler, kararlı cizgilerin ikinci Mack modunun enerjisini yaklasik %60'a kadar azaltabildigini gosteriyor. Cizgi dalga boyu parametresinin stabilizasyon faydalarinda onemli bir rol oynadigi belirlenmistir. Ozellikle, Mach 6 akisi icin, en dogrusal olarak guclendirilmis ikinci Mack modu bozulma frekansi icin, yerel sinir tabaka kalinliginin yaklasik 8-10 kati bir enine dalga boyunun optimum performans sagladigi bulunmustur.\n\nBu bulgular, hipersonik araclar icin isi akisini azaltmaya yonelik pasif bir kontrol stratejisi olarak sinir tabaka gecikmesini saglayan umut verici bir yol sunmaktadir. Gelecekteki deneysel calismalar icin degerli rehberlik saglayarak, bu kontrol stratejisinin uygulanabilirligini ve etkinligini daha da dogrulayabilir.",
+    "tags": [
+      "Aerothermodynamics",
+      "Hypersonic Aerodynamics",
+      "Heat Flux Prediction",
+      "Laminar Heating",
+      "Missile Aerothermodynamics"
+    ]
+  },
+  "paper": {
+    "title": "Stabilisation of second Mack mode in hypersonic boundary layers through spanwise non-uniform surface temperature distribution",
+    "authors": [
+      "L. Boscagli",
+      "George Rigas",
+      "O. Marxen",
+      "P. J. K. Bruce"
+    ],
+    "journal": "Journal of Fluid Mechanics",
+    "url": "https://doi.org/10.1017/jfm.2026.11548",
+    "doi": "10.1017/jfm.2026.11548",
+    "date": "2026-05-14"
+  },
+  "created_at": "2026-05-16T09:50:03.566243"
+}

@@ -1,0 +1,47 @@
+{
+  "filename_base": "2026-05-16-scramjet-combustion-experiments-and-les-reveal",
+  "filename_en": "2026-05-16-scramjet-combustion-experiments-and-les-reveal.en.md",
+  "filename_tr": "2026-05-16-scramjet-combustion-experiments-and-les-reveal.tr.md",
+  "gemini_output_en": {
+    "title": "Scramjet Combustion: Experiments and LES Reveal Supersonic Flameholding",
+    "paper_title": "Experiments and Simulations of Supersonic Combustion in the Small-Scale Flight Experiment",
+    "authors": "Jan Martinez Schramm, Christer Fureby",
+    "paper_type": "multi_method",
+    "relevance_score": 72,
+    "summary": "This study investigates supersonic combustion within a small-scale scramjet intake and combustor section, combining finite rate chemistry large-eddy simulations (LES) with experimental measurements. The research was conducted in the High Enthalpy Shock Tunnel Göttingen, simulating flight-relevant conditions including high-speed compressible flow, hydrogen injection, self-ignition, and turbulent combustion. The authors employed detailed models for hydrogen–air chemical kinetics and turbulence–chemistry interactions to accurately predict flame stabilization, heat release, and shock–turbulence interactions.\n\nThe simulations were validated against experimental data obtained from temperature-sensitive paint, pressure transducers, and frequency comb laser absorption spectroscopy. The results demonstrate good agreement between simulations and experiments for wall pressure, wall heat flux, and the emissions of carbon monoxide and water. The combined experimental and computational insights clarify flameholding mechanisms and highlight the role of shock waves in enhancing mixing and ignition within the combustor.\n\nThis work advances the fundamental understanding of supersonic combustion physics, providing a valuable framework for future scramjet engine studies relevant to realistic flight vehicles. While not directly focused on external missile aerothermodynamics, the detailed analysis of internal heat flux and high-enthalpy flow physics is relevant to the broader domain of high-speed vehicle thermal management.",
+    "tags": [
+      "Scramjet Propulsion",
+      "Aerothermodynamics",
+      "Hypersonic Flow",
+      "Turbulent Heating",
+      "Heat Flux Prediction"
+    ]
+  },
+  "gemini_output_tr": {
+    "title": "Scramjet Motorlarında Supersonik Yanma: Deneyler ve LES ile Detaylı İnceleme",
+    "paper_title": "Experiments and Simulations of Supersonic Combustion in the Small-Scale Flight Experiment",
+    "authors": "Jan Martinez Schramm, Christer Fureby",
+    "paper_type": "multi_method",
+    "relevance_score": 75,
+    "summary": "Martinez Schramm ve Fureby, küçük ölçekli bir uçuş deneyinde scramjet motorları için kritik olan supersonik yanmayı incelemektedir. Çalışma, Göttingen Yüksek Entalpi Şok Tüneli'nde gerçekleştirilen deneyleri, sonlu hızlı kimya içeren büyük girdap simülasyonları (LES) ile birleştirerek scramjet giriş ve yanma odasındaki akış ve termokimyasal süreçleri araştırmaktadır. Hidrojen enjeksiyonu, kendiliğinden tutuşma ve türbülanslı yanma gibi uçuşa uygun koşullar altında, hidrojen-hava kimyasal kinetiği ve türbülans-kimya etkileşimleri için ayrıntılı modeller kullanılmıştır.\n\nSimülasyonlar, deneylerden elde edilen sıcaklığa duyarlı boya, basınç transdüseri ve frekans tarağı lazer absorpsiyon spektroskopisi ölçüm verileriyle doğrulanmıştır. Sonuçlar, duvar basıncı, duvar ısı akısı ve H2O ile OH emisyonları için iyi bir uyum göstermektedir. Birleşik bulgular, alev tutma mekanizmaları ve şok dalgalarının karışımı ve tutuşmayı artırmadaki rolü hakkında önemli bilgiler sağlamaktadır.\n\nBu çalışma, supersonik yanma fiziği hakkındaki genel anlayışı ilerletmekte ve gerçekçi uçuş araçları için scramjet motoru çalışmalarına yönelik bir çerçeve sunmaktadır. Yüksek hızlı uçuş teknolojilerinin geliştirilmesi için bu tür entegre deneysel ve hesaplamalı yaklaşımlar, motor performansı ve güvenilirliğinin anlaşılmasına katkıda bulunmaktadır.",
+    "tags": [
+      "Scramjet Propulsion",
+      "Aerothermodynamics",
+      "Hypersonic Flow",
+      "Turbulent Heating",
+      "Heat Flux Prediction"
+    ]
+  },
+  "paper": {
+    "title": "Experiments and Simulations of Supersonic Combustion in the Small-Scale Flight Experiment",
+    "authors": [
+      "Jan Martinez Schramm",
+      "Christer Fureby"
+    ],
+    "journal": "AIAA Journal",
+    "url": "https://doi.org/10.2514/1.j066202",
+    "doi": "10.2514/1.j066202",
+    "date": "2026-05-13"
+  },
+  "created_at": "2026-05-16T09:50:03.963874"
+}
