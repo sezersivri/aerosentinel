@@ -170,6 +170,22 @@
       "sources": {
         "OpenAlex": 2
       }
+    },
+    {
+      "date": "2026-05-23T10:04:23.694913",
+      "paper_count": 2,
+      "tags": {
+        "Analytical Methods": 2,
+        "Multi-Fidelity Modeling": 2,
+        "High-Performance Computing": 2,
+        "Data-Driven Methods": 2,
+        "Hypersonic Aerodynamics": 2,
+        "Supersonic Aerodynamics": 2,
+        "Missile Aerothermodynamics": 2
+      },
+      "sources": {
+        "OpenAlex": 2
+      }
     }
   ]
 }

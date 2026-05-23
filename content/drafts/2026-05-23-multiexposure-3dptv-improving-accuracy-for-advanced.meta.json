@@ -1,0 +1,46 @@
+{
+  "filename_base": "2026-05-23-multiexposure-3dptv-improving-accuracy-for-advanced",
+  "filename_en": "2026-05-23-multiexposure-3dptv-improving-accuracy-for-advanced.en.md",
+  "filename_tr": "2026-05-23-multiexposure-3dptv-improving-accuracy-for-advanced.tr.md",
+  "gemini_output_en": {
+    "title": "Multi-Exposure 3D-PTV: Improving Accuracy for Advanced Flow Field Measurements",
+    "paper_title": "On the accuracy of multi-exposure 3D-PTV",
+    "authors": "A. Grille Guerra, B. Wieneke, F. Scarano",
+    "paper_type": "experimental",
+    "relevance_score": 15,
+    "summary": "This paper systematically assesses the robustness and accuracy of multi-exposure (ME) 3D particle tracking velocimetry (3D-PTV), a technique designed to overcome limitations of single-exposure double-frame recordings and reduce system requirements compared to time-resolved (TR) systems. The authors scrutinize particle tracking reliability and accuracy in ME recordings with up to five exposures, distributed over one or two frames, using a synthetic particle field based on a Taylor–Green vortex lattice. The study also simulates ME recordings from a time-resolved experiment around a wall-mounted cube and demonstrates the method for accelerometry and pressure from PIV in a turbulent wake.\n\nThe findings indicate that single-frame ME yields viable results, achieving a 90% detection rate up to a cumulated particle image density of 0.1. However, the error rate remains below 5% only when exposures are distributed over two frames. The dynamic velocity range (DVR) of ME systems is found to be approximately equivalent to that of time-resolved systems. The dynamic acceleration range (DAR), on the other hand, only approaches TR analysis capabilities for specific combinations of pulse numbers and timing sequences. The simulated ME (4 pulses, 2 frames) shows equivalence to TR conditions for the wall-mounted cube case.\n\nThis work provides a detailed characterization of an advanced experimental fluid measurement technique. While not directly focused on high-speed missile aerothermodynamics or surrogate modeling for heating prediction, the insights into improving flow field measurement accuracy could indirectly support validation efforts for computational fluid dynamics in various aerospace applications.",
+    "tags": [
+      "Data-Driven Methods",
+      "Hypersonic Aerodynamics",
+      "Supersonic Aerodynamics",
+      "Missile Aerothermodynamics"
+    ]
+  },
+  "gemini_output_tr": {
+    "title": "Coklu Pozlamali 3D-PTV: Akis Olcumlerinde Dogruluk ve Saglamlik Analizi",
+    "paper_title": "On the accuracy of multi-exposure 3D-PTV",
+    "authors": "A. Grille Guerra, B. Wieneke, F. Scarano",
+    "paper_type": "experimental",
+    "relevance_score": 20,
+    "summary": "Bu makale, coklu pozlamali (ME) 3D parcacik izleme velocimetrisi (3D-PTV) tekniginin dogrulugunu ve saglamligini arastiriyor. ME 3D-PTV, tek pozlamali cift kareli kayitlarin sinirliliklarini asmak, dinamik hiz araligini genisletmek veya ivme olcumlerini mumkun kilmak icin tasarlanmis bir varyanttir. Yazarlar, hem tek kareli hem de cift kareli kayitlari kapsayan ME 3D-PTV'nin sistematik bir degerlendirmesini sunuyor. Bu degerlendirme icin Taylor-Green girdap kafesi tabanli sentetik parcacik alani hareketi ve duvara monte edilmis bir kup etrafindaki zaman cozunurluklu deneylerin simulasyonlari kullaniliyor.\n\nCalisma, tek kareli ME'nin, birikmis parcacik goruntu yogunlugu %10'a (cppp = 0.1) kadar %90'lik bir tespit oraniyla uygulanabilir sonuclar verebildigini gosteriyor. Ancak, hata orani yalnizca pozlamalar iki kareye dagitildiginda %5'in altinda kaliyor. ME sistemlerinin dinamik hiz araligi (DVR), zaman cozunurluklu sistemlere yaklasik olarak esdeger bulunuyor. Buna karsilik, dinamik ivme araligi (DAR) yalnizca belirli darbe sayisi ve zamanlama dizisi kombinasyonlari icin zaman cozunurluklu analizin yaklasik degerlerine ulasabiliyor. Yazarlar, dairesel bir silindirin turbulansli art alanindaki deneylerle ivme olcumleri ve PIV'den basinclandirma icin ME 3D-PTV uygulamasini gosteriyor ve ME (2 kareye dagitilmis 4 darbe) ile zaman cozunurluklu kosullar arasinda esdegerlik oldugunu ortaya koyuyor.",
+    "tags": [
+      "Data-Driven Methods",
+      "Hypersonic Aerodynamics",
+      "Supersonic Aerodynamics",
+      "Missile Aerothermodynamics"
+    ]
+  },
+  "paper": {
+    "title": "On the accuracy of multi-exposure 3D-PTV",
+    "authors": [
+      "A. Grille Guerra",
+      "B. Wieneke",
+      "F. Scarano"
+    ],
+    "journal": "Experiments in Fluids",
+    "url": "https://doi.org/10.1007/s00348-026-04225-y",
+    "doi": "10.1007/s00348-026-04225-y",
+    "date": "2026-05-16"
+  },
+  "created_at": "2026-05-23T10:04:23.269882"
+}

@@ -1,0 +1,45 @@
+{
+  "filename_base": "2026-05-23-pore-network-models-uncover-filtration-fouling",
+  "filename_en": "2026-05-23-pore-network-models-uncover-filtration-fouling.en.md",
+  "filename_tr": "2026-05-23-pore-network-models-uncover-filtration-fouling.tr.md",
+  "gemini_output_en": {
+    "title": "Pore Network Models Uncover Filtration Fouling Mechanisms and Flux Decline",
+    "paper_title": "Stochastic modelling of filtration with sieving in graded pore networks",
+    "authors": "Binan Gu, Pejman Sanaei, Lou Kondic, L. J. Cummings",
+    "paper_type": "multi_method",
+    "relevance_score": 10,
+    "summary": "This paper presents a model for filtration in membrane filters, focusing on the simultaneous effects of small particle adsorption and large particle sieving within a graded pore network. The approach combines continuum partial differential equations to model the transport and adsorptive fouling of small particles in each pore with a discrete Poisson arrival process and biased random walk for the sieving particles. The primary objective is to understand the relative influences and coupling of these two fouling mechanisms on the performance of filters featuring a pore-size gradient.\n\nThe authors' findings indicate that sieving qualitatively alters the rate of flux decline due to its discrete pore blockage nature. They highlight that the difference between sieving-particle sizes and the initial pore radii in each filter band plays a crucial role in determining the onset and disappearance of competition between sieving and adsorption. Furthermore, the study demonstrates a phase transition in the filter's lifetime as the arrival frequency of sieving particles increases.\n\nWhile this work offers insights into complex filtration dynamics through a hybrid modeling approach, its domain is entirely separate from high-speed missile aerothermodynamics or the prediction of aerodynamic heating.",
+    "tags": [
+      "Analytical Methods",
+      "Multi-Fidelity Modeling",
+      "High-Performance Computing"
+    ]
+  },
+  "gemini_output_tr": {
+    "title": "Gözenek Ağlarında Filtreleme ve Eleme Süreçlerinin Stokastik Modellenmesi",
+    "paper_title": "Stochastic modelling of filtration with sieving in graded pore networks",
+    "authors": "Binan Gu, Pejman Sanaei, Lou Kondic, L. J. Cummings",
+    "paper_type": "multi_method",
+    "relevance_score": 10,
+    "summary": "Bu makale, dereceli gözenek ağlarına sahip membran filtrelerdeki filtreleme süreçlerinin stokastik bir modelini sunmaktadır. Çalışma, küçük ve büyük kirlilik parçacıklarının eş zamanlı adsorpsiyonu ve elenmesi gibi ticari filtreleme uygulamalarının erken aşamalarında gözlemlenen iki tipik kirlenme mekanizmasını ele almaktadır. Yaklaşım, her bir gözenekteki küçük parçacıkların taşınımını ve adsorptif kirlenmesini modellemek için birinci prensip sürekli kısmi diferansiyel denklemleri, eleme yapan büyük parçacıkların gözenek ağı boyunca önyargılı rastgele yürüyüşle ayrık bir Poisson varış sürecini birleştirmektedir.\n\nÇalışma, her bir kirlenme modunun göreceli etkilerini anlamayı ve özellikle bantlı filtrelerdeki gözenek boyutu gradyanının etkileşimini vurgulamayı amaçlamaktadır. Elde edilen sonuçlar, gözenek tıkanmasının ayrık doğası nedeniyle eleme sürecinin akı düşüş oranını niteliksel olarak değiştirdiğini göstermektedir. Ayrıca, eleme yapan parçacık boyutları ile her banttaki başlangıç gözenek boyutu (yarıçapı) arasındaki farkın, eleme-adsorpsiyon rekabetinin başlangıcını ve ortadan kalkmasını belirlemede kritik bir rol oynadığı belirtilmektedir. Son olarak, eleme yapan parçacıkların varış sıklığı arttıkça filtre ömründe bir faz geçişi olduğu ortaya konmaktadır.\n\nBu çalışma, filtrelemedeki farklı kirlenme mekanizmalarının karmaşık etkileşimine dair önemli bilgiler sağlamakta olup, membran filtre tasarımının ve ticari uygulamalardaki operasyonel stratejilerin optimizasyonu için değerlidir.",
+    "tags": [
+      "Analytical Methods",
+      "Multi-Fidelity Modeling",
+      "High-Performance Computing"
+    ]
+  },
+  "paper": {
+    "title": "Stochastic modelling of filtration with sieving in graded pore networks",
+    "authors": [
+      "Binan Gu",
+      "Pejman Sanaei",
+      "Lou Kondic",
+      "L. J. Cummings"
+    ],
+    "journal": "Journal of Fluid Mechanics",
+    "url": "https://doi.org/10.1017/jfm.2026.11556",
+    "doi": "10.1017/jfm.2026.11556",
+    "date": "2026-05-20"
+  },
+  "created_at": "2026-05-23T10:04:22.651571"
+}
