@@ -186,6 +186,22 @@
       "sources": {
         "OpenAlex": 2
       }
+    },
+    {
+      "date": "2026-05-30T10:10:08.056538",
+      "paper_count": 2,
+      "tags": {
+        "Aerothermodynamics": 2,
+        "Turbulent Heating": 2,
+        "Analytical Methods": 2,
+        "Shock-Boundary Layer Interaction": 2,
+        "High Enthalpy Flow": 2,
+        "Hypersonic Flow": 2,
+        "Missile Aerothermodynamics": 2
+      },
+      "sources": {
+        "OpenAlex": 2
+      }
     }
   ]
 }
