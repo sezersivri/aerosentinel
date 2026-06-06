@@ -1,0 +1,35 @@
+{
+  "filename_base": "2026-06-06-law-of-the-wall-critical-for",
+  "filename_en": "2026-06-06-law-of-the-wall-critical-for.en.md",
+  "filename_tr": "",
+  "gemini_output_en": {
+    "title": "Law of the Wall Critical for Generalizing Data-Driven Turbulence Models",
+    "paper_title": "The role of the law of the wall in cross-scenario generalisation of data-driven models",
+    "authors": "Jiaqi Li, Robert F. Kunz, George Huang, Xiang I.A. Yang",
+    "paper_type": "ml_aerodynamics",
+    "relevance_score": 55,
+    "summary": "This paper investigates the challenge of cross-scenario generalization in data-driven turbulence modeling, specifically focusing on whether preserving the law of the wall (LoW) improves the transferability of learned physics. The authors employ the Field Inversion and Machine Learning (FIML) framework, building upon the one-equation Spalart–Allmaras (SA) model. They compare a conventional, unconstrained FIML approach with a constrained FIML framework that explicitly deploys the learned coefficient on a LoW-preserving manifold, training both strategies on periodic-hill flow data.\n\nThe study demonstrates that while both unconstrained and constrained FIML show comparable performance for scenario-specific generalization within periodic-hill flows, the unconstrained approach leads to significant errors in very-high-Reynolds-number plane-channel flow, disrupting the baseline SA model's calibration. In contrast, the constrained FIML, by design, successfully maintains the logarithmic law in this case. Furthermore, when extrapolating to unseen separated flows like the backward-facing step and the three-dimensional BeVERLI hill, the constrained FIML framework delivers improved predictions over the baseline SA model, whereas the unconstrained FIML either shows no improvement or results in deterioration.\n\nThese findings indicate that preserving the law of the wall is important for achieving cross-scenario generalizability in data-driven turbulence models. This has implications for developing more widely applicable and robust turbulence models for CFD, which are foundational for accurate predictions in various aerodynamic regimes, including those relevant to high-speed flight.",
+    "tags": [
+      "Data-Driven Methods",
+      "Turbulent Heating",
+      "Aerothermodynamics",
+      "Hypersonic Aerodynamics",
+      "Reduced-Order Modeling"
+    ]
+  },
+  "gemini_output_tr": {},
+  "paper": {
+    "title": "The role of the law of the wall in cross-scenario generalisation of data-driven models",
+    "authors": [
+      "Jiaqi Li",
+      "Robert F. Kunz",
+      "George Huang",
+      "Xiang I.A. Yang"
+    ],
+    "journal": "Journal of Fluid Mechanics",
+    "url": "https://doi.org/10.1017/jfm.2026.11647",
+    "doi": "10.1017/jfm.2026.11647",
+    "date": "2026-06-04"
+  },
+  "created_at": "2026-06-06T10:17:29.830205"
+}

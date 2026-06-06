@@ -1,0 +1,45 @@
+{
+  "filename_base": "2026-06-06-particlewall-interaction-with-phase-change-unsteady",
+  "filename_en": "2026-06-06-particlewall-interaction-with-phase-change-unsteady.en.md",
+  "filename_tr": "2026-06-06-particlewall-interaction-with-phase-change-unsteady.tr.md",
+  "gemini_output_en": {
+    "title": "Particle-Wall Interaction with Phase Change: Unsteady Flow and Terminal Behaviors",
+    "paper_title": "Interaction between an in-flow particle and phase change",
+    "authors": "Jacob M. Jepson, F. T. Smith",
+    "paper_type": "multi_method",
+    "relevance_score": 35,
+    "summary": "This paper models the unsteady planar motion of a rigid particle flying near a wall-embedded substrate that is undergoing solidification or melting. The authors simplify the fluid flow equations to a thin-layer form, assuming both the particle and the particle–substrate gap are thin. Additionally, they exploit the small Prandtl number limit to derive a closed-form solution for the fluid temperature, significantly reducing the complexity of the coupled system.\n\nThe numerical simulations of this interactive system reveal four distinct terminal behaviors for the particle: a near-collision with the substrate boundary at the front, middle, or back of the particle, or a fly-away scenario where the particle departs from the substrate. For the specific case of a mid-body collision, a detailed local analysis uncovers an intricate asymptotic structure within the model solutions. The study also extends its examination to the inverse scenario, where the substrate is rigid, and the particle itself is melting or solidifying.\n\nWhile not directly focused on external aerodynamic heating of high-speed missiles, this work provides fundamental insights into particle-surface interactions coupled with phase change. Such mechanisms could be relevant to understanding material response, like ablation or erosion, in extreme thermal environments, offering a simplified framework for complex surface-fluid phenomena.",
+    "tags": [
+      "Aerothermodynamics",
+      "Analytical Methods",
+      "Heat Flux Prediction",
+      "Ablation Modeling"
+    ]
+  },
+  "gemini_output_tr": {
+    "title": "Akış İçindeki Parçacık ve Faz Değişimi Etkileşimi: Analitik ve Sayısal Bir Bakış",
+    "paper_title": "Interaction between an in-flow particle and phase change",
+    "authors": "Jacob M. Jepson, F. T. Smith",
+    "paper_type": "analytical",
+    "relevance_score": 15,
+    "summary": "Bu makale, kararsız düzlemsel bir akış içindeki katı bir parçacığın, katılaşan veya eriyen duvara gömülü bir yüzeye yakın hareketini inceliyor. Yazarlar, hem parçacığın hem de parçacık-yüzey boşluğunun ince olduğunu varsayarak akışkan akışını yöneten denklemleri ince tabaka formuna indirgiyorlar. Ayrıca, akışkan sıcaklığını kapalı formda elde etmek için küçük Prandtl sayısı limiti kullanılıyor.\n\nEtkileşimli sistemin sayısal simülasyonları, dört tür nihai çözüm davranışı ortaya koyuyor: yüzey sınırı ile parçacığın önü, ortası veya arkası arasında bir çarpışma (kesinlikle yakın çarpışma) veya parçacığın yüzeyden nispeten uzağa ayrılmasıyla oluşan bir 'uçup gitme' fenomeni. Orta gövde çarpışması durumu için yapılan yerel bir analiz, model çözümleri için karmaşık bir asimptotik yapı ortaya koyuyor. Ayrıca, katı bir yüzey ve eriyen veya katılaşan bir parçacık durumu da inceleniyor.",
+    "tags": [
+      "Aerothermodynamics",
+      "Analytical Methods",
+      "Heat Flux Prediction",
+      "Ablation Modeling"
+    ]
+  },
+  "paper": {
+    "title": "Interaction between an in-flow particle and phase change",
+    "authors": [
+      "Jacob M. Jepson",
+      "F. T. Smith"
+    ],
+    "journal": "Journal of Fluid Mechanics",
+    "url": "https://doi.org/10.1017/jfm.2026.11650",
+    "doi": "10.1017/jfm.2026.11650",
+    "date": "2026-06-03"
+  },
+  "created_at": "2026-06-06T10:17:30.267641"
+}

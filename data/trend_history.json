@@ -202,6 +202,29 @@
       "sources": {
         "OpenAlex": 2
       }
+    },
+    {
+      "date": "2026-06-06T10:17:30.580448",
+      "paper_count": 2,
+      "tags": {
+        "Extrapolation": 1,
+        "Turbulence": 1,
+        "Flow (mathematics)": 1,
+        "Logarithm": 1,
+        "Computer science": 1,
+        "Data-Driven Methods": 1,
+        "Turbulent Heating": 1,
+        "Aerothermodynamics": 3,
+        "Hypersonic Aerodynamics": 1,
+        "Reduced-Order Modeling": 1,
+        "Analytical Methods": 2,
+        "Heat Flux Prediction": 2,
+        "Ablation Modeling": 2
+      },
+      "sources": {
+        "ConceptSearch": 1,
+        "OpenAlex": 1
+      }
     }
   ]
 }
