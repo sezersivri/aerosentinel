@@ -225,6 +225,20 @@
         "ConceptSearch": 1,
         "OpenAlex": 1
       }
+    },
+    {
+      "date": "2026-06-13T10:42:10.355125",
+      "paper_count": 2,
+      "tags": {
+        "Data-Driven Methods": 4,
+        "Reduced-Order Modeling": 4,
+        "Hypersonic Aerodynamics": 2,
+        "Flight Vehicle Design": 2,
+        "Analytical Methods": 2
+      },
+      "sources": {
+        "OpenAlex": 2
+      }
     }
   ]
 }

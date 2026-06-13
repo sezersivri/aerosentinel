@@ -1,0 +1,46 @@
+{
+  "filename_base": "2026-06-13-unpacking-lowfrequency-turbulence-in-separated-flows",
+  "filename_en": "2026-06-13-unpacking-lowfrequency-turbulence-in-separated-flows.en.md",
+  "filename_tr": "2026-06-13-unpacking-lowfrequency-turbulence-in-separated-flows.tr.md",
+  "gemini_output_en": {
+    "title": "Unpacking Low-Frequency Turbulence in Separated Flows Over Bumps",
+    "paper_title": "Spectral analysis of attached and separated turbulent flows over a Gaussian-shaped bump",
+    "authors": "Roman Klopsch, L. Fuchs, Georgios Rigas, Kilian Oberleithner et al.",
+    "paper_type": "multi_method",
+    "relevance_score": 35,
+    "summary": "This paper examines the broadband turbulent dynamics of attached and separated flows over a Gaussian bump, specifically focusing on the origins of low-frequency coherent structures. The authors combine time-resolved experimental measurements with physics-based linear models, employing mean fields assimilated from the experimental data as base flows for their analysis. This approach aims to provide a deeper understanding of complex turbulent phenomena in these flow configurations.\n\nThrough spectral proper orthogonal decomposition, the study identifies coherent dynamics in both low- and medium-frequency regimes for both attached and separated flows, with the low-frequency dynamics being considerably more pronounced in the separated case. For the separated flow, these dynamics are attributed to a three-dimensional zero-frequency modal instability that generates large-scale, streamwise-elongated structures downstream of the bump. A standing-wave model, derived from resolvent modes and accounting for finite-span effects, successfully reproduces the experimentally observed spanwise structure of these dynamics. The paper does not provide specific quantitative metrics such as Mach numbers or error rates, as its focus is on fundamental flow physics.\n\nThe findings highlight the limitations of simulations with small spanwise extents and periodic boundary conditions, particularly for separated flows. By identifying the three-dimensional zero-frequency instability and finite-span standing-wave dynamics as key drivers of low-frequency coherent structures, the work offers an explanation for persistent discrepancies between simulations and experiments on the Gaussian bump. This provides valuable guidance for setting appropriate spanwise domain sizes and boundary conditions in future computational fluid dynamics studies of similar flows.",
+    "tags": [
+      "Reduced-Order Modeling",
+      "Data-Driven Methods",
+      "Analytical Methods"
+    ]
+  },
+  "gemini_output_tr": {
+    "title": "Gaussian Tumsek Uzerinde Ayrilmis Akislarda Dusuk Frekansli Turbulans Dinamikleri",
+    "paper_title": "Spectral analysis of attached and separated turbulent flows over a Gaussian-shaped bump",
+    "authors": "Roman Klopsch, L. Fuchs, Georgios Rigas, Kilian Oberleithner et al.",
+    "paper_type": "multi_method",
+    "relevance_score": 35,
+    "summary": "Klopsch ve arkadaslari, Gaussian sekilli bir tumsek uzerindeki yapisik ve ayrilmis turbulent akislarin genis bantli turbulent dinamiklerini, ozellikle dusuk frekansli tutarli yapilarin kokenini arastiriyor. Yaklasimlari, zaman cozunurluklu deneysel olcumleri, ayni veri setinden daha once asimile edilmis ortalama akis alanlarini taban akislari olarak kullanan fizik tabanli dogrusal modellerle birlestiriyor.\n\nSpektral ozgun ayrismasi (SPOD), her iki akis tipinde de dusuk ve orta frekans rejimlerinde tutarli bir dinamik oldugunu ortaya koyuyor; ayrilmis akista dusuk frekans dinamigi belirgin sekilde daha guclu. Ayrilmis akista, bu dinamik, tumsegin akis asagisinda buyuk olcekli, akis yonunde uzamis yapilar ureten uc boyutlu sifir frekansli bir modal kararsizliga baglaniyor. Sonlu aciklik etkilerini iceren cozumleyici modlara dayali bir duran dalga modeli, deneysel olarak gozlenen dinamigin aciklik yonundeki yapisini basariyla yeniden uretiyor ve kucuk aciklik genisligine sahip simülasyonlarin ve periyodik sinir kosullarinin sinirliliklarini vurguluyor. Yapisik akista da benzer dusuk frekansli yapilar tanimlaniyor, ancak bunlar daha zayif ve belirgin bir duran dalga deseni olusturmuyor.",
+    "tags": [
+      "Reduced-Order Modeling",
+      "Data-Driven Methods",
+      "Analytical Methods"
+    ]
+  },
+  "paper": {
+    "title": "Spectral analysis of attached and separated turbulent flows over a Gaussian-shaped bump",
+    "authors": [
+      "Roman Klopsch",
+      "L. Fuchs",
+      "Georgios Rigas",
+      "Kilian Oberleithner",
+      "Jakob G. R. von Saldern"
+    ],
+    "journal": "Journal of Fluid Mechanics",
+    "url": "https://doi.org/10.1017/jfm.2026.11629",
+    "doi": "10.1017/jfm.2026.11629",
+    "date": "2026-06-10"
+  },
+  "created_at": "2026-06-13T10:42:09.842828"
+}
