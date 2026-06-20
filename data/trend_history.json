@@ -239,6 +239,22 @@
       "sources": {
         "OpenAlex": 2
       }
+    },
+    {
+      "date": "2026-06-20T10:39:36.104385",
+      "paper_count": 2,
+      "tags": {
+        "Aerothermodynamics": 2,
+        "Supersonic Aerodynamics": 2,
+        "Analytical Methods": 3,
+        "Heat Flux Prediction": 2,
+        "Hypersonic Aerodynamics": 1,
+        "Laminar Heating": 1,
+        "Hypersonic Flow": 1
+      },
+      "sources": {
+        "OpenAlex": 2
+      }
     }
   ]
 }

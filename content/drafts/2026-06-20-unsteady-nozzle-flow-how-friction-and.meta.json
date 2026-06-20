@@ -1,0 +1,46 @@
+{
+  "filename_base": "2026-06-20-unsteady-nozzle-flow-how-friction-and",
+  "filename_en": "2026-06-20-unsteady-nozzle-flow-how-friction-and.en.md",
+  "filename_tr": "2026-06-20-unsteady-nozzle-flow-how-friction-and.tr.md",
+  "gemini_output_en": {
+    "title": "Unsteady Nozzle Flow: How Friction and Heat Transfer Affect Acoustics",
+    "paper_title": "A solution for the quasi-one-dimensional linearised Euler equations with wall friction",
+    "authors": "Xiao Hu, Aimee Morgans, Saikumar Reddy Yeddula",
+    "paper_type": "analytical",
+    "relevance_score": 40,
+    "summary": "This paper models the unsteady response of nozzles subject to acoustic and entropy waves, considering the effects of wall friction. It uses the quasi-one-dimensional linearized Euler equations, reformulated in terms of dimensionless mass, stagnation temperature, and entropy fluctuations. The authors solve this first-order system of differential equations using the Magnus-expansion method, where perturbation parameters include normalized frequencies, Fanning friction factors, and, for the first time, a measure of flow non-isentropicity caused by wall friction.\n\nThe analytical solution is applied to a converging-diverging nozzle for both subsonic and supersonic flow conditions, demonstrating good agreement with numerical predictions. The study further investigates nozzle flow with combined wall friction and steady heat transfer. Key findings indicate that the acoustic and entropy transfer functions of the nozzle are strongly dependent on frequency, wall friction, and the rate of heat transfer. Wall friction influences the unsteady response through modifications to the mean flow and via coupling mechanisms between acoustic, velocity, and entropy fluctuations.\n\nThis work provides a detailed analytical framework for understanding complex unsteady phenomena in internal flows, particularly how friction and heat transfer modulate acoustic and entropy wave propagation in nozzles. While not directly addressing external aerodynamic heating on missiles, the insights into coupled thermal and fluid dynamics in high-speed internal flows could inform broader aerothermodynamic modeling efforts, especially in propulsion system design.",
+    "tags": [
+      "Aerothermodynamics",
+      "Supersonic Aerodynamics",
+      "Analytical Methods",
+      "Heat Flux Prediction"
+    ]
+  },
+  "gemini_output_tr": {
+    "title": "Nozullarda Duvar Sürtünmesi ve Isı Transferinin Akustik Tepkiye Etkisi",
+    "paper_title": "A solution for the quasi-one-dimensional linearised Euler equations with wall friction",
+    "authors": "Xiao Hu, Aimee Morgans, Saikumar Reddy Yeddula",
+    "paper_type": "analytical",
+    "relevance_score": 35,
+    "summary": "Xiao Hu ve arkadaslari, duvar sürtünmesinin de dahil oldugu, akustik ve/veya entropi dalgalariyla zorlanan nozullarin kararsiz tepkisini modelleyen bir calisma sunuyor. Yaklasim, yari-tek boyutlu dogrusallastirilmis Euler denklemlerine dayanmakta olup, boyutsuz kütle, durma sicakligi ve entropi dalgalanmalari gibi degiskenleri kullanir. Denklem sistemi, normalize edilmis frekanslar, Fanning sürtünme faktörleri ve akis izentropik olmama ölçüsü gibi pertürbasyon parametrelerini iceren Magnus-genisleme yöntemiyle cözülmüstür.\n\nBu cözüm yöntemi, hem ses alti hem de ses üstü akis durumlarinda duvar sürtünmeli yakinlasip-genisleyen bir nozula uygulanmis ve sayisal tahminlerle iyi bir uyum göstermistir. Calismada ayrica, duvar sürtünmesi ve kararlı ısı transferinin bir arada bulundugu nozul akisi incelenmistir. Akustik ve entropi transfer fonksiyonlarinin frekansa, duvar sürtünmesine ve ısı transferine güclü bir sekilde bagli oldugu gözlemlenmistir. Duvar sürtünmesi, kararsiz tepkiyi ortalama akistaki degisiklikler ve akustik, hiz ve entropi dalgalanmalari arasindaki baglanti yoluyla etkilemektedir.",
+    "tags": [
+      "Aerothermodynamics",
+      "Supersonic Aerodynamics",
+      "Analytical Methods",
+      "Heat Flux Prediction"
+    ]
+  },
+  "paper": {
+    "title": "A solution for the quasi-one-dimensional linearised Euler equations with wall friction",
+    "authors": [
+      "Xiao Hu",
+      "Aimee Morgans",
+      "Saikumar Reddy Yeddula"
+    ],
+    "journal": "Journal of Fluid Mechanics",
+    "url": "https://doi.org/10.1017/jfm.2026.11729",
+    "doi": "10.1017/jfm.2026.11729",
+    "date": "2026-06-17"
+  },
+  "created_at": "2026-06-20T10:39:35.290818"
+}

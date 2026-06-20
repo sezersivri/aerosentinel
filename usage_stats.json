@@ -497,6 +497,29 @@
           "total_tokens": 11241
         }
       }
+    },
+    {
+      "type": "scout",
+      "timestamp": "2026-06-20T10:39:36.103433",
+      "papers_found": 2,
+      "papers_selected": 2,
+      "sources": {
+        "OpenAlex": 2
+      },
+      "gemini_calls": 4,
+      "duration_seconds": 183.6,
+      "token_usage": {
+        "en": {
+          "prompt_tokens": 4509,
+          "candidates_tokens": 849,
+          "total_tokens": 8944
+        },
+        "tr": {
+          "prompt_tokens": 1916,
+          "candidates_tokens": 474,
+          "total_tokens": 5081
+        }
+      }
     }
   ]
 }

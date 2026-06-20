@@ -1,0 +1,34 @@
+{
+  "filename_base": "2026-06-20-porous-walls-impact-on-hypersonic-boundary",
+  "filename_en": "2026-06-20-porous-walls-impact-on-hypersonic-boundary.en.md",
+  "filename_tr": "",
+  "gemini_output_en": {
+    "title": "Porous Walls' Impact on Hypersonic Boundary Layer Stability: An Analytical View",
+    "paper_title": "Analytical study of inviscid instabilities in exponentially modelled compressible boundary layers over porous walls",
+    "authors": "Lara De Broeck, Simon Görtz, Patrick Alter, Martin Oberlack",
+    "paper_type": "analytical",
+    "relevance_score": 60,
+    "summary": "This paper presents an analytical investigation into the linear temporal stability of compressible boundary layers over porous walls, assuming adiabatic wall temperatures. The authors model the base-flow profile exponentially and represent the porous wall as a regularly structured configuration with cylindrical pores. This approach allows for an analytic solution to the inviscid compressible Rayleigh equation, expressed in terms of the general Heun function, which simplifies the problem to an algebraic eigenvalue equation.\n\nThe analysis explores eigenmodes across a wide Mach number range and significant variations in porous-wall parameters, specifically porosity ($\\phi$) and layer thickness ($h$). Key findings indicate that porous walls with very small porosities allow for damping of instabilities, while higher porosities lead to destabilization. The character of this destabilization is largely dictated by the layer thickness: larger $h$ promotes long-wave, three-dimensional first-mode instabilities, whereas smaller $h$ favors short-wave, two-dimensional second-mode instabilities. For intermediate $h$, the most unstable mode can be a two-dimensional first mode, which contrasts with its typically three-dimensional nature. Furthermore, the layer thickness $h$ that causes the strongest destabilization at a given Mach number is shown to decrease as the Mach number increases.\n\nThis work provides fundamental insights into the mechanisms by which porous walls influence boundary layer stability in compressible flows. Understanding these stability characteristics is important for the design of flow control strategies and thermal management systems on high-speed vehicles, where boundary layer transition can significantly alter aerodynamic heating and drag.",
+    "tags": [
+      "Analytical Methods",
+      "Hypersonic Aerodynamics",
+      "Laminar Heating",
+      "Hypersonic Flow"
+    ]
+  },
+  "gemini_output_tr": {},
+  "paper": {
+    "title": "Analytical study of inviscid instabilities in exponentially modelled compressible boundary layers over porous walls",
+    "authors": [
+      "Lara De Broeck",
+      "Simon Görtz",
+      "Patrick Alter",
+      "Martin Oberlack"
+    ],
+    "journal": "Journal of Fluid Mechanics",
+    "url": "https://doi.org/10.1017/jfm.2026.11663",
+    "doi": "10.1017/jfm.2026.11663",
+    "date": "2026-06-17"
+  },
+  "created_at": "2026-06-20T10:39:35.714553"
+}
