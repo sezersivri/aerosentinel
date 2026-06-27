@@ -1,0 +1,32 @@
+{
+  "filename_base": "2026-06-27-airfoil-geometrys-impact-on-vortexgust-lift",
+  "filename_en": "2026-06-27-airfoil-geometrys-impact-on-vortexgust-lift.en.md",
+  "filename_tr": "",
+  "gemini_output_en": {
+    "title": "Airfoil Geometry's Impact on Vortex-Gust Lift Fluctuations at Low Re",
+    "paper_title": "On the effect of airfoil geometry on extreme vortex-gust encounters",
+    "authors": "Barbara Lopez-Doriga, Anya R. Magaña Jones, Kunihiko Taira",
+    "paper_type": "numerical_cfd",
+    "relevance_score": 25,
+    "summary": "This paper investigates the influence of airfoil geometry on vortex-gust encounters at a chord-based Reynolds number of 100. The authors numerically examine a family of airfoils, varying parameters such as gust ratio, initial gust position, gust radius, angle of attack, airfoil thickness, and camber. The study focuses on differences in flow fields, lift-element distributions, and overall aerodynamic responses during these interactions.\n\nThe findings indicate that increasing gust ratios and sizes lead to significant deviations in flow fields and aerodynamic responses compared to baseline conditions. The initial position of the vortex gust critically affects the magnitude of velocity gradients near the leading edge, thereby modulating the amplitude of the lift response. Lift fluctuation is observed to increase with the angle of attack, flattening around 10 degrees, which suggests an unsteady stall-like regime. Furthermore, thicker airfoils exhibit a decrease in the amplitude of gust-induced lift fluctuations, attributed to reduced vorticity production from the leading edge and a redirection of transient aerodynamic forces towards drag fluctuations.\n\nWhile providing insights into fundamental unsteady airfoil aerodynamics at low Reynolds numbers, this work has limited direct relevance to high-speed missile aerothermodynamics. The flow regime, focus on lift fluctuations rather than heating, and absence of high-Mach or real-gas effects place it outside the core domain of interest for aerothermal prediction on hypersonic vehicles.",
+    "tags": [
+      "Flight Vehicle Design",
+      "High-Performance Computing",
+      "Design Optimization"
+    ]
+  },
+  "gemini_output_tr": {},
+  "paper": {
+    "title": "On the effect of airfoil geometry on extreme vortex-gust encounters",
+    "authors": [
+      "Barbara Lopez-Doriga",
+      "Anya R. Magaña Jones",
+      "Kunihiko Taira"
+    ],
+    "journal": "Journal of Fluid Mechanics",
+    "url": "https://doi.org/10.1017/jfm.2026.11711",
+    "doi": "10.1017/jfm.2026.11711",
+    "date": "2026-06-24"
+  },
+  "created_at": "2026-06-27T10:20:04.477059"
+}

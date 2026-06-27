@@ -255,6 +255,23 @@
       "sources": {
         "OpenAlex": 2
       }
+    },
+    {
+      "date": "2026-06-27T10:20:04.800475",
+      "paper_count": 2,
+      "tags": {
+        "Deep Learning": 2,
+        "Data-Driven Methods": 2,
+        "Scramjet Propulsion": 2,
+        "Hypersonic Flow": 2,
+        "Surrogate Modeling": 2,
+        "Flight Vehicle Design": 1,
+        "High-Performance Computing": 1,
+        "Design Optimization": 1
+      },
+      "sources": {
+        "OpenAlex": 2
+      }
     }
   ]
 }
