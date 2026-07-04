@@ -1,0 +1,48 @@
+{
+  "filename_base": "2026-07-04-wall-injection-chemistry-shapes-hypersonic-boundary",
+  "filename_en": "2026-07-04-wall-injection-chemistry-shapes-hypersonic-boundary.en.md",
+  "filename_tr": "2026-07-04-wall-injection-chemistry-shapes-hypersonic-boundary.tr.md",
+  "gemini_output_en": {
+    "title": "Wall Injection Chemistry Shapes Hypersonic Boundary Layer Transition",
+    "paper_title": "Effect of wall mass injection on receptivity of high-enthalpy hypersonic boundary layer",
+    "authors": "Dingjin Zhang, Juanmian Lei, Rui Zhao",
+    "paper_type": "numerical_cfd",
+    "relevance_score": 65,
+    "summary": "This paper investigates the influence of wall mass injection composition on the receptivity of a thermochemically nonequilibrium hypersonic blunt-cone boundary layer to free-stream slow acoustic waves. The authors perform direct numerical simulations (DNS) to analyze four distinct wall conditions: non-catalytic no injection, fully catalytic no injection, air injection, and pyrolysis-gas injection, aiming to understand how these conditions alter the boundary layer and its susceptibility to disturbances.\n\nThe simulations reveal that wall catalysis and air injection lead to a reduction in boundary layer thickness due to near-wall recombination, which modifies temperature and Mach number distributions. Conversely, pyrolysis-gas injection thickens the boundary layer, attributed to the high H2 content and subsequent increases in effective gas constant and thermal conductivity. These changes in the mean flow significantly alter the receptivity mechanism. For the non-catalytic no-injection case, the disturbance evolves from leading-edge modal synchronization to an unstable supersonic mode, culminating in downstream second-mode amplification. In contrast, the fully catalytic and air-injection cases are dominated by damped F2 modes. Pyrolysis-gas injection results in entropy/vorticity wave dominance in the intermediate region, followed by earlier second-mode excitation downstream. Frequency-dependent results, specifically between 700–1100 kHz, indicate that wall catalysis and air injection suppress unstable-mode growth, while high-frequency excitation is observed in the pyrolysis-gas case. The receptivity coefficient is highest for the non-catalytic no-injection scenario and lowest for the pyrolysis-gas-injection case among those exhibiting unstable-mode growth.\n\nThe findings demonstrate that both wall chemistry and the composition of the injected gas can regulate hypersonic boundary-layer receptivity by modifying the thermochemical mean flow and the pathways of dominant disturbance modes. This work provides insights into the fundamental physics of boundary layer transition under conditions relevant to ablative thermal protection systems.",
+    "tags": [
+      "Hypersonic Aerodynamics",
+      "Aerothermodynamics",
+      "Thermal Protection Systems",
+      "Real Gas Effects",
+      "Ablation Modeling"
+    ]
+  },
+  "gemini_output_tr": {
+    "title": "Duvar Enjeksiyonu ve Kimyasının Hipersonik Sınır Tabakası Geçişine Etkisi",
+    "paper_title": "Effect of wall mass injection on receptivity of high-enthalpy hypersonic boundary layer",
+    "authors": "Dingjin Zhang, Juanmian Lei, Rui Zhao",
+    "paper_type": "numerical_cfd",
+    "relevance_score": 75,
+    "summary": "Dingjin Zhang ve ekibi, yüksek entalpili hipersonik sınır tabakasının serbest akım yavaş akustik dalgalara karşı alıcılığını, duvar kütle enjeksiyonunun etkisi altında doğrudan sayısal simülasyonlar (DNS) kullanarak incelemiş. Çalışma, ablatif termal koruma sistemleriyle ilişkili olabilen duvar enjeksiyonunun bileşiminin, künt bir koninin termokimyasal denge dışı sınır tabakası geçişi üzerindeki etkilerine odaklanıyor. Dört farklı duvar koşulu değerlendirilmiş: katalitik olmayan enjeksiyonsuz, tamamen katalitik enjeksiyonsuz, hava enjeksiyonu ve piroliz gazı enjeksiyonu. Bu koşullar altında ortalama akış yapısındaki değişikliklerin, sınır tabakası alıcılık mekanizmasını nasıl değiştirdiğini araştırmışlar.\n\nBulgular, duvar katalizinin ve hava enjeksiyonunun, duvar yakınındaki rekombinasyon ve ilişkili sıcaklık/Mach sayısı dağılımı modifikasyonları yoluyla sınır tabakası kalınlığını azalttığını gösteriyor. Buna karşılık, piroliz gazı enjeksiyonu, yüksek H2 içeriği nedeniyle etkin gaz sabiti ve termal iletkenlikteki artışla sınır tabakasını kalınlaştırıyor. Katalitik olmayan enjeksiyonsuz durumda, bozulma önce ön kenar modal senkronizasyonundan kararsız süpersonik moda, ardından akış aşağı ikinci mod amplifikasyonuna evriliyor. Tamamen katalitik ve hava enjeksiyonu durumlarında ise sönümlü F2 modları baskın kalıyor. Piroliz gazı enjeksiyonunda ise ara bölgede entropi/girdap dalgaları hakim oluyor ve ardından akış aşağı daha erken ikinci mod uyarımı görülüyor. 700–1100 kHz frekans aralığındaki sonuçlar, duvar katalizinin ve hava enjeksiyonunun kararsız mod büyümesini bastırdığını, piroliz gazı durumunda ise yüksek frekanslı uyarımın ortaya çıktığını ortaya koyuyor. En yüksek alıcılık katsayısı, kararsız mod büyümesi gözlemlenen durumlar arasında katalitik olmayan enjeksiyonsuz durumda, en düşüğü ise piroliz gazı enjeksiyonu durumunda belirlenmiş.\n\nBu çalışma, duvar kimyasının ve enjeksiyon gazı bileşiminin, termokimyasal ortalama akışı ve baskın bozulma modu yolunu değiştirerek hipersonik sınır tabakası alıcılığını önemli ölçüde düzenleyebileceğini gösteriyor. Bu tür temel anlayışlar, ablatif termal koruma sistemlerinin tasarımı ve hipersonik araçlarda ısı transferi ve geçiş kontrol stratejilerinin geliştirilmesi için önemlidir.",
+    "tags": [
+      "Hypersonic Aerodynamics",
+      "Aerothermodynamics",
+      "Thermal Protection Systems",
+      "Real Gas Effects",
+      "Ablation Modeling"
+    ]
+  },
+  "paper": {
+    "title": "Effect of wall mass injection on receptivity of high-enthalpy hypersonic boundary layer",
+    "authors": [
+      "Dingjin Zhang",
+      "Juanmian Lei",
+      "Rui Zhao"
+    ],
+    "journal": "Physics of Fluids",
+    "url": "https://doi.org/10.1063/5.0333893",
+    "doi": "10.1063/5.0333893",
+    "date": "2026-07-01"
+  },
+  "created_at": "2026-07-04T10:20:49.310660"
+}
