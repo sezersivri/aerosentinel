@@ -1,0 +1,43 @@
+{
+  "filename_base": "2026-07-11-viscous-shock-tube-reveals-nonequilibrium-effects",
+  "filename_en": "2026-07-11-viscous-shock-tube-reveals-nonequilibrium-effects.en.md",
+  "filename_tr": "2026-07-11-viscous-shock-tube-reveals-nonequilibrium-effects.tr.md",
+  "gemini_output_en": {
+    "title": "Viscous Shock Tube Reveals Non-Equilibrium Effects in Continuum Flow",
+    "paper_title": "Revisit viscous shock tube at low Reynolds number",
+    "authors": "Yue Zhang, Kun Xu",
+    "paper_type": "numerical_cfd",
+    "relevance_score": 72,
+    "summary": "This study investigates the viscous shock tube, a standard test case for Navier-Stokes (NS) solvers, focusing on low Reynolds number conditions. The authors demonstrate that significant non-equilibrium phenomena can occur even in nominally continuum flow regimes, challenging the traditional assumption of near-equilibrium behavior inherent in NS-based modeling. To address this, they employ the unified gas-kinetic scheme (UGKS), a multiscale method, and compare its results against solutions obtained from the conventional gas-kinetic scheme (GKS), which is NS-based.\n\nThe comparison between UGKS and GKS solutions reveals clear discrepancies, particularly in regions where shock waves interact with boundary layers. These differences are attributed to pronounced non-equilibrium effects that the NS-based GKS fails to fully capture. The abstract does not provide specific numerical values for Mach numbers, Reynolds numbers, or quantitative error metrics.\n\nThe work highlights the importance of using multiscale methods like UGKS for accurate analysis and prediction of continuum flows at high Mach and low Reynolds numbers, where such non-equilibrium transport becomes critical. This has direct implications for the fidelity of CFD simulations in aerothermodynamics, especially for high-speed missile applications where accurate prediction of flow physics is essential for heating calculations.",
+    "tags": [
+      "Hypersonic Flow",
+      "Shock-Boundary Layer Interaction",
+      "Aerothermodynamics"
+    ]
+  },
+  "gemini_output_tr": {
+    "title": "Düşük Reynolds Sayılarında Viskoz Şok Tüpünde Denge Dışı Akış Etkileri",
+    "paper_title": "Revisit viscous shock tube at low Reynolds number",
+    "authors": "Yue Zhang, Kun Xu",
+    "paper_type": "numerical_cfd",
+    "relevance_score": 75,
+    "summary": "Zhang ve meslektaşları, geleneksel olarak sürekli akış rejimi olarak kabul edilen koşullar altında, düşük Reynolds sayılarında viskoz şok tüpü problemini yeniden ele alarak denge dışı fenomenlerin varlığını ve etkisini araştırıyorlar. Nadir akıştan sürekli akışa kadar çok ölçekli fiziği yakalayabilen birleşik gaz-kinetik şemayı (UGKS) kullanıyor ve sonuçlarını gaz-kinetik şema (GKS) ile hesaplanan geleneksel Navier-Stokes denklemlerinden elde edilen çözümlerle karşılaştırıyorlar. Bu yaklaşım, denge dışı etkilerin neden olduğu sapmaları izole etmelerine ve nicelendirmelerine olanak tanıyor.\n\nBulguları, özellikle şok dalgalarının sınır tabakalarıyla etkileşime girdiği bölgelerde, UGKS ve GKS çözümleri arasında önemli farklılıklar olduğunu gösteriyor. Bu farklılıklar, yüksek Mach sayılı akışlar için, sürekli rejim içindeki düşük Reynolds sayılarında bile belirgin denge dışı etkilerin varlığını vurguluyor. Özette RMSE veya hızlanma faktörleri gibi belirli sayısal değerler verilmese de, nitel açıklama, dengeye yakın davranış varsayan NS tabanlı modellerin bu koşullar altında akış davranışını doğru bir şekilde tahmin etmek için yetersiz kalabileceğini güçlü bir şekilde ima ediyor.\n\nBu çalışma, denge dışı taşınımın akış yapılarını ve enerji transferini önemli ölçüde değiştirebileceği yüksek Mach, düşük Reynolds sayılı akışların analizinde UGKS gibi çok ölçekli yöntemlerin önemini ortaya koyuyor. Aerotermodinamik topluluğu için bu, geleneksel NS çözücülerinin önemli akış özelliklerini eksik tahmin edebileceği veya yanlış temsil edebileceği anlamına gelir, bu da bu rejimlerde çalışan yüksek hızlı araçlar için ısıtma tahminlerinin ve termal koruma sistemi tasarımlarının doğruluğunu potansiyel olarak etkiler.",
+    "tags": [
+      "Hypersonic Flow",
+      "Shock-Boundary Layer Interaction",
+      "Aerothermodynamics"
+    ]
+  },
+  "paper": {
+    "title": "Revisit viscous shock tube at low Reynolds number",
+    "authors": [
+      "Yue Zhang",
+      "Kun Xu"
+    ],
+    "journal": "Journal of Fluid Mechanics",
+    "url": "https://doi.org/10.1017/jfm.2026.11797",
+    "doi": "10.1017/jfm.2026.11797",
+    "date": "2026-07-08"
+  },
+  "created_at": "2026-07-11T09:46:54.315499"
+}

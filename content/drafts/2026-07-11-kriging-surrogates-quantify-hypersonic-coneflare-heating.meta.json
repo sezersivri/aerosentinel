@@ -1,0 +1,47 @@
+{
+  "filename_base": "2026-07-11-kriging-surrogates-quantify-hypersonic-coneflare-heating",
+  "filename_en": "2026-07-11-kriging-surrogates-quantify-hypersonic-coneflare-heating.en.md",
+  "filename_tr": "2026-07-11-kriging-surrogates-quantify-hypersonic-coneflare-heating.tr.md",
+  "gemini_output_en": {
+    "title": "Kriging Surrogates Quantify Hypersonic Cone-Flare Heating Uncertainties",
+    "paper_title": "Surrogate-based uncertainty quantification framework for Reynolds-averaged Navier-Stokes simulations of hypersonic large cone-flares",
+    "authors": "C. El Khoury, Jean-Pierre Hickey",
+    "paper_type": "ml_heating",
+    "relevance_score": 88,
+    "summary": "El Khoury and Hickey developed a non-intrusive uncertainty quantification (UQ) framework to assess how aleatory variability in freestream conditions, wall temperature, transport parameters, and nose bluntness affects design-relevant quantities of interest for hypersonic cone-flare configurations. Their approach couples the SU2 RANS solver, configured with the SST turbulence model, with DAKOTA for UQ. They used Latin Hypercube Sampling to generate an initial 238 RANS simulations, which were then adaptively augmented to a total of 269 simulations, covering a seven-dimensional input space.\n\nFrom each simulation, six quantities of interest, including thermal loads and separation behavior, were extracted. These data points were then used to train a Kriging surrogate model. Following validation, the surrogate enabled 75,000 Monte Carlo evaluations, efficiently yielding probability distributions and Sobol global sensitivity indices for the quantities of interest. The analysis revealed that boundary-layer thermodynamics significantly influence both thermal loads and flow separation characteristics on the cone-flare geometry.\n\nThis work provides a clear, reproducible surrogate-based UQ workflow for RANS simulations of hypersonic cone-flares. The findings are valuable for understanding the sensitivity of aerothermodynamic predictions to input uncertainties, which is crucial for robust design and analysis of high-speed missiles. The demonstrated methodology also sets a foundation for future investigations into epistemic model-form and numerical uncertainties.",
+    "tags": [
+      "Gaussian Process Surrogates",
+      "Aerothermodynamics",
+      "Hypersonic Aerodynamics",
+      "Heat Flux Prediction",
+      "Surrogate Modeling"
+    ]
+  },
+  "gemini_output_tr": {
+    "title": "Hipersonik Füzelerde Termal Yük Belirsizliğini Azaltan Vekil Modeller",
+    "paper_title": "Surrogate-based uncertainty quantification framework for Reynolds-averaged Navier-Stokes simulations of hypersonic large cone-flares",
+    "authors": "C. El Khoury, Jean-Pierre Hickey",
+    "paper_type": "multi_method",
+    "relevance_score": 90,
+    "summary": "C. El Khoury ve Jean-Pierre Hickey, hipersonik konik-flare konfigürasyonları için deterministik HAD tahminlerindeki büyük varyasyon ve belirsizlikleri ele alıyor. Çalışma, serbest akış koşulları, duvar sıcaklığı, taşıma parametreleri ve burun kütlüğü gibi girdilerdeki aleatorik değişkenliğin tasarım açısından önemli niceliklere (termal yükler ve ayrılma davranışı dahil) nasıl yayıldığını nicel olarak belirliyor. Bu amaçla, SU2 çözücüsünü (kararlı sıkıştırılabilir RANS ve SST türbülans modeli ile) DAKOTA ile birleştiren, müdahaleci olmayan bir belirsizlik yayılımı çerçevesi kullanılıyor. Latin Hiperküp Örneklemesi ile yedi boyutlu girdi uzayından 238 gerçekleştirim üretiliyor ve bunlar Bayesci adaptif örnekleme ile toplam 269 simülasyona çıkarılıyor.\n\nHer bir simülasyondan altı adet ilgi niceliği çıkarılıyor ve bir Kriging vekil modelini eğitmek için kullanılıyor. Model doğrulamasının ardından, vekil modelin 75.000 Monte Carlo değerlendirmesi, ilgi niceliklerinin olasılık dağılımlarının ve Sobol küresel hassasiyet indekslerinin verimli bir şekilde tahmin edilmesini sağlıyor. Sonuçlar, sınır tabakası termodinamiğinin termal yükler ve ayrılma davranışı üzerindeki baskın etkilerini vurguluyor. Bu çalışma, hipersonik konik-flare RANS simülasyonları için tekrarlanabilir, vekil tabanlı bir belirsizlik nicelendirme iş akışını gösteriyor.\n\nBu iş akışı, çalışma koşullarındaki ve geometrideki belirsizliklerin önemli olduğu hipersonik araçların sağlam tasarımı ve analizi için hayati önem taşıyor. Termal yükler ve akış ayrılması gibi kritik performans metrikleri üzerindeki girdi değişkenliğinin etkisini anlamak için hesaplama açısından verimli bir yol sunarak, daha güvenilir tahminlere ve tasarımlara zemin hazırlıyor.",
+    "tags": [
+      "Gaussian Process Surrogates",
+      "Aerothermodynamics",
+      "Hypersonic Aerodynamics",
+      "Heat Flux Prediction",
+      "Surrogate Modeling"
+    ]
+  },
+  "paper": {
+    "title": "Surrogate-based uncertainty quantification framework for Reynolds-averaged Navier-Stokes simulations of hypersonic large cone-flares",
+    "authors": [
+      "C. El Khoury",
+      "Jean-Pierre Hickey"
+    ],
+    "journal": "Aerospace Science and Technology",
+    "url": "https://doi.org/10.1016/j.ast.2026.113130",
+    "doi": "10.1016/j.ast.2026.113130",
+    "date": "2026-07-07"
+  },
+  "created_at": "2026-07-11T09:46:54.769974"
+}

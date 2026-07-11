@@ -286,6 +286,28 @@
       "sources": {
         "OpenAlex": 2
       }
+    },
+    {
+      "date": "2026-07-11T09:46:55.209818",
+      "paper_count": 2,
+      "tags": {
+        "Uncertainty quantification": 1,
+        "Uncertainty analysis": 1,
+        "Aerospace engineering": 1,
+        "Hypersonic speed": 1,
+        "Physics": 1,
+        "Hypersonic Flow": 2,
+        "Shock-Boundary Layer Interaction": 2,
+        "Aerothermodynamics": 4,
+        "Gaussian Process Surrogates": 2,
+        "Hypersonic Aerodynamics": 2,
+        "Heat Flux Prediction": 2,
+        "Surrogate Modeling": 2
+      },
+      "sources": {
+        "OpenAlex": 1,
+        "ConceptSearch": 1
+      }
     }
   ]
 }
