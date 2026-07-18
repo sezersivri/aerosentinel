@@ -1,0 +1,50 @@
+{
+  "filename_base": "2026-07-18-simulating-fldi-to-interpret-hypersonic-boundary",
+  "filename_en": "2026-07-18-simulating-fldi-to-interpret-hypersonic-boundary.en.md",
+  "filename_tr": "2026-07-18-simulating-fldi-to-interpret-hypersonic-boundary.tr.md",
+  "gemini_output_en": {
+    "title": "Simulating FLDI to Interpret Hypersonic Boundary Layer Instabilities",
+    "paper_title": "Characterizing the Response of Focused Laser Differential Interferometry to Mixed-Mode Hypersonic Instabilities",
+    "authors": "Elizabeth K. Benitez, Matthew P. Borg, Sean D. Dungan, Christoph Brehm et al.",
+    "paper_type": "numerical_cfd",
+    "relevance_score": 75,
+    "summary": "The paper assesses the capabilities of Focused Laser Differential Interferometry (FLDI) for measuring first- and second-mode boundary-layer instabilities in hypersonic flows. The authors conduct a computational analysis, using Direct Numerical Simulations (DNS) of Mach 6 flow over a cone to generate detailed density fields that contain both instability modes. They then simulate the FLDI measurement process by numerically integrating optical beam paths through these DNS data, producing synthetic time-series signals that mimic experimental outputs.\n\nAnalysis of these synthetic FLDI signals shows that the technique accurately captures the frequency content of the dominant instabilities. However, direct comparisons with the underlying DNS data reveal that FLDI's finite sampling volume acts as a spatial filter, which alters the measured amplitudes between the different instability modes. Specifically, the second mode was found to be amplified relative to the first mode, a phenomenon attributed to a combination of its wavelength and orientation within the flow.\n\nThis study confirms FLDI's utility for analyzing multimode instabilities and provides quantitative insights into the diagnostic's measurement characteristics. These findings are directly valuable for interpreting experimental campaigns aimed at understanding laminar-to-turbulent transition in hypersonic boundary layers, which is crucial for predicting aerothermal loads on high-speed vehicles.",
+    "tags": [
+      "Hypersonic Aerodynamics",
+      "Aerothermodynamics",
+      "Missile Aerothermodynamics",
+      "Turbulent Heating",
+      "Heat Flux Prediction"
+    ]
+  },
+  "gemini_output_tr": {
+    "title": "Hipersonik Akislarda Sinir Tabakasi Kararsizliklari ve FLDI Olcumlerinin Karakterizasyonu",
+    "paper_title": "Characterizing the Response of Focused Laser Differential Interferometry to Mixed-Mode Hypersonic Instabilities",
+    "authors": "Elizabeth K. Benitez, Matthew P. Borg, Sean D. Dungan, Christoph Brehm et al.",
+    "paper_type": "numerical_cfd",
+    "relevance_score": 72,
+    "summary": "Benitez ve arkadaslari, hipersonik akislardaki sinir tabakasi kararsizliklarini (birinci ve ikinci modlar) olcmek icin kullanilan odaklanmis lazer diferansiyel interferometrisi (FLDI) tekniginin tepki karakteristigini inceliyor. Calisma, Mach 6'daki bir koni uzerindeki akisin dogrudan sayisal simulasyonlarini (DNS) kullanarak yogunluk alanlari uretiyor. Bu DNS verileri daha sonra, FLDI olcum surecini taklit eden optik isin yollarinin sayisal entegrasyonu yoluyla sentetik zaman serisi sinyalleri olusturmak icin kullaniliyor. Bu yaklasim, FLDI'nin kararsizlik modlarina nasil tepki verdigini nicel olarak anlamayi amacliyor.\n\nAnalizler, simule edilen FLDI sinyalinin baskin kararsizliklarin frekans icerigini dogru bir sekilde yakaladigini gosteriyor. Ancak, temel DNS verileriyle yapilan karsilastirmalar, teknigin sonlu ornekleme hacminin bir uzamsal filtre gorevi gordugunu ve modlar arasindaki olculen genlikleri degistirdigini ortaya koyuyor. Sentetik FLDI verileri, bireysel birinci ve ikinci mod dalgalarinin spektral ve uzamsal ozelliklerini izole etmek icin ayristirildi. Bu ayrismada, ikinci modun dalga boyu ve yonelimi kombinasyonu nedeniyle birinci moda gore daha guclu amplifiye edildigi belirlendi.\n\nBu calisma, FLDI'nin cok modlu kararsizlik analizi icin kullanilabilirligini dogruluyor ve taninin olcum etkileri hakkinda nicel bilgiler saglayarak deneysel kampanyalarin yorumlanmasina dogrudan katkida bulunuyor. Hipersonik sinir tabakasi gecisinin anlasilmasi, yuksek hizli araclarin aerotermodinamik isinma tahminleri icin buyuk bir gereklilik arz ediyor, zira gecis, yuzey isinma oranlarinda onemli artislara yol aciyor.",
+    "tags": [
+      "Hypersonic Aerodynamics",
+      "Aerothermodynamics",
+      "Missile Aerothermodynamics",
+      "Turbulent Heating",
+      "Heat Flux Prediction"
+    ]
+  },
+  "paper": {
+    "title": "Characterizing the Response of Focused Laser Differential Interferometry to Mixed-Mode Hypersonic Instabilities",
+    "authors": [
+      "Elizabeth K. Benitez",
+      "Matthew P. Borg",
+      "Sean D. Dungan",
+      "Christoph Brehm",
+      "Joseph S. Jewell"
+    ],
+    "journal": "AIAA Journal",
+    "url": "https://doi.org/10.2514/1.j067275",
+    "doi": "10.2514/1.j067275",
+    "date": "2026-07-16"
+  },
+  "created_at": "2026-07-18T09:43:40.351291"
+}

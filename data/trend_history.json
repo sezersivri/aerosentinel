@@ -308,6 +308,22 @@
         "OpenAlex": 1,
         "ConceptSearch": 1
       }
+    },
+    {
+      "date": "2026-07-18T09:43:41.402319",
+      "paper_count": 2,
+      "tags": {
+        "Hypersonic Aerodynamics": 2,
+        "Aerothermodynamics": 2,
+        "Missile Aerothermodynamics": 4,
+        "Turbulent Heating": 2,
+        "Heat Flux Prediction": 2,
+        "Supersonic Aerodynamics": 2,
+        "Shock-Boundary Layer Interaction": 2
+      },
+      "sources": {
+        "OpenAlex": 2
+      }
     }
   ]
 }
