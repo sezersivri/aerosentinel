@@ -1,0 +1,49 @@
+{
+  "filename_base": "2026-07-25-highspeed-roughwall-flows-a-new-wall",
+  "filename_en": "2026-07-25-highspeed-roughwall-flows-a-new-wall.en.md",
+  "filename_tr": "2026-07-25-highspeed-roughwall-flows-a-new-wall.tr.md",
+  "gemini_output_en": {
+    "title": "High-Speed Rough-Wall Flows: A New Wall Model for Heat Flux",
+    "paper_title": "On the Reynolds analogy for high-speed rough-wall flows: implications for wall modelling",
+    "authors": "Michele Cogo, Davide Depieri, Matteo Bernardini, Francesco Picano",
+    "paper_type": "numerical_cfd",
+    "relevance_score": 75,
+    "summary": "Cogo and co-authors investigate compressible turbulent boundary layers over prism-shaped roughness using direct numerical simulations (DNS) at Mach 2 and 4. They explore the influence of compressibility and wall thermal conditions (adiabatic and isothermal) on the boundary layer structure and the validity of the Reynolds analogy. The study aims to understand momentum-energy coupling in rough-wall high-speed flows and develop a wall model for predicting surface quantities.\n\nThe DNS results show that while roughness disrupts the near-wall momentum-energy coupling within the roughness sublayer, the Reynolds analogy recovers in the outer region, exhibiting smooth-wall-like similarity for velocity and temperature fields. A systematic comparison of different Reynolds analogy formulations indicates that a mixed Prandtl number approach provides the most accurate heat-flux predictions among those tested. Based on these observations, they developed a modular wall model that couples drag prediction with a compressibility transformation and a temperature-velocity closure. This model predicts both wall-shear stress and heat flux using only roughness geometry and information from the matching location, demonstrating good a priori agreement with the DNS data.\n\nThis work contributes to a better understanding of aerothermodynamics in high-speed flows over rough surfaces, which is critical for missile design where surface imperfections or ablation can occur. The developed wall model offers a practical tool for CFD simulations, potentially improving the accuracy of heat flux and drag predictions without the computational expense of fully resolving roughness in every simulation.",
+    "tags": [
+      "Aerothermodynamics",
+      "Hypersonic Aerodynamics",
+      "Turbulent Heating",
+      "Heat Flux Prediction",
+      "Missile Aerothermodynamics"
+    ]
+  },
+  "gemini_output_tr": {
+    "title": "Yüksek Hızlı Pürüzlü Akışlarda Reynolds Benzerliği ve Isı Akısı Tahmini",
+    "paper_title": "On the Reynolds analogy for high-speed rough-wall flows: implications for wall modelling",
+    "authors": "Michele Cogo, Davide Depieri, Matteo Bernardini, Francesco Picano",
+    "paper_type": "numerical_cfd",
+    "relevance_score": 75,
+    "summary": "Cogo ve ekibi, Mach 2 ve 4'teki sıkıştırılabilir türbülanslı sınır tabakalarını, prizma şeklindeki pürüzlülükler üzerinde doğrudan sayısal simülasyonlar (DNS) kullanarak incelemiştir. Çalışma, adyabatik ve izotermal duvar koşullarında, yüksek hızlı akışlarda Reynolds benzerliğinin pürüzlü duvarlar üzerindeki etkilerini ve duvar modellemesi için çıkarımlarını araştırmaktadır. Yazarlar, anlık ve ortalama yoğunluk alanlarının analizini yaparak sıkıştırılabilirlik etkilerinin ve duvarın termal koşullarının sınır tabakası yapısını önemli ölçüde etkilediğini göstermiştir.\n\nAna bulgular, pürüzlülüğün pürüzlülük alt tabakası içinde duvara yakın momentum-enerji eşleşmesini bozmasına rağmen, Reynolds benzerliğinin dış bölgede hız ve sıcaklık alanlarının pürüzsüz duvar benzeri bir benzerlik sergilediği yerlerde geri kazanılabileceğini ortaya koymaktadır. Test edilen kapatma modelleri arasında, karışık Prandtl sayısı yaklaşımının en doğru ısı akısı tahminlerini sağladığı belirlenmiştir. Bu gözlemlere dayanarak, ekip küçük prizma şeklindeki pürüzlülük desenleri için sürükleme tahmini ile bir sıkıştırılabilirlik dönüşümünü ve bir sıcaklık-hız kapatmasını birleştiren modüler bir duvar modeli geliştirmiştir. Model, yalnızca pürüzlülük geometrisini ve eşleşme konumundan gelen bilgiyi kullanarak hem duvar kayma gerilimini hem de ısı akısını tahmin edebilmekte ve mevcut DNS verileriyle a priori iyi bir uyum sergilemektedir.\n\nBu çalışma, yüksek hızlı akışlarda pürüzlü yüzeyler üzerindeki aerotermodinamik davranışın anlaşılmasına katkıda bulunmaktadır. Geliştirilen duvar modeli, termal koruma sistemlerinin bozulması veya üretim kusurları gibi durumlarda pürüzlü yüzeylere sahip yüksek hızlı araçlar için ısı akısı tahminlerinin doğruluğunu artırma potansiyeline sahiptir. Bu tür modeller, maliyetli tam ölçekli DNS veya LES simülasyonlarına gerek kalmadan, mühendislik uygulamalarında daha verimli ve güvenilir aerotermodinamik analizlere olanak tanıyabilir.",
+    "tags": [
+      "Aerothermodynamics",
+      "Hypersonic Aerodynamics",
+      "Turbulent Heating",
+      "Heat Flux Prediction",
+      "Missile Aerothermodynamics"
+    ]
+  },
+  "paper": {
+    "title": "On the Reynolds analogy for high-speed rough-wall flows: implications for wall modelling",
+    "authors": [
+      "Michele Cogo",
+      "Davide Depieri",
+      "Matteo Bernardini",
+      "Francesco Picano"
+    ],
+    "journal": "Journal of Fluid Mechanics",
+    "url": "https://doi.org/10.1017/jfm.2026.11842",
+    "doi": "10.1017/jfm.2026.11842",
+    "date": "2026-07-20"
+  },
+  "created_at": "2026-07-25T09:57:50.970285"
+}
