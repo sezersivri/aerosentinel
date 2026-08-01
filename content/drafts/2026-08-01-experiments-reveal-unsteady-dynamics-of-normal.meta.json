@@ -1,0 +1,46 @@
+{
+  "filename_base": "2026-08-01-experiments-reveal-unsteady-dynamics-of-normal",
+  "filename_en": "2026-08-01-experiments-reveal-unsteady-dynamics-of-normal.en.md",
+  "filename_tr": "2026-08-01-experiments-reveal-unsteady-dynamics-of-normal.tr.md",
+  "gemini_output_en": {
+    "title": "Experiments Reveal Unsteady Dynamics of Normal Shock-Boundary Layer Interaction",
+    "paper_title": "Experimental characterization and analysis of unsteady normal-shock boundary-layer interaction",
+    "authors": "Carmen Riveiro Moreno, Marie Couliou, Nicolò Fabbiane, Reynald Bur et al.",
+    "paper_type": "experimental",
+    "relevance_score": 42,
+    "summary": "This study experimentally investigates the unsteady interaction between a normal shock wave and a turbulent boundary layer at an upstream Mach number of 1.35. The research was conducted in the S8Ch transonic wind tunnel at ONERA Meudon, employing wall-mounted unsteady pressure measurements and high-speed schlieren imaging to characterize the shock-boundary layer interaction (SBLI).\n\nThe experiments identified a small separation region along the centerline. Spectral analysis of the reconstructed wall pressure signals revealed distinct frequency ranges associated with different flow features: the shock wave exhibited unsteadiness around a Strouhal number of 0.01, peaking at approximately 0.013; the separation point showed activity between St ≈ 0.04 and 0.25; and the mixing layer displayed frequencies with St ≳ 0.3. It was observed that in the separation region, time scales linked to both shock motion and the mixing layer coexist. Spectral Proper Orthogonal Decomposition (SPOD) of schlieren images further elucidated coherent structures within the shear layer and low-frequency unsteadiness related to the shock motion. The authors also highlight, through synthetic image analysis, that sharp discontinuities like shocks can introduce additional modes at higher harmonics, emphasizing the need for careful interpretation in SBLI studies.\n\nUnderstanding the unsteady nature of shock-boundary layer interactions, even at transonic speeds, is foundational for predicting flow behavior in more complex supersonic and hypersonic environments. While not directly focused on heating, the detailed characterization of flow structures and unsteadiness provides critical data for validating CFD models that are ultimately used to predict aerodynamic heating and structural loads on high-speed vehicles.",
+    "tags": [
+      "Shock-Boundary Layer Interaction",
+      "Supersonic Aerodynamics",
+      "Flight Vehicle Design"
+    ]
+  },
+  "gemini_output_tr": {
+    "title": "Normal Şok Sınır Tabaka Etkileşiminin Deneysel Analizi ve Karakterizasyonu",
+    "paper_title": "Experimental characterization and analysis of unsteady normal-shock boundary-layer interaction",
+    "authors": "Carmen Riveiro Moreno, Marie Couliou, Nicolò Fabbiane, Reynald Bur et al.",
+    "paper_type": "experimental",
+    "relevance_score": 35,
+    "summary": "Carmen Riveiro Moreno ve ekibi, ONERA Meudon'daki S8Ch transonik rüzgar tünelinde Mach 1.35'te normal şok dalgası ile türbülanslı sınır tabaka etkileşimini deneysel olarak inceledi. Çalışma, şok-sınır tabaka etkileşimini (SBLI) karakterize etmek için duvara monte edilmiş kararsız basınç ölçümlerini yüksek hızlı schlieren görüntüleme ile birleştirdi.\n\nGözlemler, merkez hattı boyunca küçük bir ayrılma bölgesi olduğunu gösterdi. Yeniden yapılandırılan duvar basıncı sinyallerinin spektral analizi, farklı akış özellikleriyle ilişkili belirgin frekans aralıklarını ortaya koydu: şok dalgası (St ~ 0.01, St ≈ 0.013'te zirve yapan), ayrılma noktası (St ≈ 0.04 - 0.25) ve karışım tabakası (St ≳ 0.3). Ayrılma bölgesinde şok hareketine ve karışım tabakasına ait zaman ölçeklerinin bir arada bulunduğu görüldü. Schlieren görüntülerinin Spektral Özgün Dik Bileşenler Ayrıştırması (SPOD), kesme tabakası içindeki tutarlı yapıları ve şok hareketine bağlı düşük frekanslı kararsızlığı gösterdi. Son olarak, sentetik görüntü analizi, şoklar gibi keskin süreksizliklerin daha yüksek harmoniklerde ek modlar oluşturabileceğini ve SBLI çalışmalarında dikkatli yorumlamanın önemini vurguladı.",
+    "tags": [
+      "Shock-Boundary Layer Interaction",
+      "Supersonic Aerodynamics",
+      "Flight Vehicle Design"
+    ]
+  },
+  "paper": {
+    "title": "Experimental characterization and analysis of unsteady normal-shock boundary-layer interaction",
+    "authors": [
+      "Carmen Riveiro Moreno",
+      "Marie Couliou",
+      "Nicolò Fabbiane",
+      "Reynald Bur",
+      "Olivier Marquet"
+    ],
+    "journal": "Experiments in Fluids",
+    "url": "https://doi.org/10.1007/s00348-026-04269-0",
+    "doi": "10.1007/s00348-026-04269-0",
+    "date": "2026-07-29"
+  },
+  "created_at": "2026-08-01T10:07:21.443056"
+}

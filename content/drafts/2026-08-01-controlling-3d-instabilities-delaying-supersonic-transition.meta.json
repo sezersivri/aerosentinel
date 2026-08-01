@@ -1,0 +1,50 @@
+{
+  "filename_base": "2026-08-01-controlling-3d-instabilities-delaying-supersonic-transition",
+  "filename_en": "2026-08-01-controlling-3d-instabilities-delaying-supersonic-transition.en.md",
+  "filename_tr": "2026-08-01-controlling-3d-instabilities-delaying-supersonic-transition.tr.md",
+  "gemini_output_en": {
+    "title": "Controlling 3D Instabilities: Delaying Supersonic Transition to Boost Missile Performance",
+    "paper_title": "Robust reactive control of 3-D instabilities in a supersonic boundary layer",
+    "authors": "Pierre Nibourel, Colin Leclercq, Fabrice Demourant, Éric Garnier et al.",
+    "paper_type": "numerical_cfd",
+    "relevance_score": 65,
+    "summary": "This paper investigates a robust control law for three-dimensional instabilities in a supersonic boundary layer at Mach 4.5, aiming to delay transition to turbulence. The methodology extends previous work on spanwise invariant flow to the 3D case, employing localized sensors and actuators. The control law is synthesized using linear tools, transforming a multiple-input–multiple-output problem into several decentralized single-input–single-output problems in the transverse wavenumber space to simplify identification and synthesis.\n\nThe study demonstrates that a feedback setup, combined with structured H2/Hinf synthesis, ensures nominal performance and robustness against noisy estimation sensors or freestream velocity variations. By simultaneously targeting the linear growth of both the first and second instability modes, the control law successfully delays transition to turbulence. Specifically, it increases the laminar zone by 20% from the upstream edge of the plate.\n\nThis work is significant for the aerothermodynamics community as delaying transition to turbulence on high-speed vehicles directly impacts aerodynamic heating. Maintaining laminar flow for a longer duration can substantially reduce skin friction drag and, critically, the overall heat flux experienced by the vehicle, which is a major design consideration for high-speed missiles.",
+    "tags": [
+      "Supersonic Aerodynamics",
+      "Missile Aerothermodynamics",
+      "Laminar Heating",
+      "Turbulent Heating",
+      "Analytical Methods"
+    ]
+  },
+  "gemini_output_tr": {
+    "title": "Süpersonik Sınır Tabakada 3B Kararsızlıkların Sağlam Kontrolü",
+    "paper_title": "Robust reactive control of 3-D instabilities in a supersonic boundary layer",
+    "authors": "Pierre Nibourel, Colin Leclercq, Fabrice Demourant, Éric Garnier et al.",
+    "paper_type": "numerical_cfd",
+    "relevance_score": 60,
+    "summary": "Nibourel ve arkadaşları, Mach 4.5'teki üç boyutlu süpersonik bir sınır tabakasında sonlu genlikli kararsızlıkları kontrol ederek türbülansa geçişi geciktirmek için sağlam bir kontrol yasası geliştirmeye odaklanıyor. Çalışma, daha önceki iki boyutlu akışlar için geliştirilen metodolojiyi üç boyutlu duruma genişletiyor. Kontrol yasası, doğrusal araçlar kullanılarak oluşturuluyor, ancak çok girişli-çok çıkışlı merkezi problem, model tanımlamasını ve kontrolör sentezini basitleştirmek için enine dalga sayısı uzayında birkaç tek girişli-tek çıkışlı merkezi olmayan probleme dönüştürülüyor.\n\nGeri besleme düzeni (aktüatörlerin akış aşağısına yerleştirilen tahmin sensörleri) ve yapılandırılmış H2/H-sonsuz sentezi sayesinde, nominal performans, kararlılık sağlamlığı ve gürültülü tahmin sensörlerine veya serbest akış hızı değişimlerine rağmen performans sağlamlığı sağlanıyor. Kontrol yasası, hem birinci hem de ikinci kararsızlık modlarının doğrusal büyümesini eş zamanlı olarak hedefleyerek türbülansa geçişi geciktiriyor ve laminer bölgeyi plakanın akış yukarı kenarından %20 oranında artırıyor.\n\nBu çalışma, yüksek hızlı füzeler gibi süpersonik araçlarda sınır tabakası geçişini kontrol etme potansiyeli taşıyor. Geçişin geciktirilmesi, aerodinamik ısıtma yüklerini önemli ölçüde azaltarak termal koruma sistemlerinin tasarımını kolaylaştırabilir ve genel araç performansını artırabilir.",
+    "tags": [
+      "Supersonic Aerodynamics",
+      "Missile Aerothermodynamics",
+      "Laminar Heating",
+      "Turbulent Heating",
+      "Analytical Methods"
+    ]
+  },
+  "paper": {
+    "title": "Robust reactive control of 3-D instabilities in a supersonic boundary layer",
+    "authors": [
+      "Pierre Nibourel",
+      "Colin Leclercq",
+      "Fabrice Demourant",
+      "Éric Garnier",
+      "Denis Sipp"
+    ],
+    "journal": "Journal of Fluid Mechanics",
+    "url": "https://doi.org/10.1017/jfm.2026.11856",
+    "doi": "10.1017/jfm.2026.11856",
+    "date": "2026-07-30"
+  },
+  "created_at": "2026-08-01T10:07:20.889325"
+}
