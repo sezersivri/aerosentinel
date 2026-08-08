@@ -1,0 +1,50 @@
+{
+  "filename_base": "2026-08-08-hypersonic-plasma-experimental-radar-signatures-on",
+  "filename_en": "2026-08-08-hypersonic-plasma-experimental-radar-signatures-on.en.md",
+  "filename_tr": "2026-08-08-hypersonic-plasma-experimental-radar-signatures-on.tr.md",
+  "gemini_output_en": {
+    "title": "Hypersonic Plasma: Experimental Radar Signatures on Sphere-Cones",
+    "paper_title": "An Experimental Parameter Study on the Formation of Plasma on Generic Sphere-Cone Geometries and its Influence on Radar Signatures under High Enthalpy Shock Tunnel Flow Conditions",
+    "authors": "René Petervari, Alexander Wagner, Tobias Ecker, Konstantinos Psarras et al.",
+    "paper_type": "experimental",
+    "relevance_score": 55,
+    "summary": "René Petervari and colleagues conducted an experimental parameter study investigating plasma formation and its impact on radar signatures around generic sphere-cone geometries. The experiments were performed under varying high enthalpy flow conditions in the High Enthalpy Shock Tunnel (HEG) at DLR Göttingen. This work was guided by combined Computational Fluid Dynamics (CFD) and Computational Electromagnetic (CEM) simulations, which first predicted plasma distribution and then determined the microwave response.\n\nThe primary goal was to generate quantitative reference data for plasma state and radar signature predictions, which are challenging to simulate with high precision. The measurements obtained from the series of sphere-cone geometries were then used to experimentally assess the coupled CFD-CEM framework's ability to predict radar signatures for plasma-shrouded hypersonic vehicles. The abstract does not provide specific numerical results or performance metrics for the assessment.\n\nThis study provides valuable experimental data for validating and improving computational models of plasma formation and its electromagnetic effects in hypersonic flight. Such data are crucial for enhancing the accuracy of radar signature predictions and understanding communication blackout phenomena for high-speed vehicles.",
+    "tags": [
+      "Hypersonic Aerodynamics",
+      "Real Gas Effects",
+      "High Enthalpy Flow",
+      "Reentry Vehicles",
+      "Missile Aerothermodynamics"
+    ]
+  },
+  "gemini_output_tr": {
+    "title": "Hipersonik Araçlarda Plazma Oluşumu ve Radar İzleri Üzerine Deneysel Çalışma",
+    "paper_title": "An Experimental Parameter Study on the Formation of Plasma on Generic Sphere-Cone Geometries and its Influence on Radar Signatures under High Enthalpy Shock Tunnel Flow Conditions",
+    "authors": "René Petervari, Alexander Wagner, Tobias Ecker, Konstantinos Psarras et al.",
+    "paper_type": "multi_method",
+    "relevance_score": 65,
+    "summary": "Bu makale, yüksek entalpi şok tüneli koşulları altında genel küre-koni geometrileri üzerinde plazma oluşumunu ve bunun radar izleri üzerindeki etkisini araştırmaktadır. Yazarlar, DLR Göttingen Yüksek Entalpi Şok Tüneli'nde (HEG) deneysel bir parametre çalışması yürütmüşlerdir. Bu deneyler, aracın etrafındaki plazma dağılımını tahmin eden ve ardından mikrodalga tepkisini belirleyen birleştirilmiş Hesaplamalı Akışkanlar Dinamiği (HAD) ve Hesaplamalı Elektromanyetik (HEM) simülasyon çerçevesi ile desteklenmiştir.\n\nÇalışma, farklı yüksek entalpi akış koşullarında çeşitli küre-koni geometrileri için radar izlerini ölçmüştür. Temel amaç, plazma durumu simülasyonlarının ve imza tahminlerinin doğrulanması için nicel referans verileri üretmekti, zira bu tahminler hala zorlayıcıdır. Elde edilen deneysel ölçümler daha sonra, plazma ile çevrili hipersonik araçların radar izlerini tahmin etmede birleştirilmiş HAD-HEM çerçevesinin doğruluğunu ve yeteneklerini değerlendirmek için kullanılmıştır.\n\nBu çalışma, hipersonik uçuşta radyo karartması ve radar imza bozulması gibi fenomenleri anlamak ve hafifletmek için hayati önem taşıyan karmaşık, birleştirilmiş HAD-HEM modellerinin doğrulanması için kritik deneysel veriler sunmaktadır. Bu etkileri doğru bir şekilde tahmin etme yeteneği, gelecekteki yüksek hızlı araçların tasarımı ve işletimi için önemlidir.",
+    "tags": [
+      "Hypersonic Aerodynamics",
+      "Real Gas Effects",
+      "High Enthalpy Flow",
+      "Reentry Vehicles",
+      "Missile Aerothermodynamics"
+    ]
+  },
+  "paper": {
+    "title": "An Experimental Parameter Study on the Formation of Plasma on Generic Sphere-Cone Geometries and its Influence on Radar Signatures under High Enthalpy Shock Tunnel Flow Conditions",
+    "authors": [
+      "René Petervari",
+      "Alexander Wagner",
+      "Tobias Ecker",
+      "Konstantinos Psarras",
+      "Peter Knott"
+    ],
+    "journal": "Aerospace Science and Technology",
+    "url": "https://doi.org/10.1016/j.ast.2026.113377",
+    "doi": "10.1016/j.ast.2026.113377",
+    "date": "2026-08-01"
+  },
+  "created_at": "2026-08-08T08:54:16.089028"
+}

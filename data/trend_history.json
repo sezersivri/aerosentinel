@@ -357,6 +357,23 @@
       "sources": {
         "OpenAlex": 2
       }
+    },
+    {
+      "date": "2026-08-08T08:54:16.574175",
+      "paper_count": 2,
+      "tags": {
+        "Aerothermodynamics": 2,
+        "Hypersonic Aerodynamics": 4,
+        "Turbulent Heating": 2,
+        "Heat Flux Prediction": 2,
+        "Real Gas Effects": 2,
+        "High Enthalpy Flow": 2,
+        "Reentry Vehicles": 2,
+        "Missile Aerothermodynamics": 2
+      },
+      "sources": {
+        "OpenAlex": 2
+      }
     }
   ]
 }

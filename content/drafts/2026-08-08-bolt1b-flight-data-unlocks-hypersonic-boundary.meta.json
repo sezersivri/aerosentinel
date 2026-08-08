@@ -1,0 +1,47 @@
+{
+  "filename_base": "2026-08-08-bolt1b-flight-data-unlocks-hypersonic-boundary",
+  "filename_en": "2026-08-08-bolt1b-flight-data-unlocks-hypersonic-boundary.en.md",
+  "filename_tr": "2026-08-08-bolt1b-flight-data-unlocks-hypersonic-boundary.tr.md",
+  "gemini_output_en": {
+    "title": "BOLT-1B Flight Data Unlocks Hypersonic Boundary Layer Transition Secrets",
+    "paper_title": "Hypersonic Boundary Layer Transition of BOLT-1B at Flight Conditions",
+    "authors": "Zachary M. Johnston, Neal Bitter, Gregory McKiernan, Bradley M. Wheaton",
+    "paper_type": "multi_method",
+    "relevance_score": 75,
+    "summary": "This paper investigates the boundary layer transition process on the BOLT-1B flight experiment under hypersonic conditions. The authors analyze a high-quality dataset of surface pressure and heating measurements from the flight, which captured the onset of transition. To interpret these observations, they employ a computational approach combining high-fidelity baseflow solutions, stochastically forced direct numerical simulation (DNS), and plane-marching parabolized stability equation (PPSE) analysis.\n\nThe flight data revealed a marked rise in surface heating, consistent with prior BOLT-2 observations, and distinct spectral peaks in pressure data near the centerline and midspan regions at slightly higher Reynolds numbers. The forced DNS models the receptivity and nonlinear disturbance amplification within the boundary layer, supported by a modal analysis of the resulting transition. Complementary PPSE calculations provide linear growth predictions, which are then compared against the DNS results to establish a baseline consistent with linear stability theory.\n\nTogether, these methods offer a comprehensive interpretation of the instability mechanisms likely governing transition on BOLT-1B. This work provides a validated reference framework for future efforts in transition modeling within realistic hypersonic flight environments, which is crucial for accurate aerothermodynamic predictions.",
+    "tags": [
+      "Aerothermodynamics",
+      "Hypersonic Aerodynamics",
+      "Turbulent Heating",
+      "Heat Flux Prediction"
+    ]
+  },
+  "gemini_output_tr": {
+    "title": "BOLT-1B Uçuş Verileriyle Hipersonik Sınır Tabaka Geçişi ve Isınma Analizi",
+    "paper_title": "Hypersonic Boundary Layer Transition of BOLT-1B at Flight Conditions",
+    "authors": "Zachary M. Johnston, Neal Bitter, Gregory McKiernan, Bradley M. Wheaton",
+    "paper_type": "multi_method",
+    "relevance_score": 75,
+    "summary": "Bu makale, BOLT-1B uçuş deneyinden elde edilen yüzey basıncı ve ısıtma ölçümlerini kullanarak hipersonik sınır tabaka geçişini inceliyor. Çalışma, geçişin başlangıcını yakalayan bu yüksek kaliteli veriyi, yüksek hassasiyetli temel akış çözümleri, stokastik olarak zorlanmış Doğrudan Sayısal Simülasyon (DNS) ve düzlem-ilerleyen Parabolize Kararlılık Denklemi (PPSE) analizinin birleşimiyle yorumluyor. Yaklaşım, sınır tabaka içindeki alıcılık ve doğrusal olmayan bozulma amplifikasyonunu modellemeyi amaçlıyor.\n\nBOLT-1B verileri, BOLT-2 gözlemleriyle tutarlı olarak, yüzey ısıtmasında belirgin bir artış gösteriyor. Bu artışa, merkez hattı ve orta açıklık bölgelerinde biraz daha yüksek Reynolds sayılarında basınç verilerinde belirgin spektral tepe noktaları eşlik ediyor. Zorlanmış DNS, ortaya çıkan geçiş sürecinin modal analiziyle desteklenerek alıcılık ve doğrusal olmayan bozulma amplifikasyonunu modelliyor. Tamamlayıcı PPSE hesaplamaları, DNS ile karşılaştırma için doğrusal büyüme tahminleri sağlıyor ve doğrusal kararlılık teorisiyle tutarlı bir temel oluşturuyor. Bu yöntemler bir araya gelerek, BOLT-1B üzerinde geçişi muhtemelen yöneten kararsızlık mekanizmalarının detaylı bir yorumunu sunuyor.\n\nBu çalışma, gerçekçi hipersonik uçuş ortamlarında gelecekteki geçiş modelleme çabaları için doğrulanmış bir referans çerçevesi sunuyor. Yüksek hızlı füzelerde aerodinamik ısıtma tahmini için önemli olan sınır tabaka geçişinin deneysel ve sayısal olarak anlaşılmasına katkıda bulunuyor.",
+    "tags": [
+      "Aerothermodynamics",
+      "Hypersonic Aerodynamics",
+      "Turbulent Heating",
+      "Heat Flux Prediction"
+    ]
+  },
+  "paper": {
+    "title": "Hypersonic Boundary Layer Transition of BOLT-1B at Flight Conditions",
+    "authors": [
+      "Zachary M. Johnston",
+      "Neal Bitter",
+      "Gregory McKiernan",
+      "Bradley M. Wheaton"
+    ],
+    "journal": "Journal of Spacecraft and Rockets",
+    "url": "https://doi.org/10.2514/1.a36722",
+    "doi": "10.2514/1.a36722",
+    "date": "2026-08-03"
+  },
+  "created_at": "2026-08-08T08:54:15.489086"
+}
