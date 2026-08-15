@@ -374,6 +374,21 @@
       "sources": {
         "OpenAlex": 2
       }
+    },
+    {
+      "date": "2026-08-15T08:43:25.376547",
+      "paper_count": 2,
+      "tags": {
+        "High-Performance Computing": 4,
+        "Reduced-Order Modeling": 2,
+        "Data-Driven Methods": 4,
+        "Laminar Heating": 2,
+        "Aerothermodynamics": 2,
+        "Turbulent Heating": 2
+      },
+      "sources": {
+        "OpenAlex": 2
+      }
     }
   ]
 }

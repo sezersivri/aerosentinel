@@ -1,0 +1,46 @@
+{
+  "filename_base": "2026-08-15-stochastic-model-generates-realistic-wall-turbulence",
+  "filename_en": "2026-08-15-stochastic-model-generates-realistic-wall-turbulence.en.md",
+  "filename_tr": "2026-08-15-stochastic-model-generates-realistic-wall-turbulence.tr.md",
+  "gemini_output_en": {
+    "title": "Stochastic Model Generates Realistic Wall Turbulence for LES Improvement",
+    "paper_title": "Stochastic generation of velocity fields to reproduce the energy spectrum in wall turbulence",
+    "authors": "Roozbeh Ehsani, Michael Heisel, Michele Guala",
+    "paper_type": "numerical_cfd",
+    "relevance_score": 45,
+    "summary": "This paper extends a stochastic model for generating two-dimensional turbulent velocity fields within rough-wall boundary layers. Building on previous work that modeled uniform momentum zones (UMZs) and internal shear layers, the current study introduces small-scale swirling motions. These motions are generated stochastically using vortex cores, which are strategically placed and stretched with respect to the internal shear layers to capture the smallest flow scales.\n\nThe enhanced synthetic fields successfully reproduce second-order turbulence statistics and the energy spectrum across most of the inertial range. For wind tunnel datasets, the model captures the transition to exponential decay up to k1η ~ 0.2. This demonstrates the model's capability to represent both large-scale coherent structures and fine-scale turbulent eddies with reasonable accuracy.\n\nThe long-term objective of this research is to improve wall modeling strategies for Large Eddy Simulations (LES). By providing a statistically accurate, bottom-up reconstruction of rough-wall turbulence, this approach could lead to more accurate and efficient LES, particularly in applications where wall roughness significantly influences the flow physics. While not directly focused on high-speed aerothermodynamics, improved turbulence modeling is foundational for accurate heat flux predictions in CFD.",
+    "tags": [
+      "Aerothermodynamics",
+      "Data-Driven Methods",
+      "Turbulent Heating",
+      "High-Performance Computing"
+    ]
+  },
+  "gemini_output_tr": {
+    "title": "Duvar Turbulansinda Enerji Spektrumunu Yeniden Ureten Stokastik Hiz Alanlari",
+    "paper_title": "Stochastic generation of velocity fields to reproduce the energy spectrum in wall turbulence",
+    "authors": "Roozbeh Ehsani, Michael Heisel, Michele Guala",
+    "paper_type": "numerical_cfd",
+    "relevance_score": 25,
+    "summary": "Ehsani ve arkadaslari, daha onceki calismalarinda (Ehsani et al. 2024a, 2024b) tanittiklari, pürüzlü duvar türbülanslı sınır tabakalarındaki tekdüze momentum bölgelerini (UMZ'ler) ve iç kesme katmanlarını temsil eden iki boyutlu modal hız alanları oluşturan stokastik modeli daha da geliştiriyor. Bu yeni yaklaşım, önceden yayınlanmış istatistiklerden rastgele oluşturulan ve iç kesme katmanlarına göre stratejik olarak yerleştirilen girdap çekirdekleri kullanarak küçük ölçekli dönen hareketleri modele dahil ediyor. Yazarlar, girdapları germe, dağıtma ve sentetik alanın uzamsal çözünürlüğünü en küçük akış ölçeklerini yakalayacak şekilde genişletme stratejilerini de tartışıyor.\n\nGeliştirilen sentetik akış alanları, hem laboratuvar hem de atmosferik koşullar için ikinci dereceden türbülans istatistiklerini ve eylemsizlik aralığının büyük bir kısmı için enerji spektrumunu makul bir doğrulukla yeniden üretiyor. Rüzgar tüneli veri kümeleri için, model k1η ~ 0.2'ye kadar üstel bozunmaya geçişi başarıyla yakalıyor. Bu değer, k1'in akış yönündeki dalga sayısı ve η'nin Kolmogorov uzunluk ölçeği olduğu yerde elde ediliyor.\n\nBu çalışmanın uzun vadeli hedefi, pürüzlü duvar türbülansının bu aşağıdan yukarıya, istatistiksel olarak parametrelendirilmiş yeniden yapılandırmasını genişletmek ve iyileştirmektir. Bu, büyük girdap simülasyonları (LES) için yeni duvar modelleme yaklaşımları açarak, duvarla sınırlı türbülanslı akışların hesaplama maliyetini azaltma potansiyeli sunuyor.",
+    "tags": [
+      "Aerothermodynamics",
+      "Data-Driven Methods",
+      "Turbulent Heating",
+      "High-Performance Computing"
+    ]
+  },
+  "paper": {
+    "title": "Stochastic generation of velocity fields to reproduce the energy spectrum in wall turbulence",
+    "authors": [
+      "Roozbeh Ehsani",
+      "Michael Heisel",
+      "Michele Guala"
+    ],
+    "journal": "Journal of Fluid Mechanics",
+    "url": "https://doi.org/10.1017/jfm.2026.11886",
+    "doi": "10.1017/jfm.2026.11886",
+    "date": "2026-08-10"
+  },
+  "created_at": "2026-08-15T08:43:25.012024"
+}

@@ -1,0 +1,46 @@
+{
+  "filename_base": "2026-08-15-how-slits-dissipate-sound-a-dns",
+  "filename_en": "2026-08-15-how-slits-dissipate-sound-a-dns.en.md",
+  "filename_tr": "2026-08-15-how-slits-dissipate-sound-a-dns.tr.md",
+  "gemini_output_en": {
+    "title": "How Slits Dissipate Sound: A DNS Study of Viscous Energy Conversion",
+    "paper_title": "Energy dissipation mechanisms in an acoustically driven slit",
+    "authors": "Haocheng Yu, Tianyi Chu, Spencer H. Bryngelson",
+    "paper_type": "numerical_cfd",
+    "relevance_score": 15,
+    "summary": "This paper investigates the conversion of incident acoustic energy into vortical motion and viscous dissipation as a plane wave passes through large-aspect-ratio slit geometries. The authors conduct direct numerical simulations across a wide parameter space, varying incident sound pressure level (ISPL), Strouhal number (St), and Reynolds number (Re). Spectral proper orthogonal decomposition is employed to identify energy-ranked coherent structures at different frequencies, allowing for the construction of mode-by-mode fields for spectral kinetic energy (KE) and viscous loss (VL) to analyze the acoustic absorption mechanisms.\n\nThe study reveals that at an ISPL of 150 dB, the acoustic–hydrodynamic energy conversion is highest when St is less than or equal to four times a reference Strouhal number, corresponding to an effective Keulegan–Carpenter number greater than 40. In this regime, three-dimensional simulations indicate that the dominant flow response is two-dimensional, characterized by the oscillatory shear layer near the slit corners rolling up into shedding vortices. Viscous loss accounts for 20% to 60% of the kinetic energy contribution. For larger Strouhal numbers, the confinement of the Stokes layer leads to X-shaped near-slit modes, which reduces the energy input by approximately 50%. The influence of Reynolds number is also discussed.\n\nThis work provides fundamental insights into the fluid dynamics of acoustic energy dissipation in confined geometries, detailing the interplay between acoustic waves, vortex dynamics, and viscous effects. While not directly related to high-speed aerodynamic heating, it contributes to the broader understanding of energy transfer in fluid systems.",
+    "tags": [
+      "High-Performance Computing",
+      "Reduced-Order Modeling",
+      "Data-Driven Methods",
+      "Laminar Heating"
+    ]
+  },
+  "gemini_output_tr": {
+    "title": "Akustik Tahrikli Yarıkta Enerji Dağılım Mekanizmaları ve Viskoz Kayıplar",
+    "paper_title": "Energy dissipation mechanisms in an acoustically driven slit",
+    "authors": "Haocheng Yu, Tianyi Chu, Spencer H. Bryngelson",
+    "paper_type": "numerical_cfd",
+    "relevance_score": 10,
+    "summary": "Yu ve arkadaslari, genis en-boy oranina sahip yarık geometrilerinden gecen duzlemsel bir dalga icin gelen akustik enerjinin girdap hareketine ve viskoz dagilima donusumunu nicel olarak belirlemislerdir. Dogrudan sayisal simulasyonlar (DNS), gelen ses basinci seviyesi (ISPL), Strouhal sayisi (St) ve Reynolds sayisi (Re) gibi genis bir parametre uzayinda gerceklestirilmistir. Spektral ozgun dik ayrısım (SPOD), her frekansta enerjiye gore siralanmis tutarli yapilar elde etmek icin kullanilmis ve bu yapilardan spektral kinetik enerji (KE) ve viskoz kayip (VL) icin mod bazinda alanlar olusturularak akustik sogurma mekanizmalari incelenmistir.\n\nISPL 150 dB oldugunda, akustik-hidrodinamik enerji donusumu, St <= 4 St0 (etkin Keulegan-Carpenter sayisi Kc > 40'a karsilik gelir) kosulunda en yuksek seviyeye ulasmaktadir. Bu rejimde, uc boyutlu simulasyonlar, baskin akis tepkisinin iki boyutlu oldugunu ve yarık kosesi yakinindaki salinimli kesme tabakasinin ayrilan girdaplara donustugunu gostermektedir. Viskoz kayip, kinetik enerji katkisinin %20 ila %60'ini olusturmaktadir. Daha buyuk St degerleri icin, Stokes tabakasi sinirlamasi X seklinde yarık yakinindaki modlar olusturarak enerji girisini yaklasik %50 azaltmaktadir. Reynolds sayisinin etkisi de degerlendirilmistir.\n\nBu calisma, akustik-akis etkilesimleri ve enerji dagilimi uzerine temel bir bakis sunsa da, hipersonik fuzelerde aerodinamik isinmanin Gauss sureci tabanli vekil modellerle tahmini gibi benim uzmanlik alanima dogrudan bir uygulama veya iliski tasimamaktadir.",
+    "tags": [
+      "High-Performance Computing",
+      "Reduced-Order Modeling",
+      "Data-Driven Methods",
+      "Laminar Heating"
+    ]
+  },
+  "paper": {
+    "title": "Energy dissipation mechanisms in an acoustically driven slit",
+    "authors": [
+      "Haocheng Yu",
+      "Tianyi Chu",
+      "Spencer H. Bryngelson"
+    ],
+    "journal": "Journal of Fluid Mechanics",
+    "url": "https://doi.org/10.1017/jfm.2026.11896",
+    "doi": "10.1017/jfm.2026.11896",
+    "date": "2026-08-10"
+  },
+  "created_at": "2026-08-15T08:43:24.629594"
+}
