@@ -1,0 +1,31 @@
+{
+  "filename_base": "2026-08-22-pulsed-jets-control-inlet-separation-on",
+  "filename_en": "2026-08-22-pulsed-jets-control-inlet-separation-on.en.md",
+  "filename_tr": "",
+  "gemini_output_en": {
+    "title": "Pulsed Jets Control Inlet Separation on UHBR Nacelles: Experimental Results",
+    "paper_title": "Aerodynamic testing of pulsed-jet actuation on a short-inlet UHBR engine nacelle",
+    "authors": "Stefan Hayböck, Christian Breitsamter",
+    "paper_type": "experimental",
+    "relevance_score": 15,
+    "summary": "Hayböck and Breitsamter experimentally investigate active flow control (AFC) on a short-inlet ultra-high bypass ratio (UHBR) engine nacelle. The study uses wind tunnel tests at Mach 0.15 and a Reynolds number of 2.4 x 10^6 to assess continuous and pulsed jet blowing for mitigating inlet separation at high angles of incidence. The model is a flow-through nacelle, and performance is evaluated using static pressure taps and a total pressure rake.\n\nBoth continuous and pulsed blowing successfully prevented inlet separation for angles of incidence up to 22 degrees, reducing total pressure non-uniformity by as much as 80%. A comparison of momentum input showed that pulsed blowing required 20% less momentum than continuous blowing to achieve the same level of improvement. For a higher angle of incidence of 26 degrees, only continuous blowing at its maximum momentum input could effectively mitigate the separation.\n\nThis work confirms the practical potential of active flow control techniques for improving inlet flow characteristics under challenging off-design conditions, which is relevant for future engine nacelle designs aiming for reduced drag and weight.",
+    "tags": [
+      "Flight Vehicle Design",
+      "Design Optimization",
+      "Shock-Boundary Layer Interaction"
+    ]
+  },
+  "gemini_output_tr": {},
+  "paper": {
+    "title": "Aerodynamic testing of pulsed-jet actuation on a short-inlet UHBR engine nacelle",
+    "authors": [
+      "Stefan Hayböck",
+      "Christian Breitsamter"
+    ],
+    "journal": "Experiments in Fluids",
+    "url": "https://doi.org/10.1007/s00348-026-04286-z",
+    "doi": "10.1007/s00348-026-04286-z",
+    "date": "2026-08-18"
+  },
+  "created_at": "2026-08-22T08:41:42.112396"
+}

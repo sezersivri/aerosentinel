@@ -389,6 +389,23 @@
       "sources": {
         "OpenAlex": 2
       }
+    },
+    {
+      "date": "2026-08-22T08:41:42.524927",
+      "paper_count": 2,
+      "tags": {
+        "Aerothermodynamics": 2,
+        "Hypersonic Aerodynamics": 2,
+        "Thermal Protection Systems": 2,
+        "Turbulent Heating": 2,
+        "Missile Aerothermodynamics": 2,
+        "Flight Vehicle Design": 1,
+        "Design Optimization": 1,
+        "Shock-Boundary Layer Interaction": 1
+      },
+      "sources": {
+        "OpenAlex": 2
+      }
     }
   ]
 }

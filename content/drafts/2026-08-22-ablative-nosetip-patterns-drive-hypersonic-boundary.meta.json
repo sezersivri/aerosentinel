@@ -1,0 +1,49 @@
+{
+  "filename_base": "2026-08-22-ablative-nosetip-patterns-drive-hypersonic-boundary",
+  "filename_en": "2026-08-22-ablative-nosetip-patterns-drive-hypersonic-boundary.en.md",
+  "filename_tr": "2026-08-22-ablative-nosetip-patterns-drive-hypersonic-boundary.tr.md",
+  "gemini_output_en": {
+    "title": "Ablative Nose-Tip Patterns Drive Hypersonic Boundary Layer Instability and Transition",
+    "paper_title": "Influence of Pyrolytic Ablative Nose-Tip Pattern on Hypersonic Boundary-Layer Instability",
+    "authors": "Jiale Yu, Xueliang Li, Jinhui Chen, Jie Wu",
+    "paper_type": "experimental",
+    "relevance_score": 75,
+    "summary": "This paper experimentally investigates how the surface morphology resulting from ablation on a nose tip influences boundary-layer instability and transition in hypersonic flow. The authors designed and fabricated a conical nose tip with distributed roughness elements and random pores, mimicking the carbonized pattern of a pyrolytic composite used in thermal protection systems. Experiments were conducted in a Mach 6 hypersonic Ludwieg tube tunnel, employing high-frequency pressure sensors, focused laser differential interferometry, and infrared thermography to characterize the flow.\n\nThe key finding is that the ablative surface morphology significantly advances the onset position of second-mode instability waves. Infrared thermography further confirmed this transition-promoting effect. The authors attribute this influence to the nose-tip roughness elements, which advance the onset of instability waves, increase their linear growth rate, and promote an earlier transition to the nonlinear stage by modulating the receptivity process and distorting the mean flow.\n\nUnderstanding the impact of realistic ablative surface patterns on boundary-layer transition is critical for accurate aerothermodynamic predictions and the design of thermal protection systems for high-speed missiles. This experimental work provides valuable insights into a complex flow phenomenon that directly affects aerodynamic heating loads.",
+    "tags": [
+      "Aerothermodynamics",
+      "Hypersonic Aerodynamics",
+      "Thermal Protection Systems",
+      "Turbulent Heating",
+      "Missile Aerothermodynamics"
+    ]
+  },
+  "gemini_output_tr": {
+    "title": "Ablasyon Deseni Hipersonik Akista Sinir Tabaka Gecisini Nasil Etkiler?",
+    "paper_title": "Influence of Pyrolytic Ablative Nose-Tip Pattern on Hypersonic Boundary-Layer Instability",
+    "authors": "Jiale Yu, Xueliang Li, Jinhui Chen, Jie Wu",
+    "paper_type": "experimental",
+    "relevance_score": 75,
+    "summary": "Yu ve arkadaslari, hipersonik sinir tabaka kararsizligi ve gecisi uzerindeki ablatif burun ucu desenlerinin etkisini deneysel olarak incelemektedir. Calismalarinda, termal koruma sistemlerinde kullanilan hafif, dusuk ablasyonlu karbonize pirolitik kompozitlerin ablasyon morfolojisini taklit eden, dagitilmis puruzluluk elemanlari ve rastgele gozeneklere sahip konik bir burun ucu tasarlayip uretmislerdir. Deneyler, Mach 6 hipersonik bir Ludwieg tuplu tunelde gerceklestirilmis olup, yuksek frekansli basincli sensorler, odaklanmis lazer diferansiyel interferometri (FLDI) ve kizilotesi termografi gibi cesitli olcum aletleri kullanilmistir.\n\nElde edilen sonuclar, ablatif yuzey morfolojisinin ikinci mod kararsizlik dalgalarinin baslangic konumunu onemli olcude one cektigini gostermektedir. Kizilotesi termografi de bu gecis tesvik edici etkiyi dogrulamistir. Makale, ablatif burun ucu morfolojisinin sinir tabaka kararsizligi uzerindeki etkisini, burun ucu puruzluluk elemanlarina baglamaktadir. Bu puruzluluk, alicilik surecini modifiye ederek ve ortalama akisi bozarak kararsizlik dalgalarinin baslangicini hizlandirmakta, dogrusal buyume oranini artirmakta ve dogrusal olmayan asamaya daha erken bir gecisi tesvik etmektedir. Bu birlesik etkiler nihayetinde daha erken bir gecis baslangicina yol acmaktadir.\n\nBu calisma, ablasyon kaynakli yuzey morfolojisinin hipersonik sinir tabaka gecisindeki kritik rolunu vurgulamaktadir. Gercek dunya yuzey degisimlerinin, ozellikle de erken gecisi tesvik ederek isinma yuklerini ve arac performansini onemli olcude degistirebilecegi goz onune alindiginda, termal koruma sistemi tasarimi ve aerotermodinamik modellemede bu tur ozelliklerin dikkate alinmasinin gerekliligini ortaya koymaktadir.",
+    "tags": [
+      "Aerothermodynamics",
+      "Hypersonic Aerodynamics",
+      "Thermal Protection Systems",
+      "Turbulent Heating",
+      "Missile Aerothermodynamics"
+    ]
+  },
+  "paper": {
+    "title": "Influence of Pyrolytic Ablative Nose-Tip Pattern on Hypersonic Boundary-Layer Instability",
+    "authors": [
+      "Jiale Yu",
+      "Xueliang Li",
+      "Jinhui Chen",
+      "Jie Wu"
+    ],
+    "journal": "AIAA Journal",
+    "url": "https://doi.org/10.2514/1.j066778",
+    "doi": "10.2514/1.j066778",
+    "date": "2026-08-20"
+  },
+  "created_at": "2026-08-22T08:41:41.595173"
+}
