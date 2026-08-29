@@ -1,0 +1,46 @@
+{
+  "filename_base": "2026-08-29-improving-rans-predictions-for-largeclearance-axial",
+  "filename_en": "2026-08-29-improving-rans-predictions-for-largeclearance-axial.en.md",
+  "filename_tr": "2026-08-29-improving-rans-predictions-for-largeclearance-axial.tr.md",
+  "gemini_output_en": {
+    "title": "Improving RANS Predictions for Large-Clearance Axial Compressor Performance",
+    "paper_title": "Challenges and remedies for accurate performance prediction of a multistage large-clearance axial compressor",
+    "authors": "Xiao He, Fanzhou Zhao, Mehdi Vahdati, Ryosuke Seki et al.",
+    "paper_type": "numerical_cfd",
+    "relevance_score": 35,
+    "summary": "This paper investigates the limitations of conventional steady Reynolds-Averaged Navier-Stokes (RANS) simulations when predicting the aerodynamic performance of multistage axial compressors, particularly those with large clearances. The study focuses on a 4-stage high-speed Mitsubishi Heavy Industries compressor, representing the middle-rear stages of a gas turbine compressor. The authors found that standard RANS models tend to over-predict 3D tip blockage and associated losses in the front stages of large-clearance configurations, which leads to an inaccurate, premature prediction of stall onset.\n\nTo address these issues, the paper proposes an advanced turbulence model combination. This includes a quadratic constitutive relation (QCR) correction, which relaxes the linear constitutive relation assumption of the Boussinesq approximation, and a vortical pressure gradient correction that accounts for vortex stretching effects in non-equilibrium 3D separated flows. This refined model significantly reduces prediction errors compared to conventional RANS. Specifically, it improves the total pressure ratio prediction error by approximately 76%, isentropic efficiency by 50%, and stall margin by 77%. The model also demonstrates strong predictive accuracy for overall performance and stage matching across both small and large clearance compressors.\n\nThis work offers a practical method for enhancing the reliability of RANS simulations in compressor design cycles. By providing more accurate performance and stall predictions, the proposed turbulence model can support the development of future small-core engine compressors, reducing the reliance on more computationally expensive, higher-fidelity methods for initial design iterations.",
+    "tags": [
+      "Supersonic Aerodynamics",
+      "Shock-Boundary Layer Interaction",
+      "Flight Vehicle Design"
+    ]
+  },
+  "gemini_output_tr": {
+    "title": "Kompresör Performans Tahmininde RANS Zorlukları ve Gelişmiş Türbülans Modeli Çözümleri",
+    "paper_title": "Challenges and remedies for accurate performance prediction of a multistage large-clearance axial compressor",
+    "authors": "Xiao He, Fanzhou Zhao, Mehdi Vahdati, Ryosuke Seki et al.",
+    "paper_type": "numerical_cfd",
+    "relevance_score": 35,
+    "summary": "Xiao He ve ekibi, çok kademeli, geniş boşluklu eksenel kompresörlerin aerodinamik performansını tahmin etmede geleneksel RANS simülasyonlarının karşılaştığı zorlukları ele alıyor. Çalışma, bir gaz türbini kompresörünün orta-arka kademelerini temsil eden 4 kademeli, yüksek hızlı bir Mitsubishi Heavy Industries (MHI) kompresörü üzerinde yoğunlaşıyor. Geleneksel RANS modellerinin, küçük boşluklu durumlarda iyi performans gösterirken, geniş boşluklu durumlarda ön kademelerde 3D uç tıkanıklığını ve kayıpları aşırı tahmin ederek erken durmaya yol açtığını belirtiyorlar. Bu eksiklikleri gidermek için, Boussinesq yaklaşımının doğrusal yapısal ilişki varsayımını gevşeten karesel yapısal ilişki (QCR) düzeltmesi ve denge dışı 3D ayrılmış akışlarda basınç gradyanı nedeniyle girdap gerilme etkisini içeren girdap basınç gradyanı düzeltmesi gibi gelişmiş bir türbülans modeli düzeltmeleri kombinasyonu öneriyorlar.\n\nGelişmiş türbülans modeli, geleneksel modelin toplam basınç oranındaki tahmin hatasını yaklaşık %76, izentropik verimlilikteki hatayı %50 ve durma marjındaki hatayı %77 oranında azaltıyor. Bu model, hem küçük hem de geniş boşluklu kompresörler için genel performans ve kademe eşleşmesi konusunda güçlü bir tahmin doğruluğu sergiliyor.\n\nBu çalışma, kompresör aerodinamiği ve türbülans modellemesi alanında önemli iyileştirmeler sunsa da, yüksek hızlı füzelerde aerodinamik ısınma tahmini veya Gauss Süreci tabanlı vekil modellerin geliştirilmesi gibi benim ana araştırma alanımla doğrudan bir bağlantısı bulunmamaktadır. Ancak, karmaşık akış fiziğini daha doğru yakalamak için türbülans modellerinin iyileştirilmesi genel CFD topluluğu için her zaman değerlidir.",
+    "tags": [
+      "Supersonic Aerodynamics",
+      "Shock-Boundary Layer Interaction",
+      "Flight Vehicle Design"
+    ]
+  },
+  "paper": {
+    "title": "Challenges and remedies for accurate performance prediction of a multistage large-clearance axial compressor",
+    "authors": [
+      "Xiao He",
+      "Fanzhou Zhao",
+      "Mehdi Vahdati",
+      "Ryosuke Seki",
+      "Yuto Terauchi"
+    ],
+    "journal": "Aerospace Science and Technology",
+    "url": "https://doi.org/10.1016/j.ast.2026.113587",
+    "doi": "10.1016/j.ast.2026.113587",
+    "date": "2026-08-22"
+  },
+  "created_at": "2026-08-29T13:53:22.303893"
+}

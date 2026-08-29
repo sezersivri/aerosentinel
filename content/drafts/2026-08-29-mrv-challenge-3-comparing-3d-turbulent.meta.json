@@ -1,0 +1,46 @@
+{
+  "filename_base": "2026-08-29-mrv-challenge-3-comparing-3d-turbulent",
+  "filename_en": "2026-08-29-mrv-challenge-3-comparing-3d-turbulent.en.md",
+  "filename_tr": "2026-08-29-mrv-challenge-3-comparing-3d-turbulent.tr.md",
+  "gemini_output_en": {
+    "title": "MRV Challenge 3: Comparing 3D Turbulent Flow and Scalar Mixing",
+    "paper_title": "MRV Challenge 3: velocity and passive scalar comparison in a 3D turbulent flow",
+    "authors": "Michael Benson, Thien Nguyen, Swantje Romig, Louis Dagobert et al.",
+    "paper_type": "experimental",
+    "relevance_score": 15,
+    "summary": "This paper reports on the third Magnetic Resonance Velocimetry (MRV) Challenge, an experimental activity focused on measuring 3D turbulent flow and passive scalar transport in a water channel. The setup involves water flowing past centrally positioned cubic obstacles, with a secondary flow injected from the bottom wall between the second and third obstacles. Five research teams conducted MRV measurements on a shared apparatus, coupling velocity measurements with either temperature or concentration measurements. The chosen flow regime and working fluids ensure that both temperature and concentration behave as passive scalars, allowing for direct comparison of their fields.\n\nThe measurements from the participating teams are explained in detail, then interpolated onto a common grid for comparison. The results are analyzed using line profiles, contour plots, and isosurfaces to assess the agreement between the different experimental approaches and the behavior of the passive scalar mixing. Specific quantitative metrics for comparison, such as RMSE or deviation percentages, are not provided in the abstract.\n\nWhile this work contributes to the validation and advancement of MRV techniques for complex turbulent flows and scalar mixing, its direct relevance to high-speed missile aerothermodynamics or the application of Gaussian Process surrogate models for heating prediction is minimal. The study focuses on low-speed, incompressible, internal channel flow, which is far removed from the high-Mach number, compressible external flows encountered by missiles.",
+    "tags": [
+      "Turbulent Heating",
+      "Heat Flux Prediction",
+      "Aerothermodynamics"
+    ]
+  },
+  "gemini_output_tr": {
+    "title": "MRV ile Türbülanslı Akışta Pasif Skaler Karşılaştırması: Deneysel Bir Çalışma",
+    "paper_title": "MRV Challenge 3: velocity and passive scalar comparison in a 3D turbulent flow",
+    "authors": "Michael Benson, Thien Nguyen, Swantje Romig, Louis Dagobert et al.",
+    "paper_type": "experimental",
+    "relevance_score": 15,
+    "summary": "Michael Benson ve ekibi, merkezde kübik engellerin bulunduğu bir su kanalındaki türbülanslı akış için 3 boyutlu akış ölçümlerini karşılaştıran üçüncü Manyetik Rezonans Velosimetri (MRV) Yarışması etkinliğini rapor ediyor. Bu yarışmada, MRV ölçümleri tanısal faydayı genişletmek amacıyla sıcaklık veya konsantrasyon ölçümleriyle birleştirildi. Dünya genelinden beş araştırma ekibi, kısmi yan duvar elemanları içeren ve optik erişimi zorlaştıran ortak bir düzenek üzerinde ölçümleri gerçekleştirdi. Ana akışa ek olarak, ikinci ve üçüncü kübik elemanlar arasından kanalın alt duvarındaki kare bir enjektör deliğinden ikincil bir akış kanala girdi ve ana akışla türbülanslı bir şekilde karıştı.\n\nSeçilen akış rejimi ve çalışma sıvıları için, ikincil akış yoluyla daha yüksek sıcaklık veya konsantrasyonun ana akışla karışımı aynı dinamikleri karşılamakta, böylece hem sıcaklık hem de konsantrasyon alanları pasif skalerler olarak davranmakta ve doğrudan karşılaştırılabilmektedir. Katılımcı ekiplerin ölçümleri detaylı olarak açıklanmış ve sonuçlar ortak bir ızgaraya enterpole edilerek çizgi profilleri, kontur grafikleri ve izoyüzeyler kullanılarak karşılaştırılmıştır. Makalede belirli sayısal sonuçlar veya performans metrikleri sunulmamıştır, zira odak noktası deneysel ölçüm ve karşılaştırma metodolojisidir.\n\nBu çalışma, yüksek hızlı füzelerde aerodinamik ısınmanın Gauss süreci tabanlı vekil modeller kullanılarak tahmini gibi aerotermodinamik alanındaki mevcut araştırmalarımızla doğrudan bir bağlantı kurmamaktadır. Ancak, türbülanslı akışlarda pasif skaler taşınımının deneysel olarak incelenmesi, temel akış fiziği anlayışına katkıda bulunur.",
+    "tags": [
+      "Turbulent Heating",
+      "Heat Flux Prediction",
+      "Aerothermodynamics"
+    ]
+  },
+  "paper": {
+    "title": "MRV Challenge 3: velocity and passive scalar comparison in a 3D turbulent flow",
+    "authors": [
+      "Michael Benson",
+      "Thien Nguyen",
+      "Swantje Romig",
+      "Louis Dagobert",
+      "Daniel D. Borup"
+    ],
+    "journal": "Experiments in Fluids",
+    "url": "https://doi.org/10.1007/s00348-026-04234-x",
+    "doi": "10.1007/s00348-026-04234-x",
+    "date": "2026-08-25"
+  },
+  "created_at": "2026-08-29T13:53:22.798802"
+}

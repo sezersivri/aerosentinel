@@ -406,6 +406,21 @@
       "sources": {
         "OpenAlex": 2
       }
+    },
+    {
+      "date": "2026-08-29T13:53:23.236626",
+      "paper_count": 2,
+      "tags": {
+        "Supersonic Aerodynamics": 2,
+        "Shock-Boundary Layer Interaction": 2,
+        "Flight Vehicle Design": 2,
+        "Turbulent Heating": 2,
+        "Heat Flux Prediction": 2,
+        "Aerothermodynamics": 2
+      },
+      "sources": {
+        "OpenAlex": 2
+      }
     }
   ]
 }
