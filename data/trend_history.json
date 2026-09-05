@@ -421,6 +421,17 @@
       "sources": {
         "OpenAlex": 2
       }
+    },
+    {
+      "date": "2026-09-05T11:53:52.381289",
+      "paper_count": 2,
+      "tags": {
+        "Turbulent Heating": 1,
+        "Data-Driven Methods": 1
+      },
+      "sources": {
+        "OpenAlex": 2
+      }
     }
   ]
 }

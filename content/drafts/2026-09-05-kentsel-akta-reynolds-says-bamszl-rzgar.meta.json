@@ -1,0 +1,33 @@
+{
+  "filename_base": "2026-09-05-kentsel-akta-reynolds-says-bamszl-rzgar",
+  "filename_en": "",
+  "filename_tr": "2026-09-05-kentsel-akta-reynolds-says-bamszl-rzgar.tr.md",
+  "gemini_output_en": {},
+  "gemini_output_tr": {
+    "title": "Kentsel Akışta Reynolds Sayısı Bağımsızlığı: Rüzgar Tüneli Ölçümleri",
+    "paper_title": "Wind tunnel measurements of scale effects on 3D turbulent flow in an urban street canyon configuration",
+    "authors": "Νικόλαος-Πέτρος Πάλλας, Brian Dsouza, Christof Gromke, Andrea Sciacchitano et al.",
+    "paper_type": "experimental",
+    "relevance_score": 10,
+    "summary": "Bu çalışma, kentsel bir sokak kanyonu konfigürasyonundaki üç boyutlu türbülanslı akışta ölçek etkilerini rüzgar tüneli deneyleri kullanarak inceliyor. Yazarlar, yükseklik-genişlik ve uzunluk-genişlik en-boy oranları sırasıyla 1 ve 8 olan beş ardışık kanyondan oluşan basitleştirilmiş bir model kullandı. Serbest akış türbülans yoğunluğu yaklaşık %5 olarak korundu.\n\nÖlçümler, 23.000 ila 57.000 arasındaki Reynolds sayıları aralığında hem 3D-3C Robotik Parçacık İzleme Velosimetrisi hem de Sabit Sıcaklık Anemometrisi kullanılarak gerçekleştirildi. Bu Reynolds sayıları, bu tür çalışmalarda ortalama akış bağımsızlığı için yaygın olarak kabul edilen kritik değerlerin (10.000-20.000) yaklaşık dört katıydı. Temel bulgu, yaygın olarak benimsenen bu kritik Reynolds sayılarının, özellikle duvar sınırlarına yakın bölgelerde, incelenen tüm değişkenler ve kentsel sokak kanyonu konfigürasyonlarının tüm hacmi için bağımsızlığı sağlamak için yetersiz olabileceğidir. Sonuçlar, bağımsızlığa ulaşmak için 47.000'e kadar Reynolds sayısı değerlerinin gerekli olabileceğini gösteriyor.\n\nBu çalışma, kentsel sokak kanyonu akışları için Reynolds sayısı bağımsızlığına dair değerli bilgiler sunsa da, yüksek hızlı aerotermodinamik veya füze tasarımına doğrudan uygulanabilirliği ihmal edilebilir düzeydedir. İncelenen akış rejimleri, geometriler ve fiziksel fenomenler, sıkıştırılabilirlik, gerçek gaz etkileri ve aşırı ısınmanın baskın endişeler olduğu hipersonik uçuştaki karşılaşanlardan temelden farklıdır.",
+    "tags": [
+      "Turbulent Heating",
+      "Data-Driven Methods"
+    ]
+  },
+  "paper": {
+    "title": "Wind tunnel measurements of scale effects on 3D turbulent flow in an urban street canyon configuration",
+    "authors": [
+      "Νικόλαος-Πέτρος Πάλλας",
+      "Brian Dsouza",
+      "Christof Gromke",
+      "Andrea Sciacchitano",
+      "Demetri Bouris"
+    ],
+    "journal": "Experiments in Fluids",
+    "url": "https://doi.org/10.1007/s00348-026-04299-8",
+    "doi": "10.1007/s00348-026-04299-8",
+    "date": "2026-09-03"
+  },
+  "created_at": "2026-09-05T11:53:51.933049"
+}
