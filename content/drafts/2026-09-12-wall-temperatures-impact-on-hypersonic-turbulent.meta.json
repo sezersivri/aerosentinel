@@ -1,0 +1,47 @@
+{
+  "filename_base": "2026-09-12-wall-temperatures-impact-on-hypersonic-turbulent",
+  "filename_en": "2026-09-12-wall-temperatures-impact-on-hypersonic-turbulent.en.md",
+  "filename_tr": "2026-09-12-wall-temperatures-impact-on-hypersonic-turbulent.tr.md",
+  "gemini_output_en": {
+    "title": "Wall Temperature's Impact on Hypersonic Turbulent Heating and Chemistry",
+    "paper_title": "Wall-temperature effects in a turbulent hypersonic boundary layer in chemical non-equilibrium",
+    "authors": "Marco Fratini, Matteo Bernardini",
+    "paper_type": "numerical_cfd",
+    "relevance_score": 75,
+    "summary": "Fratini and Bernardini investigate the influence of wall temperature on a turbulent hypersonic boundary layer operating under chemical non-equilibrium conditions. They perform Direct Numerical Simulations (DNS) of a spatially evolving, zero-pressure-gradient turbulent boundary layer. The simulated flow corresponds to Mach 10 with a high stagnation enthalpy, sufficient to activate thermochemical processes. The study considers three isothermal, non-catalytic wall conditions, with wall temperatures ranging from 1400 K to 2000 K.\n\nThe simulations demonstrate that wall cooling promotes an earlier transition to turbulence and leads to a monotonic increase in wall heat flux. Mean-velocity profiles collapse satisfactorily under modern compressibility transformations. The thermal field exhibits two distinct modifications with stronger wall cooling: a reduction of the mean temperature profile and an outward shift of the wall-normal position of the temperature peak. These thermal modifications significantly impact both turbulence statistics and chemical activity. By lowering the mean temperature, wall cooling suppresses endothermic chemical reactions and reduces the associated energy drain, allowing larger temperature fluctuations to develop. This results in a reduction of dissociation product concentration by up to a factor of two between the hottest and coldest wall conditions.\n\nThis work clarifies the critical role of wall temperature in shaping the thermal field and regulating chemical activity within hypersonic turbulent boundary layers. Understanding these coupled effects is important for accurate aerodynamic heating predictions and for designing effective thermal management strategies for high-speed vehicles.",
+    "tags": [
+      "Aerothermodynamics",
+      "Hypersonic Aerodynamics",
+      "Turbulent Heating",
+      "Real Gas Effects",
+      "Heat Flux Prediction"
+    ]
+  },
+  "gemini_output_tr": {
+    "title": "Duvar Sıcaklığı Hipersonik Sınır Tabakasında Isınmayı ve Kimyayı Nasıl Etkiler?",
+    "paper_title": "Wall-temperature effects in a turbulent hypersonic boundary layer in chemical non-equilibrium",
+    "authors": "Marco Fratini, Matteo Bernardini",
+    "paper_type": "numerical_cfd",
+    "relevance_score": 78,
+    "summary": "Fratini ve Bernardini, kimyasal denge dışı, türbülanslı hipersonik bir sınır tabakasında duvar sıcaklığının etkilerini doğrudan sayısal simülasyonlar (DNS) kullanarak inceliyor. Çalışma, Mach 10 akışını ve termokimyasal süreçleri tetikleyecek kadar yüksek bir durgunluk entalpisi içeren, sıfır basınç gradyanlı, uzamsal olarak gelişen bir konfigürasyonu ele alıyor. Yazarlar, 1400 K ile 2000 K arasında değişen üç farklı izotermal, katalitik olmayan duvar koşulunu değerlendirerek, türbülans, termal taşıma ve kimyasal aktivite arasındaki karmaşık etkileşimde duvar sıcaklığının rolünü anlamayı amaçlıyor.\n\nSimülasyonlar, duvar soğutmasının daha erken bir geçişi tetiklediğini ve duvar ısı akısında monotonik bir artışa yol açtığını gösteriyor. Ortalama hız profilleri, modern sıkıştırılabilirlik dönüşümleri altında tatmin edici bir şekilde çakışarak, bu dönüşümlerin yüksek entalpili sınır tabakalarına uygulanabilirliğini doğruluyor. Termal alan, daha güçlü duvar soğutmasıyla iki belirgin değişiklik sergiliyor: ortalama sıcaklık profilinde kademeli bir azalma ve sıcaklık zirvesinin duvar normal konumunda dışa doğru bir kayma. Bu değişiklikler hem türbülans istatistiklerini hem de kimyasal aktiviteyi önemli ölçüde etkiliyor. Duvar soğutması, ortalama sıcaklık profilini düşürerek endotermik kimyasal reaksiyonları bastırıyor ve ilişkili enerji çekişini azaltıyor, bu da daha büyük sıcaklık dalgalanmalarının gelişmesine izin veriyor. Sonuç olarak, ayrışma ürünlerinin konsantrasyonu, en sıcak ve en soğuk duvar koşulları arasında iki kata kadar azalıyor.\n\nBu çalışma, yüksek hızlı akışlarda duvar sıcaklığının termal alan ve kimyasal reaksiyonlar üzerindeki temel etkilerine dair önemli bir anlayış sağlıyor. Elde edilen bulgular, termal koruma sistemlerinin (TPS) geliştirilmesi ve kimyasal denge dışı akışların doğru modellenmesi için bilgiler sunuyor, ayrıca gelecekteki vekil model geliştirme çabaları için yüksek doğrulukta referans veriler sağlayabilir.",
+    "tags": [
+      "Aerothermodynamics",
+      "Hypersonic Aerodynamics",
+      "Turbulent Heating",
+      "Real Gas Effects",
+      "Heat Flux Prediction"
+    ]
+  },
+  "paper": {
+    "title": "Wall-temperature effects in a turbulent hypersonic boundary layer in chemical non-equilibrium",
+    "authors": [
+      "Marco Fratini",
+      "Matteo Bernardini"
+    ],
+    "journal": "Journal of Fluid Mechanics",
+    "url": "https://doi.org/10.1017/jfm.2026.11973",
+    "doi": "10.1017/jfm.2026.11973",
+    "date": "2026-09-07"
+  },
+  "created_at": "2026-09-12T12:11:15.624432"
+}
