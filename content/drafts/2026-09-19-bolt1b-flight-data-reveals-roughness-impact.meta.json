@@ -1,0 +1,50 @@
+{
+  "filename_base": "2026-09-19-bolt1b-flight-data-reveals-roughness-impact",
+  "filename_en": "2026-09-19-bolt1b-flight-data-reveals-roughness-impact.en.md",
+  "filename_tr": "2026-09-19-bolt1b-flight-data-reveals-roughness-impact.tr.md",
+  "gemini_output_en": {
+    "title": "BOLT-1B Flight Data Reveals Roughness Impact on Hypersonic Transition",
+    "paper_title": "BOLT-1B Roughness Side Flight Results",
+    "authors": "Franklin D. Turbeville, Scott A. Berry, Joshua L. Brown, Bradley M. Wheaton et al.",
+    "paper_type": "experimental",
+    "relevance_score": 65,
+    "summary": "This paper details the BOLT-1B flight experiment, part of an ongoing series to investigate hypersonic boundary layer transition and turbulence. The experiment used a geometry featuring concave surfaces and highly swept leading edges, designed to allow simultaneous smooth and rough wall investigations. The authors specifically focus on the rough wall flight data from BOLT-1B, examining the impact of nose-joint steps on transition onset. They provide details on the as-flown size and locations of these steps.\n\nThe key finding is that the rough side consistently exhibited a lower transition Reynolds number compared to the smooth side, aligning with expected behavior. The flight data for rough wall transition also showed good agreement with the ground-based step correlation that was used in the experiment's design. Specific quantitative metrics like Mach numbers, precise Reynolds numbers, or error percentages are not provided in the abstract.\n\nThis work provides valuable flight validation for understanding the effects of surface roughness on hypersonic boundary layer transition. Such data are crucial for refining predictive models and design methodologies for high-speed vehicles, where accurate transition prediction is essential for thermal management and aerodynamic performance.",
+    "tags": [
+      "Hypersonic Aerodynamics",
+      "Aerothermodynamics",
+      "Turbulent Heating",
+      "Missile Aerothermodynamics",
+      "Flight Vehicle Design"
+    ]
+  },
+  "gemini_output_tr": {
+    "title": "BOLT-1B Uçuş Verileri: Hipersonik Akışta Pürüzlülüğün Sınır Tabaka Geçişine Etkisi",
+    "paper_title": "BOLT-1B Roughness Side Flight Results",
+    "authors": "Franklin D. Turbeville, Scott A. Berry, Joshua L. Brown, Bradley M. Wheaton et al.",
+    "paper_type": "experimental",
+    "relevance_score": 75,
+    "summary": "BOLT-1B uçuş deneyleri, hipersonik akışlarda sınır tabaka geçişi ve türbülansı incelemek üzere tasarlanmış bir dizi çalışmanın parçasıdır. Bu makale, BOLT-1B'nin pürüzlü yüzey tarafındaki uçuş verilerine odaklanmaktadır. Amaç, burun eklemelerindeki basamakların hipersonik bir aracın aerodinamik yüzeylerindeki sınır tabaka geçiş başlangıcına etkisini araştırmaktır. Deney, içbükey yüzeylere ve yüksek eğimli ön kenarlara sahip özel bir geometri kullanarak Andøya, Norveç'ten başarıyla gerçekleştirilmiştir. Araç, aynı anda hem pürüzsüz hem de pürüzlü duvar deneylerine olanak tanıyan iki bağımsız yüzeye sahipti.\n\nElde edilen uçuş verileri, pürüzlü yüzeyin pürüzsüz yüzeye kıyasla daha düşük bir geçiş Reynolds sayısına sahip olduğunu göstermiştir. Bu durum, pürüzlülüğün sınır tabaka geçişini öne çektiğini doğrulamaktadır. Pürüzlü yüzeyden elde edilen geçiş verileri, deneyi tasarlamak için kullanılan yer tabanlı basamak korelasyonlarıyla oldukça iyi bir uyum içindedir. Makale, uçuş sırasında mevcut olan eklem basamaklarının boyutları ve konumları hakkında ayrıntılı bilgi sunmaktadır.\n\nBu deneysel uçuş verileri, hipersonik araçların tasarımında ve termal koruma sistemlerinin (TKS) geliştirilmesinde yüzey pürüzlülüğünün sınır tabaka geçişi üzerindeki etkisini anlamak için değerli bir katkı sunar. Gerçek uçuş koşullarındaki bu tür veriler, sayısal modelleme ve zemin testlerinin doğrulanması için temel oluşturur.",
+    "tags": [
+      "Hypersonic Aerodynamics",
+      "Aerothermodynamics",
+      "Turbulent Heating",
+      "Missile Aerothermodynamics",
+      "Flight Vehicle Design"
+    ]
+  },
+  "paper": {
+    "title": "BOLT-1B Roughness Side Flight Results",
+    "authors": [
+      "Franklin D. Turbeville",
+      "Scott A. Berry",
+      "Joshua L. Brown",
+      "Bradley M. Wheaton",
+      "Gregory McKiernan"
+    ],
+    "journal": "Journal of Spacecraft and Rockets",
+    "url": "https://doi.org/10.2514/1.a36742",
+    "doi": "10.2514/1.a36742",
+    "date": "2026-09-17"
+  },
+  "created_at": "2026-09-19T12:29:49.478944"
+}

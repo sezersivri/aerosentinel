@@ -449,6 +449,21 @@
       "sources": {
         "OpenAlex": 2
       }
+    },
+    {
+      "date": "2026-09-19T12:29:50.397372",
+      "paper_count": 2,
+      "tags": {
+        "Hypersonic Aerodynamics": 3,
+        "Aerothermodynamics": 3,
+        "Turbulent Heating": 3,
+        "Missile Aerothermodynamics": 2,
+        "Flight Vehicle Design": 2,
+        "Heat Flux Prediction": 1
+      },
+      "sources": {
+        "OpenAlex": 2
+      }
     }
   ]
 }

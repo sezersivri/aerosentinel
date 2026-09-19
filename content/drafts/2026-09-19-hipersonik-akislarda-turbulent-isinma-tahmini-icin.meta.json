@@ -1,0 +1,35 @@
+{
+  "filename_base": "2026-09-19-hipersonik-akislarda-turbulent-isinma-tahmini-icin",
+  "filename_en": "",
+  "filename_tr": "2026-09-19-hipersonik-akislarda-turbulent-isinma-tahmini-icin.tr.md",
+  "gemini_output_en": {},
+  "gemini_output_tr": {
+    "title": "Hipersonik Akislarda Turbulent Isinma Tahmini Icin Yeni RANS Kapatma Modeli",
+    "paper_title": "Reynolds-averaged closure modelling of the energy equation for compressible wall turbulence based on the k-ω equations",
+    "authors": "Yuxiao Cheng, Sijie Wang, Yitong Fan, Paul A. Durbin et al.",
+    "paper_type": "numerical_cfd",
+    "relevance_score": 75,
+    "summary": "Cheng ve arkadaslari, hipersonik turbulent sinir tabakalarindaki duvar sogutmasi durumunda ortaya cikan ve geleneksel k-omega modellerinin zorlandigi sicaklik maksimumunu daha dogru tahmin etmek icin Reynolds-ortalamali enerji denklemi icin yeni bir kapatma modeli sunuyor. Yaklasimlari, turbulent kinetik enerji (TKE) tasiniminin yerel olarak onemli hale geldigi durumlarda, k-omega cercevesi icinde cebirsel bir kapatma gelistirmeye odaklanmis. TKE icin tasinan k degiskeni turbulans denklemlerinde kalirken, momentum ve enerji denklemlerindeki fiziksel kinetik enerji terimlerinde cebirsel olarak yeniden yapilandirilmis bir K buyuklugu kullaniliyor.\n\nYazarlar, bu yeni K yeniden yapilandirmasinin, asiri tahmin edilen sicaklik maksimumundaki azalmanin buyuk bir kismini acikladigini gosteriyor. Ayrica, sikistirilabilir kanal dogrudan sayisal simulasyon (DNS) verilerinden duzenlenmis ensemble-Kalman ters cevirme yontemiyle elde edilen yerel bir turbulent Prandtl sayisi (Pr_t) iliskisi de sunmuslar. Bu Pr_t iliskisi, daha kucuk ama etkili ek bir duzeltme sagliyor. Model, Mach 2'den 14'e kadar serbest akis Mach sayilarina sahip sikistirilabilir kanallarda ve sifir basincli egimli sinir tabakalarinda test edilmis. SST-omega0 ve EARSM-omega0 modelleriyle yapilan testler, gelistirmelerin tutarli oldugunu gosteriyor.\n\nBu calisma, hipersonik akislarda aerotermodinamik isinma tahminlerinin dogrulugunu artirmak icin temel RANS modellerinin yeteneklerini gelistirme cabalarina onemli bir katki sagliyor. Ozellikle duvar sogutmasinin ve turbulent kinetik enerji tasiniminin kritik oldugu durumlarda, bu tur model iyilestirmeleri, termal koruma sistemlerinin tasarimi ve yuksek hizli fuzelerin performans analizi icin daha guvenilir CFD simulasyonlari saglayabilir.",
+    "tags": [
+      "Aerothermodynamics",
+      "Hypersonic Aerodynamics",
+      "Turbulent Heating",
+      "Heat Flux Prediction"
+    ]
+  },
+  "paper": {
+    "title": "Reynolds-averaged closure modelling of the energy equation for compressible wall turbulence based on the bold italic k minus bold italic omega k − ω $\\boldsymbol{k-\\omega}$ equations",
+    "authors": [
+      "Yuxiao Cheng",
+      "Sijie Wang",
+      "Yitong Fan",
+      "Paul A. Durbin",
+      "Zifei Yin"
+    ],
+    "journal": "Journal of Fluid Mechanics",
+    "url": "https://doi.org/10.1017/jfm.2026.12029",
+    "doi": "10.1017/jfm.2026.12029",
+    "date": "2026-09-17"
+  },
+  "created_at": "2026-09-19T12:29:49.908652"
+}
