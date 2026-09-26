@@ -1,0 +1,45 @@
+{
+  "filename_base": "2026-09-26-fixing-flight-instability-in-hypersonic-boundary",
+  "filename_en": "2026-09-26-fixing-flight-instability-in-hypersonic-boundary.en.md",
+  "filename_tr": "2026-09-26-fixing-flight-instability-in-hypersonic-boundary.tr.md",
+  "gemini_output_en": {
+    "title": "Fixing Flight Instability in Hypersonic Boundary Layer Transition Experiments",
+    "paper_title": "Overcoming Flight Instability in the Boundary Layer Transition Experiments",
+    "authors": "John T. Melcher, Cameron S. Butler, Prasad Kutty, Bradley M. Wheaton",
+    "paper_type": "experimental",
+    "relevance_score": 65,
+    "summary": "This paper examines the flight instability encountered during the Boundary Layer Transition Experiment (BOLT)-1A, an asymmetric hypersonic payload designed to measure boundary-layer transition. The vehicle experienced a significant roll-pitch lock-in condition shortly after first-stage separation, which compromised the experiment's performance. The authors identify an angle-of-attack divergence, triggered when the asymmetric vehicle crosses resonance, as the precursor to this observed roll-pitch lock-in.\n\nThe work introduces metrics to quantify the severity of unstable resonance crossing and distinguishes between small-amplitude and large-amplitude lock-in, with the latter providing the mechanism for the sustained instability seen in BOLT-1A. In contrast, the subsequent BOLT-1B flight successfully avoided this roll-pitch lock-in. The paper details the specific strategy employed on BOLT-1B to ensure a stable resonance crossing, which proved effective in preventing the large-amplitude instability.\n\nThe findings are significant for the design and execution of future asymmetric hypersonic flight experiments, particularly those focused on sensitive measurements like boundary layer transition. Understanding and mitigating such flight instabilities is crucial for obtaining reliable aerothermodynamic data in complex flow regimes.",
+    "tags": [
+      "Hypersonic Aerodynamics",
+      "Flight Vehicle Design",
+      "Missile Aerothermodynamics"
+    ]
+  },
+  "gemini_output_tr": {
+    "title": "Hipersonik Ucus Deneylerinde Sinir Tabaka Gecisi Instabilitesinin Ustesinden Gelmek",
+    "paper_title": "Overcoming Flight Instability in the Boundary Layer Transition Experiments",
+    "authors": "John T. Melcher, Cameron S. Butler, Prasad Kutty, Bradley M. Wheaton",
+    "paper_type": "experimental",
+    "relevance_score": 60,
+    "summary": "Melcher ve arkadaslari, hipersonik sinir tabaka gecisini olcmek uzere tasarlanmis asimetrik bir yuk tasima araci olan BOLT-1A deneyinde karsilasilan ucus instabilitesini ele aliyor. Haziran 2021'deki BOLT-1A ucusta, birinci asama ayrilmasindan kisa bir sure sonra arac, yuksek genlikli bir yuvarlanma-yunuslama kilitlenme durumuna girdi ve bu durum yukselis boyunca devam ederek deney performansini onemli olcude dusurdu. Makale, bu instabilitenin, asimetrik bir aracin rezonansi gectiginde tetiklenen bir hucum acisi sapmasindan kaynaklandigini ortaya koyuyor.\n\nCalisma, kararsiz rezonans gecisinin siddetini nicelendirmek icin metrikler sunuyor ve kucuk genlikli kilitlenme ile buyuk genlikli kilitlenme arasinda bir ayrim yapiyor; ikincisi, BOLT-1A'da gorulen surekli yuvarlanma-yunuslama kilitlenmesinin mekanizmasini acikliyor. BOLT-1A'nin aksine, Eylul 2024'teki BOLT-1B ucusu yuvarlanma-yunuslama kilitlenmesini basariyla onledi. Makale, BOLT-1B'de kararlı bir rezonans gecisi saglamak icin kullanilan stratejiyi detaylandiriyor ve gelecekteki asimetrik hipersonik ucus deneyleri icin cikarimlarini tartisiyor.\n\nBu calisma, hipersonik sinir tabaka gecisi gibi kritik aerotermodinamik fenomenleri incelemek icin guvenilir deneysel veriler elde etmenin onemi acisindan havacilik toplulugu icin degerlidir. Ucus instabilitelerinin ustesinden gelmek, bu tur deneylerin basarisini dogrudan etkiler ve dogru model dogrulamasi icin gerekli olan temiz, yuksek kaliteli verilerin elde edilmesini saglar.",
+    "tags": [
+      "Hypersonic Aerodynamics",
+      "Flight Vehicle Design",
+      "Missile Aerothermodynamics"
+    ]
+  },
+  "paper": {
+    "title": "Overcoming Flight Instability in the Boundary Layer Transition Experiments",
+    "authors": [
+      "John T. Melcher",
+      "Cameron S. Butler",
+      "Prasad Kutty",
+      "Bradley M. Wheaton"
+    ],
+    "journal": "Journal of Spacecraft and Rockets",
+    "url": "https://doi.org/10.2514/1.a36755",
+    "doi": "10.2514/1.a36755",
+    "date": "2026-09-15"
+  },
+  "created_at": "2026-09-26T12:57:15.062649"
+}

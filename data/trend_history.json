@@ -464,6 +464,19 @@
       "sources": {
         "OpenAlex": 2
       }
+    },
+    {
+      "date": "2026-09-26T12:57:15.442222",
+      "paper_count": 2,
+      "tags": {
+        "Hypersonic Aerodynamics": 4,
+        "Missile Aerothermodynamics": 4,
+        "Turbulent Heating": 2,
+        "Flight Vehicle Design": 2
+      },
+      "sources": {
+        "OpenAlex": 2
+      }
     }
   ]
 }
