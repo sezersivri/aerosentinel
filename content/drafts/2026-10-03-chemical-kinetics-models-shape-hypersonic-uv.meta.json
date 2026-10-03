@@ -1,0 +1,48 @@
+{
+  "filename_base": "2026-10-03-chemical-kinetics-models-shape-hypersonic-uv",
+  "filename_en": "2026-10-03-chemical-kinetics-models-shape-hypersonic-uv.en.md",
+  "filename_tr": "2026-10-03-chemical-kinetics-models-shape-hypersonic-uv.tr.md",
+  "gemini_output_en": {
+    "title": "Chemical Kinetics Models Shape Hypersonic UV Radiation Predictions",
+    "paper_title": "Influence of Chemical Kinetics on Ultraviolet Radiation Behind Hypersonic Bow Shock",
+    "authors": "Christopher A. Roseman, Iain D. Boyd, Ross S. Chaudhry",
+    "paper_type": "multi_method",
+    "relevance_score": 75,
+    "summary": "Roseman and colleagues investigate ultraviolet (UV) radiation behind a hypersonic bow shock, comparing their simulations with data from the Bow Shock Ultraviolet (BSUV) flight experiment. They model the flow around a 10.16 cm radius sphere-cone vehicle flying at Mach 15, across altitudes from 20 to 70 km. The study employs the LeMANS computational fluid dynamics code, incorporating both the Park and Modified Marrone–Treanor (MMT) chemical kinetics models, with NASA’s NEQAIR code handling the radiation calculations.\n\nThe simulations show reasonable agreement with the experimental data. Between 30 and 60 km altitude, nitric oxide (NO) is identified as the primary source of UV radiation, while nitrogen Schumann–Runge emission becomes significant outside this range. Below 45 km, NO excited states are populated by collisional excitation and follow a Boltzmann distribution. At higher altitudes, exchange reactions become dominant, leading to a notable overpopulation of these excited states. Differences observed between the Park and MMT models are primarily attributed to their respective oxygen dissociation rates. Specifically, below 45 km, Park's higher oxygen dissociation rate results in lower temperatures and less UV radiance compared to MMT. Conversely, above 45 km, the Park model predicts greater NO formation and thus higher UV radiance. The MMT model's prediction for radiance dependence on altitude aligns well with experimental observations, whereas the Park model exhibits inconsistent agreement across different altitudes.\n\nThis work highlights the critical role of chemical kinetics models in accurately predicting the UV radiation environment within hypersonic shock layers. The findings are important for understanding the optical signatures of high-speed vehicles and for the development of optical sensors or communication systems operating in such extreme conditions.",
+    "tags": [
+      "Aerothermodynamics",
+      "Hypersonic Flow",
+      "Real Gas Effects",
+      "Radiative Heating",
+      "Missile Aerothermodynamics"
+    ]
+  },
+  "gemini_output_tr": {
+    "title": "Kimyasal Kinetiklerin Hipersonik Şok Arkası UV Radyasyonuna Etkisi: Deneysel Doğrulama",
+    "paper_title": "Influence of Chemical Kinetics on Ultraviolet Radiation Behind Hypersonic Bow Shock",
+    "authors": "Christopher A. Roseman, Iain D. Boyd, Ross S. Chaudhry",
+    "paper_type": "multi_method",
+    "relevance_score": 75,
+    "summary": "Roseman ve arkadaslari, hipersonik bir burun şoku arkasindaki ultraviyole (UV) radyasyonunu simule ederek, BSUV (Bow Shock Ultraviolet) uçuş deneyi verileriyle karşılaştırmalı bir analiz sunuyor. Çalışma, 10.16 cm yarıçaplı bir küre-koni aracının Mach 10.5 hızında, 20 ila 70 km irtifalar arasında uçtuğu koşulları inceliyor. Akış simülasyonları LeMANS hesaplamalı akışkanlar dinamiği (HAD) kodu kullanılarak, Park ve Modifiye Marrone-Treanor (MMT) kimyasal kinetik modelleriyle gerçekleştirildi. Radyasyon modellemesi ise NASA'nın NEQAIR koduyla yapıldı.\n\nSimülasyonlar, deneysel verilerle makul bir uyum gösteriyor. 30 ila 60 km irtifalar arasında, azot monoksit (NO) UV radyasyonunun baskın kaynağı olarak belirlendi; bu aralığın dışında ise N2 Schumann-Runge emisyonu önemli hale geliyor. 45 km'nin altındaki irtifalarda, NO'nun uyarılmış durumları çarpışmalı uyarılma yoluyla oluşuyor ve Boltzmann dağılımına yakın bir şekilde dağılıyor. Daha yüksek irtifalarda ise değişim reaksiyonları baskın hale gelerek uyarılmış durumların önemli ölçüde aşırı popülasyonuna yol açıyor. Park ve MMT modelleri arasındaki farklılıklar, oksijen molekülünün (O2) ayrışma oranına atfediliyor. 45 km'nin altında, Park modelinin daha yüksek O2 ayrışma oranı, MMT'ye kıyasla daha düşük sıcaklıklar ve daha az UV radyansı üretiyor. 45 km'nin üzerinde ise Park modeli daha fazla NO oluşumu ve daha yüksek UV radyansı tahmin ediyor. MMT modelinin radyansın irtifaya bağımlılığı deneysel verilerle iyi bir uyum içindeyken, Park modelinin uyumu farklı irtifalarda tutarsızlık gösteriyor.\n\nBu çalışma, yüksek entalpili hipersonik akışlarda radyatif ısı transferinin karmaşık doğasını ve kimyasal kinetik modellerin bu süreç üzerindeki kritik etkisini vurguluyor. Özellikle, deneysel verilerle doğrulanmış kimyasal kinetik modellerin, termal koruma sistemleri tasarımı ve yüksek hızlı araçların aerotermodinamik performansı için ne kadar önemli olduğunu ortaya koyuyor.",
+    "tags": [
+      "Aerothermodynamics",
+      "Hypersonic Flow",
+      "Real Gas Effects",
+      "Radiative Heating",
+      "Missile Aerothermodynamics"
+    ]
+  },
+  "paper": {
+    "title": "Influence of Chemical Kinetics on Ultraviolet Radiation Behind Hypersonic Bow Shock",
+    "authors": [
+      "Christopher A. Roseman",
+      "Iain D. Boyd",
+      "Ross S. Chaudhry"
+    ],
+    "journal": "Journal of Thermophysics and Heat Transfer",
+    "url": "https://doi.org/10.2514/1.t7378",
+    "doi": "10.2514/1.t7378",
+    "date": "2026-10-01"
+  },
+  "created_at": "2026-10-03T13:16:44.287827"
+}

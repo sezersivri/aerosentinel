@@ -477,6 +477,24 @@
       "sources": {
         "OpenAlex": 2
       }
+    },
+    {
+      "date": "2026-10-03T13:16:44.621009",
+      "paper_count": 2,
+      "tags": {
+        "Aerothermodynamics": 3,
+        "Hypersonic Aerodynamics": 1,
+        "Heat Flux Prediction": 1,
+        "Shock-Boundary Layer Interaction": 1,
+        "Flight Vehicle Design": 1,
+        "Hypersonic Flow": 2,
+        "Real Gas Effects": 2,
+        "Radiative Heating": 2,
+        "Missile Aerothermodynamics": 2
+      },
+      "sources": {
+        "OpenAlex": 2
+      }
     }
   ]
 }
